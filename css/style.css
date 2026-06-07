@@ -1,24 +1,41 @@
-/* 1. Шрифты из DESIGN.md */
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Space+Grotesk:wght@600;700&family=JetBrains+Mono:wght@400&display=swap');
+/* 1. Шрифты — DESIGN.md (Brand 2.0): Unbounded (display) + DM Sans (UI) + JetBrains Mono */
+@import url('https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700&family=DM+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400&display=swap');
 
 :root {
   /* Типографика */
-  --font-ui: 'DM Sans', sans-serif;
-  --font-display: 'Space Grotesk', sans-serif;
-  --font-mono: 'JetBrains Mono', monospace;
+  --font-display: 'Unbounded', ui-sans-serif, sans-serif;
+  --font-ui: 'DM Sans', ui-sans-serif, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
 
-  /* Палитра Dark OLED (DESIGN.md) */
-  --bg:    #070b14;
-  --bg2:   #0d1424;
-  --bg3:   #111827;
-  --text:  #e8eaf0;
-  --muted: #6b7a99;
-  
-  --primary:   hsl(265, 82%, 58%); /* #7c3aed */
-  --primary2:  hsl(280, 85%, 68%); /* #a855f7 */
-  --line:      rgba(148, 163, 184, 0.12);
+  /* Фон (тёмная тема — основная, совпадает с фоном логотипа) */
+  --bg:    #141414;
+  --bg2:   #1b1b1b;
+  --bg3:   #212121;
+  --bg-elevated: #272727;
 
-  /* Отступы (шкала 4px из DESIGN.md) */
+  /* Текст */
+  --text:  #fdfdfd;
+  --muted: #9a9a9a;
+  --hint:  #5c5c5c;
+
+  /* Бренд / акцент — золото логотипа */
+  --gold:      #f6bd3a;
+  --gold-soft: #ffd673;
+  --gold-bg:   rgba(246, 189, 58, 0.10);
+
+  /* Спектр направлений (цвет-код услуг) */
+  --c-video:  #8b5cf6;
+  --c-design: #22c55e;
+  --c-photo:  #f6bd3a;
+  --c-ai:     #ef4444;
+
+  /* Структура */
+  --line:   rgba(253, 253, 253, 0.10);
+  --glass:  rgba(20, 20, 20, 0.85);
+  --shadow: 0 24px 64px rgba(0, 0, 0, 0.5);
+  --glow-gold: 0 0 48px rgba(246, 189, 58, 0.28);
+
+  /* Отступы (шкала 4px) */
   --sp-1:  4px;
   --sp-2:  8px;
   --sp-3:  12px;
@@ -32,18 +49,23 @@
   --radius-sm: 4px;
   --radius-md: 8px;
   --radius-lg: 16px;
+  --radius-xl: 24px;
 }
 
 * {
   box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   margin: 0;
   font-family: var(--font-ui);
-  background: linear-gradient(180deg, var(--bg) 0%, var(--bg2) 100%);
+  background: var(--bg);
   color: var(--text);
-  line-height: 1.5;
+  line-height: 1.6;
   min-height: 100vh;
 }
 
@@ -51,9 +73,17 @@ body {
 h1, h2, h3 {
   font-family: var(--font-display);
   font-weight: 700;
-  letter-spacing: -0.02em;
-  line-height: 1.15;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
   margin: 0 0 var(--sp-4);
+}
+
+p {
+  margin: 0 0 var(--sp-4);
+}
+
+a {
+  color: inherit;
 }
 
 .container {
@@ -61,29 +91,46 @@ h1, h2, h3 {
   margin: 0 auto;
 }
 
-/* Кнопки (основа) */
+/* Градиентный акцентный текст (золото → фиолетовый), как в референсе бренда */
+.text-gradient {
+  background: linear-gradient(120deg, var(--gold) 0%, var(--gold-soft) 35%, var(--c-video) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Кнопки */
 .btn {
   display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 120px;
+  min-height: 44px;
   padding: 12px 24px;
   border-radius: var(--radius-md);
   text-decoration: none;
   font-weight: 600;
+  font-size: 14px;
   border: 1px solid var(--line);
   background: var(--bg3);
   color: var(--text);
-  transition: 0.2s ease;
+  transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   cursor: pointer;
 }
 
 .btn.primary {
-  background: var(--primary);
+  background: var(--gold);
   border-color: transparent;
-  color: #fff;
+  color: #141414;
 }
 
 .btn:hover {
   transform: translateY(-2px);
-  border-color: rgba(124, 58, 237, 0.5);
+  border-color: rgba(246, 189, 58, 0.4);
+}
+
+.btn.primary:hover {
+  box-shadow: var(--glow-gold);
 }
 
 /* Навигация */
@@ -91,25 +138,53 @@ h1, h2, h3 {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 16px 32px;
+  gap: var(--sp-6);
+  padding: 14px 32px;
   border-bottom: 1px solid var(--line);
-  background: rgba(7, 11, 20, 0.8);
+  background: var(--glass);
   backdrop-filter: blur(18px);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-2);
+  text-decoration: none;
+  color: var(--text);
+}
+
+.brand img {
+  height: 28px;
+  width: auto;
+  display: block;
+}
+
+.nav {
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .nav a {
   color: var(--muted);
   text-decoration: none;
-  margin-left: 24px;
+  margin-left: var(--sp-6);
   font-weight: 500;
-  transition: 0.2s;
+  font-size: 14px;
+  transition: 0.2s ease;
 }
 
 .nav a:hover {
   color: var(--text);
 }
 
-/* Hero (главная) */
+.nav a.nav-cta {
+  color: var(--gold);
+}
+
+/* Hero */
 .hero-section {
   position: relative;
   overflow: hidden;
@@ -119,14 +194,34 @@ h1, h2, h3 {
 .hero-section::before {
   content: "";
   position: absolute;
-  top: -220px;
-  right: -160px;
-  width: 560px;
-  height: 560px;
-  background: radial-gradient(circle, rgba(124, 58, 237, 0.35), transparent 70%);
-  filter: blur(60px);
+  top: -240px;
+  right: -180px;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(246, 189, 58, 0.16), transparent 70%);
+  filter: blur(70px);
   pointer-events: none;
   z-index: 0;
+  animation: drift 26s ease-in-out infinite alternate;
+}
+
+.hero-section::after {
+  content: "";
+  position: absolute;
+  bottom: -220px;
+  left: -160px;
+  width: 520px;
+  height: 520px;
+  background: radial-gradient(circle, rgba(139, 92, 246, 0.14), transparent 70%);
+  filter: blur(70px);
+  pointer-events: none;
+  z-index: 0;
+  animation: drift 32s ease-in-out infinite alternate-reverse;
+}
+
+@keyframes drift {
+  from { transform: translate(0, 0) scale(1); }
+  to   { transform: translate(-40px, 40px) scale(1.08); }
 }
 
 .hero-section > * {
@@ -135,24 +230,37 @@ h1, h2, h3 {
 }
 
 .eyebrow {
-  display: inline-block;
-  font-size: 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-2);
+  font-family: var(--font-display);
+  font-size: 12px;
   font-weight: 500;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--primary2);
+  color: var(--gold);
   margin-bottom: var(--sp-4);
 }
 
+.eyebrow::before {
+  content: "";
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--gold);
+  box-shadow: 0 0 12px rgba(246, 189, 58, 0.7);
+}
+
 .hero-section h1 {
-  font-size: 48px;
-  max-width: 720px;
+  font-size: clamp(32px, 5vw, 56px);
+  max-width: 780px;
 }
 
 .hero-section p {
   color: var(--muted);
   font-size: 18px;
-  max-width: 560px;
+  max-width: 580px;
 }
 
 .hero-buttons {
@@ -162,7 +270,7 @@ h1, h2, h3 {
   margin-top: var(--sp-8);
 }
 
-/* Секции главной страницы */
+/* Секции */
 .section {
   padding: var(--sp-16) 0;
   border-top: 1px solid var(--line);
@@ -173,8 +281,12 @@ h1, h2, h3 {
   margin-bottom: var(--sp-8);
 }
 
+.section-head .eyebrow {
+  margin-bottom: var(--sp-2);
+}
+
 .section-head h2 {
-  font-size: 28px;
+  font-size: clamp(24px, 3vw, 32px);
 }
 
 .section-head p {
@@ -182,6 +294,26 @@ h1, h2, h3 {
   font-size: 16px;
   margin-bottom: 0;
 }
+
+/* Scroll-reveal анимация появления */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1), transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Лёгкий каскад появления карточек в сетках */
+.stats-grid > .reveal:nth-child(2),
+.services-grid > .reveal:nth-child(2) { transition-delay: 90ms; }
+.stats-grid > .reveal:nth-child(3),
+.services-grid > .reveal:nth-child(3) { transition-delay: 180ms; }
+.stats-grid > .reveal:nth-child(4),
+.services-grid > .reveal:nth-child(4) { transition-delay: 270ms; }
 
 /* Цифры о работе */
 .stats-grid {
@@ -195,6 +327,12 @@ h1, h2, h3 {
   border: 1px solid var(--line);
   border-radius: var(--radius-lg);
   padding: var(--sp-6);
+  transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.stat-card:hover {
+  border-color: rgba(246, 189, 58, 0.3);
+  transform: translateY(-4px);
 }
 
 .stat-number {
@@ -202,8 +340,9 @@ h1, h2, h3 {
   font-family: var(--font-display);
   font-weight: 700;
   font-size: 32px;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.01em;
   font-variant-numeric: tabular-nums;
+  color: var(--gold);
   margin-bottom: var(--sp-2);
 }
 
@@ -211,10 +350,10 @@ h1, h2, h3 {
   display: block;
   color: var(--muted);
   font-size: 14px;
-  line-height: 1.4;
+  line-height: 1.5;
 }
 
-/* Направления (карточки услуг) */
+/* Направления (карточки услуг) — цвет-код по DESIGN.md */
 .services-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -222,6 +361,8 @@ h1, h2, h3 {
 }
 
 .service-card {
+  --dir-color: var(--gold);
+  position: relative;
   display: flex;
   flex-direction: column;
   background: var(--bg3);
@@ -230,20 +371,59 @@ h1, h2, h3 {
   padding: var(--sp-6);
   color: var(--text);
   text-decoration: none;
-  transition: 0.2s ease;
+  transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+}
+
+.service-card[data-dir="video"]  { --dir-color: var(--c-video); }
+.service-card[data-dir="design"] { --dir-color: var(--c-design); }
+.service-card[data-dir="photo"]  { --dir-color: var(--c-photo); }
+.service-card[data-dir="ai"]     { --dir-color: var(--c-ai); }
+
+.service-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, var(--dir-color), transparent 60%);
+  opacity: 0;
+  transition: opacity 0.25s ease;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
 }
 
 .service-card:hover {
-  border-color: rgba(124, 58, 237, 0.35);
+  border-color: transparent;
   transform: translateY(-4px);
+  box-shadow: 0 0 40px -12px var(--dir-color);
+}
+
+.service-card:hover::before {
+  opacity: 1;
 }
 
 .service-icon {
-  font-size: 28px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-md);
+  background: color-mix(in srgb, var(--dir-color) 16%, transparent);
+  color: var(--dir-color);
   margin-bottom: var(--sp-4);
 }
 
+.service-icon svg {
+  width: 22px;
+  height: 22px;
+}
+
 .service-card h3 {
+  font-size: 18px;
   margin-bottom: var(--sp-2);
 }
 
@@ -256,9 +436,22 @@ h1, h2, h3 {
 }
 
 .service-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
   font-weight: 600;
   font-size: 14px;
-  color: var(--primary2);
+  color: var(--dir-color);
+}
+
+.service-link svg {
+  width: 14px;
+  height: 14px;
+  transition: transform 0.2s ease;
+}
+
+.service-card:hover .service-link svg {
+  transform: translateX(3px);
 }
 
 /* Блок доверия / клиенты */
@@ -272,17 +465,25 @@ h1, h2, h3 {
   border-top: 1px solid var(--line);
   color: var(--muted);
   font-family: var(--font-display);
-  font-weight: 600;
+  font-weight: 500;
   font-size: 14px;
   letter-spacing: 0.04em;
   text-transform: uppercase;
+}
+
+.trust-row span {
+  transition: color 0.2s ease;
+}
+
+.trust-row span:hover {
+  color: var(--gold);
 }
 
 /* Баннер Adervis PRO / CRM */
 .crm-banner {
   position: relative;
   overflow: hidden;
-  background: linear-gradient(135deg, rgba(124, 58, 237, 0.16), var(--bg3) 65%);
+  background: linear-gradient(135deg, rgba(246, 189, 58, 0.12), var(--bg3) 65%);
   border: 1px solid var(--line);
   border-radius: var(--radius-lg);
   padding: var(--sp-12);
@@ -295,7 +496,7 @@ h1, h2, h3 {
   left: -100px;
   width: 380px;
   height: 380px;
-  background: radial-gradient(circle, rgba(168, 85, 247, 0.28), transparent 70%);
+  background: radial-gradient(circle, rgba(139, 92, 246, 0.22), transparent 70%);
   filter: blur(50px);
   pointer-events: none;
   z-index: 0;
@@ -311,7 +512,7 @@ h1, h2, h3 {
 }
 
 .crm-text h2 {
-  font-size: 28px;
+  font-size: clamp(22px, 3vw, 28px);
 }
 
 .crm-text p {
@@ -321,25 +522,26 @@ h1, h2, h3 {
 
 .badge {
   display: inline-block;
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 0.04em;
+  font-family: var(--font-display);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: var(--primary2);
-  background: rgba(124, 58, 237, 0.12);
-  border: 1px solid rgba(124, 58, 237, 0.3);
+  color: var(--gold);
+  background: var(--gold-bg);
+  border: 1px solid rgba(246, 189, 58, 0.3);
   border-radius: var(--radius-sm);
-  padding: 4px 10px;
+  padding: 5px 10px;
   margin-bottom: var(--sp-4);
 }
 
-/* Контактный CTA в подвале страницы */
+/* Контактный CTA */
 .contact-section {
   text-align: center;
 }
 
 .contact-section h2 {
-  font-size: 28px;
+  font-size: clamp(22px, 3vw, 28px);
 }
 
 .contact-section p {
@@ -352,32 +554,6 @@ h1, h2, h3 {
 .contact-section .hero-buttons {
   margin-top: 0;
   justify-content: center;
-}
-
-@media (max-width: 960px) {
-  .stats-grid,
-  .services-grid,
-  .showreel-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (max-width: 640px) {
-  .stats-grid,
-  .services-grid,
-  .cases-grid,
-  .showreel-grid,
-  .review-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .hero-section h1 {
-    font-size: 36px;
-  }
-
-  .crm-banner {
-    padding: var(--sp-8);
-  }
 }
 
 /* Портфолио / кейсы (страницы направлений) */
@@ -396,7 +572,7 @@ h1, h2, h3 {
 
 .case-group h3 {
   font-size: 18px;
-  color: var(--primary2);
+  color: var(--gold);
 }
 
 .case-group ul {
@@ -433,6 +609,12 @@ h1, h2, h3 {
   border: 1px solid var(--line);
   border-radius: var(--radius-lg);
   padding: var(--sp-6);
+  transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.showreel-card:hover {
+  border-color: rgba(246, 189, 58, 0.3);
+  transform: translateY(-4px);
 }
 
 .showreel-card .badge {
@@ -464,6 +646,11 @@ h1, h2, h3 {
   border: 1px solid var(--line);
   border-radius: var(--radius-lg);
   padding: var(--sp-6);
+  transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.review-card:hover {
+  border-color: rgba(246, 189, 58, 0.25);
 }
 
 .review-quote {
@@ -484,6 +671,32 @@ h1, h2, h3 {
   color: var(--muted);
   font-size: 13px;
   margin-top: var(--sp-1);
+}
+
+@media (max-width: 960px) {
+  .stats-grid,
+  .services-grid,
+  .showreel-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .stats-grid,
+  .services-grid,
+  .cases-grid,
+  .showreel-grid,
+  .review-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .crm-banner {
+    padding: var(--sp-8);
+  }
+
+  .nav a {
+    margin-left: var(--sp-4);
+  }
 }
 
 /* Заглушки внутренних страниц */
@@ -517,15 +730,12 @@ h1, h2, h3 {
   gap: var(--sp-8);
 }
 
-.footer-brand .logo {
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 20px;
-  color: var(--text);
+.footer-brand .brand img {
+  height: 34px;
 }
 
 .footer-brand p {
-  margin-top: var(--sp-2);
+  margin-top: var(--sp-3);
   max-width: 280px;
 }
 
@@ -545,7 +755,7 @@ h1, h2, h3 {
 
 .footer-nav a:hover,
 .footer-contacts a:hover {
-  color: var(--text);
+  color: var(--gold);
 }
 
 .footer-social {
@@ -564,5 +774,20 @@ h1, h2, h3 {
 @media (max-width: 768px) {
   .footer-inner {
     grid-template-columns: 1fr;
+  }
+}
+
+/* Уважение к prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
   }
 }

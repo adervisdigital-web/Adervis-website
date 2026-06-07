@@ -1,114 +1,114 @@
-# DESIGN.md — Adervis PRO Design System
+# DESIGN.md — ADERVIS Design System (Brand 2.0)
 
-> Sources: Refactoring UI, Frontend Design Pro Demo (Dark OLED), Interface Design system.md pattern, Awesome DESIGN.md (Stripe/Apple references)
+> Полный ребрендинг: новый логотип (золотая «гора»-стрелка на тёмном), шрифт **Unbounded**, палитра «тёмный + золото + цветовой спектр направлений». Этот файл — единственный источник правды по дизайну, заменяет версию 1 (Dark OLED Violet).
 
 ---
 
 ## 1. Эстетика
 
-**Стиль:** Dark OLED Professional — не игровой Cyberpunk, а инструментальная темнота уровня Linear/Stripe/Vercel.  
-Высокий контраст, чёткая иерархия, никакого лишнего декора.
+**Стиль:** Premium Dark Tech — уверенный, технологичный, чуть футуристичный, но не «киберпанк». Почти чёрный фон, геометричный широкий шрифт, один яркий акцент (золото) + спектр направлений (фиолетовый/зелёный/красный) для навигации между услугами.
+
+Референс-настроение: неоновые акцентные линии на тёмном, мягкое свечение (glow) вокруг карточек и кнопок, плавные анимации появления — но без перегруза, в духе Stripe/Linear/Vercel с собственным «фирменным» цветовым акцентом.
 
 ---
 
 ## 2. Типографика
 
-### Запрещённые шрифты
-❌ Inter — используется сейчас, **заменить**  
-❌ Roboto, Arial, system-ui как основной
+### Шрифты
+Eurostile Extd — коммерческий шрифт без поддержки кириллицы, заменён на близкий по духу геометричный широкий шрифт с полной кириллицей.
 
-### Целевая пара
 | Роль | Шрифт | Использование |
 |------|-------|--------------|
-| UI / интерфейс | **DM Sans** (400, 500, 600) | Все текстовые элементы интерфейса |
-| Числа / акцент | **Space Grotesk** (600, 700) | Суммы, заголовки H1-H2, KPI-карточки |
-| Моно / код | **JetBrains Mono** | UUID, коды, техн. данные |
+| Заголовки / display | **Unbounded** (500, 700) | H1–H3, логотип-надпись, KPI-числа, бейджи направлений |
+| UI / текст | **DM Sans** (400, 500, 600) | Параграфы, кнопки, навигация, формы |
+| Моно / техданные | **JetBrains Mono** (400) | Коды, теги, технические подписи |
 
 ```css
-/* Google Fonts — заменить текущий Inter */
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Space+Grotesk:wght@600;700&family=JetBrains+Mono:wght@400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700&family=DM+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400&display=swap');
 
 :root {
+  --font-display: 'Unbounded', ui-sans-serif, sans-serif;
   --font-ui: 'DM Sans', ui-sans-serif, sans-serif;
-  --font-display: 'Space Grotesk', ui-sans-serif, sans-serif;
   --font-mono: 'JetBrains Mono', ui-monospace, monospace;
 }
 ```
 
-### Шкала размеров (rem / px)
+> Если у заказчика появятся файлы Eurostile Extd с лицензией — подключить через `@font-face` и переопределить `--font-display`, сохранив Unbounded как fallback.
+
+### Шкала размеров
 ```
-12px — мелкий label, badge, timestamp
+12px — label, badge, timestamp
 14px — body, input, кнопка
-16px — body-lg, карточка заголовок
-20px — H3 / секция
-24px — H2 / страница заголовок
-32px — H1 / hero / сумма KPI
+16px — body-lg, подпись карточки
+20px — H3 / подзаголовок секции
+28px — H2 / заголовок секции
+36–56px — H1 / hero (адаптивно)
 ```
 
 ### Веса
-- 400 — body текст, описания
-- 500 — интерфейсные метки, пункты меню
-- 600 — заголовки секций, кнопки
-- 700 — цифры (суммы, счётчики), H1
+- 400 — текст, описания (DM Sans)
+- 500 — интерфейсные метки, пункты меню, лёгкие заголовки (Unbounded 500)
+- 600 — кнопки, акцентные подписи (DM Sans 600)
+- 700 — H1/H2, KPI, логотип-надпись (Unbounded 700)
+
+Для заголовков — `letter-spacing: -0.01em…0.01em` (Unbounded уже широкий, дополнительно не растягивать).
 
 ---
 
 ## 3. Цвет
 
-### Базовая палитра (CSS custom properties — дополнять, не заменять)
+### Базовая палитра
 
 ```css
 :root {
-  /* --- Backgrounds --- */
-  --bg:    #070b14;        /* OLED black-navy */
-  --bg2:   #0d1424;        /* surface level 1 */
-  --bg3:   #111827;        /* surface level 2 (cards, panels) */
+  /* --- Backgrounds (тёмная тема, основная) --- */
+  --bg:    #141414;        /* фон — совпадает с фоном логотипа */
+  --bg2:   #1b1b1b;        /* surface уровня 1 */
+  --bg3:   #212121;        /* surface уровня 2 — карточки, панели */
+  --bg-elevated: #272727;  /* hover/active поверхность */
 
-  /* --- Text --- */
-  --text:  #e8eaf0;        /* primary — чуть теплее нейтрального */
-  --muted: #6b7a99;        /* secondary */
-  --hint:  #3d4a66;        /* placeholder, disabled */
+  /* --- Текст --- */
+  --text:  #fdfdfd;        /* основной — почти белый, как в палитре бренда */
+  --muted: #9a9a9a;        /* вторичный */
+  --hint:  #5c5c5c;        /* placeholder, disabled, тонкие подписи */
 
-  /* --- Brand --- */
-  --primary:   hsl(265, 82%, 58%);   /* #7c3aed violet */
-  --primary2:  hsl(280, 85%, 68%);   /* #a855f7 lighter */
-  --primary-bg: hsl(265, 82%, 8%);   /* subtle glow bg */
+  /* --- Бренд / акцент --- */
+  --gold:      #f6bd3a;    /* основной акцент — золото логотипа */
+  --gold-soft: #ffd673;    /* светлее — hover, glow, градиенты */
+  --gold-bg:   rgba(246, 189, 58, 0.10);  /* подложка под бейджи/иконки */
 
-  /* --- Semantic --- */
-  --success: hsl(142, 71%, 35%);    /* #16a34a */
-  --warning: hsl(38, 92%, 40%);     /* #ca8a04 */
-  --danger:  hsl(0, 72%, 51%);      /* #dc2626 */
-  --info:    hsl(199, 89%, 37%);    /* #0891b2 */
+  /* --- Спектр направлений (цвет-код услуг) --- */
+  --c-video:  #8b5cf6;     /* фиолетовый — Видео */
+  --c-design: #22c55e;     /* зелёный — Дизайн */
+  --c-photo:  #f6bd3a;     /* золото — Фото (бренд-акцент) */
+  --c-ai:     #ef4444;     /* красный — ИИ-контент */
 
-  /* --- Structure --- */
-  --line:   rgba(148, 163, 184, 0.12);
-  --glass:  rgba(13, 20, 36, 0.85);
-  --shadow: 0 24px 64px rgba(0, 0, 0, 0.48);
+  /* --- Семантика --- */
+  --success: #22c55e;
+  --warning: #f6bd3a;
+  --danger:  #ef4444;
+  --info:    #8b5cf6;
+
+  /* --- Структура --- */
+  --line:   rgba(253, 253, 253, 0.10);
+  --glass:  rgba(20, 20, 20, 0.85);
+  --shadow: 0 24px 64px rgba(0, 0, 0, 0.5);
+  --glow-gold: 0 0 48px rgba(246, 189, 58, 0.28);
 }
 ```
 
-### Правила применения цвета
-- Акцент (`--primary`) — только на 1 интерактивном элементе на экране (CTA-кнопка)
-- Статусные цвета — только для смысла (зелёный = успех, красный = опасность)
-- Текст на тёмном фоне — минимум `--text` (#e8eaf0) на `--bg` (#070b14): контраст ≥ 7:1 (WCAG AAA)
-- Никогда не использовать чистый `#ffffff` на `#000000` — слишком резко
+### Правила применения
+- **Золото (`--gold`)** — главный фирменный акцент: единственный CTA на экране, лого-иконка, ключевые цифры, hover-свечение. Не размазывать по всему UI.
+- **Цвета направлений** (`--c-video/--c-design/--c-photo/--c-ai`) — строго для навигации по 4 услугам: иконки, обводки и glow карточек на страницах направлений и в общей сетке услуг. Это «грамматика» структуры — пользователь визуально учится узнавать раздел по цвету.
+- **Семантические цвета** — только для статусов (успех/ошибка/предупреждение/инфо), не как декоративные.
+- Светлый `#fdfdfd` используется как цвет текста на тёмном и как фон для редких light-поверхностей (например, светлая версия лого на пресс-китах) — не как основа интерфейса.
+- Контраст текста на фоне ≥ 7:1 (WCAG AAA): `--text` на `--bg` соответствует.
 
 ---
 
-## 4. Spacing (отступы)
+## 4. Spacing
 
-Строгая шкала на основе 4px grid. **Только эти значения.**
-
-```
-4px   — gap внутри badge, inline-элементы
-8px   — gap между label и input, мелкие отступы
-12px  — padding кнопки (top/bottom), внутри chip
-16px  — padding card, отступы в форме
-24px  — gap между карточками, section-gap small
-32px  — section-gap, отступы страницы
-48px  — крупные блоки, mobile safe area
-64px  — hero-разделители, страничные заголовки
-```
+Шкала на основе 4px — без изменений, проверена на главной и `/video`:
 
 ```css
 :root {
@@ -125,80 +125,87 @@
 
 ---
 
-## 5. Radii (скругления)
+## 5. Radii
 
 ```
 4px   — badge, tag, chip
-8px   — input, select, маленький button
+8px   — input, кнопка
 12px  — card secondary
-16px  — card primary, modal (текущий --radius: 18px → снизить до 16px)
-24px  — bottom sheet, крупные панели
+16px  — card primary, баннер
+24px  — крупные секции, модалки
+```
+
+```css
+:root {
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+}
 ```
 
 ---
 
 ## 6. Компоненты — правила
 
+### Логотип
+- `logo.svg` (горизонтальный, золотая иконка + надпись «ADERVIS / DIGITAL AGENCY», белый текст) — для тёмного фона (хедер, футер, тёмные секции).
+- `icon.svg` (только золотая «гора»-стрелка) — фавикон, мобильная навигация, маркер бренда в карточках/декоре.
+- На светлом фоне белый wordmark не читается — пока используем только на `--bg`/тёмных поверхностях. Если потребуется light-версия — нужен отдельный файл с тёмным текстом (см. список ассетов от пользователя).
+
 ### Кнопки
 ```
-Primary:   bg=--primary, color=#fff, font-weight:600, padding:12px 24px, radius:8px
-Secondary: bg=transparent, border:1px solid --line, color:--text, hover: bg=--bg3
-Danger:    bg=transparent, color:--danger, border:1px solid --danger
+Primary:   bg=--gold, color=#141414 (тёмный текст на золоте — выше контраст), font-weight:600, padding:12px 24px, radius:8px, hover: glow(--glow-gold) + translateY(-2px)
+Secondary: bg=transparent, border:1px solid --line, color:--text, hover: bg=--bg3, border-color:rgba(246,189,58,0.4)
 ```
-- Минимальная ширина кнопки — 120px
-- Минимальная высота — 44px (touch target)
-- Никогда не использовать `cursor:pointer` через JS — только на `<button>` и `<a>`
+- Минимальная ширина — 120px, высота — 44px
+- `cursor:pointer` — только на `<button>`/`<a>`
 
-### Карточки (Cards)
+### Карточки
 ```css
 .card {
   background: var(--bg3);
   border: 1px solid var(--line);
   border-radius: 16px;
-  padding: var(--sp-4);         /* 16px */
-  box-shadow: 0 4px 24px rgba(0,0,0,0.24);
+  padding: var(--sp-6);
+  transition: 0.25s cubic-bezier(0.4,0,0.2,1);
 }
 .card:hover {
-  border-color: rgba(124, 58, 237, 0.3);  /* subtle primary glow */
+  border-color: rgba(246, 189, 58, 0.35);
+  transform: translateY(-4px);
+  box-shadow: var(--shadow);
 }
 ```
+Карточки направлений (`/video`, `/design`, `/photo`, `/ai`) дополнительно получают цветной акцент через `--c-*` (обводка/иконка/glow при hover) — см. `.service-card[data-dir="video"]` и т.п.
 
-### Inputs
+### Числа / KPI
 ```css
-/* high-contrast, no glassmorphism на input */
-background: var(--bg2);
-border: 1px solid var(--line);
-border-radius: 8px;
-padding: 10px 14px;
-font-size: 14px;
-/* Focus: */
-outline: 2px solid var(--primary);
-outline-offset: 2px;
-```
-
-### Числа / суммы (KPI)
-```css
-font-family: var(--font-display);  /* Space Grotesk */
+font-family: var(--font-display);
 font-weight: 700;
 font-variant-numeric: tabular-nums;
-letter-spacing: -0.02em;
 ```
 
 ---
 
 ## 7. Motion (анимации)
 
-- **Duration:** 150ms (micro), 250ms (transition), 400ms (modal/sheet)
-- **Easing:** `cubic-bezier(0.4, 0, 0.2, 1)` — Material standard
-- Skeleton shimmer: `1.5s` infinite
-- **Запрет:** никакого `animation: spin` на кнопках (это loading → spinner отдельный элемент)
-- `prefers-reduced-motion` — обязательно обрабатывать
+Анимации — заметная часть нового бренда (см. референсы: неоновые линии, плавное появление, градиентный текст). Правила:
+
+- **Длительность:** 150ms (micro), 250–300ms (переходы), 500ms (крупные появления секций)
+- **Easing:** `cubic-bezier(0.4, 0, 0.2, 1)`
+- **Scroll-reveal:** секции и карточки плавно проявляются и сдвигаются вверх при попадании во вьюпорт (`IntersectionObserver` + `.reveal` класс, без библиотек)
+- **Glow-hover:** карточки/кнопки получают мягкое свечение акцентным цветом при наведении (`box-shadow` с `--glow-gold` или цветом направления)
+- **Градиентный текст:** ключевые слова в заголовках — анимированный градиент (золото → один из цветов спектра), `background-clip: text`, как в референсе со словом «ЦВЕТА»
+- **Hero-фон:** мягкие радиальные глоу-пятна (золото/спектр), медленное движение (`@keyframes drift`, 20–30s, `ease-in-out infinite alternate`)
+- **Запрет:** `animation: spin` на кнопках, агрессивные параллаксы, авто-видео с звуком
+- `prefers-reduced-motion: reduce` — обязательно отключать все анимации
 
 ```css
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
     transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }
 ```
@@ -207,31 +214,30 @@ letter-spacing: -0.02em;
 
 ## 8. Иконки
 
-- Библиотека: **Lucide** (уже внедряемая тенденция) или inline SVG
-- Размер: 16px (inline), 20px (nav/button), 24px (featured)
-- Цвет: наследовать `currentColor`
-- Никогда не масштабировать PNG иконки
+- Inline SVG (без эмодзи — по требованию заказчика)
+- Размер: 16px (inline), 20–24px (карточки/nav), 32px (featured/hero)
+- Цвет: `currentColor`, акцентные — через `--gold`/`--c-*`
+- Маркер бренда — `icon.svg` (золотая «гора») как декоративный акцент в крупных блоках
 
 ---
 
 ## 9. Мобильный UX
 
-- Touch target минимум: **44×44px**
-- Bottom nav: фиксированный, `backdrop-filter: blur(16px)`, `safe-area-inset-bottom`
-- Swipe-to-delete зона: **min 120px** хода, `40%` экрана = подтверждение
-- Модалки снизу вверх (bottom sheet), не из центра
+- Touch target — минимум 44×44px
+- Нижняя/верхняя навигация — `backdrop-filter: blur(16px)`, полупрозрачный `--bg` (`--glass`)
+- Анимации на мобильных — короче и сдержаннее (уменьшать амплитуду движения, не убирать совсем)
 
 ---
 
-## 10. Что сейчас нужно изменить в коде
+## 10. Ассеты от заказчика
 
-| Проблема | Файл | Действие |
-|---------|------|---------|
-| `font-family: Inter` | style.css:64 | → `DM Sans` |
-| Google Fonts import | index.html:40 | → `DM Sans` + `Space Grotesk` |
-| `--radius: 18px` | style.css:16 | → `16px` |
-| Числа в KPI без tabular-nums | style.css | Добавить `font-variant-numeric: tabular-nums` |
+Загружены: `logo.svg`, `icon.svg` (золото `#f6bd3a` на прозрачном/тёмном).
+
+Понадобится дополнительно (список передан пользователю отдельно в чате):
+- Светлая версия логотипа (тёмный текст) — для светлых поверхностей/печатных материалов, если будут
+- Фавикон в PNG (`favicon.ico` / `apple-touch-icon.png`) — на основе `icon.svg`
+- Реальные кадры/фото из портфолио (видео, дизайн, фото-съёмки) для карточек кейсов и hero-фонов — на референсах был премиальный неон/студийный стиль
 
 ---
 
-*Этот файл — единственный источник правды по дизайну. Обновлять при каждом системном изменении.*
+*Обновлять при каждом системном изменении. Версия 1 (Dark OLED Violet) — архивная, заменена полностью.*
