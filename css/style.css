@@ -356,14 +356,18 @@ h1, h2, h3 {
 
 @media (max-width: 960px) {
   .stats-grid,
-  .services-grid {
+  .services-grid,
+  .showreel-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
 @media (max-width: 640px) {
   .stats-grid,
-  .services-grid {
+  .services-grid,
+  .cases-grid,
+  .showreel-grid,
+  .review-grid {
     grid-template-columns: 1fr;
   }
 
@@ -374,6 +378,112 @@ h1, h2, h3 {
   .crm-banner {
     padding: var(--sp-8);
   }
+}
+
+/* Портфолио / кейсы (страницы направлений) */
+.cases-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--sp-6);
+}
+
+.case-group {
+  background: var(--bg3);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: var(--sp-6);
+}
+
+.case-group h3 {
+  font-size: 18px;
+  color: var(--primary2);
+}
+
+.case-group ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-2);
+}
+
+.case-group li {
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.5;
+  padding-bottom: var(--sp-2);
+  border-bottom: 1px solid var(--line);
+}
+
+.case-group li:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+/* Шоурилы */
+.showreel-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--sp-6);
+}
+
+.showreel-card {
+  background: var(--bg3);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: var(--sp-6);
+}
+
+.showreel-card .badge {
+  margin-bottom: var(--sp-3);
+}
+
+.showreel-card h3 {
+  font-size: 20px;
+}
+
+.showreel-card p {
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* Отзывы клиентов */
+.review-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--sp-6);
+}
+
+.review-card {
+  display: flex;
+  flex-direction: column;
+  background: var(--bg3);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: var(--sp-6);
+}
+
+.review-quote {
+  color: var(--text);
+  font-size: 15px;
+  line-height: 1.6;
+  margin: 0 0 var(--sp-4);
+}
+
+.review-author {
+  display: block;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.review-role {
+  display: block;
+  color: var(--muted);
+  font-size: 13px;
+  margin-top: var(--sp-1);
 }
 
 /* Заглушки внутренних страниц */
