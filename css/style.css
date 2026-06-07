@@ -531,29 +531,41 @@ a {
   transform: translateX(3px);
 }
 
-/* Блок доверия / клиенты */
+/* Блок доверия / клиенты — реальные логотипы на светлых «чипах» (логотипы клиентов
+   приходят в разных цветах и стилях — от тёмных вордмарков до цветных эмблем,
+   светлая подложка одинаково хорошо показывает любой из них на тёмном фоне сайта) */
 .trust-row {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--sp-8);
+  gap: var(--sp-4);
   align-items: center;
   padding-top: var(--sp-6);
   margin-top: var(--sp-6);
   border-top: 1px solid var(--line);
-  color: var(--muted);
-  font-family: var(--font-display);
-  font-weight: 500;
-  font-size: 14px;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
 }
 
-.trust-row span {
-  transition: color 0.2s ease;
+.trust-row img {
+  height: 40px;
+  width: auto;
+  max-width: 132px;
+  object-fit: contain;
+  background: #f4f4f4;
+  border-radius: var(--radius-md);
+  padding: 7px var(--sp-4);
+  opacity: 0.8;
+  transition: opacity 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
 }
 
-.trust-row span:hover {
-  color: var(--gold);
+.trust-row img:hover {
+  opacity: 1;
+  transform: translateY(-2px);
+  box-shadow: var(--glow-gold);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .trust-row img {
+    transition: none;
+  }
 }
 
 /* Баннер продукта Adervis CRM — фирменный градиент фиолетовый → синий */
@@ -849,6 +861,37 @@ a {
 .case-group li:last-child {
   border-bottom: none;
   padding-bottom: 0;
+}
+
+/* Сетка реальных логотипов клиентов внутри карточки портфолио */
+.logo-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--sp-4);
+  align-items: center;
+}
+
+.logo-grid img {
+  height: 52px;
+  width: 100%;
+  object-fit: contain;
+  background: #f4f4f4;
+  border-radius: var(--radius-md);
+  padding: 10px var(--sp-3);
+  opacity: 0.8;
+  transition: opacity 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.logo-grid img:hover {
+  opacity: 1;
+  transform: translateY(-2px);
+  box-shadow: var(--glow-gold);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .logo-grid img {
+    transition: none;
+  }
 }
 
 /* Шоурилы */
