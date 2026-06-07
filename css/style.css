@@ -147,12 +147,22 @@ a {
   align-items: center;
   gap: var(--sp-6);
   padding: 14px 32px;
-  border-bottom: 1px solid var(--line);
-  background: var(--glass);
-  backdrop-filter: blur(18px);
+  border-bottom: 1px solid transparent;
+  background: transparent;
+  backdrop-filter: blur(0px);
   position: sticky;
   top: 0;
   z-index: 100;
+  transition: background 0.35s ease, border-color 0.35s ease, backdrop-filter 0.35s ease, box-shadow 0.35s ease, padding 0.35s ease;
+}
+
+/* При прокрутке шапка «всплывает» над контентом — плотный фон, тень, компактнее */
+.topbar.is-scrolled {
+  padding: 10px 32px;
+  border-bottom-color: var(--line);
+  background: var(--glass);
+  backdrop-filter: blur(18px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
 }
 
 .brand {
@@ -191,6 +201,7 @@ a {
   padding: 6px 1px;
   font-weight: 500;
   font-size: 14px;
+  letter-spacing: 0.01em;
   transition: color 0.2s ease;
 }
 
@@ -216,25 +227,53 @@ a {
   right: 0;
 }
 
-.nav a.nav-cta {
-  margin-left: var(--sp-8);
-  padding: 8px 18px;
-  color: #141414;
+/* Разделитель между навигацией по сайту и ссылкой на отдельный продукт */
+.nav-sep {
+  display: inline-block;
+  width: 1px;
+  height: 18px;
+  margin-left: var(--sp-6);
+  background: var(--line);
+}
+
+/* Adervis CRM — отдельный продукт компании, а не страница сайта: оформлен как
+   спокойный «продуктовый» бейдж (контур, не заливка), чтобы не спорить по весу
+   с золотыми primary-кнопками самого сайта */
+.nav-product {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-left: var(--sp-6);
+  padding: 7px 16px;
+  color: var(--gold-soft);
   font-weight: 600;
-  background: var(--gold);
+  font-size: 13px;
+  text-decoration: none;
+  border: 1px solid rgba(246, 189, 58, 0.3);
   border-radius: var(--radius-md);
-  transition: box-shadow 0.25s ease, transform 0.2s ease, filter 0.2s ease;
+  background: var(--gold-bg);
+  transition: border-color 0.25s ease, background 0.25s ease, color 0.25s ease, transform 0.2s ease;
 }
 
-.nav a.nav-cta::after {
-  display: none;
+.nav-product-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--gold);
+  box-shadow: 0 0 8px rgba(246, 189, 58, 0.65);
+  transition: background 0.25s ease, box-shadow 0.25s ease;
 }
 
-.nav a.nav-cta:hover {
+.nav-product:hover {
   color: #141414;
-  box-shadow: var(--glow-gold);
+  background: var(--gold);
+  border-color: var(--gold);
   transform: translateY(-1px);
-  filter: brightness(1.06);
+}
+
+.nav-product:hover .nav-product-dot {
+  background: #141414;
+  box-shadow: none;
 }
 
 /* Hero */
@@ -550,20 +589,39 @@ a {
   max-width: 132px;
   object-fit: contain;
   background: #f4f4f4;
+  border: 1px solid transparent;
   border-radius: var(--radius-md);
   padding: 7px var(--sp-4);
-  opacity: 0.8;
-  transition: opacity 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+  opacity: 0.85;
+  transition: opacity 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
 }
 
-.trust-row img:hover {
+/* Логотипы клиентов приходят разных цветов и тонов — кто-то рисован тёмным
+   (вордмарки, печати), кто-то светлым/белым (для тёмных поверхностей). Единая
+   светлая «подложка» топит светлые логотипы, поэтому показываем их на тёмной
+   карточке (--bg-elevated) — там они читаются так же чётко, как тёмные на
+   светлом чипе. Класс `.on-dark` ставится точечно по каждому файлу — см. DESIGN.md §10 */
+.trust-row img.on-dark,
+.logo-grid img.on-dark {
+  background: var(--bg-elevated);
+  border-color: var(--line);
+}
+
+.trust-row img:hover,
+.logo-grid img:hover {
   opacity: 1;
   transform: translateY(-2px);
   box-shadow: var(--glow-gold);
 }
 
+.trust-row img.on-dark:hover,
+.logo-grid img.on-dark:hover {
+  border-color: rgba(246, 189, 58, 0.4);
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .trust-row img {
+  .trust-row img,
+  .logo-grid img {
     transition: none;
   }
 }
@@ -876,22 +934,11 @@ a {
   width: 100%;
   object-fit: contain;
   background: #f4f4f4;
+  border: 1px solid transparent;
   border-radius: var(--radius-md);
   padding: 10px var(--sp-3);
-  opacity: 0.8;
-  transition: opacity 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
-}
-
-.logo-grid img:hover {
-  opacity: 1;
-  transform: translateY(-2px);
-  box-shadow: var(--glow-gold);
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .logo-grid img {
-    transition: none;
-  }
+  opacity: 0.85;
+  transition: opacity 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
 }
 
 /* Шоурилы */
@@ -992,8 +1039,15 @@ a {
     padding: var(--sp-8);
   }
 
-  .nav a {
+  .nav a,
+  .nav-sep,
+  .nav-product {
     margin-left: var(--sp-4);
+  }
+
+  .to-top {
+    right: var(--sp-4);
+    bottom: var(--sp-4);
   }
 }
 
@@ -1067,6 +1121,48 @@ a {
   padding-top: var(--sp-6);
   border-top: 1px solid var(--line);
   font-size: 12px;
+}
+
+/* Кнопка «наверх» — плавающая, появляется после прокрутки (DESIGN.md §9) */
+.to-top {
+  position: fixed;
+  right: var(--sp-6);
+  bottom: var(--sp-6);
+  z-index: 90;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 46px;
+  height: 46px;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  background: var(--glass);
+  backdrop-filter: blur(16px);
+  color: var(--text);
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(12px);
+  transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s, border-color 0.25s ease, color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.to-top.is-visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.to-top:hover {
+  color: var(--gold);
+  border-color: rgba(246, 189, 58, 0.4);
+  box-shadow: var(--glow-gold);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .to-top {
+    transition: opacity 0.01ms, visibility 0.01ms;
+    transform: none;
+  }
 }
 
 @media (max-width: 768px) {
