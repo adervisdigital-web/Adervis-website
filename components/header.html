@@ -2,17 +2,24 @@
   <a href="/" class="brand">
     <img src="/logo.svg" alt="ADERVIS — Digital Agency" width="371" height="90">
   </a>
-  <nav class="nav">
+  <nav class="nav" id="siteNav">
     <a href="/">Главная</a>
     <a href="/video">Видео</a>
     <a href="/design">Дизайн</a>
     <a href="/photo">Фото</a>
     <a href="/ai">ИИ</a>
     <a href="/careers">Карьера</a>
+    <a href="/docs">Документы</a>
     <span class="nav-sep" aria-hidden="true"></span>
     <a href="/pro" class="nav-product">
       <span class="nav-product-dot" aria-hidden="true"></span>
       Adervis CRM
     </a>
   </nav>
+  <button type="button" class="nav-toggle" id="navToggle" aria-label="Открыть меню" aria-expanded="false" aria-controls="siteNav">
+    <span aria-hidden="true"></span>
+    <span aria-hidden="true"></span>
+    <span aria-hidden="true"></span>
+  </button>
 </header>
+<div class="nav-backdrop" id="navBackdrop" aria-hidden="true"></div>
