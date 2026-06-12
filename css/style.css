@@ -1,5 +1,5 @@
 /* 1. Шрифты — DESIGN.md (Brand 2.0): Unbounded (display) + DM Sans (UI) + JetBrains Mono */
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Unbounded:wght@500;700&family=DM+Sans:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700&family=DM+Sans:wght@400;500;600&display=swap');
 
 :root {
   /* Типографика */
@@ -5945,13 +5945,9 @@ body.no-clients .clients-ticker-section {
   --font-serif: 'Cormorant Garamond', Georgia, serif;
 }
 
-/* Hero h1 на подстраницах — editorial serif, крупный и воздушный */
+/* Hero h1 на подстраницах — тот же Unbounded что на главной */
 .hero-section[data-dir] h1 {
-  font-family: var(--font-serif);
-  font-weight: 600;
-  font-size: clamp(52px, 7.2vw, 100px);
-  letter-spacing: -0.03em;
-  line-height: 1.03;
+  font-size: clamp(38px, 5.5vw, 68px);
   max-width: 820px;
 }
 
@@ -6044,6 +6040,261 @@ body.no-clients .clients-ticker-section {
   box-shadow: 0 24px 64px -20px rgba(0,0,0,0.6);
 }
 
+/* ═══════════════════════════════════════════════════════════════
+   CASES — раздел кейсов /cases/ и страницы кейсов /cases/slug/
+   ═══════════════════════════════════════════════════════════════ */
+
+/* Фильтры направлений */
+.cases-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-2);
+  margin-bottom: var(--sp-10);
+}
+
+.cases-filter {
+  padding: 8px 20px;
+  border-radius: 40px;
+  border: 1px solid var(--line);
+  background: transparent;
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: border-color 0.2s, color 0.2s, background 0.2s;
+}
+
+.cases-filter:hover {
+  border-color: var(--gold);
+  color: var(--text);
+}
+
+.cases-filter.active {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: #000;
+}
+
+/* Сетка кейсов */
+.cases-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--sp-8);
+}
+
+@media (max-width: 900px) {
+  .cases-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 560px) {
+  .cases-grid { grid-template-columns: 1fr; }
+}
+
+/* Карточка кейса */
+.case-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-4);
+  text-decoration: none;
+  color: var(--text);
+}
+
+.case-card__cover {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--line);
+  background: var(--surface);
+  aspect-ratio: 4 / 3;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.case-card:hover .case-card__cover {
+  border-color: rgba(246, 189, 58, 0.35);
+  box-shadow: 0 16px 48px -16px rgba(0,0,0,0.5);
+}
+
+.case-card__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  display: block;
+}
+
+.case-card:hover .case-card__img {
+  transform: scale(1.04);
+}
+
+.case-card__tag {
+  position: absolute;
+  top: var(--sp-3);
+  left: var(--sp-3);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  background: rgba(0,0,0,0.65);
+  backdrop-filter: blur(6px);
+  padding: 4px 10px;
+  border-radius: 20px;
+  border: 1px solid currentColor;
+}
+
+.case-card__body { display: flex; flex-direction: column; gap: 4px; }
+
+.case-card__title {
+  font-size: 18px;
+  font-weight: 700;
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+
+.case-card__meta {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--muted);
+  margin: 0;
+}
+
+.case-card--hidden { display: none; }
+
+/* ─── Страница кейса ─── */
+
+/* Мета-бар под hero */
+.case-meta-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-8);
+  padding: var(--sp-8) 0;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  margin-bottom: var(--sp-12);
+}
+
+.case-meta-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.case-meta-item__label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.case-meta-item__value {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+/* Задача и решение — 2 колонки */
+.case-content-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--sp-12);
+  margin-bottom: var(--sp-16);
+}
+
+@media (max-width: 760px) {
+  .case-content-grid { grid-template-columns: 1fr; }
+}
+
+.case-content-block h3 {
+  font-size: 13px;
+  font-family: var(--font-mono);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: var(--sp-4);
+}
+
+.case-content-block p {
+  font-size: 17px;
+  line-height: 1.65;
+  color: var(--text);
+  margin: 0;
+}
+
+/* Галерея кейса — masonry-style grid */
+.case-gallery {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--sp-4);
+  margin-bottom: var(--sp-16);
+}
+
+.case-gallery__item {
+  overflow: hidden;
+  border-radius: var(--radius);
+  border: 1px solid var(--line);
+  background: var(--surface);
+  aspect-ratio: 4 / 3;
+  transition: transform 0.3s;
+}
+
+.case-gallery__item:first-child {
+  grid-column: span 2;
+  aspect-ratio: 16 / 9;
+}
+
+.case-gallery__item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.case-gallery__item:hover img { transform: scale(1.03); }
+
+@media (max-width: 760px) {
+  .case-gallery { grid-template-columns: repeat(2, 1fr); }
+  .case-gallery__item:first-child { grid-column: span 2; }
+}
+
+@media (max-width: 480px) {
+  .case-gallery { grid-template-columns: 1fr; }
+  .case-gallery__item:first-child { grid-column: span 1; }
+}
+
+/* Результаты — строка цифр */
+.case-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--sp-6);
+  padding: var(--sp-10) 0;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  margin-bottom: var(--sp-16);
+}
+
+@media (max-width: 760px) {
+  .case-stats { grid-template-columns: repeat(2, 1fr); }
+}
+
+.case-stat__num {
+  font-family: var(--font-display);
+  font-size: clamp(28px, 4vw, 48px);
+  font-weight: 700;
+  color: var(--gold);
+  letter-spacing: -0.02em;
+  line-height: 1;
+  margin-bottom: 6px;
+}
+
+.case-stat__label {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.4;
+}
+
 /* ─── Баги: defensive rules ─── */
 /* Форма — убрать любой визуальный border вокруг group */
 .lead-form-grid,
@@ -6054,12 +6305,6 @@ body.no-clients .clients-ticker-section {
 
 /* ─── Mobile improvements ─── */
 @media (max-width: 600px) {
-  /* Editorial serif на малых экранах */
-  .hero-section[data-dir] h1 {
-    font-size: clamp(38px, 10vw, 56px);
-    letter-spacing: -0.02em;
-  }
-
   /* Кнопки hero — на всю ширину */
   .hero-buttons {
     flex-direction: column;
