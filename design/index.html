@@ -1,12 +1,25 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="ru" data-theme="dark">
 <head>
   <meta charset="utf-8">
+  <script>!function(){var t=localStorage.getItem("adervis-theme");if(t)document.documentElement.setAttribute("data-theme",t);else if(window.matchMedia("(prefers-color-scheme:light)").matches)document.documentElement.setAttribute("data-theme","light")}()</script>
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>ADERVIS — Дизайн и брендинг: логотипы, фирменный стиль, брендбуки</title>
   <meta name="description" content="Дизайн-направление ADERVIS: логотипы, фирменный стиль, брендбуки, полиграфия и упаковка. Превращаем смыслы бренда в визуальную систему, по которой вас узнают с первого взгляда.">
-  <link rel="icon" type="image/svg+xml" href="/icon.svg">
-  <link rel="stylesheet" href="/css/style.css">
+  <link rel="icon" type="image/svg+xml" href="../icon.svg">
+  <link rel="canonical" href="https://adervisdigital-web.github.io/Adervis-website/design/">
+  <meta name="theme-color" content="#141414">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="ADERVIS">
+  <meta property="og:url" content="https://adervisdigital-web.github.io/Adervis-website/design/">
+  <meta property="og:title" content="ADERVIS — Дизайн и брендинг: логотипы, фирменный стиль, брендбуки">
+  <meta property="og:description" content="Дизайн-направление ADERVIS: логотипы, фирменный стиль, брендбуки, полиграфия и упаковка. Превращаем смыслы бренда в визуальную систему, по которой вас узнают с первого взгляда.">
+  <meta property="og:image" content="https://adervisdigital-web.github.io/Adervis-website/assets/cases/og-image.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="ADERVIS — Дизайн и брендинг: логотипы, фирменный стиль, брендбуки">
+  <meta name="twitter:description" content="Дизайн-направление ADERVIS: логотипы, фирменный стиль, брендбуки, полиграфия и упаковка.">
+  <meta name="twitter:image" content="https://adervisdigital-web.github.io/Adervis-website/assets/cases/og-image.jpg">
+  <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
 
@@ -16,7 +29,11 @@
   <main>
 
     <!-- Hero -->
-    <section class="hero-section">
+    <section class="hero-section" data-dir="design">
+      <div class="page-aurora" aria-hidden="true">
+        <div class="page-aurora__blob page-aurora__blob--1"></div>
+        <div class="page-aurora__blob page-aurora__blob--2"></div>
+      </div>
       <div class="container">
         <span class="eyebrow">Дизайн и брендинг</span>
         <h1>Стиль, который узнают раньше, чем читают название</h1>
@@ -115,6 +132,31 @@
       </div>
     </section>
 
+    <!-- Витрина кейса -->
+    <section class="section">
+      <div class="container">
+        <div class="spotlight reveal">
+          <div class="media-frame" data-dir="design" style="--ratio: 16 / 10">
+            <span class="media-frame-tag">Кейс из портфолио</span>
+            <span class="media-frame-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="1.6" fill="currentColor" stroke="none"/><path d="M3 16l5-4 4 3 4-5 5 6"/></svg>
+            </span>
+            <span class="media-frame-label">Замените на разворот брендбука или мокап вывески / меню Lobanov Rest</span>
+          </div>
+          <div class="spotlight-text">
+            <span class="badge">Кейс из портфолио</span>
+            <h3>Lobanov Rest — фирменный стиль сети ресторанов</h3>
+            <p>Знак, палитра, паттерны и брендбук, по которому каждое новое заведение сети открывается в уже готовой системе — а не собирается «с нуля» силами очередного подрядчика. Стиль работает одинаково узнаваемо на вывеске, в меню и в рекламе.</p>
+            <ul class="spotlight-meta">
+              <li>Логотип + фирменный стиль</li>
+              <li>Брендбук и гайдлайны</li>
+              <li>HoReCa, сеть заведений</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- Портфолио -->
     <section class="section" id="works">
       <div class="container">
@@ -127,55 +169,195 @@
           <div class="case-group reveal">
             <h3>Производство и индустрия</h3>
             <div class="logo-grid">
-              <img src="/assets/clients/sibur.png" alt="Сибур" loading="lazy">
-              <img src="/assets/clients/himprom.png" alt="Химпром" loading="lazy">
-              <img src="/assets/clients/grafsil.png" alt="Графсил" class="on-dark" loading="lazy">
-              <img src="/assets/clients/injiniring.png" alt="Инжиниринг" class="on-dark" loading="lazy">
-              <img src="/assets/clients/sk-ferma.png" alt="СК «Ферма»" class="on-dark" loading="lazy">
-              <img src="/assets/clients/promoil.png" alt="Промойл" loading="lazy">
-              <img src="/assets/clients/ohrana-truda.png" alt="«Охрана труда»" loading="lazy">
-              <img src="/assets/clients/rtmiss.png" alt="РТМИСС" class="on-dark" loading="lazy">
+              <img src="../assets/clients/sibur.png" alt="Сибур" loading="lazy">
+              <img src="../assets/clients/himprom.png" alt="Химпром" loading="lazy">
+              <img src="../assets/clients/grafsil.png" alt="Графсил" class="on-dark" loading="lazy">
+              <img src="../assets/clients/injiniring.png" alt="Инжиниринг" class="on-dark" loading="lazy">
+              <img src="../assets/clients/sk-ferma.png" alt="СК «Ферма»" class="on-dark" loading="lazy">
+              <img src="../assets/clients/promoil.png" alt="Промойл" loading="lazy">
+              <img src="../assets/clients/ohrana-truda.png" alt="«Охрана труда»" loading="lazy">
+              <img src="../assets/clients/rtmiss.png" alt="РТМИСС" class="on-dark" loading="lazy">
             </div>
           </div>
           <div class="case-group reveal">
             <h3>Спорт и развлечения</h3>
             <div class="logo-grid">
-              <img src="/assets/clients/aratta.png" alt="Аратта" class="on-dark" loading="lazy">
-              <img src="/assets/clients/kiokushin.png" alt="Киокушин" loading="lazy">
-              <img src="/assets/clients/rsbi.png" alt="РСБИ" loading="lazy">
-              <img src="/assets/clients/bitva-robotov.png" alt="«Битва роботов»" class="on-dark" loading="lazy">
-              <img src="/assets/clients/nochnaya-liga.png" alt="«Ночная лига»" loading="lazy">
-              <img src="/assets/clients/rokstar.png" alt="Рокстар" class="on-dark" loading="lazy">
-              <img src="/assets/clients/phuk.png" alt="ПХУК" class="on-dark" loading="lazy">
-              <img src="/assets/clients/amaks.png" alt="АМАКС Экопарк" class="on-dark" loading="lazy">
+              <img src="../assets/clients/aratta.png" alt="Аратта" class="on-dark" loading="lazy">
+              <img src="../assets/clients/kiokushin.png" alt="Киокушин" loading="lazy">
+              <img src="../assets/clients/rsbi.png" alt="РСБИ" loading="lazy">
+              <img src="../assets/clients/bitva-robotov.png" alt="«Битва роботов»" class="on-dark" loading="lazy">
+              <img src="../assets/clients/nochnaya-liga.png" alt="«Ночная лига»" loading="lazy">
+              <img src="../assets/clients/rokstar.png" alt="Рокстар" class="on-dark" loading="lazy">
+              <img src="../assets/clients/phuk.png" alt="ПХУК" class="on-dark" loading="lazy">
+              <img src="../assets/clients/amaks.png" alt="АМАКС Экопарк" class="on-dark" loading="lazy">
             </div>
           </div>
           <div class="case-group reveal">
             <h3>Услуги, HoReCa и бьюти</h3>
             <div class="logo-grid">
-              <img src="/assets/clients/anatomiya.png" alt="Анатомия" loading="lazy">
-              <img src="/assets/clients/molodost.png" alt="Молодость" class="on-dark" loading="lazy">
-              <img src="/assets/clients/lobanov.png" alt="Lobanov Rest" class="on-dark" loading="lazy">
-              <img src="/assets/clients/wonder-bar.png" alt="Wonder Bar" class="on-dark" loading="lazy">
-              <img src="/assets/clients/barbershop.png" alt="Барбершоп" class="on-dark" loading="lazy">
-              <img src="/assets/clients/bariton.png" alt="Баритон" loading="lazy">
-              <img src="/assets/clients/atom.png" alt="Атом" loading="lazy">
-              <img src="/assets/clients/abs-avto.png" alt="АБС Авто" class="on-dark" loading="lazy">
+              <img src="../assets/clients/anatomiya.png" alt="Анатомия" loading="lazy">
+              <img src="../assets/clients/molodost.png" alt="Молодость" class="on-dark" loading="lazy">
+              <img src="../assets/clients/lobanov.png" alt="Lobanov Rest" class="on-dark" loading="lazy">
+              <img src="../assets/clients/wonder-bar.png" alt="Wonder Bar" class="on-dark" loading="lazy">
+              <img src="../assets/clients/barbershop.png" alt="Барбершоп" class="on-dark" loading="lazy">
+              <img src="../assets/clients/bariton.png" alt="Баритон" loading="lazy">
+              <img src="../assets/clients/atom.png" alt="Атом" loading="lazy">
+              <img src="../assets/clients/abs-avto.png" alt="АБС Авто" class="on-dark" loading="lazy">
             </div>
           </div>
           <div class="case-group reveal">
             <h3>Бренды и e-commerce</h3>
             <div class="logo-grid">
-              <img src="/assets/clients/express-import.png" alt="Express-Import" loading="lazy">
-              <img src="/assets/clients/mobilov.png" alt="Mobilov" class="on-dark" loading="lazy">
-              <img src="/assets/clients/top2b.png" alt="Top2B" loading="lazy">
-              <img src="/assets/clients/freedom.png" alt="Freedom" class="on-dark" loading="lazy">
-              <img src="/assets/clients/ujin.png" alt="UJIN" loading="lazy">
-              <img src="/assets/clients/stikbot.png" alt="Stikbot" loading="lazy">
-              <img src="/assets/clients/vs-music.png" alt="VS-Music" class="on-dark" loading="lazy">
-              <img src="/assets/clients/promobot.png" alt="Промобот" loading="lazy">
+              <img src="../assets/clients/express-import.png" alt="Express-Import" loading="lazy">
+              <img src="../assets/clients/mobilov.png" alt="Mobilov" class="on-dark" loading="lazy">
+              <img src="../assets/clients/top2b.png" alt="Top2B" loading="lazy">
+              <img src="../assets/clients/freedom.png" alt="Freedom" class="on-dark" loading="lazy">
+              <img src="../assets/clients/ujin.png" alt="UJIN" loading="lazy">
+              <img src="../assets/clients/stikbot.png" alt="Stikbot" loading="lazy">
+              <img src="../assets/clients/vs-music.png" alt="VS-Music" class="on-dark" loading="lazy">
+              <img src="../assets/clients/promobot.png" alt="Промобот" loading="lazy">
             </div>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Отзывы -->
+    <section class="section">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">Отзывы</span>
+          <h2>Что говорят клиенты</h2>
+          <p>Работаем с 2018 года — логотипы, брендбуки и фирстиль для компаний, которые потом возвращаются</p>
+        </div>
+        <div class="reviews-slider">
+          <div class="reviews-track-outer">
+            <div class="reviews-track">
+
+              <div class="review-card reveal">
+                <p class="review-text">Баскетбольная команда «Закамск» работает с ADERVIS уже больше года! Всегда очень довольны результатом! Мы заказывали 3 логотипа для команды, дипломы для сборов, рекламные листовки, рекламный ролл ап. Вся работа была выполнена в кратчайшие сроки и с очень точным пониманием наших желаний.</p>
+                <div class="review-author">
+                  <a href="https://vk.com/id254553435" class="review-avatar-link" target="_blank" rel="noopener noreferrer" aria-label="ВКонтакте: Максим Мосягин">
+                    <img src="../assets/testimonials/mosyagin.jpg" alt="Максим Мосягин" class="review-avatar" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                    <div class="review-avatar-placeholder" style="display:none">М</div>
+                  </a>
+                  <div class="review-author-info">
+                    <span class="review-author-name">Максим Мосягин</span>
+                    <a href="https://vk.com/zkmbasketball" class="review-author-role review-author-role--link" target="_blank" rel="noopener noreferrer">ZKM Basketball · СШОР Закамск</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="review-card reveal">
+                <p class="review-text">Мы впервые заказали ролик и нам очень повезло с первого раза встретить таких профессионалов! Очень хороший результат и по видео, и по фото. Оперативно, пунктуально и очень внимательно отнеслись к работе. Ребята помогли с композицией, с аксессуарами — результат просто прекрасен!</p>
+                <div class="review-author">
+                  <a href="https://vk.com/ignatovaanna" class="review-avatar-link" target="_blank" rel="noopener noreferrer" aria-label="ВКонтакте: Анна Игнатова">
+                    <img src="../assets/testimonials/ignatova.jpg" alt="Анна Игнатова" class="review-avatar" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                    <div class="review-avatar-placeholder" style="display:none">А</div>
+                  </a>
+                  <div class="review-author-info">
+                    <span class="review-author-name">Анна Игнатова</span>
+                    <a href="https://vk.com/stickbot_info" class="review-author-role review-author-role--link" target="_blank" rel="noopener noreferrer">Косметика StickBot</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="review-card reveal">
+                <p class="review-text">Работают оперативно, подсказывают, придумывают — отличная команда. Процветания и больше работы по данному направлению, удачи ребята — поработаем ещё.</p>
+                <div class="review-author">
+                  <a href="https://vk.com/andreuka1" class="review-avatar-link" target="_blank" rel="noopener noreferrer" aria-label="ВКонтакте: Андрей Шуклин">
+                    <img src="../assets/testimonials/shuklin.jpg" alt="Андрей Шуклин" class="review-avatar" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                    <div class="review-avatar-placeholder" style="display:none">А</div>
+                  </a>
+                  <div class="review-author-info">
+                    <span class="review-author-name">Андрей Шуклин</span>
+                    <a href="https://vk.com/club.black_gun" class="review-author-role review-author-role--link" target="_blank" rel="noopener noreferrer">Черный Пистолет · Пермь</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="review-card reveal">
+                <p class="review-text">Ребята большие молодцы. Выполнили всё в срок, полностью прислушивались к требованиям клиента, адекватно реагировали на переделки и поправки. Спасибо.</p>
+                <div class="review-author">
+                  <a href="https://vk.com/razorynova" class="review-avatar-link" target="_blank" rel="noopener noreferrer" aria-label="ВКонтакте: Екатерина Разорёнова">
+                    <img src="../assets/testimonials/razorenova.jpg" alt="Екатерина Разорёнова" class="review-avatar" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                    <div class="review-avatar-placeholder" style="display:none">Е</div>
+                  </a>
+                  <div class="review-author-info">
+                    <span class="review-author-name">Екатерина Разорёнова</span>
+                    <a href="https://vk.com/promoilclub" class="review-author-role review-author-role--link" target="_blank" rel="noopener noreferrer">ПРОМОЙЛ</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="review-card reveal">
+                <p class="review-text">Очень давно сотрудничаем и дружим с ребятами. Способны решить задачу любой сложности — и быстрый техничный монтаж, и комплексный проект со съёмкой в течение года.</p>
+                <div class="review-author">
+                  <a href="https://vk.com/permclimber" class="review-avatar-link" target="_blank" rel="noopener noreferrer" aria-label="ВКонтакте: Виктор Пермяков">
+                    <img src="../assets/testimonials/permyakov.jpg" alt="Виктор Пермяков" class="review-avatar" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                    <div class="review-avatar-placeholder" style="display:none">В</div>
+                  </a>
+                  <div class="review-author-info">
+                    <span class="review-author-name">Виктор Пермяков</span>
+                    <a href="https://vk.com/rockstar_perm" class="review-author-role review-author-role--link" target="_blank" rel="noopener noreferrer">Рокстар · Пермь</a>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+          <div class="reviews-nav">
+            <button class="reviews-arrow reviews-prev" aria-label="Предыдущий отзыв">
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 4L6 9l5 5"/></svg>
+            </button>
+            <div class="reviews-dots"></div>
+            <button class="reviews-arrow reviews-next" aria-label="Следующий отзыв">
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 4l5 5-5 5"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Частые вопросы -->
+    <section class="section">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">Частые вопросы</span>
+          <h2>То, что обычно спрашивают перед стартом</h2>
+          <p>Если вашего вопроса здесь нет — напишите или позвоните, ответим в день обращения</p>
+        </div>
+        <div class="faq-list">
+          <details class="faq-item reveal">
+            <summary>Сколько стоит разработка логотипа или фирменного стиля?
+              <span class="faq-icon" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M8 3v10M3 8h10"/></svg></span>
+            </summary>
+            <p>Зависит от объёма: один знак — это одна смета, знак плюс полноценный фирменный стиль и брендбук — другая. Расскажите о бизнесе и задаче — вернёмся с точным расчётом и сроками, без «средней по рынку» цифры наугад.</p>
+          </details>
+          <details class="faq-item reveal">
+            <summary>Сколько времени занимает разработка?
+              <span class="faq-icon" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M8 3v10M3 8h10"/></svg></span>
+            </summary>
+            <p>Логотип — обычно 2–3 недели вместе с правками. Полный фирменный стиль с брендбуком — 4–6 недель: больше носителей, решений и точек, которые мы сверяем с вами на каждом этапе, а не сдаём «сюрпризом» в конце.</p>
+          </details>
+          <details class="faq-item reveal">
+            <summary>Сколько вариантов концепции вы предлагаете?
+              <span class="faq-icon" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M8 3v10M3 8h10"/></svg></span>
+            </summary>
+            <p>Обычно 2–3 разных направления с обоснованием, почему каждое из них работает на задачу бизнеса. Выбираете не «то, что больше понравилось с одного взгляда», а то, что выдержит проверку временем и масштабированием.</p>
+          </details>
+          <details class="faq-item reveal">
+            <summary>Что именно входит в брендбук?
+              <span class="faq-icon" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M8 3v10M3 8h10"/></svg></span>
+            </summary>
+            <p>Логика и варианты использования знака, палитра, типографика, паттерны, примеры на ключевых носителях и чёткие правила — документ, по которому дизайнер, печатник и маркетолог говорят на одном языке без ваших дополнительных пояснений.</p>
+          </details>
+          <details class="faq-item reveal">
+            <summary>Вы передаёте исходники и файлы для печати?
+              <span class="faq-icon" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M8 3v10M3 8h10"/></svg></span>
+            </summary>
+            <p>Да, всегда — векторные файлы знака, шрифты (там, где это предусмотрено лицензией) и брендбук в удобных форматах для работы и печати. Это ваш актив, который остаётся с вами, а не наш внутренний рабочий файл.</p>
+          </details>
         </div>
       </div>
     </section>
@@ -197,6 +379,6 @@
   <!-- Сюда подгрузится подвал -->
   <div id="footer-placeholder"></div>
 
-  <script src="/js/app.js"></script>
+  <script src="../js/app.js"></script>
 </body>
 </html>

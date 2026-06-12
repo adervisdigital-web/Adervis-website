@@ -1,14 +1,27 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="ru" data-theme="dark">
 <head>
   <meta charset="utf-8">
+  <script>!function(){var t=localStorage.getItem("adervis-theme");if(t)document.documentElement.setAttribute("data-theme",t);else if(window.matchMedia("(prefers-color-scheme:light)").matches)document.documentElement.setAttribute("data-theme","light")}()</script>
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>ADERVIS — Карьера: вакансии в продакшн-команде</title>
   <meta name="description" content="Карьера в ADERVIS: ищем сценаристов, операторов, дизайнеров, фотографов и ИИ-специалистов в продакшн-команду. Реальные проекты с первого дня, гибкий формат работы.">
-  <link rel="icon" type="image/svg+xml" href="/icon.svg">
-  <link rel="stylesheet" href="/css/style.css">
+  <link rel="icon" type="image/svg+xml" href="../icon.svg">
+  <link rel="canonical" href="https://adervisdigital-web.github.io/Adervis-website/careers/">
+  <meta name="theme-color" content="#141414">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="ADERVIS">
+  <meta property="og:url" content="https://adervisdigital-web.github.io/Adervis-website/careers/">
+  <meta property="og:title" content="ADERVIS — Карьера: вакансии в продакшн-команде">
+  <meta property="og:description" content="Карьера в ADERVIS: ищем сценаристов, операторов, дизайнеров, фотографов и ИИ-специалистов. Реальные проекты с первого дня, гибкий формат работы.">
+  <meta property="og:image" content="https://adervisdigital-web.github.io/Adervis-website/assets/cases/og-image.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="ADERVIS — Карьера: вакансии в продакшн-команде">
+  <meta name="twitter:description" content="Карьера в ADERVIS: ищем сценаристов, операторов, дизайнеров, фотографов и ИИ-специалистов.">
+  <meta name="twitter:image" content="https://adervisdigital-web.github.io/Adervis-website/assets/cases/og-image.jpg">
+  <link rel="stylesheet" href="../css/style.css">
 </head>
-<body>
+<body class="no-clients">
 
   <!-- Сюда подгрузится шапка -->
   <div id="header-placeholder"></div>
@@ -16,7 +29,11 @@
   <main>
 
     <!-- Hero -->
-    <section class="hero-section">
+    <section class="hero-section" data-dir="careers">
+      <div class="page-aurora" aria-hidden="true">
+        <div class="page-aurora__blob page-aurora__blob--1"></div>
+        <div class="page-aurora__blob page-aurora__blob--2"></div>
+      </div>
       <div class="container">
         <span class="eyebrow">Карьера в ADERVIS</span>
         <h1>Команда, которая делает — а не только обсуждает</h1>
@@ -159,6 +176,6 @@
   <!-- Сюда подгрузится подвал -->
   <div id="footer-placeholder"></div>
 
-  <script src="/js/app.js"></script>
+  <script src="../js/app.js"></script>
 </body>
 </html>

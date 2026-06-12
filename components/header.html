@@ -1,25 +1,191 @@
-<header class="topbar">
-  <a href="/" class="brand">
-    <img src="/logo.svg" alt="ADERVIS — Digital Agency" width="371" height="90">
-  </a>
-  <nav class="nav" id="siteNav">
-    <a href="/">Главная</a>
-    <a href="/video">Видео</a>
-    <a href="/design">Дизайн</a>
-    <a href="/photo">Фото</a>
-    <a href="/ai">ИИ</a>
-    <a href="/careers">Карьера</a>
-    <a href="/docs">Документы</a>
-    <span class="nav-sep" aria-hidden="true"></span>
-    <a href="/pro" class="nav-product">
-      <span class="nav-product-dot" aria-hidden="true"></span>
-      Adervis CRM
+<header class="site-header" id="siteHeader">
+  <div class="site-header__bar">
+
+    <!-- Лого -->
+    <a href="/" class="brand site-header__logo">
+      <img src="/logo.svg" id="siteLogo" data-dark="/logo.svg" data-light="/logoB.svg" alt="ADERVIS — Продакшн-студия" width="140" height="34">
     </a>
-  </nav>
-  <button type="button" class="nav-toggle" id="navToggle" aria-label="Открыть меню" aria-expanded="false" aria-controls="siteNav">
-    <span aria-hidden="true"></span>
-    <span aria-hidden="true"></span>
-    <span aria-hidden="true"></span>
-  </button>
+
+    <!-- Навигация -->
+    <nav class="pill-nav" id="siteNav" aria-label="Основная навигация">
+      <div class="pill-nav__tubelight" id="tubeIndicator" aria-hidden="true"></div>
+
+      <a href="/" class="pill-nav__link">Главная</a>
+
+      <!-- УСЛУГИ — клик ведёт на раздел #services, выпадашка показывает направления -->
+      <div class="pill-nav__dropdown" id="dropServices">
+        <a href="/#services" class="pill-nav__link pill-nav__link--drop" aria-haspopup="true" aria-expanded="false" aria-controls="megaServices">
+          Услуги
+          <svg class="pill-nav__arrow" width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 3.5l3 3 3-3"/></svg>
+        </a>
+        <div class="nav-mega" id="megaServices" role="menu">
+          <a href="/video" class="nav-mega__item" role="menuitem">
+            <span class="nav-mega__icon" style="color:var(--c-video)">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M10 8.5l6 3.5-6 3.5z" fill="currentColor" stroke="none"/></svg>
+            </span>
+            <span class="nav-mega__body">
+              <span class="nav-mega__name">Видео</span>
+              <span class="nav-mega__sub">Ролики · Event · Reels · Корп. фильмы</span>
+            </span>
+            <span class="nav-mega__count">/5</span>
+          </a>
+          <a href="/design" class="nav-mega__item" role="menuitem">
+            <span class="nav-mega__icon" style="color:var(--c-design)">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20l3.3-1 9.7-9.7a2.1 2.1 0 0 0-3-3L4.3 16l-1 3.7.7.3z"/><path d="M13 6.3l3.7 3.7"/></svg>
+            </span>
+            <span class="nav-mega__body">
+              <span class="nav-mega__name">Дизайн</span>
+              <span class="nav-mega__sub">Брендинг · Фирстиль · Полиграфия · Моушн</span>
+            </span>
+            <span class="nav-mega__count">/4</span>
+          </a>
+          <a href="/photo" class="nav-mega__item" role="menuitem">
+            <span class="nav-mega__icon" style="color:var(--c-photo)">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h3l1.6-2h6.8L17 8h3a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z"/><circle cx="12" cy="13.2" r="3.4"/></svg>
+            </span>
+            <span class="nav-mega__body">
+              <span class="nav-mega__name">Фото</span>
+              <span class="nav-mega__sub">Каталог · Предметная · Event · Портреты</span>
+            </span>
+            <span class="nav-mega__count">/4</span>
+          </a>
+          <a href="/ai" class="nav-mega__item" role="menuitem">
+            <span class="nav-mega__icon" style="color:var(--c-ai)">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8L12 3z"/></svg>
+            </span>
+            <span class="nav-mega__body">
+              <span class="nav-mega__name">ИИ-контент</span>
+              <span class="nav-mega__sub">AI-генерация · AI-видео · AI-брендинг</span>
+            </span>
+            <span class="nav-mega__count">/4</span>
+          </a>
+        </div>
+      </div>
+
+      <a href="/#about" class="pill-nav__link">О нас</a>
+      <a href="/#portfolio" class="pill-nav__link">Кейсы</a>
+      <a href="/edu" class="pill-nav__link">Обучение</a>
+      <a href="/careers" class="pill-nav__link">Вакансии</a>
+
+    </nav>
+
+    <!-- Правый блок: переключатель темы + ADERVIS PLATFORM + бургер -->
+    <div class="site-header__end">
+      <button type="button" class="theme-toggle" id="themeToggle" aria-label="Светлая тема">
+        <svg class="theme-toggle__icon theme-toggle__sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="4.5"/>
+          <line x1="12" y1="2"   x2="12" y2="5"/>
+          <line x1="12" y1="19"  x2="12" y2="22"/>
+          <line x1="4.22" y1="4.22"   x2="6.34" y2="6.34"/>
+          <line x1="17.66" y1="17.66" x2="19.78" y2="19.78"/>
+          <line x1="2"   y1="12"  x2="5"   y2="12"/>
+          <line x1="19"  y1="12"  x2="22"  y2="12"/>
+          <line x1="4.22"  y1="19.78" x2="6.34"  y2="17.66"/>
+          <line x1="17.66" y1="6.34"  x2="19.78" y2="4.22"/>
+        </svg>
+        <svg class="theme-toggle__icon theme-toggle__moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+        </svg>
+      </button>
+
+      <!-- ADERVIS PLATFORM — CTA-кнопка с выпадающим меню продуктов -->
+      <div class="pill-nav__dropdown" id="dropPlatform">
+        <button type="button" class="site-header__platform pill-nav__link--drop" aria-haspopup="true" aria-expanded="false" aria-controls="megaPlatform">
+          ADERVIS PLATFORM
+          <svg class="pill-nav__arrow" width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 3.5l3 3 3-3"/></svg>
+        </button>
+        <div class="nav-mega nav-mega--right" id="megaPlatform" role="menu">
+          <a href="/pro" class="nav-mega__item" role="menuitem">
+            <span class="nav-mega__icon" style="color:#f6bd3a">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+            </span>
+            <span class="nav-mega__body">
+              <span class="nav-mega__name">Adervis CRM</span>
+              <span class="nav-mega__sub">Управление проектами и сметами</span>
+            </span>
+            <span class="nav-mega__badge nav-mega__badge--live">Доступен</span>
+          </a>
+          <a href="#" class="nav-mega__item" role="menuitem">
+            <span class="nav-mega__icon" style="color:#7733FF">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+            </span>
+            <span class="nav-mega__body">
+              <span class="nav-mega__name">Adervis Outreach</span>
+              <span class="nav-mega__sub">Трекер коммуникаций и follow-up</span>
+            </span>
+            <span class="nav-mega__badge">Скоро</span>
+          </a>
+          <a href="#" class="nav-mega__item" role="menuitem">
+            <span class="nav-mega__icon" style="color:#22CC54">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35M11 8v6M8 11h6"/></svg>
+            </span>
+            <span class="nav-mega__body">
+              <span class="nav-mega__name">Adervis Hunter</span>
+              <span class="nav-mega__sub">Поиск потенциальных клиентов</span>
+            </span>
+            <span class="nav-mega__badge">В разработке</span>
+          </a>
+        </div>
+      </div>
+
+      <button type="button" class="nav-toggle" id="navToggle" aria-label="Открыть меню" aria-expanded="false" aria-controls="siteNav">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </button>
+    </div>
+
+  </div>
 </header>
 <div class="nav-backdrop" id="navBackdrop" aria-hidden="true"></div>
+
+<script>
+(function () {
+  function initTubelight () {
+    var nav  = document.getElementById('siteNav');
+    var tube = document.getElementById('tubeIndicator');
+    if (!nav || !tube) return;
+
+    var active = nav.querySelector('.nav-active:not(.pill-nav__link--drop)');
+    if (!active) active = nav.querySelector('.pill-nav__link:not(.pill-nav__link--drop)');
+
+    function moveTo (el) {
+      if (!el) return;
+      var navR = nav.getBoundingClientRect();
+      var elR  = el.getBoundingClientRect();
+      tube.style.transform = 'translateX(' + (elR.left - navR.left) + 'px)';
+      tube.style.width     = elR.width + 'px';
+    }
+
+    if (active) {
+      tube.style.transition = 'none';
+      moveTo(active);
+      requestAnimationFrame(function () {
+        tube.style.opacity = '1';
+        tube.style.transition = '';
+      });
+    } else {
+      tube.style.opacity = '1';
+    }
+
+    nav.querySelectorAll('.pill-nav__link, .pill-nav__dropdown').forEach(function (item) {
+      item.addEventListener('mouseenter', function () {
+        var link = item.classList.contains('pill-nav__link') ? item
+                  : item.querySelector('.pill-nav__link--drop');
+        if (link) moveTo(link);
+      });
+    });
+
+    nav.addEventListener('mouseleave', function () {
+      var cur = nav.querySelector('.nav-active');
+      if (cur) moveTo(cur);
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initTubelight);
+  } else {
+    initTubelight();
+  }
+}());
+</script>

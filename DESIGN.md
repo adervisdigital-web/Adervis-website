@@ -182,6 +182,87 @@ Secondary: bg=transparent, border:1px solid --line, color:--text, hover: bg=--bg
 ```
 Карточки направлений (`/video`, `/design`, `/photo`, `/ai`) дополнительно получают цветной акцент через `--c-*` (обводка/иконка/glow при hover) — см. `.service-card[data-dir="video"]` и т.п.
 
+> **Правило для `data-dir`** (актуально с 2026-06-08): `--dir-color` подхватывается **общим** селектором `[data-dir="video|design|photo|ai"]`, а не только `.service-card[data-dir=...]` — так любой компонент (карточка услуги, медиа-плейсхолдер, спотлайт) автоматически окрашивается в цвет направления, если на нём проставлен атрибут `data-dir`.
+
+### Медиа-плейсхолдеры (`.media-frame`) — добавлено 2026-06-08 (Brand 2.0.4), укрупнено в 2.0.5
+Заполнитель на месте будущих фото/видео из портфолио: пунктирная рамка, градиентная подложка в цвете направления, круглая иконка-«картинка» и моно-подпись с описанием, что именно нужно подставить.
+```css
+.media-frame {
+  --frame-accent: var(--dir-color, var(--gold));
+  aspect-ratio: var(--ratio, 16 / 9);  /* кино-формат по умолчанию (было 4/3); под контекст — inline style="--ratio: 16 / 10" */
+  min-height: 260px;
+  border: 1px dashed var(--line);
+  background: linear-gradient(160deg, color-mix(in srgb, var(--frame-accent) 12%, transparent), var(--bg2) 65%);
+}
+.media-frame::before {  /* дрейфующий блик в цвете направления — «киношный» объём вместо плоской заливки */
+  content: ""; position: absolute; inset: -40%;
+  background: radial-gradient(circle, color-mix(in srgb, var(--frame-accent) 24%, transparent), transparent 65%);
+  filter: blur(48px);
+  animation: frame-glow 16s ease-in-out infinite alternate;
+}
+.media-frame:hover {  /* лёгкий зум-постер + объёмная тень в цвете направления */
+  transform: scale(1.015);
+  box-shadow: 0 28px 80px -24px color-mix(in srgb, var(--frame-accent) 42%, transparent);
+}
+```
+- `.media-frame-tag` — бейдж-этикетка в углу («Кейс из портфолио», «Видео» и т.п.)
+- `.media-frame-label` — `font-mono`, 13px, объясняет редактору, какой кадр сюда вставить
+- Цвет подхватывается автоматически через `data-dir="video|design|photo|ai"` на самом `.media-frame`
+- Используется внутри `.gallery-card` (сетка `.gallery-grid`, 3 колонки → 2 → 1 на мобильных) и `.spotlight` (featured-кейс — см. ниже)
+- **Когда появятся реальные фото/видео** — просто заменить `<div class="media-frame">…</div>` на `<img>`/`<video>`/`<picture>`; рамка, бейдж, подпись и блик уйдут вместе с разметкой-плейсхолдером
+
+> **Правка 2.0.5** («экраны просмотра должны быть большие, эффекты — как кино, нужен ВАУ»): формат сменили на буквальный кино-стандарт `16:9`, добавили `min-height` и дрейфующий блик-ореол (`@keyframes frame-glow`). `.spotlight` (featured-кейс на страницах направлений) расширен — колонки `1.35fr / 1fr` (было `1.05fr / 1fr`), отступы `--sp-12`, кадр внутри `min-height: 340px`: визуал теперь доминирует над текстом.
+
+### FAQ-аккордеон (`.faq-list`) — добавлено 2026-06-08
+Нативные `<details>/<summary>` — доступность и поведение из коробки, без JS. `.faq-icon` («+») поворачивается на 45° (→ «×») при атрибуте `[open]` через CSS-transform.
+
+### Карточка продукта Adervis CRM (`.crm-banner`) — насыщенный «живой» градиент, добавлено 2026-06-08 (Brand 2.0.5)
+Было: статичная приглушённая подложка (~10% непрозрачности фирменного градиента). По фидбэку («переделать в красивые насыщенные анимационный живой градиент») заменена на трёхслойную анимированную сцену:
+```css
+.crm-banner {
+  background:
+    radial-gradient(ellipse 70% 70% at 18% 22%, rgba(220,186,255,.55), transparent 60%),
+    radial-gradient(ellipse 75% 75% at 82% 78%, rgba(124,30,255,.65), transparent 60%),
+    linear-gradient(135deg, #4a00b0 0%, #7a1fff 50%, #9b4dff 100%);
+  background-size: 180% 180%, 180% 180%, 220% 220%;
+  animation: crm-flow 18s ease-in-out infinite alternate;  /* слои медленно «дышат» через background-position */
+}
+.crm-banner::before, .crm-banner::after { animation: crm-pulse 9s/12s ease-in-out infinite alternate; }  /* пульсирующие ореолы — дрейф+масштаб+прозрачность */
+```
+- На насыщенном фоне фирменный градиент бейджа сливался — `.badge-crm` внутри карточки переоформлен в «стеклянный» (`backdrop-filter: blur` + полупрозрачная заливка), кнопка `.btn.crm` стала белой для контраста
+- `prefers-reduced-motion: reduce` отключает все три анимации (`.crm-banner`, `::before`, `::after`)
+- Принцип «монохромный градиент выглядит цельнее и premium-нее» (см. PROJECT_LOG, Brand 2.0.1) сохранён — насыщенность и движение добавлены **внутри** фиолетовой гаммы, без смешения с другими цветами
+
+### Навигация шапки (`.nav a`) — фирменные «чипы», добавлено 2026-06-08 (Brand 2.0.5)
+Было: обычный текст `--font-ui` с подчёркиванием снизу по hover — выглядело «не по-бренду». Переоформлено под ту же грамматику, что бейдж Adervis CRM и `.eyebrow`-метки:
+```css
+.nav a {
+  font-family: var(--font-display);  /* Unbounded, было DM Sans */
+  font-weight: 500;
+  font-size: 12px;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  padding: 10px 16px;
+  border-radius: var(--radius-md);
+  transition: color .25s ease, background .25s ease;
+}
+.nav a:hover { color: var(--gold-soft); background: var(--gold-bg); }  /* золотая «таблетка» вместо underline */
+```
+На мобильной выезжающей панели — тот же шрифт, но 15px с разделителями (`border-bottom: 1px solid var(--line)`) вместо подложки — `border-radius: 0` и `background: transparent` переопределяют десктопный «таблеточный» вид внутри `@media max-width: 860px`.
+
+### Калькулятор стоимости (`.calc-card`) — добавлено 2026-06-08 (Brand 2.0.5)
+Лёгкий продающий инструмент без бэкенда — выбор параметров считает вилку бюджета «от–до» на лету и формирует заявку через `mailto:`. Использован на `/video` (`#videoCalc`, логика — `initVideoCalculator()` в `js/app.js`), при необходимости можно повторить на других страницах направлений со своими коэффициентами.
+```css
+.calc-card    { background: var(--bg3); border: 1px solid var(--line); border-radius: var(--radius-xl); padding: var(--sp-8); }
+.calc-grid    { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--sp-6); }
+.calc-select  { background: var(--bg2); border: 1px solid var(--line); border-radius: var(--radius-md); }
+.calc-check:has(input:checked) { color: var(--text); border-color: color-mix(in srgb, var(--gold) 50%, var(--line)); background: var(--gold-bg); }
+.calc-result-value { font-family: var(--font-display); color: var(--gold); }
+```
+- Допуслуги — чек-боксы `.calc-check`, подсветка выбранного состояния через `:has(input:checked)` (без JS-классов)
+- Итог — `data-role="result"` пересчитывается на каждое `change` формы; кнопка `submit` собирает все параметры и расчётную сумму в текст письма (`mailto:adervis.digital@gmail.com`) — заявка уходит напрямую из браузера, без формы и сервера
+- На мобильных (`max-width: 720px`) `.calc-grid`/`.calc-options` схлопываются в одну колонку
+
 ### Числа / KPI
 ```css
 font-family: var(--font-display);
@@ -231,6 +312,11 @@ font-variant-numeric: tabular-nums;
 - Нижняя/верхняя навигация — `backdrop-filter: blur(16px)`, полупрозрачный `--bg` (`--glass`)
 - Анимации на мобильных — короче и сдержаннее (уменьшать амплитуду движения, не убирать совсем)
 
+### Мобильное меню — добавлено 2026-06-08 (`@media max-width: 860px`)
+Гамбургер (`.nav-toggle`, видим только на мобильных) → выезжающая справа панель `#siteNav.nav` (`position: fixed; width: min(320px, 86vw)`, `transform: translateX(100%)` → `.is-open { translateX(0) }`, `backdrop-filter: blur(22px)`, `--glass`-фон) + затемняющий `.nav-backdrop`. Логика открытия/закрытия/закрытия по Esc/клику по ссылке/ресайзу — `initMobileNav()` в `js/app.js`.
+
+> ⚠️ **Готча**: `.topbar` не должен иметь `backdrop-filter` со значением, отличным от `none`, на мобильных. По спецификации (как и `transform`/`filter`/`will-change`) `backdrop-filter` на предке создаёт **containing block** для `position: fixed`-потомков — выезжающая панель «прилипает» к шапке вместо того, чтобы позиционироваться от вьюпорта. Решение — обнулить его именно в мобильном медиа-запросе: `.topbar, .topbar.is-scrolled { backdrop-filter: none; }` (фон `--glass` с opacity 0.85 и без блюра выглядит достаточно плотным).
+
 ---
 
 ## 10. Ассеты от заказчика
@@ -248,6 +334,15 @@ font-variant-numeric: tabular-nums;
 - Светлая версия логотипа (тёмный текст) — для светлых поверхностей/печатных материалов, если будут
 - Фавикон в PNG (`favicon.ico` / `apple-touch-icon.png`) — на основе `icon.svg`
 - Реальные кадры/фото из портфолио (видео, дизайн, фото-съёмки) для карточек кейсов и hero-фонов — на референсах был премиальный неон/студийный стиль
+
+**Где расставлены плейсхолдеры под будущие медиа (добавлено 2026-06-08)** — компонент `.media-frame` (см. §6) подставлен везде, где должен быть реальный кадр; пунктирная рамка содержит подпись `.media-frame-label`, что именно туда вставить:
+- Главная — секция «Портфолио» (`.gallery-grid`, 6 карточек: видео/дизайн/фото/ИИ)
+- `/video` — спотлайт «Кейс из портфолио» (ХИМПРОМ — The space inside us)
+- `/design` — спотлайт «Кейс из портфолио» (Lobanov Rest)
+- `/photo` — галерея «Визуальные примеры форматов» (3 карточки) + иллюстративный спотлайт «Сценарий для вашей задачи»
+- `/ai` — галерея «Что получается на выходе» (3 карточки) + иллюстративный спотлайт «Сценарий для вашей задачи»
+
+Заменить плейсхолдер на реальное изображение — убрать `<div class="media-frame" data-dir="...">…</div>` целиком и вставить `<img>`/`<video>`/`<picture>` с теми же атрибутами `class`/`style="--ratio: …"` на обёртке, если нужно сохранить пропорции блока.
 
 ---
 

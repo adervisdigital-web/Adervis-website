@@ -1,248 +1,802 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="ru" data-theme="dark">
 <head>
   <meta charset="utf-8">
+  <script>!function(){var t=localStorage.getItem("adervis-theme");if(t)document.documentElement.setAttribute("data-theme",t);else if(window.matchMedia("(prefers-color-scheme:light)").matches)document.documentElement.setAttribute("data-theme","light")}()</script>
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>ADERVIS — креативный продакшн: видео, дизайн, фото, ИИ-контент</title>
-  <meta name="description" content="ADERVIS — продакшн полного цикла: видео, дизайн, фото и ИИ-контент. Берём на себя всю визуальную упаковку бренда — от идеи до готового результата.">
+  <title>ADERVIS — видео, дизайн, фото и ИИ для брендов</title>
+  <meta name="description" content="Продакшн-студия ADERVIS: рекламные ролики, фирменный стиль, предметная съёмка и ИИ-контент. С 2018 года — для компаний, которым важно как выглядит их бренд.">
   <link rel="icon" type="image/svg+xml" href="icon.svg">
+  <link rel="canonical" href="https://adervisdigital-web.github.io/Adervis-website/">
+  <meta name="theme-color" content="#0d0d0d">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="ADERVIS">
+  <meta property="og:url" content="https://adervisdigital-web.github.io/Adervis-website/">
+  <meta property="og:title" content="ADERVIS — видео, дизайн, фото и ИИ для брендов">
+  <meta property="og:description" content="Продакшн-студия ADERVIS: рекламные ролики, фирменный стиль, предметная съёмка и ИИ-контент. С 2018 года — для компаний, которым важно как выглядит их бренд.">
+  <meta property="og:image" content="https://adervisdigital-web.github.io/Adervis-website/assets/cases/og-image.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="ADERVIS — видео, дизайн, фото и ИИ для брендов">
+  <meta name="twitter:description" content="Продакшн-студия ADERVIS: рекламные ролики, фирменный стиль, предметная съёмка и ИИ-контент. С 2018 года — для компаний, которым важно как выглядит их бренд.">
+  <meta name="twitter:image" content="https://adervisdigital-web.github.io/Adervis-website/assets/cases/og-image.jpg">
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/home.css">
+  <!-- Three.js importmap — ES modules CDN -->
+  <script type="importmap">
+  {
+    "imports": {
+      "three":          "https://cdn.jsdelivr.net/npm/three@0.165.0/build/three.module.js",
+      "three/addons/":  "https://cdn.jsdelivr.net/npm/three@0.165.0/examples/jsm/"
+    }
+  }
+  </script>
 </head>
 <body>
 
-  <!-- Сюда подгрузится шапка -->
   <div id="header-placeholder"></div>
 
   <main>
 
-    <!-- Hero -->
-    <section class="hero-section">
+    <!-- ════════════════════════════════
+         HERO — 3D logo + Aurora + content
+         ════════════════════════════════ -->
+    <section class="hero-section" id="hero">
+
+      <!-- Aurora background: purple #6C00FF + red #F22822 neon tech -->
+      <div class="hero-aurora" aria-hidden="true">
+        <div class="hero-aurora__blob hero-aurora__blob--1"></div>
+        <div class="hero-aurora__blob hero-aurora__blob--2"></div>
+        <div class="hero-aurora__blob hero-aurora__blob--3"></div>
+        <div class="hero-aurora__blob hero-aurora__blob--4"></div>
+      </div>
+      <!-- Diagonal tech lines grid -->
+      <div class="hero-tech-lines" aria-hidden="true"></div>
+
+      <!-- Three.js 3D logo canvas (alpha: true — aurora прозрачна сквозь него) -->
+      <canvas id="heroCanvas" class="hero-canvas" aria-hidden="true"></canvas>
+
+      <!-- Content -->
+      <div class="container hero-grid">
+        <div class="hero-content">
+          <span class="eyebrow">Продакшн-студия · с 2018 года</span>
+          <h1>Визуал для бизнеса<br><span class="text-gradient">под ключ.</span></h1>
+          <p>Рекламные ролики, фирменный стиль, фотосъёмка и ИИ-контент — один договор для всего визуала.</p>
+          <!-- Интерактивный выбор направления — pill-chips v2 -->
+          <div class="hero-quiz" id="heroQuiz">
+            <p class="hero-quiz__label">Что будем делать?</p>
+            <div class="hero-quiz__row">
+              <div class="hero-quiz__chips">
+                <button type="button" class="hero-quiz__chip" data-val="video"
+                  data-hint="Рекламный ролик, корп. фильм или event-видео — сориентируем по бюджету"
+                  style="--cc:var(--c-video)">
+                  <span class="hero-quiz__dot"></span>Видео
+                </button>
+                <button type="button" class="hero-quiz__chip" data-val="design"
+                  data-hint="Логотип, брендбук или фирстиль — покажем похожие проекты"
+                  style="--cc:var(--c-design)">
+                  <span class="hero-quiz__dot"></span>Дизайн
+                </button>
+                <button type="button" class="hero-quiz__chip" data-val="photo"
+                  data-hint="Предметная, каталожная или репортажная съёмка — подберём формат"
+                  style="--cc:var(--c-photo)">
+                  <span class="hero-quiz__dot"></span>Фото
+                </button>
+                <button type="button" class="hero-quiz__chip" data-val="ai"
+                  data-hint="ИИ-контент с арт-дирекшеном — скорость без потери фирменного стиля"
+                  style="--cc:var(--c-ai)">
+                  <span class="hero-quiz__dot"></span>ИИ-контент
+                </button>
+              </div>
+              <button type="button" class="hero-quiz__cta" id="heroQuizSend">
+                Начать
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </button>
+            </div>
+          </div>
+          <div class="hero-kpi-line">
+            <span>С <strong>2018</strong> года</span>
+            <span class="hero-kpi-sep">·</span>
+            <span><strong>700+</strong> проектов</span>
+            <span class="hero-kpi-sep">·</span>
+            <span>работаем <strong>по всей России</strong></span>
+          </div>
+        </div>
+        <!-- KPI block removed — 3D icon now occupies right half via hero3d.js position.x offset -->
+      </div>
+
+      <!-- Scroll indicator — только стрелка, без текста -->
+      <div class="hero-scroll-hint" aria-hidden="true">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+      </div>
+
+    </section>
+
+    <!-- ════════════════════════════════
+         MARQUEE — бегущая строка направлений
+         ════════════════════════════════ -->
+    <div class="dir-marquee" aria-hidden="true">
+      <div class="dir-marquee-track">
+        <span class="dir-m-item c-video">Рекламный ролик</span><span class="dir-m-dot">·</span>
+        <span class="dir-m-item c-design">Фирменный стиль</span><span class="dir-m-dot">·</span>
+        <span class="dir-m-item c-photo">Предметная съёмка</span><span class="dir-m-dot">·</span>
+        <span class="dir-m-item c-ai">ИИ с арт-дирекшеном</span><span class="dir-m-dot">·</span>
+        <span class="dir-m-item">Один подрядчик — весь визуал</span><span class="dir-m-dot">·</span>
+        <span class="dir-m-item">700+ проектов</span><span class="dir-m-dot">·</span>
+        <span class="dir-m-item">87% возвращаются</span><span class="dir-m-dot">·</span>
+        <span class="dir-m-item">КП за 48 часов</span><span class="dir-m-dot">·</span>
+        <span class="dir-m-item c-video">Рекламный ролик</span><span class="dir-m-dot">·</span>
+        <span class="dir-m-item c-design">Фирменный стиль</span><span class="dir-m-dot">·</span>
+        <span class="dir-m-item c-photo">Предметная съёмка</span><span class="dir-m-dot">·</span>
+        <span class="dir-m-item c-ai">ИИ с арт-дирекшеном</span><span class="dir-m-dot">·</span>
+        <span class="dir-m-item">Один подрядчик — весь визуал</span><span class="dir-m-dot">·</span>
+        <span class="dir-m-item">700+ проектов</span><span class="dir-m-dot">·</span>
+        <span class="dir-m-item">87% возвращаются</span><span class="dir-m-dot">·</span>
+        <span class="dir-m-item">КП за 48 часов</span><span class="dir-m-dot">·</span>
+      </div>
+    </div>
+
+    <!-- ════════════════════════════════
+         CONCEPT — что такое ADERVIS
+         ════════════════════════════════ -->
+    <section class="section lh-concept" id="about">
+      <div class="container lh-concept__grid">
+
+        <div class="lh-concept__text reveal">
+          <span class="eyebrow">Что такое ADERVIS</span>
+          <h2 class="lh-concept__heading">
+            <em>Один подрядчик</em> —<br>
+            для видео, дизайна,<br>
+            фото и ИИ-контента.
+          </h2>
+          <p>Большинство компаний нанимают разных исполнителей на каждую задачу — и в итоге логотип не сочетается с роликом, а фото выглядит как от другой компании.</p>
+          <p>Мы делаем всё в одном месте: снимаем, разрабатываем стиль, фотографируем и создаём ИИ-контент — один стиль, один договор, один результат.</p>
+        </div>
+
+        <div class="lh-concept__visual reveal">
+          <img src="assets/cases/concept-team.png" alt="Команда ADERVIS в студии" class="lh-concept__img" loading="lazy">
+        </div>
+
+      </div>
+    </section>
+
+    <div class="section-divider" aria-hidden="true"></div>
+
+    <!-- ════════════════════════════════
+         ШОУРИЛЫ
+         ════════════════════════════════ -->
+    <section class="section" id="showreels">
       <div class="container">
-        <span class="eyebrow">Креативный продакшн · с 2018 года</span>
-        <h1>Один подрядчик для всего визуального бренда: <span class="text-gradient">видео, дизайн, фото, ИИ</span></h1>
-        <p>Больше не нужно держать разных подрядчиков для сценария, съёмки, логотипа и соцсетей. Берём всю визуальную часть бренда под ключ — от первого наброска до финального файла, который сразу идёт в дело.</p>
-        <div class="hero-buttons">
-          <a href="video/#works" class="btn primary">Смотреть портфолио</a>
-          <a href="#contacts" class="btn">Запросить КП</a>
+        <div class="section-head reveal">
+          <span class="eyebrow">Шоурилы</span>
+          <h2>Смотрите — что мы умеем делать</h2>
+          <p>Три шоурила — наша работа в разрезе времени</p>
+        </div>
+        <div class="showreel-grid">
+          <div class="showreel-card reveal">
+            <div class="video-poster" data-vk="https://vk.com/video_ext.php?oid=-121259819&id=456239173&autoplay=1">
+              <div class="video-poster__thumb" style="background-image: url('assets/cases/showreel-2023.jpg')">
+                <span class="video-poster__year">2023</span>
+                <button class="video-poster__play" aria-label="Смотреть шоурил 2023">
+                  <svg viewBox="0 0 24 24" fill="currentColor" width="28" height="28"><path d="M8 5.14v14l11-7-11-7z"/></svg>
+                </button>
+              </div>
+            </div>
+            <p class="showreel-label">Шоурил 2023</p>
+          </div>
+          <div class="showreel-card reveal">
+            <div class="video-poster" data-vk="https://vk.com/video_ext.php?oid=-121259819&id=456239172&autoplay=1">
+              <div class="video-poster__thumb" style="background-image: url('assets/cases/showreel-2021.jpg')">
+                <span class="video-poster__year">2021</span>
+                <button class="video-poster__play" aria-label="Смотреть шоурил 2021">
+                  <svg viewBox="0 0 24 24" fill="currentColor" width="28" height="28"><path d="M8 5.14v14l11-7-11-7z"/></svg>
+                </button>
+              </div>
+            </div>
+            <p class="showreel-label">Шоурил 2021</p>
+          </div>
+          <div class="showreel-card reveal">
+            <div class="video-poster" data-vk="https://vk.com/video_ext.php?oid=-121259819&id=456239149&autoplay=1">
+              <div class="video-poster__thumb" style="background-image: url('assets/cases/showreel-2020.jpg')">
+                <span class="video-poster__year">2020</span>
+                <button class="video-poster__play" aria-label="Смотреть шоурил 2020">
+                  <svg viewBox="0 0 24 24" fill="currentColor" width="28" height="28"><path d="M8 5.14v14l11-7-11-7z"/></svg>
+                </button>
+              </div>
+            </div>
+            <p class="showreel-label">Шоурил 2020</p>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- Цифры о работе -->
+    <div class="section-divider" aria-hidden="true"></div>
+
+    <!-- ════════════════════════════════
+         ЦИФРЫ / STATS
+         ════════════════════════════════ -->
     <section class="section">
       <div class="container">
         <div class="section-head reveal">
-          <span class="eyebrow">В цифрах</span>
-          <h2>Восемь лет в продакшене — и продолжаем расти</h2>
-          <p>За это время мы научились понимать задачу бизнеса быстрее, чем она сформулирована словами — и превращать её в результат, который видно и измеримо</p>
+          <span class="eyebrow">Почему нас выбирают снова</span>
+          <h2>Цифры честные — придумывать незачем</h2>
         </div>
         <div class="stats-grid">
           <div class="stat-card reveal">
-            <span class="stat-number">700+</span>
-            <span class="stat-label">проектов реализовано с 2018&nbsp;года</span>
+            <span class="stat-number" data-count="700">700+</span>
+            <span class="stat-label">проектов сдано с 2018 года — без долгостроя и заморозок</span>
           </div>
           <div class="stat-card reveal">
-            <span class="stat-number">350+</span>
-            <span class="stat-label">видеороликов снято, смонтировано и сдано в срок</span>
+            <span class="stat-number" data-count="87">87%</span>
+            <span class="stat-label">клиентов заказывают повторно в первый же год работы с нами</span>
           </div>
           <div class="stat-card reveal">
-            <span class="stat-number">100+</span>
-            <span class="stat-label">логотипов и фирменных стилей работают на бренды клиентов</span>
+            <span class="stat-number">48 ч</span>
+            <span class="stat-label">от вашей заявки до готовой сметы — без «уточним позже»</span>
           </div>
           <div class="stat-card reveal">
-            <span class="stat-number">60+</span>
-            <span class="stat-label">ниш и индустрий — от производства до индустрии развлечений</span>
+            <span class="stat-number" data-count="60">60+</span>
+            <span class="stat-label">ниш: от производства и IT до ресторанов и beauty-индустрии</span>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Направления -->
+    <div class="section-divider" aria-hidden="true"></div>
+
+    <!-- ════════════════════════════════
+         ДЛЯ КОГО
+         ════════════════════════════════ -->
     <section class="section">
       <div class="container">
         <div class="section-head reveal">
-          <span class="eyebrow">Чем мы занимаемся</span>
-          <h2>Закрываем задачу целиком — а не её часть</h2>
-          <p>Заказывали ролик — получали красивую картинку без чёткого посыла. Заказывали логотип — получали значок, который не складывается в систему на упаковке, вывеске и в соцсетях. Половинчатый результат стоит почти как полный, но не приносит результата: поэтому здесь любую задачу доводим до конца — от смысла и сценария до готового файла, который сразу можно пускать в дело</p>
+          <span class="eyebrow">Узнаёте себя?</span>
+          <h2>Мы для тех, кто устал от полумер</h2>
+          <p>Каждая из этих ситуаций — реальный разговор с клиентом перед первым проектом</p>
         </div>
-        <div class="services-grid">
-          <a href="video/" class="service-card reveal" data-dir="video">
-            <span class="service-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="12" cy="12" r="9"/>
-                <path d="M10 8.5l6 3.5-6 3.5z" fill="currentColor" stroke="none"/>
-              </svg>
-            </span>
-            <h3>Видео</h3>
-            <p>Рекламные ролики, фильмы о компании и репортажи с мероприятий — пишем сценарий, снимаем и монтируем под ключ.</p>
-            <span class="service-link">Подробнее
-              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
-            </span>
-          </a>
-          <a href="design/" class="service-card reveal" data-dir="design">
-            <span class="service-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M4 20l3.3-1 9.7-9.7a2.1 2.1 0 0 0-3-3L4.3 16l-1 3.7.7.3z"/>
-                <path d="M13 6.3l3.7 3.7"/>
-              </svg>
-            </span>
-            <h3>Дизайн</h3>
-            <p>Логотипы, фирменный стиль и брендбуки — собираем систему, по которой вас узнают с первого взгляда, а не с третьего напоминания.</p>
-            <span class="service-link">Подробнее
-              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
-            </span>
-          </a>
-          <a href="photo/" class="service-card reveal" data-dir="photo">
-            <span class="service-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M4 8h3l1.6-2h6.8L17 8h3a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z"/>
-                <circle cx="12" cy="13.2" r="3.4"/>
-              </svg>
-            </span>
-            <h3>Фото</h3>
-            <p>Предметная и репортажная съёмка для рекламы, каталогов и соцсетей — кадр, который останавливает скролл и продаёт без подписи.</p>
-            <span class="service-link">Подробнее
-              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
-            </span>
-          </a>
-          <a href="ai/" class="service-card reveal" data-dir="ai">
-            <span class="service-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8L12 3z"/>
-              </svg>
-            </span>
-            <h3>ИИ-контент</h3>
-            <p>Изображения, видео и тексты на основе нейросетей — там, где важны скорость и объём, а не штучная ручная работа.</p>
-            <span class="service-link">Подробнее
-              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
-            </span>
-          </a>
+        <div class="pain-list">
+          <div class="pain-item reveal">
+            <span class="pain-num" aria-hidden="true">01</span>
+            <div class="pain-body">
+              <p class="pain-headline">«Пять подрядчиков — и всё выглядит по-разному»</p>
+              <p class="pain-desc">Один брифинг. Одно КП. Видео, дизайн, фото и соцсети выдержаны в едином стиле — потому что делаем всё мы.</p>
+            </div>
+          </div>
+          <div class="pain-item reveal">
+            <span class="pain-num" aria-hidden="true">02</span>
+            <div class="pain-body">
+              <p class="pain-headline">«Сделали красиво, но не работает»</p>
+              <p class="pain-desc">Думаем про цель, не только про картинку. Каждый проект начинается с вопроса «зачем», а не «как будет выглядеть».</p>
+            </div>
+          </div>
+          <div class="pain-item reveal">
+            <span class="pain-num" aria-hidden="true">03</span>
+            <div class="pain-body">
+              <p class="pain-headline">«Попросили ролик — получили три месяца переписки»</p>
+              <p class="pain-desc">Сроки в договоре. Дедлайн — дата сдачи, а не «почти готово». Если задерживаемся — предупреждаем сами.</p>
+            </div>
+          </div>
+          <div class="pain-item reveal">
+            <span class="pain-num" aria-hidden="true">04</span>
+            <div class="pain-body">
+              <p class="pain-headline">«Нейросети везде — но непонятно как использовать»</p>
+              <p class="pain-desc">ИИ-контент с арт-дирекшеном: не хаотичная генерация, а инструмент с заданным стилем и конкретной задачей.</p>
+            </div>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- Витрина работ -->
-    <section class="section">
+    <div class="section-divider" aria-hidden="true"></div>
+
+    <!-- ════════════════════════════════
+         НАПРАВЛЕНИЯ / SERVICES — 2×2 editorial grid
+         ════════════════════════════════ -->
+    <section class="section" id="services">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">Что делаем</span>
+          <h2>Четыре направления — один подрядчик</h2>
+          <p>Видео, дизайн, фото и ИИ в едином стиле — без поиска разных исполнителей</p>
+        </div>
+
+        <!-- Editorial 2×2 grid с центральным 3D-элементом -->
+        <div class="s4-grid reveal">
+
+          <a href="video/" class="s4-cell s4-cell--video">
+            <span class="s4-cell__color-bar" style="background:var(--c-video)"></span>
+            <div class="s4-cell__body">
+              <span class="s4-cell__eyebrow">01</span>
+              <h3 class="s4-cell__title">Видео</h3>
+              <p class="s4-cell__desc">Рекламные ролики, корпоративные фильмы и репортажи — сценарий, съёмка и монтаж под ключ.</p>
+              <span class="s4-cell__services">Реклама · Корп. видео · Event · Reels</span>
+            </div>
+            <span class="s4-cell__arrow">→</span>
+          </a>
+
+          <a href="design/" class="s4-cell s4-cell--design">
+            <span class="s4-cell__color-bar" style="background:var(--c-design)"></span>
+            <div class="s4-cell__body">
+              <span class="s4-cell__eyebrow">02</span>
+              <h3 class="s4-cell__title">Дизайн</h3>
+              <p class="s4-cell__desc">Логотипы, фирменный стиль и брендбуки — система, по которой вас узнают с первого взгляда.</p>
+              <span class="s4-cell__services">Брендинг · Фирстиль · Полиграфия · Моушн</span>
+            </div>
+            <span class="s4-cell__arrow">→</span>
+          </a>
+
+          <!-- Центральный элемент с SVG-иконкой (цвет меняется по направлению) -->
+          <div class="s4-center" aria-hidden="true">
+            <svg class="s4-center__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2160 2160" aria-hidden="true">
+              <path fill="currentColor" d="M1580.87,1460.95c-2.86-28.37-37.65-89.84-65.61-144.16l-348.64-683.49s-16.06-36.74-39.16-57.23c-18.59-16.48-47.44-17.06-47.44-17.06,0,0-28.35-.15-46.95,16.34-23.13,20.5-39.21,57.25-39.21,57.25l-349.04,683.71c-27.99,54.33-62.82,115.83-65.68,144.21-4.06,40.31,13.99,84.78,76.91,73.39,58.44-10.57,220.37-74.81,220.18-74.86l203.79-82.04,204.09,82.48c-.19.05,161.56,64.28,219.93,74.84,62.85,11.38,80.88-33.07,76.83-73.37h0ZM1644.09,1652.56c-34.42,22.09-86.28,31.73-117.72,27.51-88.97-11.91-211.9-62.67-211.9-62.67l-234.45-93.41-234.23,92.8s-123,50.77-212.03,62.68c-31.46,4.21-83.35-5.42-117.8-27.51-132.9-85.25-70.29-244.9-65.96-256.84,4.51-12.45,442.71-865.15,453.9-885.17,11.19-20.02,40.7-52.42,81.67-73.39,43.38-22.19,94.45-24.57,94.45-24.57,6.52.47,54.47,4.74,94.75,25.36,40.94,20.95,70.44,53.35,81.62,73.37,11.18,20.02,449.11,872.59,453.62,885.04,4.33,11.94,66.89,171.57-65.93,256.8h.01Z"/>
+            </svg>
+            <div class="s4-center__ring"></div>
+          </div>
+
+          <a href="photo/" class="s4-cell s4-cell--photo">
+            <span class="s4-cell__color-bar" style="background:var(--c-photo)"></span>
+            <div class="s4-cell__body">
+              <span class="s4-cell__eyebrow">03</span>
+              <h3 class="s4-cell__title">Фото</h3>
+              <p class="s4-cell__desc">Предметная и репортажная съёмка для рекламы, каталогов и соцсетей.</p>
+              <span class="s4-cell__services">Каталог · Предмет · Event · Портреты</span>
+            </div>
+            <span class="s4-cell__arrow">→</span>
+          </a>
+
+          <a href="ai/" class="s4-cell s4-cell--ai">
+            <span class="s4-cell__color-bar" style="background:var(--c-ai)"></span>
+            <div class="s4-cell__body">
+              <span class="s4-cell__eyebrow">04</span>
+              <h3 class="s4-cell__title">ИИ-контент</h3>
+              <p class="s4-cell__desc">Изображения, видео и тексты на нейросетях — скорость и объём без ущерба стилю.</p>
+              <span class="s4-cell__services">AI-генерация · AI-видео · AI-брендинг</span>
+            </div>
+            <span class="s4-cell__arrow">→</span>
+          </a>
+
+        </div>
+      </div>
+    </section>
+
+    <div class="section-divider" aria-hidden="true"></div>
+
+    <!-- ════════════════════════════════
+         ПОРТФОЛИО
+         ════════════════════════════════ -->
+    <section class="section" id="portfolio">
       <div class="container">
         <div class="section-head reveal">
           <span class="eyebrow">Портфолио</span>
-          <h2>Несколько проектов, которые объясняют, зачем мы нужны</h2>
-          <p>Полные портфолио по каждому направлению — на страницах ниже. Здесь то, что точнее всего показывает наш почерк: от съёмочной площадки до фирменного стиля на полке магазина.</p>
+          <h2>Проекты, которые объясняют — зачем мы нужны</h2>
+          <p>Полные портфолио по каждому направлению — на страницах ниже. Здесь — то, что точнее всего показывает наш почерк</p>
         </div>
         <div class="gallery-grid">
+
           <div class="gallery-card reveal">
-            <div class="media-frame" data-dir="video" style="--ratio: 4 / 3">
-              <span class="media-frame-tag">Видео</span>
-              <span class="media-frame-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="1.6" fill="currentColor" stroke="none"/><path d="M3 16l5-4 4 3 4-5 5 6"/></svg>
-              </span>
-              <span class="media-frame-label">Стоп-кадр из рекламного ролика<br>или фото со съёмочной площадки<br>1920 × 1080 px · JPG/PNG · 72 dpi</span>
+            <div class="media-frame has-img" data-dir="video" style="--ratio: 16 / 9">
+              <img src="assets/cases/case-video-1.png" alt="Рекламный ролик для производственной компании" class="media-frame__img">
+              <span class="media-frame__num" aria-hidden="true">01</span>
+              <div class="media-frame__hover">
+                <span class="media-frame-tag">Видео</span>
+                <h3 class="media-frame__title">Рекламный ролик для производственной компании</h3>
+                <p class="media-frame__meta">Рекламный ролик · 2023 · Производственная компания</p>
+              </div>
             </div>
-            <h3>Рекламный ролик для производственной компании</h3>
-            <p>Сценарий и монтаж, после которых «ещё один завод» начинают воспринимать как бренд, которому можно доверять.</p>
           </div>
+
           <div class="gallery-card reveal">
-            <div class="media-frame" data-dir="design" style="--ratio: 4 / 3">
-              <span class="media-frame-tag">Дизайн</span>
-              <span class="media-frame-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="1.6" fill="currentColor" stroke="none"/><path d="M3 16l5-4 4 3 4-5 5 6"/></svg>
-              </span>
-              <span class="media-frame-label">Разворот брендбука или мокап<br>фирменного стиля на носителях<br>2400 × 1800 px · JPG/PNG · 144 dpi</span>
+            <div class="media-frame has-img" data-dir="design" style="--ratio: 16 / 9">
+              <img src="assets/cases/case-design-1.png" alt="Фирменный стиль для региональной сети" class="media-frame__img">
+              <span class="media-frame__num" aria-hidden="true">02</span>
+              <div class="media-frame__hover">
+                <span class="media-frame-tag">Дизайн</span>
+                <h3 class="media-frame__title">Фирменный стиль для региональной сети</h3>
+                <p class="media-frame__meta">Фирменный стиль · Брендбук · Региональная сеть</p>
+              </div>
             </div>
-            <h3>Фирменный стиль для региональной сети</h3>
-            <p>От первого скетча знака до брендбука, по которому бренд не «расползается» от подрядчика к подрядчику.</p>
           </div>
+
           <div class="gallery-card reveal">
-            <div class="media-frame" data-dir="photo" style="--ratio: 4 / 3">
-              <span class="media-frame-tag">Фото</span>
-              <span class="media-frame-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="1.6" fill="currentColor" stroke="none"/><path d="M3 16l5-4 4 3 4-5 5 6"/></svg>
-              </span>
-              <span class="media-frame-label">Предметная съёмка — товар<br>крупным планом на чистом фоне<br>2400 × 1800 px · JPG · 72 dpi</span>
+            <div class="media-frame has-img" data-dir="photo" style="--ratio: 16 / 9">
+              <img src="assets/cases/case-photo-1.png" alt="Предметная съёмка для бренда косметики" class="media-frame__img">
+              <span class="media-frame__num" aria-hidden="true">03</span>
+              <div class="media-frame__hover">
+                <span class="media-frame-tag">Фото</span>
+                <h3 class="media-frame__title">Каталожная съёмка для бренда косметики</h3>
+                <p class="media-frame__meta">Предметная съёмка · Каталог · Бренд косметики</p>
+              </div>
             </div>
-            <h3>Каталожная съёмка для бренда косметики</h3>
-            <p>Свет и ракурс, после которых не нужно описывать преимущества товара словами — карточка продаёт сама.</p>
           </div>
+
           <div class="gallery-card reveal">
-            <div class="media-frame" data-dir="ai" style="--ratio: 4 / 3">
-              <span class="media-frame-tag">ИИ</span>
-              <span class="media-frame-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="1.6" fill="currentColor" stroke="none"/><path d="M3 16l5-4 4 3 4-5 5 6"/></svg>
-              </span>
-              <span class="media-frame-label">Сгенерированный визуал — до<br>и после арт-дирекшена<br>2048 × 2048 px · PNG · 72 dpi</span>
+            <div class="media-frame has-img" data-dir="ai" style="--ratio: 16 / 9">
+              <img src="assets/cases/case-ai-1.png" alt="AI-визуалы для рекламной кампании" class="media-frame__img">
+              <span class="media-frame__num" aria-hidden="true">04</span>
+              <div class="media-frame__hover">
+                <span class="media-frame-tag">ИИ</span>
+                <h3 class="media-frame__title">Серия визуалов для рекламной кампании</h3>
+                <p class="media-frame__meta">ИИ-визуалы · Арт-дирекшен · Рекламная кампания</p>
+              </div>
             </div>
-            <h3>Серия визуалов для рекламной кампании</h3>
-            <p>Там, где решают объём и скорость — нейросеть плюс ручная доводка дают результат за дни, а не месяцы.</p>
           </div>
+
           <div class="gallery-card reveal">
-            <div class="media-frame" data-dir="video" style="--ratio: 4 / 3">
-              <span class="media-frame-tag">Видео</span>
-              <span class="media-frame-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="1.6" fill="currentColor" stroke="none"/><path d="M3 16l5-4 4 3 4-5 5 6"/></svg>
-              </span>
-              <span class="media-frame-label">Общий план зала, сцены или<br>команды в кадре с мероприятия<br>1920 × 1080 px · JPG/PNG · 72 dpi</span>
+            <div class="media-frame has-img" data-dir="video" style="--ratio: 16 / 9">
+              <img src="assets/cases/case-video-2.png" alt="Корпоративный фильм с мероприятия" class="media-frame__img">
+              <span class="media-frame__num" aria-hidden="true">05</span>
+              <div class="media-frame__hover">
+                <span class="media-frame-tag">Видео</span>
+                <h3 class="media-frame__title">Фильм с корпоративного мероприятия</h3>
+                <p class="media-frame__meta">Корпоративный фильм · 2024 · Мероприятие 500+</p>
+              </div>
             </div>
-            <h3>Фильм с корпоративного мероприятия</h3>
-            <p>Атмосфера события в кадре, который пересматривают и год спустя — а не просто архив «для отчёта».</p>
           </div>
+
           <div class="gallery-card reveal">
-            <div class="media-frame" data-dir="design" style="--ratio: 4 / 3">
-              <span class="media-frame-tag">Дизайн</span>
-              <span class="media-frame-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="1.6" fill="currentColor" stroke="none"/><path d="M3 16l5-4 4 3 4-5 5 6"/></svg>
-              </span>
-              <span class="media-frame-label">Логотип на вывеске, упаковке<br>или мерче бренда<br>3000 × 2000 px · JPG/PNG · 144 dpi</span>
+            <div class="media-frame has-img" data-dir="design" style="--ratio: 16 / 9">
+              <img src="assets/cases/case-design-2.png" alt="Айдентика для сети заведений" class="media-frame__img">
+              <span class="media-frame__num" aria-hidden="true">06</span>
+              <div class="media-frame__hover">
+                <span class="media-frame-tag">Дизайн</span>
+                <h3 class="media-frame__title">Айдентика для сети заведений</h3>
+                <p class="media-frame__meta">Айдентика · Логотип · Сеть заведений</p>
+              </div>
             </div>
-            <h3>Айдентика для сети заведений</h3>
-            <p>Знак, который держит форму и на вывеске, и на чашке кофе — узнаётся с одного взгляда, без подписи рядом.</p>
           </div>
+        </div>
+        <div style="text-align:center;margin-top:var(--sp-8)">
+          <a href="video/#works" class="btn primary">Смотреть все работы</a>
         </div>
       </div>
     </section>
 
-    <!-- Adervis CRM -->
+    <div class="section-divider" aria-hidden="true"></div>
+
+    <!-- ════════════════════════════════
+         ОТЗЫВЫ
+         ════════════════════════════════ -->
     <section class="section">
       <div class="container">
-        <div class="crm-banner reveal">
-          <div class="crm-text">
-            <span class="badge-crm">Продукт ADERVIS</span>
-            <h2>Adervis CRM — продакшн под контролем, в одном окне</h2>
-            <p>Сделки, сметы, КП и календарь команды — в одном окне, а не в десятке вкладок и файлов «смета_финал_v3». Без скриншотов в чатах и забытых дедлайнов. Мы построили систему для себя — и открыли её другим студиям и фрилансерам на app.adervis.ru.</p>
-            <div class="hero-buttons">
-              <a href="https://app.adervis.ru" class="btn crm" target="_blank" rel="noopener">Открыть Adervis CRM</a>
-              <a href="pro/" class="btn">Подробнее о платформе</a>
+        <div class="section-head reveal">
+          <span class="eyebrow">Отзывы</span>
+          <h2>Что говорят клиенты</h2>
+          <p>Работаем с 2018 года — отношения с клиентами строятся на результате, а не на красивых обещаниях</p>
+        </div>
+        <div class="reviews-slider">
+          <div class="reviews-track-outer">
+            <div class="reviews-track">
+
+              <div class="review-card reveal">
+                <p class="review-text">Баскетбольная команда «Закамск» работает с ADERVIS уже больше года! Всегда очень довольны результатом! Мы заказывали 3 логотипа для команды, дипломы для сборов, рекламные листовки, рекламный ролл ап. Вся работа была выполнена в кратчайшие сроки и с очень точным пониманием наших желаний.</p>
+                <div class="review-author">
+                  <a href="https://vk.com/id254553435" class="review-avatar-link" target="_blank" rel="noopener noreferrer" aria-label="ВКонтакте: Максим Мосягин">
+                    <img src="assets/testimonials/mosyagin.jpg" alt="Максим Мосягин" class="review-avatar" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                    <div class="review-avatar-placeholder" style="display:none">М</div>
+                  </a>
+                  <div class="review-author-info">
+                    <span class="review-author-name">Максим Мосягин</span>
+                    <a href="https://vk.com/zkmbasketball" class="review-author-role review-author-role--link" target="_blank" rel="noopener noreferrer">ZKM Basketball · СШОР Закамск</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="review-card reveal">
+                <p class="review-text">Очень давно сотрудничаем и дружим с ребятами. Способны решить задачу любой сложности — и быстрый техничный монтаж, и комплексный проект со съёмкой в течение года.</p>
+                <div class="review-author">
+                  <a href="https://vk.com/permclimber" class="review-avatar-link" target="_blank" rel="noopener noreferrer" aria-label="ВКонтакте: Виктор Пермяков">
+                    <img src="assets/testimonials/permyakov.jpg" alt="Виктор Пермяков" class="review-avatar" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                    <div class="review-avatar-placeholder" style="display:none">В</div>
+                  </a>
+                  <div class="review-author-info">
+                    <span class="review-author-name">Виктор Пермяков</span>
+                    <a href="https://vk.com/rockstar_perm" class="review-author-role review-author-role--link" target="_blank" rel="noopener noreferrer">Рокстар · Пермь</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="review-card reveal">
+                <p class="review-text">Ребята, очень благодарна вам за слаженную работу! Безумно комфортно и креативно — это супер важная часть! Видеоролик получился офигенный, спасибо что адекватно принимали критику и правки. Очень рада, что интуитивно среди трёх компаний выбрала именно вас! И кстати, наш ролик прошёл в финал конкурса — а это уже наша совместная победа!</p>
+                <div class="review-author">
+                  <a href="https://vk.com/dr_lesnikova" class="review-avatar-link" target="_blank" rel="noopener noreferrer" aria-label="ВКонтакте: Алина Лесникова">
+                    <img src="assets/testimonials/lesnikova.jpg" alt="Алина Лесникова" class="review-avatar" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                    <div class="review-avatar-placeholder" style="display:none">А</div>
+                  </a>
+                  <div class="review-author-info">
+                    <span class="review-author-name">Алина Лесникова</span>
+                    <a href="https://vk.com/molodost.perm" class="review-author-role review-author-role--link" target="_blank" rel="noopener noreferrer">Врач-косметолог · Molodost, Пермь</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="review-card reveal">
+                <p class="review-text">Работают оперативно, подсказывают, придумывают — отличная команда. Процветания и больше работы по данному направлению, удачи ребята — поработаем ещё.</p>
+                <div class="review-author">
+                  <a href="https://vk.com/andreuka1" class="review-avatar-link" target="_blank" rel="noopener noreferrer" aria-label="ВКонтакте: Андрей Шуклин">
+                    <img src="assets/testimonials/shuklin.jpg" alt="Андрей Шуклин" class="review-avatar" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                    <div class="review-avatar-placeholder" style="display:none">А</div>
+                  </a>
+                  <div class="review-author-info">
+                    <span class="review-author-name">Андрей Шуклин</span>
+                    <a href="https://vk.com/club.black_gun" class="review-author-role review-author-role--link" target="_blank" rel="noopener noreferrer">Черный Пистолет · Пермь</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="review-card reveal">
+                <p class="review-text">Парни отсняли и обработали мне 2 клипа. Процесс съёмки был очень комфортен — провели время так, будто знаем друг друга много лет, помогали по максимуму раскрыться. Итогом работы я более чем доволен! Рекомендую!</p>
+                <div class="review-author">
+                  <a href="https://vk.com/rodin_official" class="review-avatar-link" target="_blank" rel="noopener noreferrer" aria-label="ВКонтакте: Дмитрий Родин">
+                    <img src="assets/testimonials/rodin.jpg" alt="Дмитрий Родин" class="review-avatar" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                    <div class="review-avatar-placeholder" style="display:none">Д</div>
+                  </a>
+                  <div class="review-author-info">
+                    <span class="review-author-name">Дмитрий Родин</span>
+                    <span class="review-author-role">Рэп-исполнитель</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="review-card reveal">
+                <p class="review-text">Вы очень классные и отзывчивые ребята. Сделали всё очень оперативно и качественно. Ролик делали для ТВ — подогнали по всем техническим требованиям. Спасибо огромное! Рекомендуем.</p>
+                <div class="review-author">
+                  <a href="https://vk.com/abs_auto" class="review-avatar-link" target="_blank" rel="noopener noreferrer" aria-label="ВКонтакте: Абс Авто">
+                    <img src="assets/testimonials/abs-avto.jpg" alt="Абс Авто" class="review-avatar" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                    <div class="review-avatar-placeholder" style="display:none">А</div>
+                  </a>
+                  <div class="review-author-info">
+                    <span class="review-author-name">Абс Авто</span>
+                    <a href="https://vk.com/abs_auto" class="review-author-role review-author-role--link" target="_blank" rel="noopener noreferrer">Автосервис · Автозапчасти · Пермь</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="review-card reveal">
+                <p class="review-text">Мы впервые заказали ролик и нам очень повезло с первого раза встретить таких профессионалов! Очень хороший результат и по видео, и по фото. Оперативно, пунктуально и очень внимательно отнеслись к работе. Ребята помогли с композицией, с аксессуарами — результат просто прекрасен!</p>
+                <div class="review-author">
+                  <a href="https://vk.com/ignatovaanna" class="review-avatar-link" target="_blank" rel="noopener noreferrer" aria-label="ВКонтакте: Анна Игнатова">
+                    <img src="assets/testimonials/ignatova.jpg" alt="Анна Игнатова" class="review-avatar" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                    <div class="review-avatar-placeholder" style="display:none">А</div>
+                  </a>
+                  <div class="review-author-info">
+                    <span class="review-author-name">Анна Игнатова</span>
+                    <a href="https://vk.com/stickbot_info" class="review-author-role review-author-role--link" target="_blank" rel="noopener noreferrer">Косметика StickBot</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="review-card reveal">
+                <p class="review-text">Ребята большие молодцы. Выполнили всё в срок, полностью прислушивались к требованиям клиента, адекватно реагировали на переделки и поправки. Спасибо.</p>
+                <div class="review-author">
+                  <a href="https://vk.com/razorynova" class="review-avatar-link" target="_blank" rel="noopener noreferrer" aria-label="ВКонтакте: Екатерина Разорёнова">
+                    <img src="assets/testimonials/razorenova.jpg" alt="Екатерина Разорёнова" class="review-avatar" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                    <div class="review-avatar-placeholder" style="display:none">Е</div>
+                  </a>
+                  <div class="review-author-info">
+                    <span class="review-author-name">Екатерина Разорёнова</span>
+                    <a href="https://vk.com/promoilclub" class="review-author-role review-author-role--link" target="_blank" rel="noopener noreferrer">ПРОМОЙЛ</a>
+                  </div>
+                </div>
+              </div>
+
             </div>
+          </div>
+          <div class="reviews-nav">
+            <button class="reviews-arrow reviews-prev" aria-label="Предыдущий отзыв">
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 4L6 9l5 5"/></svg>
+            </button>
+            <div class="reviews-dots"></div>
+            <button class="reviews-arrow reviews-next" aria-label="Следующий отзыв">
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 4l5 5-5 5"/></svg>
+            </button>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Контакты / заявка на КП -->
-    <section class="section contact-section reveal" id="contacts">
+    <div class="section-divider" aria-hidden="true"></div>
+
+    <!-- ════════════════════════════════
+         КАК МЫ РАБОТАЕМ — ПРОЦЕСС
+         ════════════════════════════════ -->
+    <section class="section">
       <div class="container">
-        <h2>Запросите коммерческое предложение</h2>
-        <p>В двух словах опишите задачу — в течение рабочего дня пришлём на почту формат, сроки и предварительную смету. Без типовых прайсов «для всех»: расчёт собираем под ваш проект.</p>
-        <form class="lead-form reveal" id="leadForm" novalidate>
-          <div class="lead-form-grid">
-            <label class="calc-field">
-              <span class="calc-field-label">Как к вам обращаться</span>
-              <input type="text" name="name" class="lead-input" placeholder="Имя" autocomplete="name" required>
-            </label>
-            <label class="calc-field">
-              <span class="calc-field-label">Телефон, e-mail или Telegram</span>
-              <input type="text" name="contact" class="lead-input" placeholder="+7 922 000-00-00 / @username" autocomplete="tel" required>
-            </label>
+        <div class="section-head reveal">
+          <span class="eyebrow">Процесс</span>
+          <h2>От заявки до готового файла — четыре шага</h2>
+          <p>Без лишних итераций и «финал_v8». Работаем прозрачно: вы видите что происходит на каждом этапе</p>
+        </div>
+        <div class="process-grid">
+          <div class="process-card reveal">
+            <span class="process-card-bg-num" aria-hidden="true">01</span>
+            <span class="process-card-step">Шаг 01</span>
+            <div class="process-card-icon">
+              <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" width="20" height="20">
+                <path d="M17 2H3a1 1 0 0 0-1 1v14a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1z"/>
+                <path d="M6 9h8M6 13h5"/>
+              </svg>
+            </div>
+            <h3>Заявка</h3>
+            <p>Звоните, пишите или заполните форму. Ответим в течение двух часов в рабочее время.</p>
           </div>
-          <label class="calc-field">
-            <span class="calc-field-label">Коротко о задаче</span>
-            <textarea name="message" class="lead-input lead-textarea" rows="3" placeholder="Например: нужен ролик о компании к выставке в сентябре, бюджет около 150 000 ₽"></textarea>
-          </label>
-          <div class="lead-form-footer">
-            <button type="submit" class="btn primary">Получить КП</button>
-            <span class="lead-form-hint">Нажимая кнопку, соглашаетесь на обработку контактов для связи по заявке — без рассылок и передачи третьим лицам</span>
+          <div class="process-card reveal">
+            <span class="process-card-bg-num" aria-hidden="true">02</span>
+            <span class="process-card-step">Шаг 02</span>
+            <div class="process-card-icon">
+              <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" width="20" height="20">
+                <circle cx="10" cy="10" r="8"/>
+                <path d="M10 6v4l2.5 2.5"/>
+              </svg>
+            </div>
+            <h3>КП за 48 часов</h3>
+            <p>Уточняем задачу и присылаем полную смету. Без скрытых «и ещё…» — все цифры на старте.</p>
           </div>
-        </form>
-        <p class="lead-form-alt">Или сразу позвоните: <a href="tel:+79223018880">+7 (922) 301-88-80</a> · <a href="mailto:adervis.digital@gmail.com">adervis.digital@gmail.com</a></p>
+          <div class="process-card reveal">
+            <span class="process-card-bg-num" aria-hidden="true">03</span>
+            <span class="process-card-step">Шаг 03</span>
+            <div class="process-card-icon">
+              <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" width="20" height="20">
+                <rect x="2" y="4" width="16" height="12" rx="2"/>
+                <path d="M8 8.5l5 2-5 2z" fill="currentColor" stroke="none"/>
+              </svg>
+            </div>
+            <h3>Производство</h3>
+            <p>Снимаем, рисуем, монтируем. Промежуточные показы без ожидания финального результата.</p>
+          </div>
+          <div class="process-card reveal">
+            <span class="process-card-bg-num" aria-hidden="true">04</span>
+            <span class="process-card-step">Шаг 04</span>
+            <div class="process-card-icon">
+              <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" width="20" height="20">
+                <path d="M4 10l4 4 8-8"/>
+              </svg>
+            </div>
+            <h3>Готово</h3>
+            <p>Файл в нужном формате — сразу в работу. Правки включены в договор, а не в счёт.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="section-divider" aria-hidden="true"></div>
+
+    <!-- ════════════════════════════════
+         ADERVIS PLATFORM — продукты + CRM
+         ════════════════════════════════ -->
+    <section class="section apps-section">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">ADERVIS Platform</span>
+          <h2>Делаем визуал — и строим инструменты для тех, кто его производит</h2>
+          <p>Пока работали над проектами клиентов, создали собственные продукты для продакшн-студий и агентств</p>
+        </div>
+        <div class="apps-grid">
+          <div class="app-card is-live reveal">
+            <span class="app-status live">Доступен</span>
+            <h3>Adervis CRM</h3>
+            <p>Управление проектами, сметами, КП и командой — в одном окне. Без Excel и файлов «смета_финал_v3».</p>
+            <div class="app-card-footer">
+              <a href="https://app.adervis.ru" target="_blank" rel="noopener" class="app-card-link">
+                Открыть платформу
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+              </a>
+              <a href="pro/" class="app-card-link-secondary">Подробнее</a>
+            </div>
+          </div>
+          <div class="app-card reveal">
+            <span class="app-status dev">В разработке</span>
+            <h3>Adervis Outreach</h3>
+            <p>Трекер исходящих коммуникаций для студий: контакты, касания, статусы и напоминания о follow-up.</p>
+            <div class="app-card-footer">
+              <span class="app-card-hint">Уведомим при запуске</span>
+            </div>
+          </div>
+          <div class="app-card reveal">
+            <span class="app-status soon">Скоро</span>
+            <h3>Adervis Hunter</h3>
+            <p>Автоматический поиск потенциальных клиентов для продакшн-студий и творческих агентств.</p>
+            <div class="app-card-footer">
+              <span class="app-card-hint">В разработке</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- CRM-баннер -->
+        <div class="crm-banner-frame" style="margin-top: var(--sp-8)">
+          <div class="crm-banner crm-banner--2col reveal">
+            <div class="crm-text">
+              <span class="badge-crm">Уже работает</span>
+              <h3>Adervis CRM — продакшн под контролем, в одном окне</h3>
+              <p>Сделки, сметы, КП и календарь команды — в одном интерфейсе, а не в десятке вкладок. Мы построили систему для себя — и открыли её другим студиям.</p>
+              <div class="hero-buttons">
+                <a href="pro/" class="btn primary">Подробнее о платформе</a>
+              </div>
+            </div>
+
+            <div class="crm-visual">
+              <img src="assets/cases/crm-dashboard.png" alt="Adervis CRM — интерфейс платформы управления проектами" class="crm-screenshot" loading="lazy">
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="section-divider" aria-hidden="true"></div>
+
+    <!-- ════════════════════════════════
+         КОНТАКТЫ / ФОРМА ЗАЯВКИ
+         ════════════════════════════════ -->
+    <section class="section" id="contacts">
+      <div class="container">
+        <div class="cta-card reveal">
+
+          <!-- Левая панель: оффер + перки + контакты -->
+          <div class="cta-card__info">
+            <span class="eyebrow">Напишите нам</span>
+            <h2 class="cta-card__title">Расскажите<br>о проекте</h2>
+            <p class="cta-card__sub">Пришлём конкретное предложение с ценами. Ответим в течение двух часов в рабочее время — без шаблонных прайсов.</p>
+            <ul class="cta-perks">
+              <li>Ответ за 2 часа в рабочее время</li>
+              <li>Чёткие цифры на старте</li>
+              <li>Без навязчивых звонков и рассылок</li>
+            </ul>
+            <div class="cta-contacts">
+              <a href="tel:+79223018880" class="cta-contact-link">+7 (922) 301-88-80</a>
+              <a href="mailto:adervis.digital@gmail.com" class="cta-contact-link">adervis.digital@gmail.com</a>
+            </div>
+          </div>
+
+          <!-- Правая панель: форма -->
+          <div class="cta-card__form-wrap">
+            <!-- Выбор направления (синхронизируется с hero quiz) -->
+            <div class="cta-dir-chips" id="ctaDirChips">
+              <span class="cta-dir-label">Направление</span>
+              <div class="cta-dir-chips__row">
+                <button type="button" class="cta-dir-chip" data-val="video" style="--cc:var(--c-video)">
+                  <span class="cta-dir-chip__dot"></span>Видео
+                </button>
+                <button type="button" class="cta-dir-chip" data-val="design" style="--cc:var(--c-design)">
+                  <span class="cta-dir-chip__dot"></span>Дизайн
+                </button>
+                <button type="button" class="cta-dir-chip" data-val="photo" style="--cc:var(--c-photo)">
+                  <span class="cta-dir-chip__dot"></span>Фото
+                </button>
+                <button type="button" class="cta-dir-chip" data-val="ai" style="--cc:var(--c-ai)">
+                  <span class="cta-dir-chip__dot"></span>ИИ-контент
+                </button>
+              </div>
+            </div>
+
+            <form id="leadForm" novalidate>
+              <input type="hidden" name="direction" id="lh-direction" value="">
+              <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;height:0;width:0;overflow:hidden;opacity:0;pointer-events:none;">
+              <div class="cta-form-fields">
+                <div class="lead-form-grid">
+                  <label class="calc-field">
+                    <span class="calc-field-label">Ваше имя</span>
+                    <input type="text" name="name" id="lh-name" class="lead-input" placeholder="Имя" autocomplete="name" required>
+                  </label>
+                  <label class="calc-field">
+                    <span class="calc-field-label">Телефон / Telegram</span>
+                    <input type="text" name="contact" id="lh-contact" class="lead-input" placeholder="+7 922 000-00-00 / @username" autocomplete="tel" required>
+                  </label>
+                </div>
+                <label class="calc-field">
+                  <span class="calc-field-label">Коротко о задаче</span>
+                  <textarea name="message" id="lh-message" class="lead-input lead-textarea" rows="3" placeholder="Например: нужен ролик о компании к выставке в сентябре, бюджет около 150 000 ₽"></textarea>
+                </label>
+                <div class="cta-form-footer">
+                  <button type="submit" class="btn-submit-main">
+                    Отправить заявку
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                  </button>
+                  <span class="lead-form-hint">Нажимая кнопку, соглашаетесь на обработку контактов для связи по заявке — без рассылок и передачи третьим лицам</span>
+                </div>
+              </div>
+            </form>
+          </div>
+
+        </div>
       </div>
     </section>
 
@@ -251,5 +805,65 @@
   <div id="footer-placeholder"></div>
 
   <script src="js/app.js"></script>
+  <script type="module" src="js/hero3d.js"></script>
+
+  <!-- ════ МОДАЛЬНОЕ ОКНО — Быстрая заявка ════ -->
+  <div class="modal-overlay" id="requestModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" hidden>
+    <div class="modal-box">
+      <button class="modal-close" id="modalClose" aria-label="Закрыть окно">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg>
+      </button>
+      <div class="modal-head">
+        <h3 class="modal-title" id="modalTitle">Расскажите о задаче</h3>
+        <p class="modal-sub">Ответим за 2 часа — пришлём смету и КП под ваш проект</p>
+      </div>
+
+      <!-- Выбор направления -->
+      <div class="modal-dir-chips" id="modalDirChips">
+        <button type="button" class="modal-dir-chip" data-val="video" style="--cc:var(--c-video)">
+          <span class="modal-dir-chip__dot"></span>Видео
+        </button>
+        <button type="button" class="modal-dir-chip" data-val="design" style="--cc:var(--c-design)">
+          <span class="modal-dir-chip__dot"></span>Дизайн
+        </button>
+        <button type="button" class="modal-dir-chip" data-val="photo" style="--cc:var(--c-photo)">
+          <span class="modal-dir-chip__dot"></span>Фото
+        </button>
+        <button type="button" class="modal-dir-chip" data-val="ai" style="--cc:var(--c-ai)">
+          <span class="modal-dir-chip__dot"></span>ИИ-контент
+        </button>
+      </div>
+
+      <form id="modalForm" novalidate>
+        <input type="hidden" name="direction" id="modal-direction" value="">
+        <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;height:0;width:0;overflow:hidden;opacity:0;pointer-events:none;">
+        <div class="modal-fields">
+          <label class="calc-field">
+            <span class="calc-field-label">Как к вам обращаться</span>
+            <input type="text" name="name" class="lead-input" placeholder="Имя" autocomplete="name" required>
+          </label>
+          <label class="calc-field">
+            <span class="calc-field-label">Телефон, e-mail или Telegram</span>
+            <input type="text" name="contact" class="lead-input" placeholder="+7 922 · @username · email" autocomplete="tel" required>
+          </label>
+          <label class="calc-field">
+            <span class="calc-field-label">Коротко о задаче <span style="opacity:.5">(необязательно)</span></span>
+            <textarea name="message" class="lead-input lead-textarea" rows="3" placeholder="Что нужно сделать, примерные сроки и бюджет"></textarea>
+          </label>
+        </div>
+        <div class="modal-footer">
+          <label class="modal-consent-label">
+            <input type="checkbox" id="modalConsent" class="modal-consent-check" required>
+            <span>Даю согласие на обработку персональных данных согласно <a href="/docs" target="_blank" rel="noopener">Политике конфиденциальности</a> (ФЗ от 27.07.2006 № 152-ФЗ «О персональных данных»)</span>
+          </label>
+          <button type="submit" class="btn-submit-main">
+            Отправить заявку
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
 </body>
 </html>

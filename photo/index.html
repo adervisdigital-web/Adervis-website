@@ -1,12 +1,25 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="ru" data-theme="dark">
 <head>
   <meta charset="utf-8">
+  <script>!function(){var t=localStorage.getItem("adervis-theme");if(t)document.documentElement.setAttribute("data-theme",t);else if(window.matchMedia("(prefers-color-scheme:light)").matches)document.documentElement.setAttribute("data-theme","light")}()</script>
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>ADERVIS — Фотопродакшн: предметная, репортажная и имиджевая съёмка</title>
   <meta name="description" content="Фотопродакшн ADERVIS: предметная и репортажная съёмка, имиджевые портреты и контент для соцсетей. От сценария и света до цветокоррекции и ретуши — кадр, который продаёт без подписи.">
-  <link rel="icon" type="image/svg+xml" href="/icon.svg">
-  <link rel="stylesheet" href="/css/style.css">
+  <link rel="icon" type="image/svg+xml" href="../icon.svg">
+  <link rel="canonical" href="https://adervisdigital-web.github.io/Adervis-website/photo/">
+  <meta name="theme-color" content="#141414">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="ADERVIS">
+  <meta property="og:url" content="https://adervisdigital-web.github.io/Adervis-website/photo/">
+  <meta property="og:title" content="ADERVIS — Фотопродакшн: предметная, репортажная и имиджевая съёмка">
+  <meta property="og:description" content="Фотопродакшн ADERVIS: предметная и репортажная съёмка, имиджевые портреты и контент для соцсетей. От сценария и света до цветокоррекции — кадр, который продаёт без подписи.">
+  <meta property="og:image" content="https://adervisdigital-web.github.io/Adervis-website/assets/cases/og-image.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="ADERVIS — Фотопродакшн: предметная, репортажная и имиджевая съёмка">
+  <meta name="twitter:description" content="Фотопродакшн ADERVIS: предметная и репортажная съёмка, имиджевые портреты и контент для соцсетей.">
+  <meta name="twitter:image" content="https://adervisdigital-web.github.io/Adervis-website/assets/cases/og-image.jpg">
+  <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
 
@@ -16,7 +29,11 @@
   <main>
 
     <!-- Hero -->
-    <section class="hero-section">
+    <section class="hero-section" data-dir="photo">
+      <div class="page-aurora" aria-hidden="true">
+        <div class="page-aurora__blob page-aurora__blob--1"></div>
+        <div class="page-aurora__blob page-aurora__blob--2"></div>
+      </div>
       <div class="container">
         <span class="eyebrow">Фотопродакшн</span>
         <h1>Кадр, который останавливает скролл</h1>
@@ -79,6 +96,77 @@
             </span>
             <h3>Съёмки для соцсетей</h3>
             <p>Пакеты контента под регулярный постинг — снимаем сразу сериями, чтобы хватило не на одну неделю публикаций.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Визуальные примеры форматов -->
+    <section class="section">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">В кадре</span>
+          <h2>Как выглядит наш подход к свету и кадру</h2>
+          <p>Один взгляд — одно решение: вот три формата из портфолио, которые задают тон. Полные серии показываем на встрече или присылаем по запросу</p>
+        </div>
+        <div class="gallery-grid">
+          <div class="gallery-card reveal">
+            <div class="media-frame" data-dir="photo" style="--ratio: 4 / 5">
+              <span class="media-frame-tag">Предметная съёмка</span>
+              <span class="media-frame-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="1.6" fill="currentColor" stroke="none"/><path d="M3 16l5-4 4 3 4-5 5 6"/></svg>
+              </span>
+              <span class="media-frame-label">Замените на кадр товара крупным планом на чистом фоне, студийный свет</span>
+            </div>
+            <h3>Товар крупным планом</h3>
+            <p>Свет и ракурс под конкретную площадку: карточка маркетплейса требует не того же, что баннер на сайте или афиша наружной рекламы.</p>
+          </div>
+          <div class="gallery-card reveal">
+            <div class="media-frame" data-dir="photo" style="--ratio: 4 / 5">
+              <span class="media-frame-tag">Имиджевая съёмка</span>
+              <span class="media-frame-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="1.6" fill="currentColor" stroke="none"/><path d="M3 16l5-4 4 3 4-5 5 6"/></svg>
+              </span>
+              <span class="media-frame-label">Замените на портретный кадр спикера, сотрудника или команды бренда</span>
+            </div>
+            <h3>Лицо бренда</h3>
+            <p>Портреты команды и спикеров, которым веришь с первого взгляда — для сайта, презентаций и медиа компании.</p>
+          </div>
+          <div class="gallery-card reveal">
+            <div class="media-frame" data-dir="photo" style="--ratio: 4 / 5">
+              <span class="media-frame-tag">Репортажная съёмка</span>
+              <span class="media-frame-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="1.6" fill="currentColor" stroke="none"/><path d="M3 16l5-4 4 3 4-5 5 6"/></svg>
+              </span>
+              <span class="media-frame-label">Замените на кадр с мероприятия — общий план зала или деталь в действии</span>
+            </div>
+            <h3>Атмосфера в моменте</h3>
+            <p>Снимаем так, чтобы кадр можно было опубликовать в день события — без потери настроения и с нужным светом даже в зале.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Сценарий для вашей задачи -->
+    <section class="section">
+      <div class="container">
+        <div class="spotlight reveal">
+          <div class="media-frame" data-dir="photo" style="--ratio: 16 / 10">
+            <span class="media-frame-tag">Сценарий для вашей задачи</span>
+            <span class="media-frame-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="1.6" fill="currentColor" stroke="none"/><path d="M3 16l5-4 4 3 4-5 5 6"/></svg>
+            </span>
+            <span class="media-frame-label">Замените на превью каталожной серии — сетка карточек товара в едином стиле</span>
+          </div>
+          <div class="spotlight-text">
+            <span class="badge">Сценарий для вашей задачи</span>
+            <h3>Например: каталожная серия для интернет-магазина</h3>
+            <p>Десятки товарных позиций — единый свет, ракурс и цветокоррекция, чтобы карточки выглядели как одна продуманная система, а не набор случайных снимков с разных сессий. Снимаем сериями: чтобы хватило не на один сезон публикаций, а отбор и обработку берём на себя.</p>
+            <ul class="spotlight-meta">
+              <li>Предметная съёмка</li>
+              <li>Цветокоррекция и ретушь</li>
+              <li>Готово под маркетплейс и сайт</li>
+            </ul>
           </div>
         </div>
       </div>
@@ -148,6 +236,146 @@
       </div>
     </section>
 
+    <!-- Отзывы -->
+    <section class="section">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">Отзывы</span>
+          <h2>Что говорят клиенты</h2>
+          <p>Работаем с 2018 года — предметная, каталожная и event-съёмка для компаний по всей России</p>
+        </div>
+        <div class="reviews-slider">
+          <div class="reviews-track-outer">
+            <div class="reviews-track">
+
+              <div class="review-card reveal">
+                <p class="review-text">Мы впервые заказали ролик и нам очень повезло с первого раза встретить таких профессионалов! Очень хороший результат и по видео, и по фото. Оперативно, пунктуально и очень внимательно отнеслись к работе. Ребята помогли с композицией, с аксессуарами — результат просто прекрасен!</p>
+                <div class="review-author">
+                  <a href="https://vk.com/ignatovaanna" class="review-avatar-link" target="_blank" rel="noopener noreferrer" aria-label="ВКонтакте: Анна Игнатова">
+                    <img src="../assets/testimonials/ignatova.jpg" alt="Анна Игнатова" class="review-avatar" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                    <div class="review-avatar-placeholder" style="display:none">А</div>
+                  </a>
+                  <div class="review-author-info">
+                    <span class="review-author-name">Анна Игнатова</span>
+                    <a href="https://vk.com/stickbot_info" class="review-author-role review-author-role--link" target="_blank" rel="noopener noreferrer">Косметика StickBot</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="review-card reveal">
+                <p class="review-text">Ребята, очень благодарна вам за слаженную работу! Безумно комфортно и креативно — это супер важная часть! Видеоролик получился офигенный, спасибо что адекватно принимали критику и правки. Очень рада, что интуитивно среди трёх компаний выбрала именно вас!</p>
+                <div class="review-author">
+                  <a href="https://vk.com/dr_lesnikova" class="review-avatar-link" target="_blank" rel="noopener noreferrer" aria-label="ВКонтакте: Алина Лесникова">
+                    <img src="../assets/testimonials/lesnikova.jpg" alt="Алина Лесникова" class="review-avatar" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                    <div class="review-avatar-placeholder" style="display:none">А</div>
+                  </a>
+                  <div class="review-author-info">
+                    <span class="review-author-name">Алина Лесникова</span>
+                    <a href="https://vk.com/molodost.perm" class="review-author-role review-author-role--link" target="_blank" rel="noopener noreferrer">Врач-косметолог · Molodost, Пермь</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="review-card reveal">
+                <p class="review-text">Вы очень классные и отзывчивые ребята. Сделали всё очень оперативно и качественно. Ролик делали для ТВ — подогнали по всем техническим требованиям. Спасибо огромное! Рекомендуем.</p>
+                <div class="review-author">
+                  <a href="https://vk.com/abs_auto" class="review-avatar-link" target="_blank" rel="noopener noreferrer" aria-label="ВКонтакте: Абс Авто">
+                    <img src="../assets/testimonials/abs-avto.jpg" alt="Абс Авто" class="review-avatar" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                    <div class="review-avatar-placeholder" style="display:none">А</div>
+                  </a>
+                  <div class="review-author-info">
+                    <span class="review-author-name">Абс Авто</span>
+                    <a href="https://vk.com/abs_auto" class="review-author-role review-author-role--link" target="_blank" rel="noopener noreferrer">Автосервис · Автозапчасти · Пермь</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="review-card reveal">
+                <p class="review-text">Очень давно сотрудничаем и дружим с ребятами. Способны решить задачу любой сложности — и быстрый техничный монтаж, и комплексный проект со съёмкой в течение года.</p>
+                <div class="review-author">
+                  <a href="https://vk.com/permclimber" class="review-avatar-link" target="_blank" rel="noopener noreferrer" aria-label="ВКонтакте: Виктор Пермяков">
+                    <img src="../assets/testimonials/permyakov.jpg" alt="Виктор Пермяков" class="review-avatar" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                    <div class="review-avatar-placeholder" style="display:none">В</div>
+                  </a>
+                  <div class="review-author-info">
+                    <span class="review-author-name">Виктор Пермяков</span>
+                    <a href="https://vk.com/rockstar_perm" class="review-author-role review-author-role--link" target="_blank" rel="noopener noreferrer">Рокстар · Пермь</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="review-card reveal">
+                <p class="review-text">Ребята большие молодцы. Выполнили всё в срок, полностью прислушивались к требованиям клиента, адекватно реагировали на переделки и поправки. Спасибо.</p>
+                <div class="review-author">
+                  <a href="https://vk.com/razorynova" class="review-avatar-link" target="_blank" rel="noopener noreferrer" aria-label="ВКонтакте: Екатерина Разорёнова">
+                    <img src="../assets/testimonials/razorenova.jpg" alt="Екатерина Разорёнова" class="review-avatar" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                    <div class="review-avatar-placeholder" style="display:none">Е</div>
+                  </a>
+                  <div class="review-author-info">
+                    <span class="review-author-name">Екатерина Разорёнова</span>
+                    <a href="https://vk.com/promoilclub" class="review-author-role review-author-role--link" target="_blank" rel="noopener noreferrer">ПРОМОЙЛ</a>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+          <div class="reviews-nav">
+            <button class="reviews-arrow reviews-prev" aria-label="Предыдущий отзыв">
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 4L6 9l5 5"/></svg>
+            </button>
+            <div class="reviews-dots"></div>
+            <button class="reviews-arrow reviews-next" aria-label="Следующий отзыв">
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 4l5 5-5 5"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Частые вопросы -->
+    <section class="section">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">Частые вопросы</span>
+          <h2>То, что обычно спрашивают перед съёмкой</h2>
+          <p>Если не нашли ответ на свой вопрос — напишите или позвоните, ответим в день обращения</p>
+        </div>
+        <div class="faq-list">
+          <details class="faq-item reveal">
+            <summary>Сколько стоит фотосессия?
+              <span class="faq-icon" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M8 3v10M3 8h10"/></svg></span>
+            </summary>
+            <p>Зависит от формата: предметная съёмка одной товарной линейки и репортаж с мероприятия на полдня считаются по-разному. Опишите задачу — пришлём смету с вариантами под разные бюджеты и сроки.</p>
+          </details>
+          <details class="faq-item reveal">
+            <summary>Сколько фотографий мы получим на выходе?
+              <span class="faq-icon" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M8 3v10M3 8h10"/></svg></span>
+            </summary>
+            <p>Договариваемся заранее и фиксируем в смете: отбираем и обрабатываем сильнейшие кадры из серии, а не отдаём всё подряд «как снято». Это и быстрее для вас, и честнее по качеству каждого кадра.</p>
+          </details>
+          <details class="faq-item reveal">
+            <summary>Снимаете в студии или на нашей площадке?
+              <span class="faq-icon" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M8 3v10M3 8h10"/></svg></span>
+            </summary>
+            <p>Предметную съёмку чаще делаем в студии — там проще контролировать свет и фон. Репортажную и имиджевую снимаем там, где работает ваш бизнес: офис, производство, заведение или площадка мероприятия.</p>
+          </details>
+          <details class="faq-item reveal">
+            <summary>В каких форматах вы передаёте готовые файлы?
+              <span class="faq-icon" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M8 3v10M3 8h10"/></svg></span>
+            </summary>
+            <p>JPEG в высоком разрешении, адаптированный под площадку — сайт, маркетплейс, печать, соцсети. RAW-исходники передаём по отдельной договорённости, если они нужны для вашей внутренней обработки.</p>
+          </details>
+          <details class="faq-item reveal">
+            <summary>Сколько ждать готовые фотографии после съёмки?
+              <span class="faq-icon" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M8 3v10M3 8h10"/></svg></span>
+            </summary>
+            <p>Черновой отбор присылаем в течение нескольких дней — чтобы вы могли согласовать направление обработки. Финальная серия в обработке готова обычно за 1–2 недели в зависимости от объёма.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
     <!-- Контакты -->
     <section class="section contact-section reveal" id="contacts">
       <div class="container">
@@ -165,6 +393,6 @@
   <!-- Сюда подгрузится подвал -->
   <div id="footer-placeholder"></div>
 
-  <script src="/js/app.js"></script>
+  <script src="../js/app.js"></script>
 </body>
 </html>
