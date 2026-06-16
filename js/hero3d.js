@@ -113,9 +113,9 @@ scene.add(group);
 
 // ─── Анимация появления ──────────────────────────────────────
 // На десктопе — правая половина (x=2.2). На мобилке — ниже и меньше (декор)
-let TARGET_X  = window.innerWidth > 900 ? 2.2 : 0.3;
-let TARGET_Y  = window.innerWidth > 900 ? 0   : -1.4;
-let MOB_SCALE = window.innerWidth > 900 ? 1.0 : 0.55;
+let TARGET_X  = window.innerWidth > 900 ? 2.2 : 0;
+let TARGET_Y  = window.innerWidth > 900 ? 0   : -1.2;
+let MOB_SCALE = window.innerWidth > 900 ? 1.0 : 0.6;
 
 const entryScale = 0.42;
 group.scale.set(s * entryScale * MOB_SCALE, -s * entryScale * MOB_SCALE, s * entryScale * MOB_SCALE);
@@ -219,8 +219,8 @@ window.addEventListener('resize', () => {
   camera.aspect = w / h;
   camera.updateProjectionMatrix();
   renderer.setSize(w, h);
-  TARGET_X  = w > 900 ? 2.2 : 0.3;
-  TARGET_Y  = w > 900 ? 0   : -1.4;
-  MOB_SCALE = w > 900 ? 1.0 : 0.55;
+  TARGET_X  = w > 900 ? 2.2 : 0;
+  TARGET_Y  = w > 900 ? 0   : -1.2;
+  MOB_SCALE = w > 900 ? 1.0 : 0.6;
   group.position.x = TARGET_X;
 }, { passive: true });

@@ -190,9 +190,8 @@ function initModal() {
       ].filter(Boolean).join("\n");
 
       const subjectDir = dirName ? ` — ${dirName}` : '';
-      const subject = encodeURIComponent(`Заявка${subjectDir} — с сайта ADERVIS`);
-      const body    = encodeURIComponent(`Здравствуйте! Прошу подготовить КП:\n\n${lines}`);
-      window.location.href = `mailto:adervis.digital@gmail.com?subject=${subject}&body=${body}`;
+      const tgText = encodeURIComponent(`Заявка с сайта ADERVIS${subjectDir}:\n\n${lines}`);
+      window.open(`https://t.me/Adervis_digital?text=${tgText}`, '_blank');
       closeModal();
     });
   }
@@ -454,9 +453,16 @@ function initVideoCalculator() {
       `Ориентировочный бюджет (по калькулятору): от ${formatPrice.format(low)} до ${formatPrice.format(high)} ₽`,
     ].filter(Boolean).join("\n");
 
-    const subject = encodeURIComponent("Заявка на видео — расчёт с сайта");
-    const body = encodeURIComponent(`Здравствуйте! Прошу подготовить расчёт и КП по проекту:\n\n${lines}`);
-    window.location.href = `mailto:adervis.digital@gmail.com?subject=${subject}&body=${body}`;
+    const tgText = encodeURIComponent(`Заявка на видео с сайта ADERVIS:\n\n${lines}`);
+    window.open(`https://t.me/Adervis_digital?text=${tgText}`, '_blank');
+
+    const sb = form.querySelector('[type="submit"]');
+    if (sb) {
+      const origHTML = sb.innerHTML;
+      sb.disabled = true;
+      sb.innerHTML = 'Telegram открыт — отправьте сообщение';
+      setTimeout(() => { sb.innerHTML = origHTML; sb.disabled = false; }, 6000);
+    }
   });
 }
 
@@ -532,13 +538,7 @@ function initCustomCursor() {
   document.body.classList.add("has-custom-cursor");
 
   let mx = -200, my = -200, rx = -200, ry = -200;
-
-  document.addEventListener("mousemove", e => {
-    mx = e.clientX;
-    my = e.clientY;
-    dot.style.left = `${mx}px`;
-    dot.style.top  = `${my}px`;
-  });
+  let rafId = null;
 
   const lerp = (a, b, t) => a + (b - a) * t;
   const tick = () => {
@@ -546,9 +546,16 @@ function initCustomCursor() {
     ry = lerp(ry, my, 0.13);
     ring.style.left = `${rx}px`;
     ring.style.top  = `${ry}px`;
-    requestAnimationFrame(tick);
+    rafId = requestAnimationFrame(tick);
   };
-  requestAnimationFrame(tick);
+
+  document.addEventListener("mousemove", e => {
+    mx = e.clientX;
+    my = e.clientY;
+    dot.style.left = `${mx}px`;
+    dot.style.top  = `${my}px`;
+    if (!rafId) rafId = requestAnimationFrame(tick);
+  });
 
   const HOVER = "a, button, [role='button'], .btn, .service-card, .stat-card, .who-card, .app-card, label, .nav-product";
   document.addEventListener("mouseover", e => {
@@ -563,8 +570,16 @@ function initCustomCursor() {
     ring.style.opacity = "1";
   }, { once: true });
 
-  document.addEventListener("mouseleave", () => { dot.style.opacity = "0"; ring.style.opacity = "0"; });
-  document.addEventListener("mouseenter", () => { dot.style.opacity = "1"; ring.style.opacity = "1"; });
+  document.addEventListener("mouseleave", () => {
+    dot.style.opacity = "0";
+    ring.style.opacity = "0";
+    if (rafId) { cancelAnimationFrame(rafId); rafId = null; }
+  });
+  document.addEventListener("mouseenter", () => {
+    dot.style.opacity = "1";
+    ring.style.opacity = "1";
+    if (!rafId) rafId = requestAnimationFrame(tick);
+  });
 }
 
 // Magnetic-эффект на CTA-кнопках — кнопка плавно тянется к курсору
@@ -771,6 +786,12 @@ function initLeadForm() {
     const honeypot = form.querySelector('[name="website"]');
     if (honeypot && honeypot.value) return;
 
+    const consent = form.querySelector('#leadConsent');
+    if (consent && !consent.checked) {
+      consent.closest('.modal-consent-label').style.outline = '2px solid var(--c-video)';
+      return;
+    }
+
     const name      = form.querySelector('[name="name"]').value.trim();
     const contact   = form.querySelector('[name="contact"]').value.trim();
     const message   = form.querySelector('[name="message"]')?.value.trim() || '';
@@ -788,9 +809,16 @@ function initLeadForm() {
     ].filter(Boolean).join("\n");
 
     const subjectDir = dirName ? ` — ${dirName}` : '';
-    const subject = encodeURIComponent(`Заявка${subjectDir} — с сайта ADERVIS`);
-    const body    = encodeURIComponent(`Здравствуйте! Прошу подготовить КП по задаче:\n\n${lines}`);
-    window.location.href = `mailto:adervis.digital@gmail.com?subject=${subject}&body=${body}`;
+    const tgText = encodeURIComponent(`Заявка с сайта ADERVIS${subjectDir}:\n\n${lines}`);
+    window.open(`https://t.me/Adervis_digital?text=${tgText}`, '_blank');
+
+    const submitBtn = form.querySelector('[type="submit"]');
+    if (submitBtn) {
+      const origHTML = submitBtn.innerHTML;
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = 'Telegram открыт — отправьте сообщение';
+      setTimeout(() => { submitBtn.innerHTML = origHTML; submitBtn.disabled = false; form.reset(); }, 5000);
+    }
   });
 }
 

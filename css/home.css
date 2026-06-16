@@ -2577,9 +2577,17 @@ body.lh-body {
 @media (max-width: 900px) {
   .lh-concept__grid {
     grid-template-columns: 1fr;
-    gap: 40px;
+    gap: 32px;
   }
-  .lh-concept__visual { display: none; }
+  .lh-concept__visual {
+    justify-content: flex-start;
+    order: -1;
+  }
+  .lh-concept__img {
+    max-height: 260px;
+    object-fit: cover;
+    border-radius: 16px;
+  }
 }
 
 /* ═══════════════════════════════════════════════════════════════
@@ -2604,13 +2612,63 @@ body.lh-body {
   border-radius: 12px;
   box-shadow: 0 24px 64px rgba(0,0,0,0.45), 0 0 0 1px rgba(255,255,255,0.06);
   display: block;
+  animation: crm-float 6s ease-in-out infinite;
+  transform-origin: center bottom;
+}
+
+@keyframes crm-float {
+  0%   { transform: translateY(0px) rotate(0deg); }
+  30%  { transform: translateY(-10px) rotate(0.4deg); }
+  70%  { transform: translateY(-6px) rotate(-0.3deg); }
+  100% { transform: translateY(0px) rotate(0deg); }
+}
+
+/* Reveal animation для CRM-блока — более эффектный вход чем стандартный .reveal */
+.crm-banner-frame.reveal {
+  transform: translateY(48px) scale(0.94) !important;
+  opacity: 0 !important;
+  transition: transform 1.1s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.9s ease !important;
+}
+
+.crm-banner-frame.reveal.is-visible {
+  transform: translateY(0) scale(1) !important;
+  opacity: 1 !important;
+}
+
+.crm-visual {
+  position: relative;
+}
+
+.crm-visual::after {
+  content: '';
+  position: absolute;
+  inset: -20px;
+  background: radial-gradient(ellipse 80% 60% at 50% 50%, rgba(155,77,255,0.25) 0%, transparent 70%);
+  pointer-events: none;
+  animation: crm-glow-pulse 4s ease-in-out infinite alternate;
+}
+
+@keyframes crm-glow-pulse {
+  from { opacity: 0.5; transform: scale(0.95); }
+  to   { opacity: 1; transform: scale(1.05); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .crm-screenshot { animation: none; }
+  .crm-visual::after { animation: none; }
+  .crm-banner-frame { transition: none; }
 }
 
 @media (max-width: 860px) {
   .crm-banner--2col {
     grid-template-columns: 1fr !important;
+    gap: 28px;
   }
-  .crm-visual { display: none; }
+  .crm-screenshot {
+    max-height: 240px;
+    object-fit: cover;
+    object-position: top;
+  }
 }
 
 /* ═══════════════════════════════════════════════════════════════
