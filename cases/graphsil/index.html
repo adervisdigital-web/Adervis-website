@@ -4,219 +4,344 @@
   <meta charset="utf-8">
   <script>!function(){var t=localStorage.getItem("adervis-theme");if(t)document.documentElement.setAttribute("data-theme",t);else if(window.matchMedia("(prefers-color-scheme:light)").matches)document.documentElement.setAttribute("data-theme","light")}()</script>
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>ГРАФСИЛ — разработка брендбука | Кейс ADERVIS</title>
+  <title>ГРАФСИЛ — Brandbook | Кейс ADERVIS</title>
   <meta name="description" content="Кейс ADERVIS: полный брендбук для ГРАФСИЛ — бренда профессиональных уплотнений для фланцевых соединений. Логотип, фирстиль, цвета, паттерны, носители.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="icon" type="image/svg+xml" href="../../icon.svg">
   <link rel="canonical" href="https://adervisdigital-web.github.io/Adervis-website/cases/graphsil/">
-  <meta name="theme-color" content="#141414">
+  <meta name="theme-color" content="#111111">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="ADERVIS">
   <meta property="og:url" content="https://adervisdigital-web.github.io/Adervis-website/cases/graphsil/">
-  <meta property="og:title" content="ГРАФСИЛ — разработка брендбука | Кейс ADERVIS">
+  <meta property="og:title" content="ГРАФСИЛ — Brandbook | Кейс ADERVIS">
   <meta property="og:description" content="Полный брендбук для ГРАФСИЛ: логотип, фирстиль, цветовая палитра, паттерны, документация, визитки.">
   <meta property="og:image" content="https://adervisdigital-web.github.io/Adervis-website/cases/%D0%93%D0%A0%D0%90%D0%A4%D0%A1%D0%98%D0%9B/1GRAPHSEAL.png">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="stylesheet" href="../../css/style.css">
+  <style>
+    /* ── Behance-style project page ── */
+    .bh-page {
+      background: #111;
+      min-height: 100vh;
+    }
+
+    /* Project header */
+    .bh-header {
+      padding: 80px 0 48px;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+    }
+    .bh-header .container {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .bh-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      color: rgba(255,255,255,0.35);
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: color 0.2s;
+      margin-bottom: 8px;
+    }
+    .bh-back:hover { color: rgba(255,255,255,0.7); }
+    .bh-eyebrow {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.32);
+    }
+    .bh-title {
+      font-family: var(--font-display);
+      font-size: clamp(28px, 4vw, 52px);
+      font-weight: 700;
+      line-height: 1.08;
+      letter-spacing: -0.02em;
+      color: #fff;
+      margin: 0;
+    }
+    .bh-desc {
+      font-size: 17px;
+      line-height: 1.6;
+      color: rgba(255,255,255,0.45);
+      max-width: 600px;
+      margin: 0;
+    }
+    .bh-meta {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 24px;
+      margin-top: 8px;
+    }
+    .bh-meta-item {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .bh-meta-label {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.25);
+    }
+    .bh-meta-value {
+      font-size: 14px;
+      font-weight: 600;
+      color: rgba(255,255,255,0.75);
+    }
+    .bh-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 4px;
+    }
+    .bh-tag {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.35);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 100px;
+      padding: 4px 10px;
+    }
+
+    /* Adobe presentation embed */
+    .bh-embed-wrap {
+      background: #191919;
+      width: 100%;
+      padding: 48px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .bh-embed-wrap .container {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .bh-embed-label {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.25);
+    }
+    .bh-embed-frame {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      border-radius: 8px;
+      overflow: hidden;
+      background: #000;
+    }
+    .bh-embed-frame iframe {
+      display: block;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    /* Stacked images — Behance-style */
+    .bh-images {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      background: #111;
+      padding: 48px 0;
+    }
+    .bh-img-item {
+      width: 100%;
+      overflow: hidden;
+    }
+    .bh-img-item img {
+      display: block;
+      width: 100%;
+      height: auto;
+      transition: opacity 0.3s ease;
+    }
+    .bh-img-item img:hover { opacity: 0.92; }
+
+    /* Constrained width option — use container for breathing room */
+    .bh-images .container {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    /* Project footer */
+    .bh-footer {
+      border-top: 1px solid rgba(255,255,255,0.07);
+      padding: 48px 0 80px;
+      background: #111;
+    }
+    .bh-footer .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    .bh-footer-info {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .bh-footer-studio {
+      font-size: 13px;
+      color: rgba(255,255,255,0.35);
+    }
+    .bh-footer-cta {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: 600px) {
+      .bh-header { padding: 72px 0 36px; }
+      .bh-meta { gap: 16px; }
+      .bh-footer .container { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
 </head>
-<body>
+<body class="bh-page">
 
   <div id="header-placeholder"></div>
 
   <main>
 
-    <!-- Hero -->
-    <section class="hero-section" data-dir="design">
-      <div class="hero-slides" aria-hidden="true">
-        <div class="hero-slide" style="background-image:url('../%D0%93%D0%A0%D0%90%D0%A4%D0%A1%D0%98%D0%9B/1GRAPHSEAL.png')"></div>
-        <div class="hero-slide" style="background-image:url('../%D0%93%D0%A0%D0%90%D0%A4%D0%A1%D0%98%D0%9B/13GRAPHSEAL.png')"></div>
-        <div class="hero-slide" style="background-image:url('../%D0%93%D0%A0%D0%90%D0%A4%D0%A1%D0%98%D0%9B/15GRAPHSEAL.png')"></div>
-      </div>
-      <div class="page-aurora" aria-hidden="true">
-        <div class="page-aurora__blob page-aurora__blob--1"></div>
-        <div class="page-aurora__blob page-aurora__blob--2"></div>
-      </div>
+    <!-- Project Header -->
+    <header class="bh-header">
       <div class="container">
-        <span class="eyebrow">Дизайн · Брендинг · 2024</span>
-        <h1>ГРАФСИЛ — брендбук для производителя промышленных уплотнений</h1>
-        <p>Разработали полный фирменный стиль для ГРАФСИЛ — бренда современных профессиональных уплотнений для фланцевых соединений. Логотип, цвета, типографика, паттерны, носители.</p>
-        <div class="hero-buttons">
-          <a href="/cases/" class="btn">← Все кейсы</a>
-          <a href="/design/" class="btn primary">Брендинг и дизайн</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- Мета-бар -->
-    <section class="section" style="padding-top:0;padding-bottom:0">
-      <div class="container">
-        <div class="case-meta-bar reveal">
-          <div class="case-meta-item">
-            <span class="case-meta-item__label">Клиент</span>
-            <span class="case-meta-item__value">ГРАФСИЛ</span>
+        <a href="../../cases/" class="bh-back">← Все кейсы</a>
+        <p class="bh-eyebrow">Дизайн · Брендинг · 2024</p>
+        <h1 class="bh-title">ГРАФСИЛ | Brandbook</h1>
+        <p class="bh-desc">Бренд современных профессиональных уплотнений для фланцевых соединений</p>
+        <div class="bh-meta">
+          <div class="bh-meta-item">
+            <span class="bh-meta-label">Студия</span>
+            <span class="bh-meta-value">ADERVIS Digital · Пермь</span>
           </div>
-          <div class="case-meta-item">
-            <span class="case-meta-item__label">Направление</span>
-            <span class="case-meta-item__value"><span style="color:var(--c-design)">Брендинг</span> · Фирстиль</span>
+          <div class="bh-meta-item">
+            <span class="bh-meta-label">Клиент</span>
+            <span class="bh-meta-value">ГРАФСИЛ</span>
           </div>
-          <div class="case-meta-item">
-            <span class="case-meta-item__label">Формат</span>
-            <span class="case-meta-item__value">Полный брендбук</span>
+          <div class="bh-meta-item">
+            <span class="bh-meta-label">Формат</span>
+            <span class="bh-meta-value">Полный брендбук</span>
           </div>
-          <div class="case-meta-item">
-            <span class="case-meta-item__label">Год</span>
-            <span class="case-meta-item__value">2024</span>
+          <div class="bh-meta-item">
+            <span class="bh-meta-label">Разделов</span>
+            <span class="bh-meta-value">13</span>
           </div>
         </div>
-      </div>
-    </section>
-
-    <!-- Задача и решение -->
-    <section class="section">
-      <div class="container">
-        <div class="case-content-grid reveal">
-          <div class="case-content-block">
-            <h3>Задача</h3>
-            <p>ГРАФСИЛ — производитель современных профессиональных уплотнений для фланцевых соединений. Промышленный рынок требует визуального доверия: заказчики должны видеть в бренде надёжность, технологичность и экспертизу. Задача — создать фирменный стиль, который работает и в документации, и на производстве, и в цифровом пространстве.</p>
-          </div>
-          <div class="case-content-block">
-            <h3>Что сделали</h3>
-            <p>Разработали логотип на основе геометрии уплотнительного кольца — лаконичный знак, который читается в любом масштабе. Собрали полный брендбук из 13 разделов: логотип и его вариации, цветовая палитра, типографика, паттерны, корпоративная документация, скотч и визитки. Всё — с правилами применения и готовыми макетами.</p>
-          </div>
+        <div class="bh-tags">
+          <span class="bh-tag">design</span>
+          <span class="bh-tag">logo</span>
+          <span class="bh-tag">branding</span>
+          <span class="bh-tag">brandbook</span>
+          <span class="bh-tag">brand identity</span>
+          <span class="bh-tag">industrial</span>
+          <span class="bh-tag">b2b</span>
         </div>
       </div>
-    </section>
+    </header>
 
-    <div class="section-divider" aria-hidden="true"></div>
-
-    <!-- Презентация -->
-    <section class="section">
+    <!-- Adobe / Behance presentation embed -->
+    <div class="bh-embed-wrap">
       <div class="container">
-        <div class="section-head reveal" style="margin-bottom:var(--sp-8)">
-          <span class="eyebrow">Брендбук</span>
-          <h2>Листайте — смотрите каждый раздел</h2>
-        </div>
-        <div class="reveal" style="border-radius:14px;overflow:hidden;aspect-ratio:16/9;background:#191919">
+        <span class="bh-embed-label">Интерактивная презентация</span>
+        <div class="bh-embed-frame">
           <iframe
             src="https://www-ccv.adobe.io/v1/player/ccv/EX9GE5sqx9N/embed?api_key=behance1&bgcolor=%23191919"
-            width="100%"
-            height="100%"
-            style="display:block;width:100%;height:100%;border:none"
             allow="fullscreen"
             allowfullscreen
-            title="ГРАФСИЛ — брендбук ADERVIS"
+            title="ГРАФСИЛ Brandbook — ADERVIS"
           ></iframe>
         </div>
       </div>
-    </section>
+    </div>
 
-    <div class="section-divider" aria-hidden="true"></div>
-
-    <!-- Галерея -->
-    <section class="section">
+    <!-- Stacked project images -->
+    <div class="bh-images">
       <div class="container">
-        <div class="section-head reveal" style="margin-bottom:var(--sp-8)">
-          <span class="eyebrow">Страницы брендбука</span>
-          <h2>Из чего собран фирстиль</h2>
+        <div class="bh-img-item">
+          <img src="../%D0%93%D0%A0%D0%90%D0%A4%D0%A1%D0%98%D0%9B/1GRAPHSEAL.png"  alt="ГРАФСИЛ Brandbook — обложка" loading="lazy">
         </div>
-
-        <div class="case-gallery reveal">
-          <div class="case-gallery__item">
-            <img src="../%D0%93%D0%A0%D0%90%D0%A4%D0%A1%D0%98%D0%9B/1GRAPHSEAL.png" alt="ГРАФСИЛ — обложка брендбука" loading="lazy">
-          </div>
-          <div class="case-gallery__item">
-            <img src="../%D0%93%D0%A0%D0%90%D0%A4%D0%A1%D0%98%D0%9B/2GRAPHSEAL.png" alt="ГРАФСИЛ — содержание брендбука" loading="lazy">
-          </div>
-          <div class="case-gallery__item">
-            <img src="../%D0%93%D0%A0%D0%90%D0%A4%D0%A1%D0%98%D0%9B/4GRAPHSEAL.png" alt="ГРАФСИЛ — логотип" loading="lazy">
-          </div>
-          <div class="case-gallery__item">
-            <img src="../%D0%93%D0%A0%D0%90%D0%A4%D0%A1%D0%98%D0%9B/5GRAPHSEAL.png" alt="ГРАФСИЛ — вариации логотипа" loading="lazy">
-          </div>
-          <div class="case-gallery__item">
-            <img src="../%D0%93%D0%A0%D0%90%D0%A4%D0%A1%D0%98%D0%9B/6GRAPHSEAL.png" alt="ГРАФСИЛ — структура знака" loading="lazy">
-          </div>
-          <div class="case-gallery__item">
-            <img src="../%D0%93%D0%A0%D0%90%D0%A4%D0%A1%D0%98%D0%9B/7GRAPHSEAL.png" alt="ГРАФСИЛ — размещение логотипа" loading="lazy">
-          </div>
-          <div class="case-gallery__item">
-            <img src="../%D0%93%D0%A0%D0%90%D0%A4%D0%A1%D0%98%D0%9B/8GRAPHSEAL.png" alt="ГРАФСИЛ — шрифт компании" loading="lazy">
-          </div>
-          <div class="case-gallery__item">
-            <img src="../%D0%93%D0%A0%D0%90%D0%A4%D0%A1%D0%98%D0%9B/9GRAPHSEAL.png" alt="ГРАФСИЛ — цветовая палитра" loading="lazy">
-          </div>
-          <div class="case-gallery__item">
-            <img src="../%D0%93%D0%A0%D0%90%D0%A4%D0%A1%D0%98%D0%9B/10GRAPHSEAL.png" alt="ГРАФСИЛ — цвета компании" loading="lazy">
-          </div>
-          <div class="case-gallery__item">
-            <img src="../%D0%93%D0%A0%D0%90%D0%A4%D0%A1%D0%98%D0%9B/11GRAPHSEAL.png" alt="ГРАФСИЛ — паттерны" loading="lazy">
-          </div>
-          <div class="case-gallery__item">
-            <img src="../%D0%93%D0%A0%D0%90%D0%A4%D0%A1%D0%98%D0%9B/12GRAPHSEAL.png" alt="ГРАФСИЛ — скотч корпоративный" loading="lazy">
-          </div>
-          <div class="case-gallery__item">
-            <img src="../%D0%93%D0%A0%D0%90%D0%A4%D0%A1%D0%98%D0%9B/13GRAPHSEAL.png" alt="ГРАФСИЛ — корпоративная документация, папка" loading="lazy">
-          </div>
-          <div class="case-gallery__item">
-            <img src="../%D0%93%D0%A0%D0%90%D0%A4%D0%A1%D0%98%D0%9B/14GRAPHSEAL.png" alt="ГРАФСИЛ — паттерн и носители" loading="lazy">
-          </div>
-          <div class="case-gallery__item">
-            <img src="../%D0%93%D0%A0%D0%90%D0%A4%D0%A1%D0%98%D0%9B/15GRAPHSEAL.png" alt="ГРАФСИЛ — визитки" loading="lazy">
-          </div>
+        <div class="bh-img-item">
+          <img src="../%D0%93%D0%A0%D0%90%D0%A4%D0%A1%D0%98%D0%9B/2GRAPHSEAL.png"  alt="ГРАФСИЛ — содержание" loading="lazy">
+        </div>
+        <div class="bh-img-item">
+          <img src="../%D0%93%D0%A0%D0%90%D0%A4%D0%A1%D0%98%D0%9B/4GRAPHSEAL.png"  alt="ГРАФСИЛ — логотип" loading="lazy">
+        </div>
+        <div class="bh-img-item">
+          <img src="../%D0%93%D0%A0%D0%90%D0%A4%D0%A1%D0%98%D0%9B/5GRAPHSEAL.png"  alt="ГРАФСИЛ — вариации логотипа" loading="lazy">
+        </div>
+        <div class="bh-img-item">
+          <img src="../%D0%93%D0%A0%D0%90%D0%A4%D0%A1%D0%98%D0%9B/6GRAPHSEAL.png"  alt="ГРАФСИЛ — структура знака" loading="lazy">
+        </div>
+        <div class="bh-img-item">
+          <img src="../%D0%93%D0%A0%D0%90%D0%A4%D0%A1%D0%98%D0%9B/7GRAPHSEAL.png"  alt="ГРАФСИЛ — размещение логотипа" loading="lazy">
+        </div>
+        <div class="bh-img-item">
+          <img src="../%D0%93%D0%A0%D0%90%D0%A4%D0%A1%D0%98%D0%9B/8GRAPHSEAL.png"  alt="ГРАФСИЛ — шрифт компании" loading="lazy">
+        </div>
+        <div class="bh-img-item">
+          <img src="../%D0%93%D0%A0%D0%90%D0%A4%D0%A1%D0%98%D0%9B/9GRAPHSEAL.png"  alt="ГРАФСИЛ — цветовая палитра" loading="lazy">
+        </div>
+        <div class="bh-img-item">
+          <img src="../%D0%93%D0%A0%D0%90%D0%A4%D0%A1%D0%98%D0%9B/10GRAPHSEAL.png" alt="ГРАФСИЛ — цвета компании" loading="lazy">
+        </div>
+        <div class="bh-img-item">
+          <img src="../%D0%93%D0%A0%D0%90%D0%A4%D0%A1%D0%98%D0%9B/11GRAPHSEAL.png" alt="ГРАФСИЛ — паттерны" loading="lazy">
+        </div>
+        <div class="bh-img-item">
+          <img src="../%D0%93%D0%A0%D0%90%D0%A4%D0%A1%D0%98%D0%9B/12GRAPHSEAL.png" alt="ГРАФСИЛ — скотч корпоративный" loading="lazy">
+        </div>
+        <div class="bh-img-item">
+          <img src="../%D0%93%D0%A0%D0%90%D0%A4%D0%A1%D0%98%D0%9B/13GRAPHSEAL.png" alt="ГРАФСИЛ — корпоративная папка" loading="lazy">
+        </div>
+        <div class="bh-img-item">
+          <img src="../%D0%93%D0%A0%D0%90%D0%A4%D0%A1%D0%98%D0%9B/14GRAPHSEAL.png" alt="ГРАФСИЛ — паттерн и носители" loading="lazy">
+        </div>
+        <div class="bh-img-item">
+          <img src="../%D0%93%D0%A0%D0%90%D0%A4%D0%A1%D0%98%D0%9B/15GRAPHSEAL.png" alt="ГРАФСИЛ — визитки" loading="lazy">
         </div>
       </div>
-    </section>
+    </div>
 
-    <div class="section-divider" aria-hidden="true"></div>
-
-    <!-- Результаты -->
-    <section class="section">
+    <!-- Footer -->
+    <footer class="bh-footer">
       <div class="container">
-        <div class="section-head reveal" style="margin-bottom:var(--sp-8)">
-          <span class="eyebrow">Результат</span>
-          <h2>Брендбук в цифрах</h2>
+        <div class="bh-footer-info">
+          <span class="bh-footer-studio">ADERVIS Digital · Пермь · 2024</span>
+          <div class="bh-tags" style="margin-top:8px">
+            <span class="bh-tag">design</span>
+            <span class="bh-tag">logo</span>
+            <span class="bh-tag">branding</span>
+            <span class="bh-tag">brandbook</span>
+            <span class="bh-tag">brand identity</span>
+            <span class="bh-tag">industrial</span>
+            <span class="bh-tag">b2b</span>
+            <span class="bh-tag">adervis digital</span>
+          </div>
         </div>
-        <div class="case-stats reveal">
-          <div>
-            <div class="case-stat__num">13</div>
-            <div class="case-stat__label">разделов<br>брендбука</div>
-          </div>
-          <div>
-            <div class="case-stat__num">4</div>
-            <div class="case-stat__label">корпоративных<br>цвета</div>
-          </div>
-          <div>
-            <div class="case-stat__num">5+</div>
-            <div class="case-stat__label">носителей<br>фирстиля</div>
-          </div>
-          <div>
-            <div class="case-stat__num">1</div>
-            <div class="case-stat__label">готовый<br>бренд</div>
-          </div>
+        <div class="bh-footer-cta">
+          <a href="../../cases/" class="btn">← Все кейсы</a>
+          <a href="../../design/" class="btn primary">Заказать брендинг</a>
         </div>
       </div>
-    </section>
-
-    <div class="section-divider" aria-hidden="true"></div>
-
-    <!-- CTA -->
-    <section class="section contact-section reveal" id="contacts">
-      <div class="container">
-        <h2>Нужен брендбук для вашей компании?</h2>
-        <p>Разработаем логотип и полный фирменный стиль — от знака до носителей. Брендбук, который работает на рынке и закрепляет образ компании в голове клиента.</p>
-        <div class="hero-buttons">
-          <a href="/design/" class="btn primary">Услуга: Брендинг</a>
-          <a href="mailto:adervis.digital@gmail.com" class="btn">adervis.digital@gmail.com</a>
-        </div>
-      </div>
-    </section>
+    </footer>
 
   </main>
 
   <div id="footer-placeholder"></div>
 
   <script src="../../js/app.js"></script>
-  <script src="../../js/gallery.js"></script>
 </body>
 </html>
