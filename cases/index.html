@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="ru" data-theme="dark">
 <head>
   <meta charset="utf-8">
@@ -6,15 +6,17 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Кейсы — портфолио студии | ADERVIS</title>
   <meta name="description" content="Портфолио ADERVIS: кейсы по видеопродакшну, брендингу, фотосъёмке и ИИ-контенту. Реальные проекты с задачами, решениями и результатами.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="icon" type="image/svg+xml" href="../icon.svg">
-  <link rel="canonical" href="https://adervisdigital-web.github.io/Adervis-website/cases/">
+  <link rel="canonical" href="https://adervis.ru/cases/">
   <meta name="theme-color" content="#141414">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="ADERVIS">
-  <meta property="og:url" content="https://adervisdigital-web.github.io/Adervis-website/cases/">
+  <meta property="og:url" content="https://adervis.ru/cases/">
   <meta property="og:title" content="Кейсы — портфолио студии | ADERVIS">
   <meta property="og:description" content="Портфолио ADERVIS: видео, брендинг, фото, ИИ-контент — реальные проекты с результатами.">
-  <meta property="og:image" content="https://adervisdigital-web.github.io/Adervis-website/assets/cases/og-image.jpg">
+  <meta property="og:image" content="https://adervis.ru/assets/cases/og-image.jpg">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="stylesheet" href="../css/style.css">
 </head>
@@ -49,71 +51,77 @@
           <button class="cases-filter" data-filter="ai">ИИ</button>
         </div>
 
-        <div class="cases-grid" id="casesGrid">
+        <div class="gallery-grid" id="casesGrid">
 
-          <a href="/cases/brait/" class="case-card reveal" data-dir-filter="photo ai">
-            <div class="case-card__cover">
-              <img src="/assets/cases/brait/01.jpg" alt="Brait — предметная съёмка с AI-фонами" class="case-card__img" loading="lazy">
-              <span class="case-card__tag" style="color:var(--c-ai)">Фото + ИИ</span>
+          <a href="/cases/brait/" class="gallery-card reveal" data-dir="ai" data-dir-filter="photo ai">
+            <div class="media-frame has-img" data-dir="ai" style="--ratio: 16 / 9">
+              <img src="/assets/cases/brait/06.jpg" alt="Brait — предметная съёмка с AI-фонами" class="media-frame__img" loading="lazy">
+              <span class="media-frame__num" aria-hidden="true">01</span>
             </div>
-            <div class="case-card__body">
-              <h3 class="case-card__title">Brait</h3>
-              <p class="case-card__meta">Предметная съёмка · AI-фоны · 2024</p>
+            <div class="gallery-card__info">
+              <span class="gallery-card__dir">Фото + ИИ</span>
+              <h3 class="gallery-card__title">Brait — съёмка с нейросетевыми фонами</h3>
+              <p class="gallery-card__meta">Предметная съёмка · AI-фоны · 2024</p>
             </div>
           </a>
 
-          <a href="/video/#works" class="case-card reveal" data-dir-filter="video">
-            <div class="case-card__cover">
-              <img src="/assets/cases/case-video-1.png" alt="Рекламный ролик для производственной компании" class="case-card__img" loading="lazy">
-              <span class="case-card__tag" style="color:var(--c-video)">Видео</span>
+          <a href="/video/#works" class="gallery-card reveal" data-dir="video" data-dir-filter="video">
+            <div class="media-frame has-img" data-dir="video" style="--ratio: 16 / 9">
+              <img src="/assets/cases/case-video-1.png" alt="Рекламный ролик для производственной компании" class="media-frame__img" loading="lazy">
+              <span class="media-frame__num" aria-hidden="true">02</span>
             </div>
-            <div class="case-card__body">
-              <h3 class="case-card__title">Рекламный ролик</h3>
-              <p class="case-card__meta">Видеопродакшн · 2023 · Промышленность</p>
-            </div>
-          </a>
-
-          <a href="/photo/#works" class="case-card reveal" data-dir-filter="photo">
-            <div class="case-card__cover">
-              <img src="/assets/cases/case-photo-1.png" alt="Каталожная съёмка для бренда косметики" class="case-card__img" loading="lazy">
-              <span class="case-card__tag" style="color:var(--c-photo)">Фото</span>
-            </div>
-            <div class="case-card__body">
-              <h3 class="case-card__title">Каталожная съёмка</h3>
-              <p class="case-card__meta">Предметная съёмка · Бренд косметики</p>
+            <div class="gallery-card__info">
+              <span class="gallery-card__dir">Видео</span>
+              <h3 class="gallery-card__title">Рекламный ролик для производственной компании</h3>
+              <p class="gallery-card__meta">Видеопродакшн · 2023 · Промышленность</p>
             </div>
           </a>
 
-          <a href="/ai/#works" class="case-card reveal" data-dir-filter="ai">
-            <div class="case-card__cover">
-              <img src="/assets/cases/case-ai-1.png" alt="Серия AI-визуалов для рекламной кампании" class="case-card__img" loading="lazy">
-              <span class="case-card__tag" style="color:var(--c-ai)">ИИ</span>
+          <a href="/photo/#works" class="gallery-card reveal" data-dir="photo" data-dir-filter="photo">
+            <div class="media-frame has-img" data-dir="photo" style="--ratio: 16 / 9">
+              <img src="/assets/cases/case-photo-1.png" alt="Каталожная съёмка для бренда косметики" class="media-frame__img" loading="lazy">
+              <span class="media-frame__num" aria-hidden="true">03</span>
             </div>
-            <div class="case-card__body">
-              <h3 class="case-card__title">Серия AI-визуалов</h3>
-              <p class="case-card__meta">ИИ-контент · Арт-дирекшен · Рекламная кампания</p>
-            </div>
-          </a>
-
-          <a href="/video/#works" class="case-card reveal" data-dir-filter="video">
-            <div class="case-card__cover">
-              <img src="/assets/cases/case-video-2.png" alt="Фильм с корпоративного мероприятия" class="case-card__img" loading="lazy">
-              <span class="case-card__tag" style="color:var(--c-video)">Видео</span>
-            </div>
-            <div class="case-card__body">
-              <h3 class="case-card__title">Корпоративный фильм</h3>
-              <p class="case-card__meta">Event-видео · 2024 · Мероприятие 500+</p>
+            <div class="gallery-card__info">
+              <span class="gallery-card__dir">Фото</span>
+              <h3 class="gallery-card__title">Каталожная съёмка для бренда косметики</h3>
+              <p class="gallery-card__meta">Предметная съёмка · Бренд косметики</p>
             </div>
           </a>
 
-          <a href="/design/#works" class="case-card reveal" data-dir-filter="design">
-            <div class="case-card__cover">
-              <img src="/assets/cases/case-design-1.png" alt="Фирменный стиль для региональной сети" class="case-card__img" loading="lazy">
-              <span class="case-card__tag" style="color:var(--c-design)">Дизайн</span>
+          <a href="/ai/#works" class="gallery-card reveal" data-dir="ai" data-dir-filter="ai">
+            <div class="media-frame has-img" data-dir="ai" style="--ratio: 16 / 9">
+              <img src="/assets/cases/case-ai-1.png" alt="Серия AI-визуалов для рекламной кампании" class="media-frame__img" loading="lazy">
+              <span class="media-frame__num" aria-hidden="true">04</span>
             </div>
-            <div class="case-card__body">
-              <h3 class="case-card__title">Фирменный стиль</h3>
-              <p class="case-card__meta">Фирстиль · Брендбук · Региональная сеть</p>
+            <div class="gallery-card__info">
+              <span class="gallery-card__dir">ИИ</span>
+              <h3 class="gallery-card__title">Серия визуалов для рекламной кампании</h3>
+              <p class="gallery-card__meta">ИИ-контент · Арт-дирекшен · Реклама</p>
+            </div>
+          </a>
+
+          <a href="/video/#works" class="gallery-card reveal" data-dir="video" data-dir-filter="video">
+            <div class="media-frame has-img" data-dir="video" style="--ratio: 16 / 9">
+              <img src="/assets/cases/case-video-2.png" alt="Фильм с корпоративного мероприятия" class="media-frame__img" loading="lazy">
+              <span class="media-frame__num" aria-hidden="true">05</span>
+            </div>
+            <div class="gallery-card__info">
+              <span class="gallery-card__dir">Видео</span>
+              <h3 class="gallery-card__title">Фильм с корпоративного мероприятия</h3>
+              <p class="gallery-card__meta">Event-видео · 2024 · Мероприятие 500+</p>
+            </div>
+          </a>
+
+          <a href="/design/#works" class="gallery-card reveal" data-dir="design" data-dir-filter="design">
+            <div class="media-frame has-img" data-dir="design" style="--ratio: 16 / 9">
+              <img src="/assets/cases/case-design-1.png" alt="Фирменный стиль для региональной сети" class="media-frame__img" loading="lazy">
+              <span class="media-frame__num" aria-hidden="true">06</span>
+            </div>
+            <div class="gallery-card__info">
+              <span class="gallery-card__dir">Дизайн</span>
+              <h3 class="gallery-card__title">Фирменный стиль для региональной сети</h3>
+              <p class="gallery-card__meta">Фирстиль · Брендбук · Региональная сеть</p>
             </div>
           </a>
 
@@ -135,7 +143,7 @@
   <script>
   (function () {
     var filters = document.querySelectorAll('.cases-filter');
-    var cards   = document.querySelectorAll('.case-card[data-dir-filter]');
+    var cards   = document.querySelectorAll('.gallery-card[data-dir-filter]');
 
     filters.forEach(function (btn) {
       btn.addEventListener('click', function () {
@@ -143,11 +151,11 @@
         filters.forEach(function (b) { b.classList.remove('active'); });
         btn.classList.add('active');
         cards.forEach(function (card) {
-          var filters = (card.dataset.dirFilter || '').split(' ');
-          if (f === 'all' || filters.indexOf(f) !== -1) {
-            card.classList.remove('case-card--hidden');
+          var dirs = (card.dataset.dirFilter || '').split(' ');
+          if (f === 'all' || dirs.indexOf(f) !== -1) {
+            card.style.display = '';
           } else {
-            card.classList.add('case-card--hidden');
+            card.style.display = 'none';
           }
         });
       });

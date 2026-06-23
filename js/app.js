@@ -6,6 +6,18 @@ const rootPath = appScript
   ? new URL(appScript.getAttribute("src"), document.baseURI).pathname.replace(/js\/app\.js$/, "")
   : "/";
 
+// iOS Safari блокирует window.open() как popup даже из submit-событий.
+// Метод с программным кликом по <a> надёжнее — работает как прямой user-action.
+function openTgLink(url) {
+  const a = document.createElement('a');
+  a.href = url;
+  a.target = '_blank';
+  a.rel = 'noopener noreferrer';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   // Функция для подгрузки HTML компонентов — возвращает промис с готовым элементом
   const loadComponent = (id, url) => {
@@ -52,6 +64,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initVideoGallery();
   initReviewsSlider();
   initVideoThumbnails();
+  initVideoReviewThumbnails(); // применяет data-thumb если задан вручную
 });
 
 function initServicesGrid() {
@@ -190,9 +203,9 @@ function initModal() {
       ].filter(Boolean).join("\n");
 
       const subjectDir = dirName ? ` — ${dirName}` : '';
-      const subject = encodeURIComponent(`Заявка${subjectDir} — с сайта ADERVIS`);
-      const body    = encodeURIComponent(`Здравствуйте! Прошу подготовить КП:\n\n${lines}`);
-      window.location.href = `mailto:adervis.digital@gmail.com?subject=${subject}&body=${body}`;
+      const tgText = encodeURIComponent(`Заявка с сайта ADERVIS${subjectDir}:\n\n${lines}`);
+      const tgUrl = `https://t.me/Adervis_digital?text=${tgText}`;
+      openTgLink(tgUrl);
       closeModal();
     });
   }
@@ -454,9 +467,17 @@ function initVideoCalculator() {
       `Ориентировочный бюджет (по калькулятору): от ${formatPrice.format(low)} до ${formatPrice.format(high)} ₽`,
     ].filter(Boolean).join("\n");
 
-    const subject = encodeURIComponent("Заявка на видео — расчёт с сайта");
-    const body = encodeURIComponent(`Здравствуйте! Прошу подготовить расчёт и КП по проекту:\n\n${lines}`);
-    window.location.href = `mailto:adervis.digital@gmail.com?subject=${subject}&body=${body}`;
+    const tgText = encodeURIComponent(`Заявка на видео с сайта ADERVIS:\n\n${lines}`);
+    const tgUrl = `https://t.me/Adervis_digital?text=${tgText}`;
+    openTgLink(tgUrl);
+
+    const sb = form.querySelector('[type="submit"]');
+    if (sb) {
+      const origHTML = sb.innerHTML;
+      sb.disabled = true;
+      sb.innerHTML = `Отправьте сообщение в Telegram&nbsp;&nbsp;<a href="${tgUrl}" target="_blank" rel="noopener noreferrer" style="color:inherit;text-decoration:underline;font-weight:500">→ открыть ещё раз</a>`;
+      setTimeout(() => { sb.innerHTML = origHTML; sb.disabled = false; }, 8000);
+    }
   });
 }
 
@@ -532,13 +553,7 @@ function initCustomCursor() {
   document.body.classList.add("has-custom-cursor");
 
   let mx = -200, my = -200, rx = -200, ry = -200;
-
-  document.addEventListener("mousemove", e => {
-    mx = e.clientX;
-    my = e.clientY;
-    dot.style.left = `${mx}px`;
-    dot.style.top  = `${my}px`;
-  });
+  let rafId = null;
 
   const lerp = (a, b, t) => a + (b - a) * t;
   const tick = () => {
@@ -546,9 +561,16 @@ function initCustomCursor() {
     ry = lerp(ry, my, 0.13);
     ring.style.left = `${rx}px`;
     ring.style.top  = `${ry}px`;
-    requestAnimationFrame(tick);
+    rafId = requestAnimationFrame(tick);
   };
-  requestAnimationFrame(tick);
+
+  document.addEventListener("mousemove", e => {
+    mx = e.clientX;
+    my = e.clientY;
+    dot.style.left = `${mx}px`;
+    dot.style.top  = `${my}px`;
+    if (!rafId) rafId = requestAnimationFrame(tick);
+  });
 
   const HOVER = "a, button, [role='button'], .btn, .service-card, .stat-card, .who-card, .app-card, label, .nav-product";
   document.addEventListener("mouseover", e => {
@@ -563,8 +585,16 @@ function initCustomCursor() {
     ring.style.opacity = "1";
   }, { once: true });
 
-  document.addEventListener("mouseleave", () => { dot.style.opacity = "0"; ring.style.opacity = "0"; });
-  document.addEventListener("mouseenter", () => { dot.style.opacity = "1"; ring.style.opacity = "1"; });
+  document.addEventListener("mouseleave", () => {
+    dot.style.opacity = "0";
+    ring.style.opacity = "0";
+    if (rafId) { cancelAnimationFrame(rafId); rafId = null; }
+  });
+  document.addEventListener("mouseenter", () => {
+    dot.style.opacity = "1";
+    ring.style.opacity = "1";
+    if (!rafId) rafId = requestAnimationFrame(tick);
+  });
 }
 
 // Magnetic-эффект на CTA-кнопках — кнопка плавно тянется к курсору
@@ -771,6 +801,12 @@ function initLeadForm() {
     const honeypot = form.querySelector('[name="website"]');
     if (honeypot && honeypot.value) return;
 
+    const consent = form.querySelector('#leadConsent');
+    if (consent && !consent.checked) {
+      consent.closest('.modal-consent-label').style.outline = '2px solid var(--c-video)';
+      return;
+    }
+
     const name      = form.querySelector('[name="name"]').value.trim();
     const contact   = form.querySelector('[name="contact"]').value.trim();
     const message   = form.querySelector('[name="message"]')?.value.trim() || '';
@@ -788,9 +824,17 @@ function initLeadForm() {
     ].filter(Boolean).join("\n");
 
     const subjectDir = dirName ? ` — ${dirName}` : '';
-    const subject = encodeURIComponent(`Заявка${subjectDir} — с сайта ADERVIS`);
-    const body    = encodeURIComponent(`Здравствуйте! Прошу подготовить КП по задаче:\n\n${lines}`);
-    window.location.href = `mailto:adervis.digital@gmail.com?subject=${subject}&body=${body}`;
+    const tgText = encodeURIComponent(`Заявка с сайта ADERVIS${subjectDir}:\n\n${lines}`);
+    const tgUrl = `https://t.me/Adervis_digital?text=${tgText}`;
+    openTgLink(tgUrl);
+
+    const submitBtn = form.querySelector('[type="submit"]');
+    if (submitBtn) {
+      const origHTML = submitBtn.innerHTML;
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = `Отправьте сообщение в Telegram&nbsp;&nbsp;<a href="${tgUrl}" target="_blank" rel="noopener noreferrer" style="color:inherit;text-decoration:underline;font-weight:500">→ открыть ещё раз</a>`;
+      setTimeout(() => { submitBtn.innerHTML = origHTML; submitBtn.disabled = false; form.reset(); }, 8000);
+    }
   });
 }
 
@@ -943,6 +987,21 @@ function initVideoThumbnails() {
         .then(data => { if (data && data.thumbnail_url) applyThumb(thumb, data.thumbnail_url); })
         .catch(() => {});
     }, i * 60);
+  });
+}
+
+// Превью для видео-отзывов: применяет data-thumb если задан вручную на .video-poster
+// (VK oEmbed блокирует CORS — загрузка через API невозможна в браузере)
+function initVideoReviewThumbnails() {
+  document.querySelectorAll(".video-poster[data-vk]").forEach(poster => {
+    const thumbSrc = poster.dataset.thumb;
+    if (!thumbSrc) return;
+    const thumb = poster.querySelector(".video-poster__thumb");
+    if (!thumb) return;
+    thumb.style.backgroundImage    = `url("${thumbSrc}")`;
+    thumb.style.backgroundSize     = "cover";
+    thumb.style.backgroundPosition = "center";
+    thumb.classList.remove("video-poster__thumb--empty");
   });
 }
 

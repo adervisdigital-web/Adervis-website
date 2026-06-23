@@ -6,19 +6,21 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>ADERVIS Обучение — скоро</title>
   <meta name="description" content="Обучение от ADERVIS: PDF-гайды, мини-уроки и курсы по видеопроизводству, дизайну, фотосъёмке и ИИ-контенту. Скоро.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="icon" type="image/svg+xml" href="../icon.svg">
-  <link rel="canonical" href="https://adervisdigital-web.github.io/Adervis-website/edu/">
+  <link rel="canonical" href="https://adervis.ru/edu/">
   <meta name="theme-color" content="#141414">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="ADERVIS">
-  <meta property="og:url" content="https://adervisdigital-web.github.io/Adervis-website/edu/">
+  <meta property="og:url" content="https://adervis.ru/edu/">
   <meta property="og:title" content="ADERVIS Обучение — курсы по видео, дизайну, фото и ИИ">
   <meta property="og:description" content="Обучение от ADERVIS: PDF-гайды, мини-уроки и курсы по видеопроизводству, дизайну, фотосъёмке и ИИ-контенту от команды с опытом с 2018 года.">
-  <meta property="og:image" content="https://adervisdigital-web.github.io/Adervis-website/assets/cases/og-image.jpg">
+  <meta property="og:image" content="https://adervis.ru/assets/cases/og-image.jpg">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="ADERVIS Обучение — курсы по видео, дизайну, фото и ИИ">
   <meta name="twitter:description" content="Обучение от ADERVIS: PDF-гайды, мини-уроки и курсы по видеопроизводству, дизайну, фотосъёмке и ИИ-контенту.">
-  <meta name="twitter:image" content="https://adervisdigital-web.github.io/Adervis-website/assets/cases/og-image.jpg">
+  <meta name="twitter:image" content="https://adervis.ru/assets/cases/og-image.jpg">
   <link rel="stylesheet" href="../css/style.css">
 </head>
 <body class="no-clients">
@@ -96,6 +98,8 @@
         <h2>Узнайте первым</h2>
         <p>Оставьте e-mail или Telegram — напишем когда выйдет первый материал. Без спама, только по делу.</p>
         <form class="lead-form reveal" id="leadForm" novalidate>
+          <input type="hidden" name="message" value="Подписка на Adervis EDU — уведомить при запуске">
+          <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;height:0;width:0;overflow:hidden;opacity:0;pointer-events:none;">
           <div class="lead-form-grid">
             <label class="calc-field">
               <span class="calc-field-label">Как к вам обращаться</span>
@@ -106,9 +110,12 @@
               <input type="text" name="contact" class="lead-input" placeholder="mail@domain.ru / @username" autocomplete="email" required>
             </label>
           </div>
+          <label class="modal-consent-label" style="margin-bottom:16px">
+            <input type="checkbox" id="leadConsent" class="modal-consent-check" required>
+            <span>Даю согласие на обработку персональных данных согласно <a href="/docs" target="_blank" rel="noopener">Политике конфиденциальности</a> (ФЗ-152)</span>
+          </label>
           <div class="lead-form-footer">
             <button type="submit" class="btn primary">Подписаться</button>
-            <span class="lead-form-hint">Сообщим когда появятся первые материалы — и больше ничего лишнего</span>
           </div>
         </form>
       </div>
