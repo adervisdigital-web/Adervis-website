@@ -2564,14 +2564,63 @@ body.lh-body {
   justify-content: center;
 }
 
+.concept-img-frame {
+  position: relative;
+  border-radius: 17px;
+  padding: 0.75px;
+  overflow: hidden;
+  max-width: 560px;
+  width: 100%;
+  box-shadow: 0 32px 80px rgba(0,0,0,0.4);
+  cursor: pointer;
+}
+
+.concept-img-frame::before {
+  content: '';
+  position: absolute;
+  inset: -100%;
+  background: conic-gradient(
+    from 0deg at 50% 50%,
+    transparent 0%,
+    transparent 74%,
+    #f6bd3a 80%,
+    #fffbe8 83%,
+    #f6bd3a 86%,
+    transparent 92%
+  );
+  animation: concept-border-spin 10s linear infinite;
+  z-index: 0;
+}
+
+@keyframes concept-border-spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Play-overlay при наведении */
+.concept-img-frame::after {
+  content: '';
+  position: absolute;
+  inset: 0.75px;
+  border-radius: 16px;
+  background: rgba(0,0,0,0.38)
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 80'%3E%3Ccircle cx='40' cy='40' r='38' fill='rgba(0,0,0,0.55)' stroke='rgba(255,255,255,0.35)' stroke-width='1.5'/%3E%3Cpolygon points='32,25 60,40 32,55' fill='white'/%3E%3C/svg%3E")
+    center/68px 68px no-repeat;
+  opacity: 0;
+  transition: opacity 0.28s ease;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.concept-img-frame:hover::after { opacity: 1; }
+
 .lh-concept__img {
   width: 100%;
-  max-width: 560px;
   height: auto;
   border-radius: 16px;
   object-fit: cover;
   display: block;
-  box-shadow: 0 32px 80px rgba(0,0,0,0.4);
+  position: relative;
+  z-index: 1;
 }
 
 @media (max-width: 900px) {

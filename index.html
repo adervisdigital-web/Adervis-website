@@ -239,7 +239,9 @@
         </div>
 
         <div class="lh-concept__visual reveal">
-          <img src="assets/cases/concept-team.png" alt="Команда ADERVIS в студии" class="lh-concept__img" loading="lazy">
+          <div class="concept-img-frame">
+            <img src="assets/cases/concept-team.png" alt="Команда ADERVIS в студии" class="lh-concept__img" loading="lazy">
+          </div>
         </div>
 
       </div>
@@ -471,7 +473,7 @@
 
           <a href="cases/brait/" class="gallery-card reveal" data-dir="ai" style="text-decoration:none;color:inherit">
             <div class="media-frame has-img" data-dir="ai" style="--ratio: 16 / 9">
-              <img src="assets/cases/brait/06.jpg" alt="Brait — предметная съёмка с AI-фонами" class="media-frame__img">
+              <img src="cases/brait/brait-glavnaya.png" alt="Brait — предметная съёмка с AI-фонами" class="media-frame__img">
               <span class="media-frame__num" aria-hidden="true">02</span>
             </div>
             <div class="gallery-card__info">
@@ -480,20 +482,19 @@
             </div>
           </a>
 
-          <a href="photo/" class="gallery-card reveal" data-dir="photo" style="text-decoration:none;color:inherit">
+          <a href="cases/stickbot/" class="gallery-card reveal" data-dir="photo" style="text-decoration:none;color:inherit">
             <div class="media-frame has-img" data-dir="photo" style="--ratio: 16 / 9">
-              <img src="assets/cases/case-photo-1.png" alt="Предметная съёмка для бренда косметики" class="media-frame__img">
+              <img src="cases/StickBot%20-%20%D0%9E%D0%B1%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%BA%D0%B0/15%20copy.jpg" alt="Рекламная съёмка для StickBot — косметика" class="media-frame__img">
               <span class="media-frame__num" aria-hidden="true">03</span>
             </div>
             <div class="gallery-card__info">
               <span class="gallery-card__dir">Фото</span>
-              <h3 class="gallery-card__title">Каталожная съёмка для бренда косметики</h3>
+              <h3 class="gallery-card__title">Рекламная съёмка для StickBot</h3>
             </div>
           </a>
 
           <a href="ai/" class="gallery-card reveal" data-dir="ai" style="text-decoration:none;color:inherit">
-            <div class="media-frame has-img" data-dir="ai" style="--ratio: 16 / 9">
-              <img src="assets/cases/case-ai-1.png" alt="AI-визуалы для рекламной кампании" class="media-frame__img">
+            <div class="media-frame" data-dir="ai" style="--ratio: 16 / 9">
               <span class="media-frame__num" aria-hidden="true">04</span>
             </div>
             <div class="gallery-card__info">
@@ -504,7 +505,7 @@
 
           <a href="video/" class="gallery-card reveal" data-dir="video" style="text-decoration:none;color:inherit">
             <div class="media-frame has-img" data-dir="video" style="--ratio: 16 / 9">
-              <img src="assets/cases/case-video-2.png" alt="Корпоративный фильм с мероприятия" class="media-frame__img">
+              <img src="cases/video-card.jpg" alt="Фильм с корпоративного мероприятия" class="media-frame__img">
               <span class="media-frame__num" aria-hidden="true">05</span>
             </div>
             <div class="gallery-card__info">
@@ -515,7 +516,7 @@
 
           <a href="design/" class="gallery-card reveal" data-dir="design" style="text-decoration:none;color:inherit">
             <div class="media-frame has-img" data-dir="design" style="--ratio: 16 / 9">
-              <img src="assets/cases/case-design-2.png" alt="Айдентика для сети заведений" class="media-frame__img">
+              <img src="cases/design-card.jpg" alt="Айдентика для сети заведений" class="media-frame__img">
               <span class="media-frame__num" aria-hidden="true">06</span>
             </div>
             <div class="gallery-card__info">
@@ -691,118 +692,39 @@
           <h2>Клиенты — о работе с нами</h2>
           <p>Рассказывают своими словами — о процессе, результате и о том, почему выбрали нас</p>
         </div>
-        <div class="video-reviews-grid">
+        <div class="vrp" id="vrPlayer">
 
-          <div class="video-review-card reveal">
-            <div class="video-poster" data-vk="https://vk.com/video_ext.php?oid=-121259819&id=456239134&autoplay=1">
-              <div class="video-poster__thumb" style="background-image:url('assets/cases/review-lesnikova.jpg')">
-                <button class="video-poster__play" aria-label="Смотреть видео-отзыв Алины Лесниковой">
-                  <svg viewBox="0 0 24 24" fill="currentColor" width="28" height="28" aria-hidden="true"><path d="M8 5.14v14l11-7-11-7z"/></svg>
+          <div class="vrp__left">
+            <div class="vrp__screen" id="vrMain">
+              <div class="vrp__poster" id="vrPoster">
+                <div class="vrp__bg" id="vrBg"></div>
+                <div class="vrp__grad"></div>
+                <button class="vrp__play" id="vrPlayBtn" aria-label="Воспроизвести">
+                  <span class="vrp__play-ring"></span>
+                  <svg viewBox="0 0 24 24" fill="currentColor" width="30" height="30" aria-hidden="true"><path d="M8 5.14v14l11-7-11-7z"/></svg>
+                </button>
+              </div>
+              <iframe class="vrp__frame" id="vrFrame" src="" frameborder="0"
+                allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            <div class="vrp__caption">
+              <div class="vrp__caption-text">
+                <span class="vrp__num" id="vrIdx"></span>
+                <p class="vrp__name" id="vrName"></p>
+                <span class="vrp__company" id="vrCompany"></span>
+              </div>
+              <div class="vrp__arrows">
+                <button class="vrp__arrow" id="vrPrev" aria-label="Предыдущее">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><path d="M15 18l-6-6 6-6"/></svg>
+                </button>
+                <button class="vrp__arrow" id="vrNext" aria-label="Следующее">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><path d="M9 18l6-6-6-6"/></svg>
                 </button>
               </div>
             </div>
-            <div class="video-review-info">
-              <span class="video-review-name">Алина Лесникова</span>
-              <span class="video-review-company">MOLODOST · Клиника молодости</span>
-            </div>
           </div>
 
-          <div class="video-review-card reveal">
-            <div class="video-poster" data-vk="https://vk.com/video_ext.php?oid=-121259819&id=456239128&autoplay=1">
-              <div class="video-poster__thumb" style="background-image:url('assets/cases/review-pasport.jpg')">
-                <button class="video-poster__play" aria-label="Смотреть видео-отзыв Паспорт Зубов">
-                  <svg viewBox="0 0 24 24" fill="currentColor" width="28" height="28" aria-hidden="true"><path d="M8 5.14v14l11-7-11-7z"/></svg>
-                </button>
-              </div>
-            </div>
-            <div class="video-review-info">
-              <span class="video-review-name">Паспорт Зубов</span>
-              <span class="video-review-company">Стоматология</span>
-            </div>
-          </div>
-
-          <div class="video-review-card reveal">
-            <div class="video-poster" data-vk="https://vk.com/video_ext.php?oid=-121259819&id=456239107&autoplay=1">
-              <div class="video-poster__thumb" style="background-image:url('assets/cases/review-abs.jpg')">
-                <button class="video-poster__play" aria-label="Смотреть видео-отзыв АБС Авто">
-                  <svg viewBox="0 0 24 24" fill="currentColor" width="28" height="28" aria-hidden="true"><path d="M8 5.14v14l11-7-11-7z"/></svg>
-                </button>
-              </div>
-            </div>
-            <div class="video-review-info">
-              <span class="video-review-name">Екатерина</span>
-              <span class="video-review-company">АБС Авто · Пермь</span>
-            </div>
-          </div>
-
-          <div class="video-review-card reveal">
-            <div class="video-poster" data-vk="https://vk.com/video_ext.php?oid=-121259819&id=456239074&autoplay=1">
-              <div class="video-poster__thumb" style="background-image:url('assets/cases/review-lishke.jpg')">
-                <button class="video-poster__play" aria-label="Смотреть видео-отзыв Екатерины Лишке">
-                  <svg viewBox="0 0 24 24" fill="currentColor" width="28" height="28" aria-hidden="true"><path d="M8 5.14v14l11-7-11-7z"/></svg>
-                </button>
-              </div>
-            </div>
-            <div class="video-review-info">
-              <span class="video-review-name">Екатерина Лишке</span>
-              <span class="video-review-company">Феликс</span>
-            </div>
-          </div>
-
-          <div class="video-review-card reveal">
-            <div class="video-poster" data-vk="https://vk.com/video_ext.php?oid=-121259819&id=456239055&autoplay=1">
-              <div class="video-poster__thumb" style="background-image:url('assets/cases/review-mohov.jpg')">
-                <button class="video-poster__play" aria-label="Смотреть видео-отзыв Дмитрия Мохова">
-                  <svg viewBox="0 0 24 24" fill="currentColor" width="28" height="28" aria-hidden="true"><path d="M8 5.14v14l11-7-11-7z"/></svg>
-                </button>
-              </div>
-            </div>
-            <div class="video-review-info">
-              <span class="video-review-name">Дмитрий Мохов</span>
-              <span class="video-review-company">MOBILOV</span>
-            </div>
-          </div>
-
-          <div class="video-review-card reveal">
-            <div class="video-poster" data-vk="https://vk.com/video_ext.php?oid=-121259819&id=456239032&autoplay=1">
-              <div class="video-poster__thumb" style="background-image:url('assets/cases/review-bakilov.jpg')">
-                <button class="video-poster__play" aria-label="Смотреть видео-отзыв Евгения Бакилова">
-                  <svg viewBox="0 0 24 24" fill="currentColor" width="28" height="28" aria-hidden="true"><path d="M8 5.14v14l11-7-11-7z"/></svg>
-                </button>
-              </div>
-            </div>
-            <div class="video-review-info">
-              <span class="video-review-name">Евгений Бакилов</span>
-              <span class="video-review-company">Express-Import</span>
-            </div>
-          </div>
-
-          <div class="video-review-card reveal">
-            <div class="video-poster" data-vk="https://vk.com/video_ext.php?oid=-121259819&id=456239033&autoplay=1">
-              <div class="video-poster__thumb" style="background-image:url('assets/cases/review-suetin.jpg')">
-                <button class="video-poster__play" aria-label="Смотреть видео-отзыв Никиты Суетина">
-                  <svg viewBox="0 0 24 24" fill="currentColor" width="28" height="28" aria-hidden="true"><path d="M8 5.14v14l11-7-11-7z"/></svg>
-                </button>
-              </div>
-            </div>
-            <div class="video-review-info">
-              <span class="video-review-name">Никита Суетин</span>
-              <span class="video-review-company">Видео-отзыв</span>
-            </div>
-          </div>
-
-          <!-- 8-я карточка — CTA-слот -->
-          <a href="#contacts" class="video-review-card vr-slot reveal" aria-label="Обсудить проект с ADERVIS">
-            <div class="vr-slot__poster">
-              <div class="vr-slot__circle" aria-hidden="true">
-                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
-              </div>
-            </div>
-            <div class="video-review-info">
-              <span class="video-review-name vr-slot__name">Обсудить проект</span>
-              <span class="video-review-company vr-slot__sub">Ответим за 2 часа →</span>
-            </div>
-          </a>
+          <div class="vrp__list" id="vrList"></div>
 
         </div>
       </div>
@@ -1024,6 +946,157 @@
 
   <script src="js/app.js"></script>
   <script type="module" src="js/hero3d.js"></script>
+
+  <!-- Video Reviews Player -->
+  <script>
+  (function () {
+    var VIDEOS = [
+      { url: 'https://vk.com/video_ext.php?oid=-121259819&id=456239134&autoplay=1', thumb: 'assets/cases/review-lesnikova.jpg', name: 'Алина Лесникова',  company: 'MOLODOST · Клиника молодости' },
+      { url: 'https://vk.com/video_ext.php?oid=-121259819&id=456239128&autoplay=1', thumb: 'assets/cases/review-pasport.jpg',  name: 'Паспорт Зубов',    company: 'Стоматология' },
+      { url: 'https://vk.com/video_ext.php?oid=-121259819&id=456239107&autoplay=1', thumb: 'assets/cases/review-abs.jpg',      name: 'Екатерина',         company: 'АБС Авто · Пермь' },
+      { url: 'https://vk.com/video_ext.php?oid=-121259819&id=456239074&autoplay=1', thumb: 'assets/cases/review-lishke.jpg',   name: 'Екатерина Лишке',  company: 'Феликс' },
+      { url: 'https://vk.com/video_ext.php?oid=-121259819&id=456239055&autoplay=1', thumb: 'assets/cases/review-mohov.jpg',    name: 'Дмитрий Мохов',    company: 'MOBILOV' },
+      { url: 'https://vk.com/video_ext.php?oid=-121259819&id=456239032&autoplay=1', thumb: 'assets/cases/review-bakilov.jpg',  name: 'Евгений Бакилов',  company: 'Express-Import' },
+      { url: 'https://vk.com/video_ext.php?oid=-121259819&id=456239033&autoplay=1', thumb: 'assets/cases/review-suetin.jpg',   name: 'Никита Суетин',    company: 'Видео-отзыв' },
+    ];
+
+    var current = 0;
+    var bg      = document.getElementById('vrBg');
+    if (!bg) return;
+
+    var poster  = document.getElementById('vrPoster');
+    var frame   = document.getElementById('vrFrame');
+    var nameEl  = document.getElementById('vrName');
+    var compEl  = document.getElementById('vrCompany');
+    var idxEl   = document.getElementById('vrIdx');
+    var listEl  = document.getElementById('vrList');
+    var playBtn = document.getElementById('vrPlayBtn');
+    var prevBtn = document.getElementById('vrPrev');
+    var nextBtn = document.getElementById('vrNext');
+
+    /* Build right-panel list */
+    VIDEOS.forEach(function (v, i) {
+      var el = document.createElement('div');
+      el.className = 'vrp__item';
+      el.innerHTML =
+        '<div class="vrp__item-thumb" style="background-image:url(\'' + v.thumb + '\')"></div>' +
+        '<div class="vrp__item-info">' +
+          '<span class="vrp__item-num">' + String(i + 1).padStart(2, '0') + '</span>' +
+          '<span class="vrp__item-name">' + v.name + '</span>' +
+          '<span class="vrp__item-company">' + v.company + '</span>' +
+        '</div>';
+      el.addEventListener('click', function () { go(i); });
+      listEl.appendChild(el);
+    });
+
+    function stopVideo() {
+      frame.src = '';
+      frame.style.display = 'none';
+      poster.style.display = '';
+    }
+
+    function go(index) {
+      current = (index + VIDEOS.length) % VIDEOS.length;
+      var v = VIDEOS[current];
+
+      /* Crossfade background */
+      bg.style.opacity = '0';
+      setTimeout(function () {
+        bg.style.backgroundImage = 'url(\'' + v.thumb + '\')';
+        bg.style.opacity = '1';
+      }, 220);
+
+      nameEl.textContent = v.name;
+      compEl.textContent = v.company;
+      idxEl.textContent  = String(current + 1).padStart(2, '0') + ' — ' + String(VIDEOS.length).padStart(2, '0');
+
+      listEl.querySelectorAll('.vrp__item').forEach(function (el, i) {
+        el.classList.toggle('is-active', i === current);
+      });
+      var active = listEl.querySelectorAll('.vrp__item')[current];
+      if (active) active.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+
+      stopVideo();
+    }
+
+    function play() {
+      frame.src = VIDEOS[current].url;
+      frame.style.display = 'block';
+      poster.style.display = 'none';
+    }
+
+    playBtn.addEventListener('click', play);
+    prevBtn.addEventListener('click', function () { go(current - 1); });
+    nextBtn.addEventListener('click', function () { go(current + 1); });
+
+    var main = document.getElementById('vrMain');
+    var tx = 0;
+    main.addEventListener('touchstart', function (e) { tx = e.changedTouches[0].clientX; }, { passive: true });
+    main.addEventListener('touchend',   function (e) {
+      var dx = e.changedTouches[0].clientX - tx;
+      if (Math.abs(dx) > 50) { dx < 0 ? go(current + 1) : go(current - 1); }
+    });
+
+    go(0);
+  })();
+  </script>
+
+  <!-- Vimeo modal для фото команды -->
+  <div id="vimeoModal" style="
+    display:none;position:fixed;inset:0;z-index:9999;
+    background:rgba(0,0,0,0.92);backdrop-filter:blur(8px);
+    align-items:center;justify-content:center;
+  ">
+    <button id="vimeoClose" aria-label="Закрыть" style="
+      position:fixed;top:20px;right:20px;
+      width:44px;height:44px;border-radius:50%;
+      background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);
+      color:#fff;font-size:18px;cursor:pointer;
+      display:flex;align-items:center;justify-content:center;
+      transition:background .2s;z-index:1;
+    ">✕</button>
+    <div style="position:relative;width:min(90vw,1100px);aspect-ratio:16/9;">
+      <iframe id="vimeoFrame"
+        src=""
+        width="100%" height="100%"
+        frameborder="0"
+        allow="autoplay; fullscreen; picture-in-picture"
+        allowfullscreen
+        style="border-radius:8px;display:block;">
+      </iframe>
+    </div>
+  </div>
+  <script>
+  (function () {
+    var modal  = document.getElementById('vimeoModal');
+    var frame  = document.getElementById('vimeoFrame');
+    var btn    = document.getElementById('vimeoClose');
+    var imgFrame = document.querySelector('.concept-img-frame');
+    var VIMEO_URL = 'https://player.vimeo.com/video/498780681?autoplay=1&color=f6bd3a&title=0&byline=0&portrait=0';
+
+    if (!imgFrame || !modal) return;
+
+    imgFrame.addEventListener('click', function () {
+      frame.src = VIMEO_URL;
+      modal.style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+    });
+
+    function closeModal() {
+      modal.style.display = 'none';
+      frame.src = '';
+      document.body.style.overflow = '';
+    }
+
+    btn.addEventListener('click', closeModal);
+    modal.addEventListener('click', function (e) {
+      if (e.target === modal) closeModal();
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && modal.style.display === 'flex') closeModal();
+    });
+  })();
+  </script>
 
   <!-- ════ МОДАЛЬНОЕ ОКНО — Быстрая заявка ════ -->
   <div class="modal-overlay" id="requestModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" hidden>
