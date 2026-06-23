@@ -2487,6 +2487,7 @@ a {
   justify-content: center;
   gap: var(--sp-4);
   aspect-ratio: var(--ratio, 16 / 9);
+  width: 100%; /* constrain to parent column — prevents aspect-ratio+min-height from blowing out grid */
   min-height: 260px;
   border: 1px dashed var(--line);
   border-radius: var(--radius-lg);
@@ -2585,6 +2586,7 @@ a {
   gap: var(--sp-4);
   text-decoration: none;
   color: inherit;
+  min-width: 0; /* grid items must be able to shrink below min-content */
 }
 
 .gallery-card h3 {
