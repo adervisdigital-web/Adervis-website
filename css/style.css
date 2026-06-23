@@ -5049,6 +5049,20 @@ body.no-clients .clients-ticker-section {
   opacity: 0;
 }
 
+.vg-thumb.has-thumb {
+  background-size: cover;
+  background-position: center;
+}
+
+.vg-thumb.has-thumb::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.1) 55%, transparent 100%);
+  pointer-events: none;
+  z-index: 0;
+}
+
 .vg-play-btn {
   position: relative;
   z-index: 1;
@@ -5242,6 +5256,15 @@ body.no-clients .clients-ticker-section {
   .vp-process { grid-template-columns: 1fr; }
   .vp-step { border-right: none; border-bottom: 1px solid var(--line); }
   .vp-step:last-child { border-bottom: none; }
+}
+
+/* Featured showreel card — with thumbnail */
+.vp-featured.has-thumb {
+  background-size: cover;
+  background-position: center;
+}
+.vp-featured.has-thumb::before {
+  background: linear-gradient(135deg, rgba(5,0,0,0.72) 0%, rgba(10,3,3,0.55) 100%);
 }
 
 /* Featured showreel card */
