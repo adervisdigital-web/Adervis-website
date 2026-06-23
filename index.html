@@ -471,13 +471,13 @@
             </div>
           </a>
 
-          <a href="cases/brait/" class="gallery-card reveal" data-dir="ai" style="text-decoration:none;color:inherit">
-            <div class="media-frame has-img" data-dir="ai" style="--ratio: 16 / 9">
+          <a href="cases/brait/" class="gallery-card reveal" data-dir="photo" style="text-decoration:none;color:inherit">
+            <div class="media-frame has-img" data-dir="photo" style="--ratio: 16 / 9">
               <img src="cases/brait/brait-glavnaya.png" alt="Brait — предметная съёмка с AI-фонами" class="media-frame__img">
               <span class="media-frame__num" aria-hidden="true">02</span>
             </div>
             <div class="gallery-card__info">
-              <span class="gallery-card__dir">Фото + ИИ</span>
+              <span class="gallery-card__dir">Фото</span>
               <h3 class="gallery-card__title">Brait — съёмка с нейросетевыми фонами</h3>
             </div>
           </a>
@@ -493,24 +493,25 @@
             </div>
           </a>
 
-          <a href="ai/" class="gallery-card reveal" data-dir="ai" style="text-decoration:none;color:inherit">
-            <div class="media-frame" data-dir="ai" style="--ratio: 16 / 9">
+          <a href="cases/lukoil-ai/" class="gallery-card reveal" data-dir="ai" style="text-decoration:none;color:inherit">
+            <div class="media-frame has-img" data-dir="ai" style="--ratio: 16 / 9">
+              <img src="cases/lukoil AI.jpg" alt="SAFETY MAN — ИИ-интро для Лукойл" class="media-frame__img">
               <span class="media-frame__num" aria-hidden="true">04</span>
             </div>
             <div class="gallery-card__info">
               <span class="gallery-card__dir">ИИ</span>
-              <h3 class="gallery-card__title">Серия визуалов для рекламной кампании</h3>
+              <h3 class="gallery-card__title">SAFETY MAN — ИИ-интро для Лукойл</h3>
             </div>
           </a>
 
-          <a href="video/" class="gallery-card reveal" data-dir="video" style="text-decoration:none;color:inherit">
+          <a href="cases/battle-of-robots/" class="gallery-card reveal" data-dir="video" style="text-decoration:none;color:inherit">
             <div class="media-frame has-img" data-dir="video" style="--ratio: 16 / 9">
-              <img src="cases/video-card.jpg" alt="Фильм с корпоративного мероприятия" class="media-frame__img">
+              <img src="cases/Battle_of_robots.jpg" alt="Битва роботов — Игры будущего Казань 2024" class="media-frame__img">
               <span class="media-frame__num" aria-hidden="true">05</span>
             </div>
             <div class="gallery-card__info">
               <span class="gallery-card__dir">Видео</span>
-              <h3 class="gallery-card__title">Фильм с корпоративного мероприятия</h3>
+              <h3 class="gallery-card__title">Битва роботов — Игры будущего Казань 2024</h3>
             </div>
           </a>
 
@@ -694,7 +695,7 @@
         </div>
         <div class="vrp" id="vrPlayer">
 
-          <div class="vrp__left">
+          <div class="vrp__area">
             <div class="vrp__screen" id="vrMain">
               <div class="vrp__poster" id="vrPoster">
                 <div class="vrp__bg" id="vrBg"></div>
@@ -707,24 +708,14 @@
               <iframe class="vrp__frame" id="vrFrame" src="" frameborder="0"
                 allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
             </div>
-            <div class="vrp__caption">
-              <div class="vrp__caption-text">
-                <span class="vrp__num" id="vrIdx"></span>
-                <p class="vrp__name" id="vrName"></p>
-                <span class="vrp__company" id="vrCompany"></span>
-              </div>
-              <div class="vrp__arrows">
-                <button class="vrp__arrow" id="vrPrev" aria-label="Предыдущее">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><path d="M15 18l-6-6 6-6"/></svg>
-                </button>
-                <button class="vrp__arrow" id="vrNext" aria-label="Следующее">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><path d="M9 18l6-6-6-6"/></svg>
-                </button>
-              </div>
+
+            <div class="vrp__right">
+              <div class="vrp__list" id="vrList"></div>
+              <button class="vrp__nav-btn" id="vrNext" aria-label="Следующее">
+                <svg viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><path d="M6 9l6 6 6-6"/></svg>
+              </button>
             </div>
           </div>
-
-          <div class="vrp__list" id="vrList"></div>
 
         </div>
       </div>
@@ -1026,8 +1017,8 @@
     }
 
     playBtn.addEventListener('click', play);
-    prevBtn.addEventListener('click', function () { go(current - 1); });
-    nextBtn.addEventListener('click', function () { go(current + 1); });
+    if (prevBtn) prevBtn.addEventListener('click', function () { go(current - 1); });
+    if (nextBtn) nextBtn.addEventListener('click', function () { go(current + 1); });
 
     var main = document.getElementById('vrMain');
     var tx = 0;
