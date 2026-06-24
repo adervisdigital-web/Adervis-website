@@ -824,89 +824,96 @@ a {
 .nav-backdrop.is-visible { opacity: 1; visibility: visible; }
 
 @media (max-width: 860px) {
-  /* backdrop-filter создаёт containing block для position:fixed детей →
-     убираем на мобильных, иначе .pill-nav не растянется на весь экран */
+  /* backdrop-filter создаёт containing block для position:fixed →
+     убираем на мобильных, иначе pill-nav не покрывает весь экран */
   .site-header {
     backdrop-filter: none !important;
     -webkit-backdrop-filter: none !important;
     background: rgba(10,10,10,0.97) !important;
   }
 
-  .nav-toggle { display: flex !important; }
-  .site-header__cta { display: none; }
+  /* Бургер поверх всего меню */
+  .nav-toggle {
+    display: flex !important;
+    position: relative;
+    z-index: 1001;
+  }
+
   .site-header__platform { display: none; }
   .site-header__tg { display: none; }
   #dropPlatform { display: none; }
   #tubeIndicator { display: none; }
 
-  /* Панель — выезжает справа */
+  /* Полноэкранное меню — fade + slide up */
   .pill-nav {
     position: fixed;
-    top: 0; right: 0; bottom: 0;
-    width: min(300px, 85vw);
+    inset: 0;
+    width: 100%;
     flex-direction: column;
-    justify-content: flex-start;
-    align-items: stretch;
-    gap: 2px;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
     border-radius: 0;
-    padding: 76px 16px 40px;
-    background: #111;
-    border-left: 1px solid rgba(255,255,255,0.08);
-    box-shadow: -24px 0 64px rgba(0,0,0,0.6);
-    transform: translateX(100%);
-    opacity: 1;
+    padding: 80px 24px 48px;
+    background: rgba(9,9,9,0.98);
+    opacity: 0;
+    transform: translateY(-8px);
     pointer-events: none;
-    transition: transform 0.32s cubic-bezier(0.4, 0, 0.2, 1);
-    z-index: 300;
+    transition: opacity 0.25s ease, transform 0.25s ease;
+    z-index: 1000;
     overflow-y: auto;
   }
 
   .pill-nav.is-open {
-    transform: translateX(0);
+    opacity: 1;
+    transform: translateY(0);
     pointer-events: all;
   }
 
   .pill-nav__tubelight { display: none; }
 
+  /* Ссылки — крупные, по центру */
   .pill-nav__link {
-    font-size: 16px;
-    font-weight: 600;
-    padding: 13px 14px;
-    border-radius: 10px;
+    font-size: 22px;
+    font-weight: 700;
+    padding: 14px 24px;
+    border-radius: 12px;
     color: rgba(255,255,255,0.75);
     width: 100%;
-    letter-spacing: -0.01em;
+    max-width: 320px;
+    text-align: center;
+    letter-spacing: -0.02em;
     transition: background 0.15s, color 0.15s;
   }
   .pill-nav__link:hover,
   .pill-nav__link.nav-active { background: rgba(255,255,255,0.07); color: #fff; }
 
-  .pill-nav__dropdown { width: 100%; }
+  .pill-nav__dropdown { width: 100%; max-width: 320px; }
 
-  /* Аккордеон: кнопка «Услуги» */
+  /* Аккордеон — Услуги */
   .pill-nav__link--drop {
     display: flex;
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    text-align: left;
+    max-width: 320px;
     background: none;
     border: none;
     cursor: pointer;
     font-family: inherit;
-    font-size: 16px;
-    font-weight: 600;
+    font-size: 22px;
+    font-weight: 700;
     color: rgba(255,255,255,0.75);
-    padding: 13px 14px;
-    border-radius: 10px;
-    letter-spacing: -0.01em;
+    padding: 14px 24px;
+    border-radius: 12px;
+    letter-spacing: -0.02em;
     transition: background 0.15s, color 0.15s;
   }
   .pill-nav__link--drop:hover { background: rgba(255,255,255,0.07); color: #fff; }
   .pill-nav__arrow { transition: transform 0.22s; flex-shrink: 0; }
   .pill-nav__dropdown.is-open .pill-nav__arrow { transform: rotate(180deg); }
 
-  /* nav-mega — раскрывается под кнопкой */
+  /* nav-mega — аккордеон подменю */
   .nav-mega {
     position: static !important;
     transform: none !important;
@@ -915,8 +922,8 @@ a {
     width: 100%;
     background: rgba(255,255,255,0.04);
     border: 1px solid rgba(255,255,255,0.07);
-    border-radius: 10px;
-    margin: 2px 0 6px;
+    border-radius: 12px;
+    margin: 4px 0 8px;
     display: none;
     box-shadow: none;
     backdrop-filter: none !important;
@@ -925,16 +932,17 @@ a {
   }
   .pill-nav__dropdown.is-open .nav-mega { display: block; }
 
-  .nav-mega__item {
-    padding: 10px 16px;
-    gap: 10px;
-    border-radius: 0;
-  }
+  .nav-mega__item { padding: 12px 20px; gap: 12px; }
   .nav-mega__item + .nav-mega__item { border-top: 1px solid rgba(255,255,255,0.05); }
-  .nav-mega__icon { width: 28px; height: 28px; flex-shrink: 0; }
-  .nav-mega__name { font-size: 14px; font-weight: 600; }
+  .nav-mega__icon { width: 26px; height: 26px; flex-shrink: 0; }
+  .nav-mega__name { font-size: 15px; font-weight: 600; }
   .nav-mega__sub { display: none; }
   .nav-mega__badge { display: none; }
+}
+
+/* Кастомный курсор скрываем на тач-устройствах */
+@media (hover: none), (pointer: coarse) {
+  .cursor-ring, .cursor-dot { display: none !important; }
 }
 
 #header-placeholder { display: contents; }
