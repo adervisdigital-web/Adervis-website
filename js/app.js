@@ -552,7 +552,7 @@ function initVideoCalculator() {
     if (sb) {
       const origHTML = sb.innerHTML;
       sb.disabled = true;
-      sb.innerHTML = `Отправьте сообщение в Telegram&nbsp;&nbsp;<a href="${tgUrl}" target="_blank" rel="noopener noreferrer" style="color:inherit;text-decoration:underline;font-weight:500">→ открыть ещё раз</a>`;
+      sb.innerHTML = `Заявка отправлена — ответим в течение дня&nbsp;&nbsp;<a href="${tgUrl}" target="_blank" rel="noopener noreferrer" style="color:inherit;text-decoration:underline;font-weight:500">открыть Telegram</a>`;
       setTimeout(() => { sb.innerHTML = origHTML; sb.disabled = false; }, 8000);
     }
   });
@@ -909,7 +909,7 @@ function initLeadForm() {
     if (submitBtn) {
       const origHTML = submitBtn.innerHTML;
       submitBtn.disabled = true;
-      submitBtn.innerHTML = `Отправьте сообщение в Telegram&nbsp;&nbsp;<a href="${tgUrl}" target="_blank" rel="noopener noreferrer" style="color:inherit;text-decoration:underline;font-weight:500">→ открыть ещё раз</a>`;
+      submitBtn.innerHTML = `Заявка принята — ответим в течение дня&nbsp;&nbsp;<a href="${tgUrl}" target="_blank" rel="noopener noreferrer" style="color:inherit;text-decoration:underline;font-weight:500">открыть Telegram</a>`;
       setTimeout(() => { submitBtn.innerHTML = origHTML; submitBtn.disabled = false; form.reset(); }, 8000);
     }
   });

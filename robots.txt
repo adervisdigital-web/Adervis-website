@@ -1,6 +1,4 @@
-﻿User-agent: *
+User-agent: *
 Allow: /
 
-Disallow: /docs/
-
-Sitemap: https://adervis.ru/sitemap.xml
+Sitemap: https://adervisdigital-web.github.io/Adervis-website/sitemap.xml

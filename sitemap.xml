@@ -1,74 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-
-  <url>
-    <loc>https://adervis.ru/</loc>
-    <lastmod>2026-06-23</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>1.0</priority>
-  </url>
-
-  <url>
-    <loc>https://adervis.ru/video/</loc>
-    <lastmod>2026-06-23</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-
-  <url>
-    <loc>https://adervis.ru/design/</loc>
-    <lastmod>2026-06-23</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-
-  <url>
-    <loc>https://adervis.ru/photo/</loc>
-    <lastmod>2026-06-23</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-
-  <url>
-    <loc>https://adervis.ru/ai/</loc>
-    <lastmod>2026-06-23</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-
-  <url>
-    <loc>https://adervis.ru/cases/</loc>
-    <lastmod>2026-06-23</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://adervis.ru/cases/brait/</loc>
-    <lastmod>2026-06-23</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-
-  <url>
-    <loc>https://adervis.ru/pro/</loc>
-    <lastmod>2026-06-23</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-
-  <url>
-    <loc>https://adervis.ru/careers/</loc>
-    <lastmod>2026-06-23</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-
-  <url>
-    <loc>https://adervis.ru/edu/</loc>
-    <lastmod>2026-06-23</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-
+  <url><loc>https://adervisdigital-web.github.io/Adervis-website/</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://adervisdigital-web.github.io/Adervis-website/video/</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://adervisdigital-web.github.io/Adervis-website/design/</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://adervisdigital-web.github.io/Adervis-website/photo/</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://adervisdigital-web.github.io/Adervis-website/ai/</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://adervisdigital-web.github.io/Adervis-website/cases/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://adervisdigital-web.github.io/Adervis-website/cases/brait/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://adervisdigital-web.github.io/Adervis-website/cases/lukoil-ai/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://adervisdigital-web.github.io/Adervis-website/cases/battle-of-robots/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://adervisdigital-web.github.io/Adervis-website/cases/graphsil/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://adervisdigital-web.github.io/Adervis-website/cases/stickbot/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://adervisdigital-web.github.io/Adervis-website/cases/toyota-supra-green-mamba/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://adervisdigital-web.github.io/Adervis-website/pro/</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://adervisdigital-web.github.io/Adervis-website/edu/</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://adervisdigital-web.github.io/Adervis-website/careers/</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://adervisdigital-web.github.io/Adervis-website/docs/</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
 </urlset>
