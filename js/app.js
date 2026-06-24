@@ -1028,15 +1028,20 @@ function initReviewsSlider() {
   startAuto();
 }
 
-// Превью видео в галерее /video — все карточки имеют статичные превью в HTML,
-// VK oEmbed не используется (CDN ВКонтакте блокирует hotlinking)
+// Превью видео в галерее /video — конвертируем background-image в <img> тег
 function initVideoThumbnails() {
-  // Применяем data-thumb если задан явно на карточке
-  document.querySelectorAll(".vg-card[data-thumb]").forEach(card => {
-    const thumb = card.querySelector(".vg-thumb");
-    if (!thumb) return;
-    thumb.style.backgroundImage = `url("${card.dataset.thumb}")`;
-    thumb.classList.add("has-thumb");
+  document.querySelectorAll(".vg-thumb.has-thumb").forEach(thumb => {
+    const bg = thumb.style.backgroundImage;
+    const match = bg && bg.match(/url\(['"]?([^'")\s]+)['"]?\)/);
+    if (!match) return;
+    const src = match[1];
+    const img = document.createElement("img");
+    img.src = src;
+    img.alt = "";
+    img.loading = "lazy";
+    img.style.cssText = "position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;display:block;";
+    thumb.style.backgroundImage = "";
+    thumb.insertBefore(img, thumb.firstChild);
   });
 }
 
