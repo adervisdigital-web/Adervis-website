@@ -377,10 +377,12 @@ function initFloatingHeader(headerRoot) {
 function initMobileNav(headerRoot) {
   if (!headerRoot) return;
 
-  const toggle = headerRoot.querySelector("#navToggle");
-  const nav    = headerRoot.querySelector("#siteNav");
+  const toggle   = headerRoot.querySelector("#navToggle");
+  const nav      = headerRoot.querySelector("#siteNav");
   const backdrop = document.getElementById("navBackdrop");
   if (!toggle || !nav || !backdrop) return;
+
+  const isMobile = () => window.innerWidth <= 860;
 
   const setOpen = (open) => {
     toggle.setAttribute("aria-expanded", String(open));
@@ -388,35 +390,56 @@ function initMobileNav(headerRoot) {
     nav.classList.toggle("is-open", open);
     backdrop.classList.toggle("is-visible", open);
     document.body.classList.toggle("nav-open", open);
+    if (!open) {
+      // Закрываем все аккордеоны при закрытии меню
+      headerRoot.querySelectorAll(".pill-nav__dropdown.is-open").forEach(d => {
+        d.classList.remove("is-open");
+        const b = d.querySelector("[aria-expanded]");
+        if (b) b.setAttribute("aria-expanded", "false");
+      });
+    }
   };
 
   toggle.addEventListener("click", () => setOpen(toggle.getAttribute("aria-expanded") !== "true"));
   backdrop.addEventListener("click", () => setOpen(false));
-  // Не закрываем меню при клике на триггеры дропдаунов — они управляют вложенным меню
-  nav.querySelectorAll("a:not(.pill-nav__link--drop)").forEach(link => link.addEventListener("click", () => setOpen(false)));
   window.addEventListener("keydown", (e) => { if (e.key === "Escape") setOpen(false); });
-  window.addEventListener("resize", () => { if (window.innerWidth > 860) setOpen(false); });
+  window.addEventListener("resize", () => { if (!isMobile()) setOpen(false); });
 
-  // Dropdown-кнопки: клик на мобильном / hover на десктопе
+  // Закрываем при клике на обычную ссылку (не дропдаун-триггер)
+  nav.addEventListener("click", (e) => {
+    const link = e.target.closest("a");
+    if (link && !link.classList.contains("pill-nav__link--drop") && isMobile()) {
+      setOpen(false);
+    }
+  });
+
+  // Аккордеон: dropdown-кнопки на мобильном
   headerRoot.querySelectorAll(".pill-nav__dropdown").forEach(dropdown => {
     const btn = dropdown.querySelector(".pill-nav__link--drop");
     if (!btn) return;
     btn.addEventListener("click", (e) => {
-      // На мобильном (меню открыто) — toggle дропдауна
-      if (window.innerWidth <= 860) {
+      if (isMobile()) {
         e.preventDefault();
         const isOpen = dropdown.classList.toggle("is-open");
         btn.setAttribute("aria-expanded", String(isOpen));
+        // Закрываем другие открытые аккордеоны
+        headerRoot.querySelectorAll(".pill-nav__dropdown.is-open").forEach(d => {
+          if (d !== dropdown) {
+            d.classList.remove("is-open");
+            const b = d.querySelector("[aria-expanded]");
+            if (b) b.setAttribute("aria-expanded", "false");
+          }
+        });
       }
     });
   });
 
-  // Закрыть все дропдауны при клике вне на десктопе
+  // Закрыть дропдауны при клике вне (десктоп)
   document.addEventListener("click", (e) => {
-    if (window.innerWidth > 860 && !e.target.closest(".pill-nav__dropdown")) {
+    if (!isMobile() && !e.target.closest(".pill-nav__dropdown")) {
       headerRoot.querySelectorAll(".pill-nav__dropdown.is-open").forEach(d => {
         d.classList.remove("is-open");
-        const b = d.querySelector(".pill-nav__link--drop");
+        const b = d.querySelector("[aria-expanded]");
         if (b) b.setAttribute("aria-expanded", "false");
       });
     }

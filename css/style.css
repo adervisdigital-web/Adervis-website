@@ -809,69 +809,125 @@ a {
 .nav-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; width: 0; }
 .nav-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
 
+/* ── Мобильная навигация: слайд-панель справа ── */
+.nav-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.55);
+  backdrop-filter: blur(3px);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s;
+  z-index: 299;
+  cursor: pointer;
+}
+.nav-backdrop.is-visible { opacity: 1; visibility: visible; }
+
 @media (max-width: 860px) {
-  .nav-toggle { display: flex; }
+  .nav-toggle { display: flex !important; }
   .site-header__cta { display: none; }
   .site-header__platform { display: none; }
+  .site-header__tg { display: none; }
   #dropPlatform { display: none; }
+  #tubeIndicator { display: none; }
 
+  /* Панель — выезжает справа */
   .pill-nav {
     position: fixed;
-    top: 0; left: 0; right: 0; bottom: 0;
+    top: 0; right: 0; bottom: 0;
+    width: min(300px, 85vw);
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: stretch;
-    gap: 4px;
+    gap: 2px;
     border-radius: 0;
-    padding: 72px 24px 40px;
-    background: rgba(10, 10, 10, 0.97);
-    backdrop-filter: blur(30px);
-    opacity: 0;
+    padding: 76px 16px 40px;
+    background: #111;
+    border-left: 1px solid rgba(255,255,255,0.08);
+    box-shadow: -24px 0 64px rgba(0,0,0,0.6);
+    transform: translateX(100%);
+    opacity: 1;
     pointer-events: none;
-    transition: opacity 0.28s ease;
-    z-index: 199;
+    transition: transform 0.32s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 300;
     overflow-y: auto;
   }
 
-  .pill-nav.is-open { opacity: 1; pointer-events: all; }
+  .pill-nav.is-open {
+    transform: translateX(0);
+    pointer-events: all;
+  }
+
+  .pill-nav__tubelight { display: none; }
 
   .pill-nav__link {
-    font-size: 18px;
-    padding: 13px 20px;
-    border-radius: 14px;
+    font-size: 16px;
+    font-weight: 600;
+    padding: 13px 14px;
+    border-radius: 10px;
     color: rgba(255,255,255,0.75);
     width: 100%;
+    letter-spacing: -0.01em;
+    transition: background 0.15s, color 0.15s;
   }
+  .pill-nav__link:hover,
+  .pill-nav__link.nav-active { background: rgba(255,255,255,0.07); color: #fff; }
 
   .pill-nav__dropdown { width: 100%; }
 
-  .pill-nav__menu {
-    position: static;
+  /* Аккордеон: кнопка «Услуги» */
+  .pill-nav__link--drop {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    text-align: left;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: 600;
+    color: rgba(255,255,255,0.75);
+    padding: 13px 14px;
+    border-radius: 10px;
+    letter-spacing: -0.01em;
+    transition: background 0.15s, color 0.15s;
+  }
+  .pill-nav__link--drop:hover { background: rgba(255,255,255,0.07); color: #fff; }
+  .pill-nav__arrow { transition: transform 0.22s; flex-shrink: 0; }
+  .pill-nav__dropdown.is-open .pill-nav__arrow { transform: rotate(180deg); }
+
+  /* nav-mega — раскрывается под кнопкой */
+  .nav-mega {
+    position: static !important;
     transform: none !important;
-    opacity: 1;
-    pointer-events: all;
+    opacity: 1 !important;
+    pointer-events: all !important;
+    width: 100%;
     background: rgba(255,255,255,0.04);
-    border: 1px solid rgba(255,255,255,0.06);
-    border-radius: 14px;
-    margin-top: 4px;
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 10px;
+    margin: 2px 0 6px;
     display: none;
     box-shadow: none;
-    min-width: unset;
+    backdrop-filter: none !important;
+    padding: 6px 0;
+    min-width: unset !important;
   }
+  .pill-nav__dropdown.is-open .nav-mega { display: block; }
 
-  .pill-nav__dropdown.is-open .pill-nav__menu { display: block; }
+  .nav-mega__item {
+    padding: 10px 16px;
+    gap: 10px;
+    border-radius: 0;
+  }
+  .nav-mega__item + .nav-mega__item { border-top: 1px solid rgba(255,255,255,0.05); }
+  .nav-mega__icon { width: 28px; height: 28px; flex-shrink: 0; }
+  .nav-mega__name { font-size: 14px; font-weight: 600; }
+  .nav-mega__sub { display: none; }
+  .nav-mega__badge { display: none; }
 }
-
-.nav-backdrop {
-  display: none;
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.5);
-  z-index: 198;
-  cursor: pointer;
-}
-
-.nav-backdrop.is-visible { display: block; }
 
 #header-placeholder { display: contents; }
 
@@ -3769,61 +3825,6 @@ a {
     width: 100%;
     margin-right: 0;
   }
-}
-
-/* ============================================================
-   Мобильная навигация — бургер открывает выезжающую панель
-   справа (DESIGN.md §9: touch target ≥44px, --glass + blur)
-   ============================================================ */
-.nav-toggle {
-  display: none;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 5px;
-  width: 42px;
-  height: 42px;
-  flex-shrink: 0;
-  border: 1px solid var(--line);
-  border-radius: var(--radius-md);
-  background: transparent;
-  color: var(--text);
-  cursor: pointer;
-  z-index: 110;
-  transition: border-color 0.25s ease;
-}
-
-.nav-toggle span {
-  display: block;
-  width: 18px;
-  height: 2px;
-  border-radius: 1px;
-  background: currentColor;
-  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.2s ease;
-}
-
-.nav-toggle:hover {
-  border-color: rgba(246, 189, 58, 0.4);
-}
-
-.nav-toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-.nav-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
-.nav-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
-
-.nav-backdrop {
-  position: fixed;
-  inset: 0;
-  background: rgba(10, 10, 10, 0.6);
-  backdrop-filter: blur(2px);
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.3s ease, visibility 0.3s;
-  z-index: 99;
-}
-
-.nav-backdrop.is-visible {
-  opacity: 1;
-  visibility: visible;
 }
 
 body.nav-open {
