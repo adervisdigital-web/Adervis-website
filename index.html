@@ -376,7 +376,7 @@
     <div class="section-divider" aria-hidden="true"></div>
 
     <!-- ════════════════════════════════
-         НАПРАВЛЕНИЯ / SERVICES — 2×2 editorial grid
+         НАПРАВЛЕНИЯ / SERVICES
          ════════════════════════════════ -->
     <section class="section" id="services">
       <div class="container">
@@ -385,33 +385,39 @@
           <h2>Четыре направления — один подрядчик</h2>
           <p>Видео, дизайн, фото и ИИ в едином стиле — без поиска разных исполнителей</p>
         </div>
+        <div class="sv3-grid reveal">
 
-        <!-- Editorial 2×2 grid с центральным 3D-элементом -->
-        <div class="s4-grid reveal">
-
-          <a href="video/" class="s4-cell s4-cell--video">
-            <span class="s4-cell__color-bar" style="background:var(--c-video)"></span>
-            <div class="s4-cell__body">
-              <span class="s4-cell__eyebrow">01</span>
-              <h3 class="s4-cell__title">Видео</h3>
-              <p class="s4-cell__desc">Рекламные ролики, корпоративные фильмы и репортажи — сценарий, съёмка и монтаж под ключ.</p>
-              <span class="s4-cell__services">Реклама · Корп. видео · Event · Reels</span>
+          <a href="video/" class="sv3-card sv3-card--video">
+            <div class="sv3-glow" aria-hidden="true"></div>
+            <span class="sv3-num">01</span>
+            <h3 class="sv3-title">Видео</h3>
+            <p class="sv3-desc">Рекламные ролики, корпоративные фильмы и репортажи — сценарий, съёмка и монтаж под ключ.</p>
+            <div class="sv3-footer">
+              <div class="sv3-pills">
+                <span class="sv3-pill">Реклама</span>
+                <span class="sv3-pill">Корп. видео</span>
+                <span class="sv3-pill">Event</span>
+                <span class="sv3-pill">Reels</span>
+              </div>
             </div>
-            <span class="s4-cell__arrow">→</span>
           </a>
 
-          <a href="design/" class="s4-cell s4-cell--design">
-            <span class="s4-cell__color-bar" style="background:var(--c-design)"></span>
-            <div class="s4-cell__body">
-              <span class="s4-cell__eyebrow">02</span>
-              <h3 class="s4-cell__title">Дизайн</h3>
-              <p class="s4-cell__desc">Логотипы, фирменный стиль и брендбуки — система, по которой вас узнают с первого взгляда.</p>
-              <span class="s4-cell__services">Брендинг · Фирстиль · Полиграфия · Моушн</span>
+          <a href="design/" class="sv3-card sv3-card--design">
+            <div class="sv3-glow" aria-hidden="true"></div>
+            <span class="sv3-num">02</span>
+            <h3 class="sv3-title">Дизайн</h3>
+            <p class="sv3-desc">Логотипы, фирменный стиль и брендбуки — система, по которой вас узнают с первого взгляда.</p>
+            <div class="sv3-footer">
+              <div class="sv3-pills">
+                <span class="sv3-pill">Брендинг</span>
+                <span class="sv3-pill">Фирстиль</span>
+                <span class="sv3-pill">Полиграфия</span>
+                <span class="sv3-pill">Моушн</span>
+              </div>
             </div>
-            <span class="s4-cell__arrow">→</span>
           </a>
 
-          <!-- Центральный элемент с SVG-иконкой (цвет меняется по направлению) -->
+          <!-- Центральный логотип (как в оригинале) -->
           <div class="s4-center" aria-hidden="true">
             <svg class="s4-center__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2160 2160" aria-hidden="true">
               <path fill="currentColor" d="M1580.87,1460.95c-2.86-28.37-37.65-89.84-65.61-144.16l-348.64-683.49s-16.06-36.74-39.16-57.23c-18.59-16.48-47.44-17.06-47.44-17.06,0,0-28.35-.15-46.95,16.34-23.13,20.5-39.21,57.25-39.21,57.25l-349.04,683.71c-27.99,54.33-62.82,115.83-65.68,144.21-4.06,40.31,13.99,84.78,76.91,73.39,58.44-10.57,220.37-74.81,220.18-74.86l203.79-82.04,204.09,82.48c-.19.05,161.56,64.28,219.93,74.84,62.85,11.38,80.88-33.07,76.83-73.37h0ZM1644.09,1652.56c-34.42,22.09-86.28,31.73-117.72,27.51-88.97-11.91-211.9-62.67-211.9-62.67l-234.45-93.41-234.23,92.8s-123,50.77-212.03,62.68c-31.46,4.21-83.35-5.42-117.8-27.51-132.9-85.25-70.29-244.9-65.96-256.84,4.51-12.45,442.71-865.15,453.9-885.17,11.19-20.02,40.7-52.42,81.67-73.39,43.38-22.19,94.45-24.57,94.45-24.57,6.52.47,54.47,4.74,94.75,25.36,40.94,20.95,70.44,53.35,81.62,73.37,11.18,20.02,449.11,872.59,453.62,885.04,4.33,11.94,66.89,171.57-65.93,256.8h.01Z"/>
@@ -419,26 +425,33 @@
             <div class="s4-center__ring"></div>
           </div>
 
-          <a href="photo/" class="s4-cell s4-cell--photo">
-            <span class="s4-cell__color-bar" style="background:var(--c-photo)"></span>
-            <div class="s4-cell__body">
-              <span class="s4-cell__eyebrow">03</span>
-              <h3 class="s4-cell__title">Фото</h3>
-              <p class="s4-cell__desc">Предметная и репортажная съёмка для рекламы, каталогов и соцсетей.</p>
-              <span class="s4-cell__services">Каталог · Предмет · Event · Портреты</span>
+          <a href="photo/" class="sv3-card sv3-card--photo">
+            <div class="sv3-glow" aria-hidden="true"></div>
+            <span class="sv3-num">03</span>
+            <h3 class="sv3-title">Фото</h3>
+            <p class="sv3-desc">Предметная и репортажная съёмка для рекламы, каталогов и соцсетей.</p>
+            <div class="sv3-footer">
+              <div class="sv3-pills">
+                <span class="sv3-pill">Каталог</span>
+                <span class="sv3-pill">Предмет</span>
+                <span class="sv3-pill">Event</span>
+                <span class="sv3-pill">Портреты</span>
+              </div>
             </div>
-            <span class="s4-cell__arrow">→</span>
           </a>
 
-          <a href="ai/" class="s4-cell s4-cell--ai">
-            <span class="s4-cell__color-bar" style="background:var(--c-ai)"></span>
-            <div class="s4-cell__body">
-              <span class="s4-cell__eyebrow">04</span>
-              <h3 class="s4-cell__title">ИИ-контент</h3>
-              <p class="s4-cell__desc">Изображения, видео и тексты на нейросетях — скорость и объём без ущерба стилю.</p>
-              <span class="s4-cell__services">AI-генерация · AI-видео · AI-брендинг</span>
+          <a href="ai/" class="sv3-card sv3-card--ai">
+            <div class="sv3-glow" aria-hidden="true"></div>
+            <span class="sv3-num">04</span>
+            <h3 class="sv3-title">ИИ-контент</h3>
+            <p class="sv3-desc">Изображения, видео и тексты на нейросетях — скорость и объём без ущерба стилю.</p>
+            <div class="sv3-footer">
+              <div class="sv3-pills">
+                <span class="sv3-pill">AI-генерация</span>
+                <span class="sv3-pill">AI-видео</span>
+                <span class="sv3-pill">AI-брендинг</span>
+              </div>
             </div>
-            <span class="s4-cell__arrow">→</span>
           </a>
 
         </div>
@@ -491,7 +504,7 @@
 
           <a href="cases/lukoil-ai/" class="gallery-card reveal" data-dir="ai" style="text-decoration:none;color:inherit">
             <div class="media-frame has-img" data-dir="ai" style="--ratio: 16 / 9">
-              <img src="cases/lukoil AI.jpg" alt="SAFETY MAN — ИИ-интро для Лукойл" class="media-frame__img">
+              <img src="cases/lukoil-ai.jpg" alt="SAFETY MAN — ИИ-интро для Лукойл" class="media-frame__img">
             </div>
             <div class="gallery-card__info">
               <span class="gallery-card__dir">ИИ</span>
@@ -501,7 +514,7 @@
 
           <a href="cases/battle-of-robots/" class="gallery-card reveal" data-dir="video" style="text-decoration:none;color:inherit">
             <div class="media-frame has-img" data-dir="video" style="--ratio: 16 / 9">
-              <img src="cases/Battle_of_robots.jpg" alt="Битва роботов — Игры будущего Казань 2024" class="media-frame__img">
+              <img src="cases/battle-of-robots.jpg" alt="Битва роботов — Игры будущего Казань 2024" class="media-frame__img">
             </div>
             <div class="gallery-card__info">
               <span class="gallery-card__dir">Видео</span>
@@ -522,6 +535,114 @@
         <div style="text-align:center;margin-top:var(--sp-8)">
           <a href="cases/" class="btn primary">Все кейсы</a>
         </div>
+      </div>
+    </section>
+
+    <div class="section-divider" aria-hidden="true"></div>
+
+    <!-- ════════════════════════════════
+         КВИЗ — КП за 24 часа
+         ════════════════════════════════ -->
+    <section class="section" id="quiz">
+      <div class="container">
+
+        <div class="quiz-shell reveal" id="quizCard">
+
+          <!-- Левая колонка: заголовок + прогресс -->
+          <div class="quiz-lhs">
+            <p class="quiz-lhs__kicker">Получить КП</p>
+            <h2 class="quiz-lhs__title">КП за 24 часа — бесплатно</h2>
+            <p class="quiz-lhs__desc">Три вопроса — пришлём расчёт и примеры под вашу задачу</p>
+            <div class="quiz-track" aria-hidden="true">
+              <div class="quiz-track__fill" id="quizBar" style="width:0%"></div>
+            </div>
+            <p class="quiz-lhs__counter"><span id="quizStepNum">01</span> / 03</p>
+          </div>
+
+          <!-- Правая колонка: контент шагов -->
+          <div class="quiz-rhs" id="quizSteps">
+
+            <!-- Шаг 1: Направление -->
+            <div class="quiz-step is-active" data-step="1">
+              <p class="quiz-q">Что нужно вашему бизнесу?</p>
+              <div class="quiz-dir-grid">
+                <button class="quiz-dc quiz-dc--video" data-key="dir" data-val="Видео">
+                  <div class="quiz-dc__glow" aria-hidden="true"></div>
+                  <span class="quiz-dc__num">01</span>
+                  <span class="quiz-dc__title">Видео</span>
+                  <span class="quiz-dc__sub">Ролики, репортажи, Reels</span>
+                </button>
+                <button class="quiz-dc quiz-dc--design" data-key="dir" data-val="Дизайн">
+                  <div class="quiz-dc__glow" aria-hidden="true"></div>
+                  <span class="quiz-dc__num">02</span>
+                  <span class="quiz-dc__title">Дизайн</span>
+                  <span class="quiz-dc__sub">Логотип, брендбук, полиграфия</span>
+                </button>
+                <button class="quiz-dc quiz-dc--photo" data-key="dir" data-val="Фото">
+                  <div class="quiz-dc__glow" aria-hidden="true"></div>
+                  <span class="quiz-dc__num">03</span>
+                  <span class="quiz-dc__title">Фото</span>
+                  <span class="quiz-dc__sub">Каталог, предмет, event</span>
+                </button>
+                <button class="quiz-dc quiz-dc--ai" data-key="dir" data-val="ИИ-контент">
+                  <div class="quiz-dc__glow" aria-hidden="true"></div>
+                  <span class="quiz-dc__num">04</span>
+                  <span class="quiz-dc__title">ИИ-контент</span>
+                  <span class="quiz-dc__sub">AI-визуалы, видео, тексты</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Шаг 2: Бюджет -->
+            <div class="quiz-step" data-step="2">
+              <button class="quiz-back" aria-label="Назад">← Назад</button>
+              <p class="quiz-q">Примерный бюджет проекта?</p>
+              <div class="quiz-choice-grid">
+                <button class="quiz-choice" data-key="budget" data-val="до 50 000 ₽">до 50 000 ₽</button>
+                <button class="quiz-choice" data-key="budget" data-val="50 000 – 150 000 ₽">50 000 – 150 000 ₽</button>
+                <button class="quiz-choice" data-key="budget" data-val="150 000 – 500 000 ₽">150 000 – 500 000 ₽</button>
+                <button class="quiz-choice" data-key="budget" data-val="от 500 000 ₽">от 500 000 ₽</button>
+              </div>
+            </div>
+
+            <!-- Шаг 3: Срок -->
+            <div class="quiz-step" data-step="3">
+              <button class="quiz-back" aria-label="Назад">← Назад</button>
+              <p class="quiz-q">Когда нужен результат?</p>
+              <div class="quiz-choice-grid">
+                <button class="quiz-choice" data-key="deadline" data-val="Срочно — до 2 недель">Срочно — до 2 недель</button>
+                <button class="quiz-choice" data-key="deadline" data-val="1–2 месяца">1–2 месяца</button>
+                <button class="quiz-choice" data-key="deadline" data-val="2–4 месяца">2–4 месяца</button>
+                <button class="quiz-choice" data-key="deadline" data-val="Пока только планируем">Пока только планируем</button>
+              </div>
+            </div>
+
+            <!-- Шаг 4: Контакты -->
+            <div class="quiz-step" data-step="4">
+              <button class="quiz-back" aria-label="Назад">← Назад</button>
+              <p class="quiz-q">Куда прислать КП?</p>
+              <div class="quiz-tags" id="quizSummary"></div>
+              <div class="quiz-fields">
+                <input type="text" id="quizName" class="lead-input" placeholder="Как к вам обращаться" autocomplete="name">
+                <input type="text" id="quizContact" class="lead-input" placeholder="Телефон, email или Telegram" autocomplete="tel">
+              </div>
+              <button class="btn primary quiz-cta" id="quizSubmit">Получить КП</button>
+              <p class="quiz-legal">Нажимая, вы соглашаетесь с <a href="/docs/">политикой конфиденциальности</a></p>
+            </div>
+
+            <!-- Шаг 5: Успех -->
+            <div class="quiz-step quiz-step--done" data-step="5">
+              <svg class="quiz-done__icon" viewBox="0 0 56 56" fill="none" width="56" height="56" aria-hidden="true">
+                <circle cx="28" cy="28" r="27" stroke="var(--gold)" stroke-width="1.5" stroke-dasharray="170" stroke-dashoffset="170" class="quiz-done__ring"/>
+                <path d="M17 28l8 8 14-16" stroke="var(--gold)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="34" stroke-dashoffset="34" class="quiz-done__check"/>
+              </svg>
+              <h3 class="quiz-done__title">Уже готовим КП</h3>
+              <p class="quiz-done__text">Откроется Telegram с вашими данными. Нажмите «Отправить» — ответим в течение 24 часов.</p>
+            </div>
+
+          </div>
+        </div>
+
       </div>
     </section>
 

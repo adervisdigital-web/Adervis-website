@@ -49,6 +49,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   initServicesGrid();
   initHeroQuiz();
+  initQuiz();
   initModal();
   initCtaDirChips();
   initVideoPoster();
@@ -67,18 +68,94 @@ document.addEventListener("DOMContentLoaded", () => {
   initVideoReviewThumbnails(); // применяет data-thumb если задан вручную
 });
 
-function initServicesGrid() {
-  const cells  = document.querySelectorAll('.s4-cell');
-  const center = document.querySelector('.s4-center');
-  if (!center || !cells.length) return;
+function initQuiz() {
+  const card = document.getElementById('quizCard');
+  if (!card) return;
 
-  cells.forEach(cell => {
-    const dir = [...cell.classList]
-      .find(c => c.startsWith('s4-cell--'))
-      ?.replace('s4-cell--', '');
-    if (!dir) return;
-    cell.addEventListener('mouseenter', () => { center.dataset.hover = dir; });
-    cell.addEventListener('mouseleave', () => { delete center.dataset.hover; });
+  const bar      = document.getElementById('quizBar');
+  const summary  = document.getElementById('quizSummary');
+  const stepNum  = document.getElementById('quizStepNum');
+  const answers  = {};
+  let current    = 1;
+  const TOTAL    = 3;
+
+  function goTo(n) {
+    card.querySelectorAll('.quiz-step').forEach(s => s.classList.remove('is-active'));
+    const next = card.querySelector(`[data-step="${n}"]`);
+    if (next) next.classList.add('is-active');
+    current = n;
+
+    const displayStep = Math.min(n, TOTAL);
+    const pct = Math.round(((displayStep - 1) / TOTAL) * 100);
+    if (bar) bar.style.width = pct + '%';
+    if (stepNum) stepNum.textContent = String(displayStep).padStart(2, '0');
+
+    if (n === 4) renderSummary();
+    if (n === 5 && bar) bar.style.width = '100%';
+  }
+
+  function renderSummary() {
+    if (!summary) return;
+    summary.innerHTML = Object.values(answers)
+      .map(v => `<span>${v}</span>`).join('');
+  }
+
+  // Кнопка «Назад»
+  card.querySelectorAll('.quiz-back').forEach(btn => {
+    btn.addEventListener('click', () => goTo(current - 1));
+  });
+
+  // Карточки направлений и выборы бюджета/срока
+  card.querySelectorAll('.quiz-dc, .quiz-choice').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const key = btn.dataset.key;
+      const val = btn.dataset.val;
+      card.querySelectorAll(`[data-key="${key}"]`)
+          .forEach(b => b.classList.remove('is-selected'));
+      btn.classList.add('is-selected');
+      answers[key] = val;
+      setTimeout(() => goTo(current + 1), 300);
+    });
+  });
+
+  const submitBtn = document.getElementById('quizSubmit');
+  if (submitBtn) {
+    submitBtn.addEventListener('click', () => {
+      const name    = (document.getElementById('quizName')?.value || '').trim();
+      const contact = (document.getElementById('quizContact')?.value || '').trim();
+      if (!name && !contact) {
+        document.getElementById('quizContact')?.focus();
+        return;
+      }
+      const lines = [
+        '📋 КП-запрос с сайта ADERVIS',
+        '',
+        answers.dir      ? `Направление: ${answers.dir}`   : null,
+        answers.budget   ? `Бюджет: ${answers.budget}`     : null,
+        answers.deadline ? `Срок: ${answers.deadline}`     : null,
+        '',
+        name    ? `Имя: ${name}`        : null,
+        contact ? `Контакт: ${contact}` : null,
+      ].filter(l => l !== null).join('\n');
+
+      openTgLink(`https://t.me/Adervis_digital?text=${encodeURIComponent(lines)}`);
+      goTo(5);
+    });
+  }
+}
+
+function initServicesGrid() {
+  document.querySelectorAll('.s4-grid, .sv3-grid').forEach(grid => {
+    const center = grid.querySelector('.s4-center');
+    if (!center) return;
+    grid.querySelectorAll('.s4-cell, .sv3-card').forEach(card => {
+      const dir = [...card.classList]
+        .find(c => c.startsWith('s4-cell--') || c.startsWith('sv3-card--'))
+        ?.replace(/^(s4-cell--|sv3-card--)/, '');
+      if (!dir) return;
+      card.addEventListener('mouseenter', () => { center.dataset.hover = dir; });
+      card.addEventListener('mouseleave', () => { delete center.dataset.hover; });
+    });
   });
 }
 
@@ -951,42 +1028,15 @@ function initReviewsSlider() {
   startAuto();
 }
 
-// Превью видео в галерее /video — загружаем обложку через VK oEmbed API
+// Превью видео в галерее /video — все карточки имеют статичные превью в HTML,
+// VK oEmbed не используется (CDN ВКонтакте блокирует hotlinking)
 function initVideoThumbnails() {
-  const cards = document.querySelectorAll(".vg-card[data-src]");
-  if (!cards.length) return;
-
-  const applyThumb = (thumbEl, url) => {
-    thumbEl.style.backgroundImage = `url("${url}")`;
-    thumbEl.style.backgroundSize = "cover";
-    thumbEl.style.backgroundPosition = "center";
-    thumbEl.classList.add("has-thumb");
-  };
-
-  cards.forEach((card, i) => {
+  // Применяем data-thumb если задан явно на карточке
+  document.querySelectorAll(".vg-card[data-thumb]").forEach(card => {
     const thumb = card.querySelector(".vg-thumb");
     if (!thumb) return;
-
-    // Если указан data-thumb — применяем сразу
-    if (card.dataset.thumb) { applyThumb(thumb, card.dataset.thumb); return; }
-
-    const src = card.dataset.src;
-    if (!src) return;
-    let params;
-    try { params = new URLSearchParams(new URL(src).search); } catch { return; }
-    const oid = params.get("oid");
-    const id  = params.get("id");
-    if (!oid || !id) return;
-
-    const videoUrl = `https://vk.com/video${oid}_${id}`;
-    const oembedUrl = `https://vk.com/oembed.json?url=${encodeURIComponent(videoUrl)}`;
-
-    setTimeout(() => {
-      fetch(oembedUrl, { mode: "cors" })
-        .then(r => r.ok ? r.json() : null)
-        .then(data => { if (data && data.thumbnail_url) applyThumb(thumb, data.thumbnail_url); })
-        .catch(() => {});
-    }, i * 60);
+    thumb.style.backgroundImage = `url("${card.dataset.thumb}")`;
+    thumb.classList.add("has-thumb");
   });
 }
 
