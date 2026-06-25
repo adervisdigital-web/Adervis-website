@@ -8,7 +8,11 @@
   <meta name="description" content="Портфолио ADERVIS: кейсы по видеопродакшну, брендингу, фотосъёмке и ИИ-контенту. Реальные проекты с задачами, решениями и результатами.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700&family=DM+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700&family=DM+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
   <link rel="icon" type="image/svg+xml" href="../icon.svg">
+  <meta name="robots" content="index,follow">
+  <meta http-equiv="content-language" content="ru">
   <link rel="canonical" href="https://adervis.ru/cases/">
   <meta name="theme-color" content="#141414">
   <meta property="og:type" content="website">
@@ -26,17 +30,66 @@
 
   <main>
 
-    <!-- Hero -->
-    <section class="hero-section" data-dir="design">
-      <div class="page-aurora" aria-hidden="true">
-        <div class="page-aurora__blob page-aurora__blob--1"></div>
-        <div class="page-aurora__blob page-aurora__blob--2"></div>
+    <!-- ══ Cases Hero ══ -->
+    <section class="cases-hero" id="casesHero">
+
+      <!-- Фон: мозаика -->
+      <div class="chs-mosaic" aria-hidden="true">
+        <div class="chs-col">
+          <img src="/cases/jaecoo-j8.jpg" alt="" loading="eager">
+          <img src="/cases/toyota-supra-green-mamba.jpg" alt="" loading="lazy">
+          <img src="/cases/lukoil-ai.jpg" alt="" loading="lazy">
+          <img src="/cases/rokstar.webp" alt="" loading="lazy">
+        </div>
+        <div class="chs-col chs-col--offset">
+          <img src="/cases/battle-of-robots.jpg" alt="" loading="lazy">
+          <img src="/cases/stickbot-cosmetics.jpg" alt="" loading="lazy">
+          <img src="/cases/battle-robots-final-moscow-2025.jpg" alt="" loading="lazy">
+          <img src="/assets/cases/shabani-energy.webp" alt="" loading="lazy">
+        </div>
+        <div class="chs-col">
+          <img src="/cases/at-350-mini-loader.jpg" alt="" loading="lazy">
+          <img src="/assets/cases/anna-asti.jpg" alt="" loading="lazy">
+          <img src="/cases/rodin-yin-yan.jpg" alt="" loading="lazy">
+          <img src="/cases/it-arc.jpg" alt="" loading="lazy">
+        </div>
+        <div class="chs-col chs-col--offset">
+          <img src="/cases/stickbot-cosmetics.jpg" alt="" loading="lazy">
+          <img src="/cases/jaecoo-j8.jpg" alt="" loading="lazy">
+          <img src="/cases/toyota-supra-green-mamba.jpg" alt="" loading="lazy">
+          <img src="/cases/battle-of-robots.jpg" alt="" loading="lazy">
+        </div>
       </div>
+
+      <!-- Оверлей -->
+      <div class="chs-overlay" aria-hidden="true"></div>
+
+      <!-- Контент -->
       <div class="container">
-        <span class="eyebrow">Портфолио</span>
-        <h1>Проекты, которые говорят за нас</h1>
-        <p>Выбирайте направление — видео, дизайн, фото или ИИ-контент. Внутри каждого кейса: задача, что мы сделали и что получилось.</p>
+        <div class="chs-content">
+          <span class="eyebrow">Портфолио</span>
+          <h1 class="chs-title">Проекты,<br>которые<br>говорят за нас</h1>
+          <p class="chs-desc">700+ работ — видео, брендинг, фотосъёмка и ИИ-контент. Реальные проекты с задачами, решениями и результатами.</p>
+          <a href="#casesGrid" class="btn primary">Смотреть работы</a>
+          <div class="chs-stats">
+            <div class="chs-stat">
+              <span class="chs-stat-num">700<span class="chs-stat-plus">+</span></span>
+              <span class="chs-stat-label">Работ</span>
+            </div>
+            <div class="chs-stat-div"></div>
+            <div class="chs-stat">
+              <span class="chs-stat-num">8<span class="chs-stat-plus">+</span></span>
+              <span class="chs-stat-label">Лет</span>
+            </div>
+            <div class="chs-stat-div"></div>
+            <div class="chs-stat">
+              <span class="chs-stat-num">100<span class="chs-stat-plus">+</span></span>
+              <span class="chs-stat-label">Клиентов</span>
+            </div>
+          </div>
+        </div>
       </div>
+
     </section>
 
     <!-- Фильтры + сетка -->
@@ -79,7 +132,7 @@
 
           <a href="/cases/stickbot/" class="gallery-card reveal" data-dir="photo" data-dir-filter="photo">
             <div class="media-frame has-img" data-dir="photo" style="--ratio: 16 / 9">
-              <img src="/cases/StickBot%20-%20%D0%9E%D0%B1%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%BA%D0%B0/15%20copy.jpg" alt="StickBot — рекламная съёмка косметики" class="media-frame__img" loading="lazy">
+              <img src="/cases/stickbot/gallery-main.jpg" alt="StickBot — рекламная съёмка косметики" class="media-frame__img" loading="lazy">
               <span class="media-frame__num" aria-hidden="true">03</span>
             </div>
             <div class="gallery-card__info">

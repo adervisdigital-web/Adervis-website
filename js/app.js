@@ -18,6 +18,24 @@ function openTgLink(url) {
   document.body.removeChild(a);
 }
 
+function showToast(msg, duration = 4000) {
+  const existing = document.getElementById('adervis-toast');
+  if (existing) existing.remove();
+
+  const toast = document.createElement('div');
+  toast.id = 'adervis-toast';
+  toast.setAttribute('role', 'status');
+  toast.setAttribute('aria-live', 'polite');
+  toast.textContent = msg;
+  document.body.appendChild(toast);
+
+  requestAnimationFrame(() => { toast.classList.add('is-visible'); });
+  setTimeout(() => {
+    toast.classList.remove('is-visible');
+    setTimeout(() => toast.remove(), 400);
+  }, duration);
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   // Функция для подгрузки HTML компонентов — возвращает промис с готовым элементом
   const loadComponent = (id, url) => {
@@ -165,6 +183,13 @@ function initHeroQuiz() {
   const sendBtn = document.getElementById('heroQuizSend');
   if (!chips.length) return;
 
+  // Кнопка неактивна пока не выбрано направление
+  if (sendBtn) sendBtn.disabled = true;
+
+  const updateSendBtn = () => {
+    if (sendBtn) sendBtn.disabled = !document.querySelector('.hero-quiz__chip.is-active');
+  };
+
   chips.forEach(chip => {
     chip.addEventListener('click', () => {
       const wasActive = chip.classList.contains('is-active');
@@ -173,13 +198,27 @@ function initHeroQuiz() {
       if (!wasActive) chip.classList.add('is-active');
       if (hintEl) hintEl.textContent = newVal ? (chip.dataset.hint || '') : '';
       syncCtaDirChips(newVal);
+      updateSendBtn();
     });
   });
 
   if (sendBtn) {
     sendBtn.addEventListener('click', () => {
       const active = document.querySelector('.hero-quiz__chip.is-active');
-      openModal(active ? active.dataset.val : null);
+      const dir = active ? active.dataset.val : null;
+      // Синхронизируем чипы в форме контактов
+      if (dir) syncCtaDirChips(dir);
+      // Скроллим к форме если она есть на странице, иначе открываем модалку
+      const contactsSection = document.getElementById('contacts');
+      if (contactsSection) {
+        contactsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        setTimeout(() => {
+          const nameInput = document.getElementById('lh-name');
+          if (nameInput) nameInput.focus();
+        }, 600);
+      } else {
+        openModal(dir);
+      }
     });
   }
 }
@@ -252,6 +291,17 @@ function initModal() {
     });
   });
 
+  // Сброс ошибок при вводе в модале
+  modal.querySelectorAll('.lead-input').forEach(inp => {
+    inp.addEventListener('input', () => clearFieldError(inp));
+  });
+  const modalConsent = modal.querySelector('#modalConsent');
+  if (modalConsent) {
+    modalConsent.addEventListener('change', () => {
+      modalConsent.closest('.modal-consent-label').style.outline = '';
+    });
+  }
+
   // Отправка формы через mailto (152-ФЗ согласие обязательно)
   if (form) {
     form.addEventListener('submit', (e) => {
@@ -260,15 +310,19 @@ function initModal() {
       if (honeypot && honeypot.value) return;
       const consent = form.querySelector('#modalConsent');
       if (!consent || !consent.checked) {
-        consent && consent.closest('.modal-consent-label') &&
-          (consent.closest('.modal-consent-label').style.outline = '2px solid var(--c-video)');
+        if (consent) consent.closest('.modal-consent-label').style.outline = '2px solid var(--c-video)';
         return;
       }
-      const name      = (form.querySelector('[name="name"]')?.value || '').trim();
-      const contact   = (form.querySelector('[name="contact"]')?.value || '').trim();
+      const nameInput    = form.querySelector('[name="name"]');
+      const contactInput = form.querySelector('[name="contact"]');
+      const name      = (nameInput?.value || '').trim();
+      const contact   = (contactInput?.value || '').trim();
+      let hasError = false;
+      if (!name && nameInput)    { showFieldError(nameInput,    'Пожалуйста, укажите имя'); hasError = true; }
+      if (!contact && contactInput) { showFieldError(contactInput, 'Укажите телефон, email или Telegram'); hasError = true; }
+      if (hasError) return;
       const message   = (form.querySelector('[name="message"]')?.value || '').trim();
       const direction = (form.querySelector('[name="direction"]')?.value || '').trim();
-      if (!name || !contact) return;
 
       const dirLabels = { video: 'Видео', design: 'Дизайн', photo: 'Фото', ai: 'ИИ-контент' };
       const dirName   = dirLabels[direction] || '';
@@ -284,6 +338,7 @@ function initModal() {
       const tgUrl = `https://t.me/Adervis_digital?text=${tgText}`;
       openTgLink(tgUrl);
       closeModal();
+      showToast('✓ Заявка отправлена — ответим за 2 часа в рабочее время');
     });
   }
 }
@@ -592,8 +647,35 @@ function markActiveNavLink(headerRoot) {
     const normalHref = href.replace(rootPath, "/").replace(/\/$/, "") || "/";
     if (normalHref === path || (normalHref !== "/" && path.startsWith(normalHref))) {
       link.classList.add("nav-active");
+      link.setAttribute("aria-current", "page");
     }
   });
+
+  // Scroll-spy: только на главной, где есть якорные секции
+  if (path !== "/" && path !== "") return;
+  const sections = [
+    { id: "hero",      href: "/" },
+    { id: "services",  href: "/#services" },
+    { id: "portfolio", href: "/#portfolio" },
+    { id: "contacts",  href: "/#contacts" },
+  ];
+
+  const onScroll = () => {
+    const scrollY = window.scrollY + window.innerHeight * 0.35;
+    let active = sections[0];
+    sections.forEach(s => {
+      const el = document.getElementById(s.id);
+      if (el && el.offsetTop <= scrollY) active = s;
+    });
+    links.forEach(link => {
+      const href = (link.getAttribute("href") || "").replace(rootPath, "/");
+      const isActive = href === active.href;
+      link.classList.toggle("nav-spy-active", isActive);
+    });
+  };
+
+  window.addEventListener("scroll", onScroll, { passive: true });
+  onScroll();
 }
 
 // Анимация счётчиков статистики — числа «отсчитываются» вверх при появлении во вьюпорте
@@ -891,9 +973,38 @@ function initTickerDrag(footerRoot) {
 // Заявка на КП (главная, #contacts) — единственная форма захвата на сайте:
 // «гейтит» расчёт за минимальным действием (имя + контакт) и оформляет
 // заявку письмом, без бэкенда — та же схема, что у калькулятора /video
+function showFieldError(input, msg) {
+  input.classList.add('is-error');
+  let err = input.parentElement.querySelector('.field-error');
+  if (!err) {
+    err = document.createElement('span');
+    err.className = 'field-error';
+    input.parentElement.appendChild(err);
+  }
+  err.textContent = msg;
+}
+
+function clearFieldError(input) {
+  input.classList.remove('is-error');
+  const err = input.parentElement.querySelector('.field-error');
+  if (err) err.textContent = '';
+}
+
 function initLeadForm() {
   const form = document.getElementById("leadForm");
   if (!form) return;
+
+  // Сброс ошибок при вводе
+  form.querySelectorAll('.lead-input').forEach(inp => {
+    inp.addEventListener('input', () => clearFieldError(inp));
+  });
+
+  const consent = form.querySelector('#leadConsent');
+  if (consent) {
+    consent.addEventListener('change', () => {
+      consent.closest('.modal-consent-label').style.outline = '';
+    });
+  }
 
   form.addEventListener("submit", (event) => {
     event.preventDefault();
@@ -901,17 +1012,24 @@ function initLeadForm() {
     const honeypot = form.querySelector('[name="website"]');
     if (honeypot && honeypot.value) return;
 
-    const consent = form.querySelector('#leadConsent');
-    if (consent && !consent.checked) {
-      consent.closest('.modal-consent-label').style.outline = '2px solid var(--c-video)';
+    const consentEl = form.querySelector('#leadConsent');
+    if (consentEl && !consentEl.checked) {
+      consentEl.closest('.modal-consent-label').style.outline = '2px solid var(--c-video)';
+      consentEl.closest('.modal-consent-label').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
       return;
     }
 
-    const name      = form.querySelector('[name="name"]').value.trim();
-    const contact   = form.querySelector('[name="contact"]').value.trim();
+    const nameInput    = form.querySelector('[name="name"]');
+    const contactInput = form.querySelector('[name="contact"]');
+    const name      = nameInput.value.trim();
+    const contact   = contactInput.value.trim();
+    let hasError = false;
+    if (!name) { showFieldError(nameInput, 'Пожалуйста, укажите имя'); hasError = true; }
+    if (!contact) { showFieldError(contactInput, 'Укажите телефон, email или Telegram'); hasError = true; }
+    if (hasError) return;
+
     const message   = form.querySelector('[name="message"]')?.value.trim() || '';
     const direction = form.querySelector('[name="direction"]')?.value.trim() || '';
-    if (!name || !contact) return;
 
     const dirLabels = { video: 'Видео', design: 'Дизайн', photo: 'Фото', ai: 'ИИ-контент' };
     const dirName   = dirLabels[direction] || '';
@@ -933,6 +1051,7 @@ function initLeadForm() {
       const origHTML = submitBtn.innerHTML;
       submitBtn.disabled = true;
       submitBtn.innerHTML = `Заявка принята — ответим в течение дня&nbsp;&nbsp;<a href="${tgUrl}" target="_blank" rel="noopener noreferrer" style="color:inherit;text-decoration:underline;font-weight:500">открыть Telegram</a>`;
+      showToast('✓ Заявка отправлена — ответим за 2 часа в рабочее время');
       setTimeout(() => { submitBtn.innerHTML = origHTML; submitBtn.disabled = false; form.reset(); }, 8000);
     }
   });
@@ -979,6 +1098,7 @@ function initReviewsSlider() {
   const prevBtn = slider.querySelector(".reviews-prev");
   const nextBtn = slider.querySelector(".reviews-next");
   const dotsContainer = slider.querySelector(".reviews-dots");
+  const counterEl = slider.querySelector(".reviews-counter");
   const cards = Array.from(track.querySelectorAll(".review-card"));
   const total = cards.length;
   const GAP = 24;
@@ -1019,6 +1139,8 @@ function initReviewsSlider() {
     dotsContainer && dotsContainer.querySelectorAll(".reviews-dot").forEach((dot, i) => {
       dot.classList.toggle("is-active", i === current);
     });
+
+    if (counterEl) counterEl.textContent = `${current + 1} / ${total}`;
   };
 
   const next = () => { current = current >= getMax() ? 0 : current + 1; update(); };
@@ -1045,6 +1167,21 @@ function initReviewsSlider() {
 
   slider.addEventListener("mouseenter", () => { isHovered = true; });
   slider.addEventListener("mouseleave", () => { isHovered = false; });
+
+  // Touch-свайп для мобильных
+  let touchStartX = 0;
+  outer.addEventListener("touchstart", (e) => { touchStartX = e.touches[0].clientX; }, { passive: true });
+  outer.addEventListener("touchend", (e) => {
+    const dx = e.changedTouches[0].clientX - touchStartX;
+    if (Math.abs(dx) > 50) { dx < 0 ? next() : prev(); startAuto(); }
+  });
+
+  // Keyboard navigation: ←/→ при фокусе внутри слайдера
+  slider.setAttribute('tabindex', '0');
+  slider.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowLeft')  { prev(); startAuto(); e.preventDefault(); }
+    if (e.key === 'ArrowRight') { next(); startAuto(); e.preventDefault(); }
+  });
 
   window.addEventListener("resize", () => update(false));
   update(false);

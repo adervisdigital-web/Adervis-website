@@ -8,7 +8,11 @@
   <meta name="description" content="Видеопродакшн ADERVIS: рекламные ролики, видео о компании, анимация, съёмка мероприятий. Сценарий, съёмка и монтаж под ключ. Пермь и вся Россия.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700&family=DM+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700&family=DM+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
   <link rel="icon" type="image/svg+xml" href="../icon.svg">
+  <meta name="robots" content="index,follow">
+  <meta http-equiv="content-language" content="ru">
   <link rel="canonical" href="https://adervis.ru/video/">
   <meta name="theme-color" content="#141414">
   <meta property="og:type" content="website">
@@ -95,13 +99,13 @@
       "@type": "ListItem",
       "position": 1,
       "name": "Главная",
-      "item": "https://adervisdigital-web.github.io/Adervis-website/"
+      "item": "https://adervis.ru/"
     },
     {
       "@type": "ListItem",
       "position": 2,
       "name": "Видеопродакшн",
-      "item": "https://adervisdigital-web.github.io/Adervis-website/video/"
+      "item": "https://adervis.ru/video/"
     }
   ]
 }
@@ -115,39 +119,47 @@
   <main>
 
     <!-- Hero -->
-    <section class="hero-section" data-dir="video">
-
-      <!-- Фоновое зацикленное видео -->
-      <div class="hero-vbg" aria-hidden="true">
-        <video class="hero-vbg__video" autoplay muted loop playsinline preload="auto">
-          <source src="promo%20adervis.mp4" type="video/mp4">
-        </video>
-        <div class="hero-vbg__overlay"></div>
+    <section class="vp-hero" data-dir="video">
+      <!-- Фоновые картинки (сменяются) -->
+      <div class="vp-hero__bg" aria-hidden="true">
+        <img class="vp-hero__bg-slide is-active" src="../cases/toyota-supra-green-mamba.jpg" alt="">
+        <img class="vp-hero__bg-slide" src="../cases/lukoil-ai.jpg" alt="">
+        <img class="vp-hero__bg-slide" src="../cases/battle-of-robots.jpg" alt="">
+        <img class="vp-hero__bg-slide" src="../cases/promo-main.jpg" alt="">
       </div>
-
-      <div class="page-aurora" aria-hidden="true">
-        <div class="page-aurora__blob page-aurora__blob--1"></div>
-        <div class="page-aurora__blob page-aurora__blob--2"></div>
-      </div>
+      <div class="vp-hero__overlay" aria-hidden="true"></div>
       <div class="container">
-        <span class="eyebrow">Видеопродакшн</span>
-        <h1>Видео, которое продаёт, объясняет и запоминается</h1>
-        <p>Делаем продающий сценарий, съёмку, монтаж и анимацию — рекламные ролики, видео о компании, фильмы с мероприятий и анимационные истории под задачи вашего бизнеса.</p>
-        <div class="hero-buttons">
-          <a href="#works" class="btn primary">Смотреть портфолио</a>
-          <a href="#contacts" class="btn">Обсудить проект</a>
-        </div>
-        <div class="hero-kpi-line">
-          <strong>52+</strong> роликов в портфолио
-          <span class="hero-kpi-sep">·</span>
-          <strong>50+</strong> клиентов
-          <span class="hero-kpi-sep">·</span>
-          <strong>100%</strong> под ключ
-          <span class="hero-kpi-sep">·</span>
-          сценарий → съёмка → монтаж
+        <div class="vp-hero__content">
+          <span class="eyebrow">Видеопродакшн</span>
+          <h1 class="vp-hero__title">Видео, которое продаёт, объясняет и запоминается</h1>
+          <p class="vp-hero__desc">Делаем продающий сценарий, съёмку, монтаж и анимацию — рекламные ролики, видео о компании, фильмы с мероприятий и анимационные истории под задачи вашего бизнеса.</p>
+          <div class="hero-buttons">
+            <a href="#works" class="btn primary">Смотреть портфолио</a>
+            <a href="#contacts" class="btn">Обсудить проект</a>
+          </div>
+          <div class="hero-kpi-line">
+            <strong>52+</strong> роликов
+            <span class="hero-kpi-sep">·</span>
+            <strong>50+</strong> клиентов
+            <span class="hero-kpi-sep">·</span>
+            <strong>100%</strong> под ключ
+          </div>
         </div>
       </div>
     </section>
+
+    <script>
+    (function () {
+      var slides = document.querySelectorAll('.vp-hero__bg-slide');
+      if (slides.length < 2) return;
+      var cur = 0;
+      setInterval(function () {
+        slides[cur].classList.remove('is-active');
+        cur = (cur + 1) % slides.length;
+        slides[cur].classList.add('is-active');
+      }, 4000);
+    }());
+    </script>
 
     <!-- Форматы видео -->
     <section class="section">
@@ -272,17 +284,17 @@
         </div>
 
         <!-- Шоурил — featured видео перед галереей -->
-        <div class="vp-featured has-thumb reveal"
-          data-src="https://vkvideo.ru/video_ext.php?oid=-121259819&amp;id=456239180&amp;hash=3aa63d199d0c41b3&amp;hd=4&amp;js_api=1"
-          style="background-image: url('../assets/cases/shabani-energy.webp')"
-          aria-label="Смотреть шоурил SHABANI ENERGY — нажмите для просмотра"
+        <div class="vp-featured reveal"
+          data-src="https://vkvideo.ru/video_ext.php?oid=-121259819&amp;id=456239192&amp;hd=4&amp;js_api=1"
+          aria-label="ADERVIS Promo — нажмите для просмотра"
           role="button" tabindex="0">
+          <img class="vp-featured__bg" src="../cases/promo-main.jpg" alt="" aria-hidden="true">
+          <div class="vp-featured__btn" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="32" height="32"><path d="M5 3l14 9-14 9z"/></svg>
+          </div>
           <div class="vp-featured__inner">
-            <div class="vp-featured__btn">
-              <svg viewBox="0 0 24 24" fill="currentColor" width="28" height="28" aria-hidden="true"><path d="M5 3l14 9-14 9z"/></svg>
-            </div>
-            <span class="vp-featured__tag">Рекламный ролик</span>
-            <span class="vp-featured__label">SHABANI ENERGY «Яблоко-Киви» — нажмите, чтобы посмотреть</span>
+            <span class="vp-featured__tag">Промо</span>
+            <span class="vp-featured__label">ADERVIS Promo — нажмите, чтобы посмотреть</span>
           </div>
         </div>
 
@@ -722,42 +734,324 @@
         <div class="section-head reveal">
           <span class="eyebrow">Частые вопросы</span>
           <h2>То, что обычно спрашивают перед стартом</h2>
-          <p>Если не нашли ответ на свой вопрос — задайте его напрямую: отвечаем в день обращения</p>
+          <p>Если не нашли ответ — задайте напрямую: ответим за 2 часа в рабочее время</p>
         </div>
-        <div class="faq-list">
-          <details class="faq-item reveal">
-            <summary>Сколько стоит съёмка ролика?
-              <span class="faq-icon" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M8 3v10M3 8h10"/></svg></span>
-            </summary>
-            <p>Зависит от формата, хронометража и числа съёмочных дней — рекламный ролик на 30 секунд и фильм с многодневного мероприятия считаются по-разному. Пришлите бриф или просто опишите задачу — вернёмся со сметой и вариантами в течение 1–2 дней.</p>
-          </details>
-          <details class="faq-item reveal">
-            <summary>Сколько времени занимает производство?
-              <span class="faq-icon" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M8 3v10M3 8h10"/></svg></span>
-            </summary>
-            <p>Рекламный ролик «под ключ» — обычно 2–4 недели от сценария до сдачи. Проекты с несколькими съёмочными днями или анимацией занимают больше — точные сроки фиксируем в смете до старта, без сюрпризов в процессе.</p>
-          </details>
-          <details class="faq-item reveal">
-            <summary>Нужен ли готовый сценарий, или вы пишете его сами?
-              <span class="faq-icon" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M8 3v10M3 8h10"/></svg></span>
-            </summary>
-            <p>Пишем с нуля — большинство клиентов приходят с задачей и атмосферой, которую хотят передать, а не с готовым текстом. Если сценарий уже есть, разберём и адаптируем под формат, площадку и хронометраж.</p>
-          </details>
-          <details class="faq-item reveal">
-            <summary>Сколько правок входит в стоимость?
-              <span class="faq-icon" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M8 3v10M3 8h10"/></svg></span>
-            </summary>
-            <p>Закладываем один-два круга правок на монтаж — этого хватает в большинстве проектов, потому что мы заранее согласуем сценарий и референсы. Если потребуется больше — обсуждаем отдельно и заранее, до выставления финального счёта.</p>
-          </details>
-          <details class="faq-item reveal">
-            <summary>Снимаете только в Перми или выезжаете в другие города?
-              <span class="faq-icon" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M8 3v10M3 8h10"/></svg></span>
-            </summary>
-            <p>Выезжаем туда, где нужна съёмка — в портфолио есть проекты из разных городов. Логистику, проживание и аренду оборудования на месте считаем отдельной строкой сметы — открыто и заранее.</p>
-          </details>
+
+        <div class="fvs-grid reveal">
+
+          <!-- Левая колонка: вопросы -->
+          <div class="fvs-left">
+            <div class="fvs-list" id="fvsList" role="list">
+
+              <button class="fvs-item is-active" data-fvs="0" aria-expanded="true" role="listitem">
+                <div class="fvs-item-top">
+                  <span class="fvs-num">01</span>
+                  <p class="fvs-q">Сколько стоит съёмка ролика?</p>
+                  <span class="fvs-arrow" aria-hidden="true">
+                    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><path d="M4 6l4 4 4-4"/></svg>
+                  </span>
+                </div>
+                <div class="fvs-body">
+                  <div class="fvs-body-inner">
+                    <p class="fvs-a">Зависит от формата, хронометража и числа съёмочных дней — рекламный ролик на 30 секунд и фильм с многодневного мероприятия считаются по-разному. Пришлите задачу — вернёмся со сметой за 1–2 дня.</p>
+                  </div>
+                </div>
+              </button>
+
+              <button class="fvs-item" data-fvs="1" aria-expanded="false" role="listitem">
+                <div class="fvs-item-top">
+                  <span class="fvs-num">02</span>
+                  <p class="fvs-q">Сколько времени занимает производство?</p>
+                  <span class="fvs-arrow" aria-hidden="true">
+                    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><path d="M4 6l4 4 4-4"/></svg>
+                  </span>
+                </div>
+                <div class="fvs-body">
+                  <div class="fvs-body-inner">
+                    <p class="fvs-a">Рекламный ролик «под ключ» — 2–4 недели от сценария до сдачи. Проекты с несколькими съёмочными днями или анимацией — дольше. Точные сроки фиксируем в смете до старта.</p>
+                  </div>
+                </div>
+              </button>
+
+              <button class="fvs-item" data-fvs="2" aria-expanded="false" role="listitem">
+                <div class="fvs-item-top">
+                  <span class="fvs-num">03</span>
+                  <p class="fvs-q">Нужен готовый сценарий или вы пишете сами?</p>
+                  <span class="fvs-arrow" aria-hidden="true">
+                    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><path d="M4 6l4 4 4-4"/></svg>
+                  </span>
+                </div>
+                <div class="fvs-body">
+                  <div class="fvs-body-inner">
+                    <p class="fvs-a">Пишем с нуля — большинство клиентов приходят с задачей, а не готовым текстом. Если сценарий уже есть — разберём и адаптируем под формат, площадку и хронометраж.</p>
+                  </div>
+                </div>
+              </button>
+
+              <button class="fvs-item" data-fvs="3" aria-expanded="false" role="listitem">
+                <div class="fvs-item-top">
+                  <span class="fvs-num">04</span>
+                  <p class="fvs-q">Сколько правок входит в стоимость?</p>
+                  <span class="fvs-arrow" aria-hidden="true">
+                    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><path d="M4 6l4 4 4-4"/></svg>
+                  </span>
+                </div>
+                <div class="fvs-body">
+                  <div class="fvs-body-inner">
+                    <p class="fvs-a">Один-два круга правок на монтаж — в большинстве проектов этого хватает, потому что сценарий и референсы согласовываем заранее. Если нужно больше — обсуждаем до финального счёта.</p>
+                  </div>
+                </div>
+              </button>
+
+              <button class="fvs-item" data-fvs="4" aria-expanded="false" role="listitem">
+                <div class="fvs-item-top">
+                  <span class="fvs-num">05</span>
+                  <p class="fvs-q">Снимаете только в Перми или выезжаете?</p>
+                  <span class="fvs-arrow" aria-hidden="true">
+                    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><path d="M4 6l4 4 4-4"/></svg>
+                  </span>
+                </div>
+                <div class="fvs-body">
+                  <div class="fvs-body-inner">
+                    <p class="fvs-a">Выезжаем туда, где нужна съёмка — в портфолио есть проекты из разных городов. Логистику и проживание считаем отдельной строкой сметы, открыто и заранее.</p>
+                  </div>
+                </div>
+              </button>
+
+            </div>
+          </div>
+
+          <!-- Правая колонка: иллюстрация -->
+          <div class="fvs-right" aria-hidden="true">
+            <div class="fvs-canvas" id="fvsCanvas">
+
+              <div class="fvs-slide is-active" data-slide="0">
+                <img src="../assets/faq/1.jpg" alt="" loading="lazy">
+                <div class="fvs-ph">
+                  <div class="fvs-ph-icon">
+                    <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" width="36" height="36"><rect x="8" y="14" width="32" height="22" rx="3"/><path d="M24 10v4M16 36v3M32 36v3"/><path d="M20 24h3a3 3 0 0 1 0 6h-3v-9M23 24v-2M25 30h2"/></svg>
+                  </div>
+                  <span class="fvs-ph-label">Бюджет проекта</span>
+                  <span class="fvs-ph-num">01</span>
+                </div>
+              </div>
+
+              <div class="fvs-slide" data-slide="1">
+                <img src="../assets/faq/2.jpg" alt="" loading="lazy">
+                <div class="fvs-ph">
+                  <div class="fvs-ph-icon">
+                    <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" width="36" height="36"><circle cx="24" cy="26" r="15"/><path d="M24 14v12l7 4"/><path d="M17 9h14"/></svg>
+                  </div>
+                  <span class="fvs-ph-label">Сроки производства</span>
+                  <span class="fvs-ph-num">02</span>
+                </div>
+              </div>
+
+              <div class="fvs-slide" data-slide="2">
+                <img src="../assets/faq/3.jpg" alt="" loading="lazy">
+                <div class="fvs-ph">
+                  <div class="fvs-ph-icon">
+                    <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" width="36" height="36"><rect x="10" y="6" width="28" height="36" rx="3"/><path d="M16 16h16M16 23h16M16 30h10"/><path d="M28 34l3 3 5-5" stroke-width="1.8"/></svg>
+                  </div>
+                  <span class="fvs-ph-label">Сценарий и идея</span>
+                  <span class="fvs-ph-num">03</span>
+                </div>
+              </div>
+
+              <div class="fvs-slide" data-slide="3">
+                <img src="../assets/faq/4.jpg" alt="" loading="lazy">
+                <div class="fvs-ph">
+                  <div class="fvs-ph-icon">
+                    <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" width="36" height="36"><path d="M8 32c4-16 28-16 32 0"/><path d="M34 28l6 4-2 6"/><path d="M40 16c-4 16-28 16-32 0"/><path d="M14 20l-6-4 2-6"/></svg>
+                  </div>
+                  <span class="fvs-ph-label">Правки и итерации</span>
+                  <span class="fvs-ph-num">04</span>
+                </div>
+              </div>
+
+              <div class="fvs-slide" data-slide="4">
+                <img src="../assets/faq/5.jpg" alt="" loading="lazy">
+                <div class="fvs-ph">
+                  <div class="fvs-ph-icon">
+                    <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" width="36" height="36"><ellipse cx="24" cy="24" rx="18" ry="16"/><path d="M6 24h36M24 8c-5 4-8 9-8 16s3 12 8 16M24 8c5 4 8 9 8 16s-3 12-8 16"/><circle cx="24" cy="24" r="3" fill="currentColor" stroke="none"/></svg>
+                  </div>
+                  <span class="fvs-ph-label">Съёмка по России</span>
+                  <span class="fvs-ph-num">05</span>
+                </div>
+              </div>
+
+              <!-- Подпись и прогресс — внутри canvas, не торчат за границы -->
+              <div class="fvs-caption">
+                <div class="fvs-progress">
+                  <div class="fvs-progress-bar" id="fvsBar"></div>
+                </div>
+                <div class="fvs-caption-row">
+                  <span class="fvs-caption-icon" id="fvsIcon" aria-hidden="true"></span>
+                  <span class="fvs-caption-text" id="fvsCaption">Бюджет проекта</span>
+                  <span class="fvs-caption-counter" id="fvsCounter">01 / 05</span>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
         </div>
       </div>
     </section>
+
+    <script>
+    (function () {
+      var items    = document.querySelectorAll('.fvs-item');
+      var slides   = document.querySelectorAll('.fvs-slide');
+      var bar      = document.getElementById('fvsBar');
+      var caption  = document.getElementById('fvsCaption');
+      var counter  = document.getElementById('fvsCounter');
+      var iconEl   = document.getElementById('fvsIcon');
+      var captions = ['Бюджет проекта','Сроки производства','Сценарий и идея','Правки и итерации','Съёмка по России'];
+      var S = 'stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"';
+      var icons = [
+        '<svg viewBox="0 0 48 48" fill="none" ' + S + ' width="18" height="18"><rect x="8" y="14" width="32" height="22" rx="3"/><path d="M24 10v4M16 36v3M32 36v3"/><path d="M20 24h3a3 3 0 0 1 0 6h-3v-9M23 24v-2M25 30h2"/></svg>',
+        '<svg viewBox="0 0 48 48" fill="none" ' + S + ' width="18" height="18"><circle cx="24" cy="26" r="15"/><path d="M24 14v12l7 4"/><path d="M17 9h14"/></svg>',
+        '<svg viewBox="0 0 48 48" fill="none" ' + S + ' width="18" height="18"><rect x="10" y="6" width="28" height="36" rx="3"/><path d="M16 16h16M16 23h16M16 30h10"/><path d="M28 34l3 3 5-5" stroke-width="1.8"/></svg>',
+        '<svg viewBox="0 0 48 48" fill="none" ' + S + ' width="18" height="18"><path d="M8 32c4-16 28-16 32 0"/><path d="M34 28l6 4-2 6"/><path d="M40 16c-4 16-28 16-32 0"/><path d="M14 20l-6-4 2-6"/></svg>',
+        '<svg viewBox="0 0 48 48" fill="none" ' + S + ' width="18" height="18"><ellipse cx="24" cy="24" rx="18" ry="16"/><path d="M6 24h36M24 8c-5 4-8 9-8 16s3 12 8 16M24 8c5 4 8 9 8 16s-3 12-8 16"/><circle cx="24" cy="24" r="3" fill="currentColor" stroke="none"/></svg>'
+      ];
+      if (!items.length) return;
+
+      function activate(idx) {
+        items.forEach(function (el, i) {
+          el.classList.toggle('is-active', i === idx);
+          el.setAttribute('aria-expanded', i === idx ? 'true' : 'false');
+        });
+        slides.forEach(function (el, i) { el.classList.toggle('is-active', i === idx); });
+        if (bar)     bar.style.width = ((idx + 1) / items.length * 100) + '%';
+        if (caption) caption.textContent = captions[idx] || '';
+        if (counter) counter.textContent = String(idx + 1).padStart(2,'0') + ' / ' + String(items.length).padStart(2,'0');
+        if (iconEl)  iconEl.innerHTML = icons[idx] || '';
+      }
+
+      items.forEach(function (btn, idx) {
+        btn.addEventListener('click', function () { activate(idx); });
+      });
+
+      activate(0);
+    }());
+    </script>
+
+    <script>
+    /* ─── Multi-layer 3D Parallax ──────────────────────────────
+       Каждый слой движется с разной скоростью (depth):
+         img        depth 0.4 — самый дальний, двигается мало
+         .fvs-ph    depth 0.7 — плейсхолдер / оверлей
+         .fvs-progress depth 1.2 — ближний, двигается больше всех
+       Нет белых краёв: img масштабирован, canvas без overflow
+    ─────────────────────────────────────────────────────────── */
+    (function () {
+      var panel  = document.querySelector('.fvs-right');
+      var canvas = document.getElementById('fvsCanvas');
+      if (!panel || !canvas || window.matchMedia('(pointer: coarse)').matches) return;
+
+      var TILT      = 6;    /* градусы наклона панели */
+      var LERP      = 0.09; /* плавность 0.05–0.2 */
+
+      /* Слои и их скорости (px смещения при полном отклонении) */
+      var LAYERS = [
+        { sel: '.fvs-slide.is-active img', speed: 14 },  /* картинка */
+        { sel: '.fvs-slide.is-active .fvs-ph', speed: 26 }, /* оверлей текст */
+        { sel: '.fvs-progress', speed: 36 },              /* прогресс-бар */
+        { sel: '.fvs-caption',  speed: 28 },              /* подпись */
+      ];
+
+      var tRX = 0, tRY = 0, cRX = 0, cRY = 0;
+      var rafId = null, hovered = false;
+
+      function lerp(a, b, t) { return a + (b - a) * t; }
+
+      /* Панорамный масштаб картинки чтобы не было краёв */
+      function scaleForEdges() {
+        canvas.querySelectorAll('.fvs-slide img').forEach(function (img) {
+          img.style.transform = 'scale(1.08)';
+          img.style.transformOrigin = 'center';
+          img.style.transition = 'none';
+          img.style.willChange = 'transform';
+        });
+      }
+      scaleForEdges();
+
+      panel.style.perspective = '1000px';
+      canvas.style.willChange = 'transform, box-shadow';
+
+      function getLayer(sel) {
+        return canvas.querySelector(sel) ||
+               panel.querySelector(sel);
+      }
+
+      function tick() {
+        cRX = lerp(cRX, tRX, LERP);
+        cRY = lerp(cRY, tRY, LERP);
+
+        /* 1. Наклон самой панели (3D card tilt) */
+        canvas.style.transform =
+          'rotateX(' + cRX + 'deg) rotateY(' + cRY + 'deg)';
+
+        /* 2. Тень от «источника света» */
+        canvas.style.boxShadow =
+          (-cRY * 1.5) + 'px ' + (cRX * 1.5) + 'px 40px rgba(0,0,0,0.55),' +
+          '0 0 0 1px rgba(255,255,255,0.06)';
+
+        /* 3. Каждый слой движется со своей скоростью (против наклона) */
+        LAYERS.forEach(function (layer) {
+          var el = getLayer(layer.sel);
+          if (!el) return;
+          var dx = (-cRY / TILT) * layer.speed;
+          var dy = ( cRX / TILT) * layer.speed;
+          var base = el.tagName === 'IMG' ? ' scale(1.08)' : '';
+          el.style.transform = 'translate(' + dx + 'px,' + dy + 'px)' + base;
+          el.style.transition = 'none';
+        });
+
+        /* Стоп-условие */
+        if (!hovered && Math.abs(cRX) < 0.04 && Math.abs(cRY) < 0.04) {
+          canvas.style.transform = '';
+          canvas.style.boxShadow = '';
+          LAYERS.forEach(function (layer) {
+            var el = getLayer(layer.sel);
+            if (el) {
+              var base = el.tagName === 'IMG' ? 'scale(1.08)' : '';
+              el.style.transform = base;
+            }
+          });
+          rafId = null;
+          return;
+        }
+
+        rafId = requestAnimationFrame(tick);
+      }
+
+      panel.addEventListener('mousemove', function (e) {
+        var r  = canvas.getBoundingClientRect();
+        var nx = (e.clientX - r.left - r.width  / 2) / (r.width  / 2);
+        var ny = (e.clientY - r.top  - r.height / 2) / (r.height / 2);
+        tRY =  nx * TILT;
+        tRX = -ny * TILT;
+        hovered = true;
+        if (!rafId) rafId = requestAnimationFrame(tick);
+      });
+
+      panel.addEventListener('mouseleave', function () {
+        hovered = false;
+        tRX = tRY = 0;
+        if (!rafId) rafId = requestAnimationFrame(tick);
+      });
+
+      /* Обновляем слои при смене вопроса */
+      document.querySelectorAll('.fvs-item').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          setTimeout(scaleForEdges, 50);
+        });
+      });
+    }());
+    </script>
 
     <!-- Калькулятор стоимости -->
     <section class="section">
@@ -848,7 +1142,7 @@
           <a href="mailto:adervis.digital@gmail.com" class="btn">adervis.digital@gmail.com</a>
         </div>
         <div class="vp-trust-line">
-          отвечаем в день обращения
+          ответим за 2 часа в рабочее время
           <span>·</span>
           работаем по всей России
           <span>·</span>
