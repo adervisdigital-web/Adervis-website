@@ -244,31 +244,7 @@ function initHeroQuiz() {
     sendBtn.addEventListener('click', () => {
       const active = document.querySelector('.hero-quiz__chip.is-active');
       const dir = active ? active.dataset.val : null;
-      if (dir) syncCtaDirChips(dir);
-      const contactsSection = document.getElementById('contacts');
-      if (contactsSection) {
-        contactsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        // Flash форму и pop выбранный чип после прокрутки
-        setTimeout(() => {
-          const ctaCard = contactsSection.querySelector('.cta-card');
-          if (ctaCard) {
-            ctaCard.classList.remove('quiz-arrived');
-            void ctaCard.offsetWidth;
-            ctaCard.classList.add('quiz-arrived');
-          }
-          if (dir) {
-            const activeChip = contactsSection.querySelector(`.cta-dir-chip[data-val="${dir}"]`);
-            if (activeChip) {
-              activeChip.classList.remove('quiz-popped');
-              void activeChip.offsetWidth;
-              activeChip.classList.add('quiz-popped');
-            }
-          }
-          document.getElementById('lh-name')?.focus();
-        }, 650);
-      } else {
-        openModal(dir);
-      }
+      openModal(dir);
     });
   }
 }
