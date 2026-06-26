@@ -7199,6 +7199,14 @@ body.no-clients .clients-ticker-section {
 /* ── Видео-страница hero (/video/) — тёмный overlay всегда,
    текст должен быть белым независимо от темы ── */
 [data-theme="light"] .vp-hero__title { color: #fff; }
+[data-theme="light"] .vp-hero .hero-kpi-line        { color: rgba(255,255,255,0.38); }
+[data-theme="light"] .vp-hero .hero-kpi-line strong { color: rgba(255,255,255,0.65); }
+[data-theme="light"] .vp-hero .hero-kpi-sep         { color: rgba(255,255,255,0.16); }
+[data-theme="light"] .vp-hero .btn:not(.primary) {
+  background: rgba(255,255,255,0.10);
+  color: rgba(255,255,255,0.88);
+  border-color: rgba(255,255,255,0.22);
+}
 
 /* ── Cases hero (/cases/) — тёмный overlay всегда (rgba(0,0,0,0.92)),
    все тексты должны быть белыми, иначе нечитаемы ── */
@@ -7208,6 +7216,12 @@ body.no-clients .clients-ticker-section {
 [data-theme="light"] .chs-stat-label  { color: rgba(255,255,255,0.55); }
 [data-theme="light"] .chs-stat-div    { background: rgba(255,255,255,0.16); }
 [data-theme="light"] .chs-stats       { border-top-color: rgba(255,255,255,0.14); }
+[data-theme="light"] .cases-hero .eyebrow { color: var(--gold); }
+[data-theme="light"] .cases-hero .btn:not(.primary) {
+  background: rgba(255,255,255,0.10);
+  color: rgba(255,255,255,0.88);
+  border-color: rgba(255,255,255,0.22);
+}
 
 /* ═══════════════════════════════════════════════════════════════
    Portfolio gallery — real images support

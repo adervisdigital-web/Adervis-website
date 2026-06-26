@@ -1424,6 +1424,18 @@ function initVideoGallery() {
     });
   });
 
+  // Featured showreel block
+  const featured = document.querySelector(".vp-featured");
+  if (featured) {
+    featured.addEventListener("click", () => {
+      const src = featured.dataset.src;
+      if (src) openLb(src);
+    });
+    featured.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") { e.preventDefault(); openLb(featured.dataset.src); }
+    });
+  }
+
   closeBtn.addEventListener("click", closeLb);
   lb.addEventListener("click", (e) => { if (e.target === lb) closeLb(); });
   document.addEventListener("keydown", (e) => { if (e.key === "Escape" && lb.classList.contains("is-open")) closeLb(); });
