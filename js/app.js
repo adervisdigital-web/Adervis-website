@@ -207,25 +207,11 @@ function initHeroQuiz() {
   const sendBtn = document.getElementById('heroQuizSend');
   if (!chips.length) return;
 
-  const dirLabels = { video: 'Видео', design: 'Дизайн', photo: 'Фото', ai: 'ИИ-контент' };
-
   // Кнопка неактивна пока не выбрано направление
   if (sendBtn) sendBtn.disabled = true;
 
-  const arrowSvg = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>`;
-
-  const updateSendBtn = (dir) => {
-    if (!sendBtn) return;
-    sendBtn.disabled = !dir;
-    if (dir) {
-      sendBtn.innerHTML = `КП по ${dirLabels[dir] || dir} ${arrowSvg}`;
-      sendBtn.style.setProperty('--quiz-cc', `var(--c-${dir})`);
-      sendBtn.classList.add('has-selection');
-    } else {
-      sendBtn.innerHTML = `Начать ${arrowSvg}`;
-      sendBtn.style.removeProperty('--quiz-cc');
-      sendBtn.classList.remove('has-selection');
-    }
+  const updateSendBtn = () => {
+    if (sendBtn) sendBtn.disabled = !document.querySelector('.hero-quiz__chip.is-active');
   };
 
   chips.forEach(chip => {
@@ -236,7 +222,7 @@ function initHeroQuiz() {
       if (!wasActive) chip.classList.add('is-active');
       if (hintEl) hintEl.textContent = newVal ? (chip.dataset.hint || '') : '';
       syncCtaDirChips(newVal);
-      updateSendBtn(newVal);
+      updateSendBtn();
     });
   });
 
