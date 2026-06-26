@@ -202,14 +202,33 @@ function initServicesGrid() {
 }
 
 function initHeroQuiz() {
-  // Direction cards v3 — один клик открывает попап с нужным направлением
-  const cards = document.querySelectorAll('.hero-dir-card');
-  if (!cards.length) return;
+  const chips   = document.querySelectorAll('.hero-quiz__chip');
+  const sendBtn = document.getElementById('heroQuizSend');
 
-  cards.forEach(card => {
-    card.addEventListener('click', () => {
-      openModal(card.dataset.val || null);
+  // Десктоп: чипы + кнопка «Начать»
+  if (chips.length) {
+    if (sendBtn) sendBtn.disabled = true;
+
+    chips.forEach(chip => {
+      chip.addEventListener('click', () => {
+        const wasActive = chip.classList.contains('is-active');
+        chips.forEach(c => c.classList.remove('is-active'));
+        if (!wasActive) chip.classList.add('is-active');
+        if (sendBtn) sendBtn.disabled = wasActive;
+      });
     });
+
+    if (sendBtn) {
+      sendBtn.addEventListener('click', () => {
+        const active = document.querySelector('.hero-quiz__chip.is-active');
+        openModal(active?.dataset.val || null);
+      });
+    }
+  }
+
+  // Мобайл: вертикальный список, один клик = попап
+  document.querySelectorAll('.hero-quiz__list-item').forEach(item => {
+    item.addEventListener('click', () => openModal(item.dataset.val || null));
   });
 }
 
