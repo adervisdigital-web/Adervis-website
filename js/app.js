@@ -202,37 +202,15 @@ function initServicesGrid() {
 }
 
 function initHeroQuiz() {
-  const chips   = document.querySelectorAll('.hero-quiz__chip');
-  const hintEl  = document.getElementById('heroQuizHint');
-  const sendBtn = document.getElementById('heroQuizSend');
-  if (!chips.length) return;
+  // Direction cards v3 — один клик открывает попап с нужным направлением
+  const cards = document.querySelectorAll('.hero-dir-card');
+  if (!cards.length) return;
 
-  // Кнопка неактивна пока не выбрано направление
-  if (sendBtn) sendBtn.disabled = true;
-
-  const updateSendBtn = () => {
-    if (sendBtn) sendBtn.disabled = !document.querySelector('.hero-quiz__chip.is-active');
-  };
-
-  chips.forEach(chip => {
-    chip.addEventListener('click', () => {
-      const wasActive = chip.classList.contains('is-active');
-      chips.forEach(c => c.classList.remove('is-active'));
-      const newVal = wasActive ? null : chip.dataset.val;
-      if (!wasActive) chip.classList.add('is-active');
-      if (hintEl) hintEl.textContent = newVal ? (chip.dataset.hint || '') : '';
-      syncCtaDirChips(newVal);
-      updateSendBtn();
+  cards.forEach(card => {
+    card.addEventListener('click', () => {
+      openModal(card.dataset.val || null);
     });
   });
-
-  if (sendBtn) {
-    sendBtn.addEventListener('click', () => {
-      const active = document.querySelector('.hero-quiz__chip.is-active');
-      const dir = active ? active.dataset.val : null;
-      openModal(dir);
-    });
-  }
 }
 
 function initFloatingCta() {
