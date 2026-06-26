@@ -105,6 +105,8 @@ document.addEventListener("DOMContentLoaded", () => {
   initReviewsSlider();
   initVideoThumbnails();
   initVideoReviewThumbnails(); // применяет data-thumb если задан вручную
+  initVideoReviewsPlayer();
+  initVimeoModal();
 });
 
 function initQuiz() {
@@ -1238,6 +1240,138 @@ function initVideoReviewThumbnails() {
     thumb.style.backgroundSize     = "cover";
     thumb.style.backgroundPosition = "center";
     thumb.classList.remove("video-poster__thumb--empty");
+  });
+}
+
+// Плеер видео-отзывов на главной (секция #vrPlayer) — выбор отзыва из списка,
+// кроссфейд фона, воспроизведение VK-iframe по клику на Play
+function initVideoReviewsPlayer() {
+  var VIDEOS = [
+    { url: 'https://vk.com/video_ext.php?oid=-121259819&id=456239134&autoplay=1', thumb: 'assets/cases/review-lesnikova.jpg', name: 'Алина Лесникова',  company: 'MOLODOST · Клиника молодости' },
+    { url: 'https://vk.com/video_ext.php?oid=-121259819&id=456239128&autoplay=1', thumb: 'assets/cases/review-pasport.jpg',  name: 'Паспорт Зубов',    company: 'Стоматология' },
+    { url: 'https://vk.com/video_ext.php?oid=-121259819&id=456239107&autoplay=1', thumb: 'assets/cases/review-abs.jpg',      name: 'Екатерина',         company: 'АБС Авто · Пермь' },
+    { url: 'https://vk.com/video_ext.php?oid=-121259819&id=456239074&autoplay=1', thumb: 'assets/cases/review-lishke.jpg',   name: 'Екатерина Лишке',  company: 'Феликс' },
+    { url: 'https://vk.com/video_ext.php?oid=-121259819&id=456239055&autoplay=1', thumb: 'assets/cases/review-mohov.jpg',    name: 'Дмитрий Мохов',    company: 'MOBILOV' },
+    { url: 'https://vk.com/video_ext.php?oid=-121259819&id=456239032&autoplay=1', thumb: 'assets/cases/review-bakilov.jpg',  name: 'Евгений Бакилов',  company: 'Express-Import' },
+    { url: 'https://vk.com/video_ext.php?oid=-121259819&id=456239033&autoplay=1', thumb: 'assets/cases/review-suetin.jpg',   name: 'Никита Суетин',    company: 'Видео-отзыв' },
+  ];
+
+  var current = 0;
+  var bg      = document.getElementById('vrBg');
+  if (!bg) return;
+
+  var poster  = document.getElementById('vrPoster');
+  var frame   = document.getElementById('vrFrame');
+  var nameEl  = document.getElementById('vrName');
+  var compEl  = document.getElementById('vrCompany');
+  var idxEl   = document.getElementById('vrIdx');
+  var listEl  = document.getElementById('vrList');
+  var playBtn = document.getElementById('vrPlayBtn');
+  var prevBtn = document.getElementById('vrPrev');
+  var nextBtn = document.getElementById('vrNext');
+
+  VIDEOS.forEach(function (v, i) {
+    var el = document.createElement('div');
+    el.className = 'vrp__item';
+    el.innerHTML =
+      '<div class="vrp__item-thumb" style="background-image:url(\'' + v.thumb + '\')"></div>' +
+      '<div class="vrp__item-info">' +
+        '<span class="vrp__item-num">' + String(i + 1).padStart(2, '0') + '</span>' +
+        '<span class="vrp__item-name">' + v.name + '</span>' +
+        '<span class="vrp__item-company">' + v.company + '</span>' +
+      '</div>';
+    el.addEventListener('click', function () { go(i); });
+    listEl.appendChild(el);
+  });
+
+  function stopVideo() {
+    frame.src = '';
+    frame.style.display = 'none';
+    poster.style.display = '';
+  }
+
+  function go(index) {
+    current = (index + VIDEOS.length) % VIDEOS.length;
+    var v = VIDEOS[current];
+
+    bg.style.opacity = '0';
+    setTimeout(function () {
+      bg.style.backgroundImage = 'url(\'' + v.thumb + '\')';
+      bg.style.opacity = '1';
+    }, 220);
+
+    if (nameEl) nameEl.textContent = v.name;
+    if (compEl) compEl.textContent = v.company;
+    if (idxEl)  idxEl.textContent  = String(current + 1).padStart(2, '0') + ' — ' + String(VIDEOS.length).padStart(2, '0');
+
+    listEl.querySelectorAll('.vrp__item').forEach(function (el, i) {
+      el.classList.toggle('is-active', i === current);
+    });
+    var active = listEl.querySelectorAll('.vrp__item')[current];
+    if (active) active.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+
+    stopVideo();
+  }
+
+  function play() {
+    frame.src = VIDEOS[current].url;
+    frame.style.display = 'block';
+    poster.style.display = 'none';
+  }
+
+  var nextInlineBtn = document.getElementById('vrNextInline');
+
+  playBtn.addEventListener('click', play);
+  if (prevBtn) prevBtn.addEventListener('click', function () { go(current - 1); });
+  if (nextBtn) nextBtn.addEventListener('click', function () { go(current + 1); });
+  if (nextInlineBtn) nextInlineBtn.addEventListener('click', function () { go(current + 1); });
+
+  var main = document.getElementById('vrMain');
+  if (main) {
+    var tx = 0;
+    main.addEventListener('touchstart', function (e) { tx = e.changedTouches[0].clientX; }, { passive: true });
+    main.addEventListener('touchend',   function (e) {
+      var dx = e.changedTouches[0].clientX - tx;
+      if (Math.abs(dx) > 50) { dx < 0 ? go(current + 1) : go(current - 1); }
+    });
+  }
+
+  go(0);
+}
+
+// Vimeo-модал для фото команды в секции «Что такое ADERVIS»
+function initVimeoModal() {
+  var modal    = document.getElementById('vimeoModal');
+  var frame    = document.getElementById('vimeoFrame');
+  var btn      = document.getElementById('vimeoClose');
+  var imgFrame = document.querySelector('.concept-img-frame');
+  var VIMEO_URL = 'https://player.vimeo.com/video/498780681?autoplay=1&color=f6bd3a&title=0&byline=0&portrait=0';
+
+  if (!imgFrame || !modal) return;
+
+  imgFrame.addEventListener('click', openVimeo);
+  imgFrame.addEventListener('keydown', function (e) {
+    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openVimeo(); }
+  });
+
+  function openVimeo() {
+    frame.src = VIMEO_URL;
+    modal.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    modal.style.display = 'none';
+    frame.src = '';
+    document.body.style.overflow = '';
+  }
+
+  btn.addEventListener('click', closeModal);
+  modal.addEventListener('click', function (e) {
+    if (e.target === modal) closeModal();
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && modal.style.display === 'flex') closeModal();
   });
 }
 
