@@ -756,6 +756,7 @@ a {
   font-weight: 700;
   letter-spacing: 0.09em;
   text-transform: uppercase;
+  text-decoration: none;
   border: none;
   border-radius: 100px;
   cursor: pointer;
