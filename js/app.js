@@ -59,6 +59,27 @@ document.addEventListener("DOMContentLoaded", () => {
     initMobileNav(headerRoot);
     markActiveNavLink(headerRoot);
     initThemeToggle(headerRoot);
+
+    // «Главная» на главной странице → прокрутка в начало без перезагрузки
+    headerRoot.querySelectorAll(".pill-nav__link").forEach(link => {
+      const normalHref = (link.getAttribute("href") || "")
+        .replace(rootPath, "/").replace(/\/$/, "") || "/";
+      if (normalHref !== "/") return;
+      link.addEventListener("click", e => {
+        const normalPath = window.location.pathname
+          .replace(rootPath, "/").replace(/\/$/, "") || "/";
+        if (normalPath !== "/") return; // другая страница — пусть браузер переходит
+        e.preventDefault();
+        window.scrollTo({ top: 0, behavior: "smooth" });
+        // закрыть мобильное меню если открыто
+        const nav = headerRoot.querySelector("#siteNav");
+        const backdrop = document.getElementById("navBackdrop");
+        const toggle   = headerRoot.querySelector("#navToggle");
+        if (nav)      nav.classList.remove("is-open");
+        if (backdrop) backdrop.classList.remove("is-visible");
+        if (toggle)   toggle.setAttribute("aria-expanded", "false");
+      });
+    });
   });
   loadComponent("footer-placeholder", `${rootPath}components/footer.html`).then(el => {
     initBackToTop(el);

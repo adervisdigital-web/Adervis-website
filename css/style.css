@@ -6349,7 +6349,7 @@ body.no-clients .clients-ticker-section {
   position: absolute;
   inset: 0;
   z-index: 1;
-  background: linear-gradient(to top, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.15) 40%, transparent 70%);
+  background: linear-gradient(to top, rgba(0,0,0,0.72) 0%, rgba(0,0,0,0.08) 32%, transparent 52%);
   pointer-events: none;
 }
 
@@ -6390,6 +6390,7 @@ body.no-clients .clients-ticker-section {
   z-index: 2;
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
   gap: 6px;
 }
 
@@ -6507,8 +6508,14 @@ body.no-clients .clients-ticker-section {
   .vp-cta-banner { grid-template-columns: 1fr; gap: var(--sp-6); padding: var(--sp-10) var(--sp-6); }
   .vp-cta-banner__actions { min-width: 0; width: 100%; }
 }
+@media (max-width: 680px) {
+  .vp-hero__content { padding: var(--sp-10) 0 var(--sp-10); gap: var(--sp-4); }
+  .vp-hero__title { font-size: clamp(30px, 7vw, 48px); }
+  .vp-hero__desc { font-size: 15px; }
+}
 @media (max-width: 480px) {
   .vp-featured { aspect-ratio: 4 / 3; }
+  .vp-hero__content { padding: var(--sp-8) 0 var(--sp-8); }
 }
 
 [data-theme="light"] .vp-trust-line { color: rgba(0,0,0,0.40); }
@@ -8363,6 +8370,10 @@ body.no-clients .clients-ticker-section {
   .chs-title { font-size: 34px; }
   .chs-stats { gap: 16px; }
 }
+@media (max-width: 600px) {
+  .chs-col:nth-child(n+3) { display: none; }
+  .cases-hero { min-height: 100dvh; }
+}
 
 /* ══════════════════════════════════════════════════════
    КЕЙСЫ — Full-Bleed Slideshow Hero
@@ -8372,11 +8383,11 @@ body.no-clients .clients-ticker-section {
 .cases-hero {
   position: relative;
   width: 100%;
-  height: 100vh;
-  min-height: 580px;
+  min-height: max(100dvh, 580px);
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
+  align-items: stretch;
   overflow: hidden;
   background: #090909;
   padding-top: 72px;
