@@ -88,6 +88,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   initServicesGrid();
   initHeroQuiz();
+  initFloatingCta();
   initQuiz();
   initModal();
   initCtaDirChips();
@@ -206,11 +207,25 @@ function initHeroQuiz() {
   const sendBtn = document.getElementById('heroQuizSend');
   if (!chips.length) return;
 
+  const dirLabels = { video: 'Видео', design: 'Дизайн', photo: 'Фото', ai: 'ИИ-контент' };
+
   // Кнопка неактивна пока не выбрано направление
   if (sendBtn) sendBtn.disabled = true;
 
-  const updateSendBtn = () => {
-    if (sendBtn) sendBtn.disabled = !document.querySelector('.hero-quiz__chip.is-active');
+  const arrowSvg = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>`;
+
+  const updateSendBtn = (dir) => {
+    if (!sendBtn) return;
+    sendBtn.disabled = !dir;
+    if (dir) {
+      sendBtn.innerHTML = `КП по ${dirLabels[dir] || dir} ${arrowSvg}`;
+      sendBtn.style.setProperty('--quiz-cc', `var(--c-${dir})`);
+      sendBtn.classList.add('has-selection');
+    } else {
+      sendBtn.innerHTML = `Начать ${arrowSvg}`;
+      sendBtn.style.removeProperty('--quiz-cc');
+      sendBtn.classList.remove('has-selection');
+    }
   };
 
   chips.forEach(chip => {
@@ -221,7 +236,7 @@ function initHeroQuiz() {
       if (!wasActive) chip.classList.add('is-active');
       if (hintEl) hintEl.textContent = newVal ? (chip.dataset.hint || '') : '';
       syncCtaDirChips(newVal);
-      updateSendBtn();
+      updateSendBtn(newVal);
     });
   });
 
@@ -229,18 +244,84 @@ function initHeroQuiz() {
     sendBtn.addEventListener('click', () => {
       const active = document.querySelector('.hero-quiz__chip.is-active');
       const dir = active ? active.dataset.val : null;
-      // Синхронизируем чипы в форме контактов
       if (dir) syncCtaDirChips(dir);
-      // Скроллим к форме если она есть на странице, иначе открываем модалку
       const contactsSection = document.getElementById('contacts');
       if (contactsSection) {
         contactsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        // Flash форму и pop выбранный чип после прокрутки
         setTimeout(() => {
-          const nameInput = document.getElementById('lh-name');
-          if (nameInput) nameInput.focus();
-        }, 600);
+          const ctaCard = contactsSection.querySelector('.cta-card');
+          if (ctaCard) {
+            ctaCard.classList.remove('quiz-arrived');
+            void ctaCard.offsetWidth;
+            ctaCard.classList.add('quiz-arrived');
+          }
+          if (dir) {
+            const activeChip = contactsSection.querySelector(`.cta-dir-chip[data-val="${dir}"]`);
+            if (activeChip) {
+              activeChip.classList.remove('quiz-popped');
+              void activeChip.offsetWidth;
+              activeChip.classList.add('quiz-popped');
+            }
+          }
+          document.getElementById('lh-name')?.focus();
+        }, 650);
       } else {
         openModal(dir);
+      }
+    });
+  }
+}
+
+function initFloatingCta() {
+  const bar = document.createElement('div');
+  bar.className = 'floating-cta';
+  bar.id = 'floatingCta';
+  bar.setAttribute('aria-hidden', 'true');
+  bar.innerHTML = `
+    <a href="tel:+79223018880" class="floating-cta__call" aria-label="Позвонить: +7 922 301-88-80">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.36 12 19.79 19.79 0 0 1 1.29 3.33 2 2 0 0 1 3.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+    </a>
+    <button type="button" class="floating-cta__btn" id="floatingCtaBtn">
+      Обсудить проект
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </button>`;
+  document.body.appendChild(bar);
+
+  const btn = bar.querySelector('#floatingCtaBtn');
+  const contacts = document.getElementById('contacts');
+  let ticking = false;
+
+  const update = () => {
+    const scrollY = window.scrollY;
+    const heroEl = document.querySelector('.hero-section, .vp-hero, .cases-hero');
+    const heroBottom = heroEl ? heroEl.offsetTop + heroEl.offsetHeight * 0.55 : 320;
+    const contactsTop = contacts
+      ? contacts.getBoundingClientRect().top + scrollY - 80
+      : Infinity;
+    const shouldShow = scrollY > heroBottom && scrollY < contactsTop;
+    bar.classList.toggle('is-visible', shouldShow);
+    bar.setAttribute('aria-hidden', String(!shouldShow));
+    ticking = false;
+  };
+
+  window.addEventListener('scroll', () => {
+    if (!ticking) { requestAnimationFrame(update); ticking = true; }
+  }, { passive: true });
+
+  update();
+
+  if (btn) {
+    btn.addEventListener('click', () => {
+      const modal = document.getElementById('requestModal');
+      const active = document.querySelector('.hero-quiz__chip.is-active');
+      const dir = active?.dataset.val || null;
+      if (modal) {
+        openModal(dir);
+      } else if (contacts) {
+        if (dir) syncCtaDirChips(dir);
+        contacts.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        setTimeout(() => document.getElementById('lh-name')?.focus(), 600);
       }
     });
   }

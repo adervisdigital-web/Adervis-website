@@ -9661,3 +9661,125 @@ body.no-clients .clients-ticker-section {
     font-size: 15px;
   }
 }
+
+/* ═══════════════════════════════════════════════════════════════
+   FLOATING MOBILE CTA
+   Появляется после прокрутки hero, исчезает у #contacts
+   ═══════════════════════════════════════════════════════════════ */
+.floating-cta {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 880;
+  padding: 10px 16px;
+  padding-bottom: max(10px, env(safe-area-inset-bottom, 0px));
+  background: var(--glass);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-top: 1px solid var(--line);
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  transform: translateY(110%);
+  transition: transform 0.38s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform;
+}
+
+.floating-cta.is-visible {
+  transform: translateY(0);
+}
+
+.floating-cta__call {
+  width: 48px;
+  min-width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--bg3);
+  border: 1px solid var(--line);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--gold);
+  text-decoration: none;
+  transition: background 0.2s, border-color 0.2s;
+}
+
+.floating-cta__call:hover {
+  background: var(--gold-bg);
+  border-color: rgba(246, 189, 58, 0.3);
+}
+
+.floating-cta__btn {
+  flex: 1;
+  height: 48px;
+  background: var(--gold);
+  color: #141414;
+  border: none;
+  border-radius: var(--radius-md);
+  font-family: var(--font-display);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  transition: box-shadow 0.2s, transform 0.18s;
+}
+
+.floating-cta__btn:active {
+  transform: scale(0.97);
+}
+
+@media (min-width: 769px) {
+  .floating-cta { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .floating-cta {
+    transition: opacity 0.2s;
+    transform: none !important;
+  }
+  .floating-cta:not(.is-visible) { opacity: 0; pointer-events: none; }
+  .floating-cta.is-visible { opacity: 1; }
+}
+
+/* ─── Hero quiz: direction-aware CTA button ─── */
+.hero-quiz__cta.has-selection {
+  background: var(--quiz-cc, var(--gold));
+  box-shadow: 0 0 18px color-mix(in srgb, var(--quiz-cc, var(--gold)) 45%, transparent);
+  transition: background 0.25s, box-shadow 0.25s, transform 0.18s;
+}
+
+.hero-quiz__cta.has-selection:hover:not(:disabled) {
+  box-shadow: 0 0 36px color-mix(in srgb, var(--quiz-cc, var(--gold)) 60%, transparent);
+  transform: translateY(-1px);
+}
+
+/* ─── Form flash highlight при скролле от квиза ─── */
+@keyframes cta-card-flash {
+  0%   { box-shadow: 0 0 0 0 rgba(246,189,58,0); }
+  30%  { box-shadow: 0 0 0 3px rgba(246,189,58,0.45); }
+  100% { box-shadow: 0 0 0 0 rgba(246,189,58,0); }
+}
+
+.cta-card.quiz-arrived {
+  animation: cta-card-flash 1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes dir-chip-pop {
+  0%   { transform: scale(1); }
+  40%  { transform: scale(1.08); }
+  100% { transform: scale(1); }
+}
+
+.cta-dir-chip.quiz-popped {
+  animation: dir-chip-pop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cta-card.quiz-arrived,
+  .cta-dir-chip.quiz-popped { animation: none; }
+}
