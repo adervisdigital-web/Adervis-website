@@ -96,6 +96,9 @@ document.addEventListener("DOMContentLoaded", () => {
   initScrollReveal();
   initStatCounters();
   initVideoCalculator();
+  initSimpleCalculator("designCalc", "Заявка на дизайн с сайта ADERVIS");
+  initSimpleCalculator("photoCalc", "Заявка на фотосъёмку с сайта ADERVIS");
+  initSimpleCalculator("aiCalc", "Заявка на ИИ-контент с сайта ADERVIS");
   initLeadForm();
   initScrollProgress();
   initCardSpotlight();
@@ -695,6 +698,90 @@ function initVideoCalculator() {
       sb.disabled = true;
       sb.innerHTML = `Заявка отправлена — ответим в течение дня&nbsp;&nbsp;<a href="${tgUrl}" target="_blank" rel="noopener noreferrer" style="color:inherit;text-decoration:underline;font-weight:500">открыть Telegram</a>`;
       setTimeout(() => { sb.innerHTML = origHTML; sb.disabled = false; }, 8000);
+    }
+  });
+}
+
+// Универсальный калькулятор для страниц дизайна, фото и ИИ
+// Логика идентична видео-калькулятору, отличается только formId и заголовок Telegram
+function initSimpleCalculator(formId, tgPrefix) {
+  const form = document.getElementById(formId);
+  if (!form) return;
+
+  const formatSelect = form.querySelector('[data-role="format"]');
+  const lengthSelect = form.querySelector('[data-role="length"]');
+  const checkboxes = form.querySelectorAll('.calc-options input[type="checkbox"]');
+  const resultEl = form.querySelector('[data-role="result"]');
+  const fmt = new Intl.NumberFormat("ru-RU");
+
+  const steps = Array.from(form.querySelectorAll(".calc-step"));
+  const dots = Array.from(form.querySelectorAll(".calc-progress-step"));
+  const backBtn = form.querySelector('[data-calc-action="back"]');
+  const nextBtn = form.querySelector('[data-calc-action="next"]');
+  const submitBtn = form.querySelector('[data-calc-action="submit"]');
+  const lastStep = steps.length;
+  let current = 1;
+
+  const calculate = () => {
+    const base = Number(formatSelect.selectedOptions[0].dataset.base);
+    const mult = Number(lengthSelect.selectedOptions[0].dataset.mult);
+    let addOns = 0;
+    checkboxes.forEach(box => { if (box.checked) addOns += Number(box.dataset.add); });
+    const center = base * mult + addOns;
+    const low = Math.round((center * 0.85) / 1000) * 1000;
+    const high = Math.round((center * 1.2) / 1000) * 1000;
+    resultEl.textContent = `от ${fmt.format(low)} до ${fmt.format(high)} ₽`;
+    return { low, high };
+  };
+
+  const showStep = (n) => {
+    current = n;
+    steps.forEach(s => s.classList.toggle("is-active", Number(s.dataset.step) === n));
+    dots.forEach((d, i) => {
+      d.classList.toggle("is-active", i + 1 === n);
+      d.classList.toggle("is-done", i + 1 < n);
+    });
+    backBtn.hidden = n === 1;
+    nextBtn.hidden = n === lastStep;
+    submitBtn.hidden = n !== lastStep;
+    if (n === lastStep) calculate();
+  };
+
+  form.addEventListener("change", calculate);
+  calculate();
+  showStep(1);
+
+  backBtn.addEventListener("click", () => { if (current > 1) showStep(current - 1); });
+  nextBtn.addEventListener("click", () => { if (current < lastStep) showStep(current + 1); });
+
+  form.addEventListener("submit", (event) => {
+    event.preventDefault();
+    const { low, high } = calculate();
+    const name = form.querySelector('[name="leadName"]').value.trim();
+    const contact = form.querySelector('[name="leadContact"]').value.trim();
+    const deadline = form.querySelector('[name="leadDeadline"]').value.trim();
+    if (!name || !contact) return;
+    const extras = Array.from(checkboxes)
+      .filter(box => box.checked)
+      .map(box => box.parentElement.querySelector("span").textContent.trim());
+    const lines = [
+      `Имя: ${name}`,
+      `Контакт: ${contact}`,
+      deadline ? `Срок: ${deadline}` : null,
+      `Услуга: ${formatSelect.selectedOptions[0].textContent.trim()}`,
+      `Параметр: ${lengthSelect.selectedOptions[0].textContent.trim()}`,
+      extras.length ? `Дополнительно: ${extras.join(", ")}` : null,
+      `Ориентировочный бюджет: от ${fmt.format(low)} до ${fmt.format(high)} ₽`,
+    ].filter(Boolean).join("\n");
+    const tgText = encodeURIComponent(`${tgPrefix}:\n\n${lines}`);
+    const tgUrl = `https://t.me/Adervis_digital?text=${tgText}`;
+    openTgLink(tgUrl);
+    const sb = form.querySelector('[type="submit"]');
+    if (sb) {
+      const orig = sb.innerHTML;
+      sb.disabled = true;
+      sb.innerHTML = `Заявка отправлена — ответим в течение дня&nbsp;&nbsp;<a href="${tgUrl}" target="_blank" rel="noopener noreferrer" style="color:inherit;text-decoration:underline;font-weight:500">открыть Telegram</a>`;
+      setTimeout(() => { sb.innerHTML = orig; sb.disabled = false; }, 8000);
     }
   });
 }

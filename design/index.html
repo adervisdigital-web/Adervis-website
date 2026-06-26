@@ -148,7 +148,6 @@
     <section class="section">
       <div class="container">
         <div class="section-head reveal">
-          <span class="eyebrow">Что мы делаем</span>
           <h2>Дизайн как система, а не разовая картинка</h2>
           <p>Не рисуем логотип ради логотипа — выстраиваем визуальный язык, который потом одинаково хорошо работает на сайте, в рекламе и на упаковке</p>
         </div>
@@ -231,7 +230,6 @@
     <section class="section">
       <div class="container">
         <div class="section-head reveal">
-          <span class="eyebrow">Как мы работаем</span>
           <h2>Четыре шага от брифа до готовой системы</h2>
           <p>Не рисуем «по наитию» — на каждом этапе фиксируем решения, чтобы результат можно было обосновать, а не просто понадеяться, что понравится</p>
         </div>
@@ -285,7 +283,6 @@
     <section class="section" id="works">
       <div class="container">
         <div class="section-head reveal">
-          <span class="eyebrow">Портфолио</span>
           <h2>Бренды, для которых мы создавали айдентику</h2>
           <p>Больше 100 логотипов и фирменных стилей — от производственных компаний до спортивных команд и заведений. Вот часть из них</p>
         </div>
@@ -385,9 +382,8 @@
     <section class="section">
       <div class="container">
         <div class="section-head reveal">
-          <span class="eyebrow">Отзывы</span>
           <h2>Что говорят клиенты</h2>
-          <p>Работаем с 2018 года — логотипы, брендбуки и фирстиль для компаний, которые потом возвращаются</p>
+          <p>Работаем с 2018 года: логотипы, брендбуки и фирстиль для компаний, которые потом возвращаются.</p>
         </div>
         <div class="reviews-slider">
           <div class="reviews-track-outer">
@@ -482,7 +478,6 @@
     <section class="section">
       <div class="container">
         <div class="section-head reveal">
-          <span class="eyebrow">Частые вопросы</span>
           <h2>То, что обычно спрашивают перед стартом</h2>
           <p>Если вашего вопроса здесь нет — напишите или позвоните, ответим за 2 часа в рабочее время</p>
         </div>
@@ -518,6 +513,84 @@
             <p>Да, всегда — векторные файлы знака, шрифты (там, где это предусмотрено лицензией) и брендбук в удобных форматах для работы и печати. Это ваш актив, который остаётся с вами, а не наш внутренний рабочий файл.</p>
           </details>
         </div>
+      </div>
+    </section>
+
+    <!-- Калькулятор стоимости -->
+    <section class="section">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">Расчёт стоимости</span>
+          <h2>Три коротких шага — ориентир по бюджету</h2>
+          <p>Выберите тип работы и масштаб — покажем вилку. Точную смету собираем после брифа.</p>
+        </div>
+        <form class="calc-card reveal" id="designCalc" novalidate>
+          <ol class="calc-progress" aria-label="Шаги расчёта">
+            <li class="calc-progress-step is-active" data-step-dot="1"><span>1</span>Вид работы</li>
+            <li class="calc-progress-step" data-step-dot="2"><span>2</span>Опции</li>
+            <li class="calc-progress-step" data-step-dot="3"><span>3</span>Контакты</li>
+          </ol>
+
+          <div class="calc-step is-active" data-step="1">
+            <div class="calc-grid">
+              <label class="calc-field">
+                <span class="calc-field-label">Что нужно сделать</span>
+                <select class="calc-select" name="format" data-role="format">
+                  <option value="logo" data-base="25000">Логотип</option>
+                  <option value="identity" data-base="55000">Фирменный стиль</option>
+                  <option value="brandbook" data-base="90000">Брендбук</option>
+                  <option value="redesign" data-base="45000">Редизайн существующего бренда</option>
+                </select>
+              </label>
+              <label class="calc-field">
+                <span class="calc-field-label">Масштаб компании</span>
+                <select class="calc-select" name="length" data-role="length">
+                  <option value="small" data-mult="0.8">Стартап / малый бизнес</option>
+                  <option value="medium" data-mult="1" selected>Средний бизнес</option>
+                  <option value="large" data-mult="1.5">Крупная компания</option>
+                </select>
+              </label>
+            </div>
+          </div>
+
+          <div class="calc-step" data-step="2">
+            <fieldset class="calc-options">
+              <legend class="calc-field-label">Что добавить к проекту</legend>
+              <label class="calc-check"><input type="checkbox" name="mockups" data-add="8000"><span>Мокапы на носителях (визитка, кружка, форма)</span></label>
+              <label class="calc-check"><input type="checkbox" name="anim" data-add="12000"><span>Анимация логотипа для видео и соцсетей</span></label>
+              <label class="calc-check"><input type="checkbox" name="variants" data-add="10000"><span>Дополнительные концепции (+2 варианта)</span></label>
+              <label class="calc-check"><input type="checkbox" name="print" data-add="15000"><span>Полиграфия под ключ (визитки, листовки, баннеры)</span></label>
+            </fieldset>
+          </div>
+
+          <div class="calc-step" data-step="3">
+            <div class="calc-result">
+              <span class="calc-result-label">Ориентировочный бюджет по вашим параметрам</span>
+              <strong class="calc-result-value" data-role="result">от 20 000 до 30 000 ₽</strong>
+              <span class="calc-result-hint">Вилка для предварительной оценки. Точную сумму фиксируем в смете после брифа. Укажите контакты, и мы пришлём расчёт:</span>
+            </div>
+            <div class="calc-grid">
+              <label class="calc-field">
+                <span class="calc-field-label">Как к вам обращаться</span>
+                <input type="text" name="leadName" class="lead-input" placeholder="Имя" autocomplete="name" required>
+              </label>
+              <label class="calc-field">
+                <span class="calc-field-label">Телефон, e-mail или Telegram</span>
+                <input type="text" name="leadContact" class="lead-input" placeholder="+7 922 000-00-00 / @username" autocomplete="tel" required>
+              </label>
+            </div>
+            <label class="calc-field">
+              <span class="calc-field-label">Когда нужен результат</span>
+              <input type="text" name="leadDeadline" class="lead-input" placeholder="Например: к открытию нового офиса в августе">
+            </label>
+          </div>
+
+          <div class="calc-nav">
+            <button type="button" class="btn" data-calc-action="back">Назад</button>
+            <button type="button" class="btn primary" data-calc-action="next">Далее</button>
+            <button type="submit" class="btn primary" data-calc-action="submit">Получить расчёт на почту</button>
+          </div>
+        </form>
       </div>
     </section>
 

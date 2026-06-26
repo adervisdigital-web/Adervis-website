@@ -148,7 +148,6 @@
     <section class="section" id="formats">
       <div class="container">
         <div class="section-head reveal">
-          <span class="eyebrow">Форматы</span>
           <h2>Какую съёмку мы делаем</h2>
           <p>Подбираем формат, свет и команду под задачу — от карточки товара на маркетплейсе до имиджевой серии для сайта и презентаций</p>
         </div>
@@ -297,7 +296,6 @@
     <section class="section">
       <div class="container">
         <div class="section-head reveal">
-          <span class="eyebrow">Как мы работаем</span>
           <h2>От референсов до готовой серии</h2>
           <p>Хорошая съёмка не начинается со вспышки камеры — она начинается с понимания, где и зачем кадр будет использован</p>
         </div>
@@ -403,7 +401,6 @@
     <section class="section">
       <div class="container">
         <div class="section-head reveal">
-          <span class="eyebrow">Отзывы</span>
           <h2>Что говорят клиенты</h2>
           <p>Работаем с 2018 года — предметная, каталожная и event-съёмка для компаний по всей России</p>
         </div>
@@ -500,7 +497,6 @@
     <section class="section">
       <div class="container">
         <div class="section-head reveal">
-          <span class="eyebrow">Частые вопросы</span>
           <h2>То, что обычно спрашивают перед съёмкой</h2>
           <p>Если не нашли ответ на свой вопрос — напишите или позвоните, ответим за 2 часа в рабочее время</p>
         </div>
@@ -536,6 +532,84 @@
             <p>Черновой отбор присылаем в течение нескольких дней — чтобы вы могли согласовать направление обработки. Финальная серия в обработке готова обычно за 1–2 недели в зависимости от объёма.</p>
           </details>
         </div>
+      </div>
+    </section>
+
+    <!-- Калькулятор стоимости -->
+    <section class="section">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">Расчёт стоимости</span>
+          <h2>Три коротких шага — ориентир по бюджету</h2>
+          <p>Выберите формат съёмки и объём — покажем вилку. Точную смету собираем после брифа.</p>
+        </div>
+        <form class="calc-card reveal" id="photoCalc" novalidate>
+          <ol class="calc-progress" aria-label="Шаги расчёта">
+            <li class="calc-progress-step is-active" data-step-dot="1"><span>1</span>Формат</li>
+            <li class="calc-progress-step" data-step-dot="2"><span>2</span>Опции</li>
+            <li class="calc-progress-step" data-step-dot="3"><span>3</span>Контакты</li>
+          </ol>
+
+          <div class="calc-step is-active" data-step="1">
+            <div class="calc-grid">
+              <label class="calc-field">
+                <span class="calc-field-label">Тип съёмки</span>
+                <select class="calc-select" name="format" data-role="format">
+                  <option value="product" data-base="15000">Предметная / каталог</option>
+                  <option value="portrait" data-base="25000">Имиджевая / портреты команды</option>
+                  <option value="event" data-base="35000">Репортаж / мероприятие</option>
+                  <option value="content" data-base="20000">Контент-серия для соцсетей</option>
+                </select>
+              </label>
+              <label class="calc-field">
+                <span class="calc-field-label">Объём</span>
+                <select class="calc-select" name="length" data-role="length">
+                  <option value="mini" data-mult="0.7">До 15 позиций / 2–3 часа</option>
+                  <option value="standard" data-mult="1" selected>15–50 позиций / полдня</option>
+                  <option value="large" data-mult="1.8">50+ позиций / полный день</option>
+                </select>
+              </label>
+            </div>
+          </div>
+
+          <div class="calc-step" data-step="2">
+            <fieldset class="calc-options">
+              <legend class="calc-field-label">Что добавить к проекту</legend>
+              <label class="calc-check"><input type="checkbox" name="props" data-add="8000"><span>Стилист и реквизит на площадке</span></label>
+              <label class="calc-check"><input type="checkbox" name="travel" data-add="18000"><span>Выезд в другой город</span></label>
+              <label class="calc-check"><input type="checkbox" name="raw" data-add="5000"><span>RAW-файлы без сжатия</span></label>
+              <label class="calc-check"><input type="checkbox" name="rush" data-add="10000"><span>Срочная обработка (3 рабочих дня)</span></label>
+            </fieldset>
+          </div>
+
+          <div class="calc-step" data-step="3">
+            <div class="calc-result">
+              <span class="calc-result-label">Ориентировочный бюджет по вашим параметрам</span>
+              <strong class="calc-result-value" data-role="result">от 10 000 до 15 000 ₽</strong>
+              <span class="calc-result-hint">Вилка для предварительной оценки. Точную сумму фиксируем после брифа. Укажите контакты, и мы пришлём смету:</span>
+            </div>
+            <div class="calc-grid">
+              <label class="calc-field">
+                <span class="calc-field-label">Как к вам обращаться</span>
+                <input type="text" name="leadName" class="lead-input" placeholder="Имя" autocomplete="name" required>
+              </label>
+              <label class="calc-field">
+                <span class="calc-field-label">Телефон, e-mail или Telegram</span>
+                <input type="text" name="leadContact" class="lead-input" placeholder="+7 922 000-00-00 / @username" autocomplete="tel" required>
+              </label>
+            </div>
+            <label class="calc-field">
+              <span class="calc-field-label">Когда нужна съёмка</span>
+              <input type="text" name="leadDeadline" class="lead-input" placeholder="Например: к выставке в октябре или как можно скорее">
+            </label>
+          </div>
+
+          <div class="calc-nav">
+            <button type="button" class="btn" data-calc-action="back">Назад</button>
+            <button type="button" class="btn primary" data-calc-action="next">Далее</button>
+            <button type="submit" class="btn primary" data-calc-action="submit">Получить расчёт на почту</button>
+          </div>
+        </form>
       </div>
     </section>
 

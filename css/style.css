@@ -2960,6 +2960,34 @@ a {
 }
 
 /* Портфолио / кейсы (страницы направлений) */
+.career-status-banner {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  background: color-mix(in srgb, var(--gold) 8%, transparent);
+  border: 1px solid color-mix(in srgb, var(--gold) 30%, transparent);
+  border-radius: var(--radius-lg);
+  padding: var(--sp-4) var(--sp-5);
+  margin-bottom: var(--sp-6);
+}
+.career-status-dot {
+  flex-shrink: 0;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--gold);
+  margin-top: 6px;
+}
+.career-status-banner p {
+  margin: 0;
+  font-size: 15px;
+  color: var(--t2);
+  line-height: 1.6;
+}
+.career-status-banner strong { color: var(--t1); }
+.career-status-banner a { color: var(--gold); text-decoration: underline; }
+.career-status-banner a:hover { opacity: 0.8; }
+
 .cases-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);

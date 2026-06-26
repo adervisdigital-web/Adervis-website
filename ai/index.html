@@ -148,7 +148,6 @@
     <section class="section" id="formats">
       <div class="container">
         <div class="section-head reveal">
-          <span class="eyebrow">Что мы делаем</span>
           <h2>Нейросети как инструмент, а не как результат</h2>
           <p>Используем ИИ там, где он действительно ускоряет работу — и всегда добавляем человеческий контроль там, где решает вкус, а не алгоритм</p>
         </div>
@@ -231,7 +230,6 @@
     <section class="section" id="cases">
       <div class="container">
         <div class="section-head reveal">
-          <span class="eyebrow">Кейсы работ</span>
           <h2>ИИ в деле — реальные результаты</h2>
           <p>Не мокапы, а готовые проекты, сданные клиентам. Каждый прошёл через арт-дирекшн и ручную доработку</p>
         </div>
@@ -322,7 +320,6 @@
     <section class="section">
       <div class="container">
         <div class="section-head reveal">
-          <span class="eyebrow">Где это применимо</span>
           <h2>Задачи, которые ИИ закрывает быстрее и дешевле</h2>
           <p>Не ставим нейросети туда, где важен «человеческий» кадр или авторский голос — но там, где решают объём и скорость, они экономят недели</p>
         </div>
@@ -353,7 +350,6 @@
     <section class="section">
       <div class="container">
         <div class="section-head reveal">
-          <span class="eyebrow">Как мы это делаем</span>
           <h2>Генерация — это черновик. Результат делает человек</h2>
           <p>Главная разница между «сгенерировалось» и «выглядит профессионально» — в том, сколько ручной работы стоит за финальным кадром</p>
         </div>
@@ -402,7 +398,6 @@
     <section class="section">
       <div class="container">
         <div class="section-head reveal">
-          <span class="eyebrow">Отзывы</span>
           <h2>Что говорят клиенты</h2>
           <p>ИИ-контент с арт-дирекшеном — уже в работе у этих компаний</p>
         </div>
@@ -499,7 +494,6 @@
     <section class="section">
       <div class="container">
         <div class="section-head reveal">
-          <span class="eyebrow">Частые вопросы</span>
           <h2>То, что обычно спрашивают про ИИ-контент</h2>
           <p>Если сомневаетесь, подходит ли это вашей задаче — спросите напрямую, разберём конкретный кейс</p>
         </div>
@@ -535,6 +529,84 @@
             <p>Дешевле и быстрее классического продакшна — генерация и отбор занимают дни, а не недели. Точную стоимость и сроки считаем после короткого брифа: на итог влияют объём, формат и уровень ручной доработки.</p>
           </details>
         </div>
+      </div>
+    </section>
+
+    <!-- Калькулятор стоимости -->
+    <section class="section">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">Расчёт стоимости</span>
+          <h2>Три коротких шага — ориентир по бюджету</h2>
+          <p>Выберите тип ИИ-контента и объём — покажем вилку. Точную смету собираем после брифа.</p>
+        </div>
+        <form class="calc-card reveal" id="aiCalc" novalidate>
+          <ol class="calc-progress" aria-label="Шаги расчёта">
+            <li class="calc-progress-step is-active" data-step-dot="1"><span>1</span>Тип контента</li>
+            <li class="calc-progress-step" data-step-dot="2"><span>2</span>Опции</li>
+            <li class="calc-progress-step" data-step-dot="3"><span>3</span>Контакты</li>
+          </ol>
+
+          <div class="calc-step is-active" data-step="1">
+            <div class="calc-grid">
+              <label class="calc-field">
+                <span class="calc-field-label">Что нужно сделать</span>
+                <select class="calc-select" name="format" data-role="format">
+                  <option value="images" data-base="8000">ИИ-изображения / визуалы</option>
+                  <option value="video" data-base="28000">ИИ-видео / анимация</option>
+                  <option value="voice" data-base="6000">ИИ-озвучка / голос</option>
+                  <option value="hybrid" data-base="38000">Гибридный проект (фото + ИИ)</option>
+                </select>
+              </label>
+              <label class="calc-field">
+                <span class="calc-field-label">Объём</span>
+                <select class="calc-select" name="length" data-role="length">
+                  <option value="small" data-mult="0.8">Мини-пакет (5–10 единиц)</option>
+                  <option value="medium" data-mult="1" selected>Стандарт (20–50 единиц)</option>
+                  <option value="large" data-mult="1.8">Большой объём (50–100 единиц)</option>
+                  <option value="stream" data-mult="2.5">Поточное производство</option>
+                </select>
+              </label>
+            </div>
+          </div>
+
+          <div class="calc-step" data-step="2">
+            <fieldset class="calc-options">
+              <legend class="calc-field-label">Что добавить к проекту</legend>
+              <label class="calc-check"><input type="checkbox" name="brand" data-add="5000"><span>Адаптация под фирменный стиль бренда</span></label>
+              <label class="calc-check"><input type="checkbox" name="formats" data-add="6000"><span>Несколько форматов под разные платформы</span></label>
+              <label class="calc-check"><input type="checkbox" name="rush" data-add="8000"><span>Ускоренные сроки (2–3 рабочих дня)</span></label>
+            </fieldset>
+          </div>
+
+          <div class="calc-step" data-step="3">
+            <div class="calc-result">
+              <span class="calc-result-label">Ориентировочный бюджет по вашим параметрам</span>
+              <strong class="calc-result-value" data-role="result">от 5 000 до 10 000 ₽</strong>
+              <span class="calc-result-hint">Вилка для предварительной оценки. Точную сумму фиксируем после брифа. Укажите контакты, и мы пришлём расчёт:</span>
+            </div>
+            <div class="calc-grid">
+              <label class="calc-field">
+                <span class="calc-field-label">Как к вам обращаться</span>
+                <input type="text" name="leadName" class="lead-input" placeholder="Имя" autocomplete="name" required>
+              </label>
+              <label class="calc-field">
+                <span class="calc-field-label">Телефон, e-mail или Telegram</span>
+                <input type="text" name="leadContact" class="lead-input" placeholder="+7 922 000-00-00 / @username" autocomplete="tel" required>
+              </label>
+            </div>
+            <label class="calc-field">
+              <span class="calc-field-label">Когда нужен контент</span>
+              <input type="text" name="leadDeadline" class="lead-input" placeholder="Например: к запуску рекламной кампании в сентябре">
+            </label>
+          </div>
+
+          <div class="calc-nav">
+            <button type="button" class="btn" data-calc-action="back">Назад</button>
+            <button type="button" class="btn primary" data-calc-action="next">Далее</button>
+            <button type="submit" class="btn primary" data-calc-action="submit">Получить расчёт на почту</button>
+          </div>
+        </form>
       </div>
     </section>
 
