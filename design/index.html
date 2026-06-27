@@ -121,30 +121,13 @@
     <!-- Hero -->
     <section class="hero-section" data-dir="design">
 
-      <!-- Liquid фон: SMIL-анимация (GPU, без JS рывков) -->
+      <!-- SVG фильтр: только курсор управляет деформацией -->
       <svg class="design-svg-defs" aria-hidden="true">
         <defs>
           <filter id="design-liquid" x="-25%" y="-25%" width="150%" height="150%" color-interpolation-filters="sRGB">
-            <feTurbulence type="fractalNoise" numOctaves="4" seed="5" result="noise">
-              <animate attributeName="baseFrequency"
-                values="0.0065 0.0088; 0.0102 0.0130; 0.0078 0.0095; 0.0055 0.0115; 0.0065 0.0088"
-                dur="28s" repeatCount="indefinite" calcMode="spline"
-                keySplines="0.4 0 0.6 1;0.4 0 0.6 1;0.4 0 0.6 1;0.4 0 0.6 1"/>
-            </feTurbulence>
+            <feTurbulence id="dsgTurb" type="fractalNoise"
+              baseFrequency="0.022 0.022" numOctaves="4" seed="5" result="noise"/>
             <feDisplacementMap id="dsgDisp" in="SourceGraphic" in2="noise"
-              scale="72" xChannelSelector="R" yChannelSelector="G">
-              <animate attributeName="scale"
-                values="72;95;60;85;72"
-                dur="22s" repeatCount="indefinite" calcMode="spline"
-                keySplines="0.4 0 0.6 1;0.4 0 0.6 1;0.4 0 0.6 1;0.4 0 0.6 1"/>
-            </feDisplacementMap>
-          </filter>
-
-          <!-- Фильтр деформации для промо-блока (курсор управляет scale) -->
-          <filter id="dpb-warp" x="-20%" y="-20%" width="140%" height="140%" color-interpolation-filters="sRGB">
-            <feTurbulence id="dpbTurb" type="fractalNoise"
-              baseFrequency="0.006 0.008" numOctaves="3" seed="12" result="wnoise"/>
-            <feDisplacementMap id="dpbDisp" in="SourceGraphic" in2="wnoise"
               scale="0" xChannelSelector="R" yChannelSelector="G"/>
           </filter>
         </defs>
@@ -154,6 +137,8 @@
         <div class="design-bg-base"></div>
         <div class="design-bg-fluid"></div>
         <div class="design-bg-vignette"></div>
+        <!-- Затемнение снизу -->
+        <div class="design-bg-bottom-fade"></div>
       </div>
 
       <div class="page-aurora" aria-hidden="true">
@@ -670,6 +655,34 @@
   <div id="footer-placeholder"></div>
 
   <script src="../js/app.js"></script>
+  <script>
+  /* Hero BG-F.png: деформация ТОЛЬКО под курсором */
+  (function () {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    var hero  = document.querySelector('.hero-section[data-dir="design"]');
+    var dp    = document.getElementById('dsgDisp');
+    var fluid = document.querySelector('.design-bg-fluid');
+    if (!hero || !dp || !fluid) return;
+    var mx = 0.5, my = 0.5, lx = 0.5, ly = 0.5;
+    var curScale = 0, tgtScale = 0;
+    function lerp(a, b, k) { return a + (b - a) * k; }
+    hero.addEventListener('mousemove', function (e) {
+      var r = hero.getBoundingClientRect();
+      mx = (e.clientX - r.left) / r.width;
+      my = (e.clientY - r.top)  / r.height;
+      tgtScale = 55;
+    });
+    hero.addEventListener('mouseleave', function () { tgtScale = 0; });
+    function tick() {
+      lx = lerp(lx, mx, 0.05); ly = lerp(ly, my, 0.05);
+      curScale = lerp(curScale, tgtScale, 0.07);
+      fluid.style.transform = 'translate(' + ((lx - 0.5) * 28).toFixed(1) + 'px,' + ((ly - 0.5) * 18).toFixed(1) + 'px)';
+      dp.setAttribute('scale', curScale.toFixed(1));
+      requestAnimationFrame(tick);
+    }
+    tick();
+  }());
+  </script>
   <script>
   /* Промо-блок: плавный parallax от курсора (lerp, без SVG деформации) */
   (function () {

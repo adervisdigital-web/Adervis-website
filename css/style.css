@@ -6674,9 +6674,19 @@ body.no-clients .clients-ticker-section {
   mix-blend-mode: screen;
   opacity: 0.95;
   filter: url(#design-liquid) saturate(1.6) brightness(1.15);
-  animation: designFluidDrift 30s ease-in-out infinite;
+  /* нет автоанимации — только реакция на курсор через JS */
   will-change: transform;
-  /* без transition — JS-lerp обеспечивает плавность */
+}
+
+.design-bg-bottom-fade {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 55%;
+  z-index: 2;
+  background: linear-gradient(to bottom, transparent 0%, rgba(5, 2, 16, 0.98) 100%);
+  pointer-events: none;
 }
 
 @keyframes designFluidDrift {
