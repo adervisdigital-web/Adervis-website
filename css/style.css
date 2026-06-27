@@ -8426,7 +8426,7 @@ body.no-clients .clients-ticker-section {
   --hero-accent: var(--c-video);
   background-image:
     radial-gradient(rgba(255, 255, 255, 0.028) 1px, transparent 1px),
-    linear-gradient(rgba(0, 0, 0, 0.52), rgba(0, 0, 0, 0.52)),
+    linear-gradient(to right, rgba(0, 0, 0, 0.38) 0%, rgba(0, 0, 0, 0.05) 55%, transparent 100%),
     url('../video/BG_video.jpg');
   background-size: 36px 36px, cover, cover;
   background-position: center, center, center;
