@@ -419,7 +419,11 @@
 
         <!-- Правая колонка: 3D-макеты -->
         <div class="dpb-visual">
-          <img class="dpb-mockup" src="BG_3.png" alt="" loading="lazy" aria-hidden="true">
+          <!-- dpb-mockup-wrap: JS-параллакс -->
+          <!-- dpb-mockup: CSS float-анимация — не конфликтует с JS -->
+          <div class="dpb-mockup-wrap">
+            <img class="dpb-mockup" src="BG_3.png" alt="" aria-hidden="true">
+          </div>
         </div>
       </div>
     </section>
@@ -703,7 +707,7 @@
     if (!section) return;
     var bg     = section.querySelector('.dpb-bg');
     var mid    = section.querySelector('.dpb-mid');
-    var mockup = section.querySelector('.dpb-mockup');
+    var wrap   = section.querySelector('.dpb-mockup-wrap');
     if (!bg || !mid) return;
 
     var tx = 0, ty = 0;   /* цель -1..1 */
@@ -730,7 +734,7 @@
 
       bg.style.transform  = 'translate(' + (cx * 8).toFixed(1)  + 'px,' + (cy * 5).toFixed(1) + 'px)';
       mid.style.transform = 'translate(' + (cx * 16).toFixed(1) + 'px,' + (cy * 10).toFixed(1) + 'px)';
-      if (mockup) mockup.style.transform = 'translate(' + (cx * 14).toFixed(1) + 'px,' + (cy * 9).toFixed(1) + 'px)';
+      if (wrap) wrap.style.transform = 'translate(' + (cx * 14).toFixed(1) + 'px,' + (cy * 9).toFixed(1) + 'px)';
 
       requestAnimationFrame(tick);
     }

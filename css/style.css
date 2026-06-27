@@ -6782,12 +6782,20 @@ body.no-clients .clients-ticker-section {
   justify-content: center;
 }
 
-.dpb-mockup {
+/* Внешний div — JS параллакс (will-change: transform) */
+.dpb-mockup-wrap {
   width: 100%;
   max-width: 580px;
+  will-change: transform;
+}
+
+/* Img — CSS float-анимация (не конфликтует с JS transform на родителе) */
+.dpb-mockup {
+  display: block;
+  width: 100%;
+  height: auto;
   animation: dpbFloat 9s ease-in-out infinite;
   filter: drop-shadow(0 28px 72px rgba(119, 51, 255, 0.50));
-  will-change: transform;
 }
 
 @keyframes dpbFloat {
