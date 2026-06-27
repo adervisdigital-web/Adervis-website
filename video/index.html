@@ -41,6 +41,16 @@
   </script>
   <link rel="stylesheet" href="../css/style.css">
 
+  <!-- Three.js importmap — ES modules CDN -->
+  <script type="importmap">
+  {
+    "imports": {
+      "three":          "https://cdn.jsdelivr.net/npm/three@0.165.0/build/three.module.js",
+      "three/addons/":  "https://cdn.jsdelivr.net/npm/three@0.165.0/examples/jsm/"
+    }
+  }
+  </script>
+
   <script type="application/ld+json">
   {
   "@context": "https://schema.org",
@@ -118,48 +128,52 @@
 
   <main>
 
-    <!-- Hero -->
-    <section class="vp-hero" data-dir="video">
-      <!-- Фоновые картинки (сменяются) -->
-      <div class="vp-hero__bg" aria-hidden="true">
-        <img class="vp-hero__bg-slide is-active" src="../cases/toyota-supra-green-mamba.jpg" alt="">
-        <img class="vp-hero__bg-slide" src="../cases/lukoil-ai.jpg" alt="">
-        <img class="vp-hero__bg-slide" src="../cases/battle-of-robots.jpg" alt="">
-        <img class="vp-hero__bg-slide" src="../cases/promo-main.jpg" alt="">
+    <!-- Hero — 3D иконка плеера + aurora фон -->
+    <section class="hero-section" data-dir="video" id="hero">
+
+      <!-- Красное aurora-свечение (--hero-accent: var(--c-video) = #F52424) -->
+      <div class="page-aurora" aria-hidden="true">
+        <div class="page-aurora__blob page-aurora__blob--1"></div>
+        <div class="page-aurora__blob page-aurora__blob--2"></div>
+        <div class="page-aurora__blob page-aurora__blob--3"></div>
       </div>
-      <div class="vp-hero__overlay" aria-hidden="true"></div>
-      <div class="container">
-        <div class="vp-hero__content">
+
+      <!-- Three.js 3D play-button canvas -->
+      <canvas id="videoHeroCanvas" class="hero-canvas" aria-hidden="true"></canvas>
+
+      <!-- HTML-оверлей: позиционируется JS по координатам 3D-иконки -->
+      <button
+        class="video-hero__play"
+        id="videoHeroPlayBtn"
+        type="button"
+        aria-label="Смотреть промо-ролик ADERVIS"
+        hidden
+      ></button>
+
+      <div class="container hero-grid">
+        <div class="hero-content">
           <span class="eyebrow">Видеопродакшн</span>
-          <h1 class="vp-hero__title">Видео, которое продаёт, объясняет и запоминается</h1>
-          <p class="vp-hero__desc">Делаем продающий сценарий, съёмку, монтаж и анимацию — рекламные ролики, видео о компании, фильмы с мероприятий и анимационные истории под задачи вашего бизнеса.</p>
+          <h1>Видео, которое<br><span class="text-gradient">продаёт.</span></h1>
+          <p>Сценарий, съёмка, монтаж и анимация — рекламные ролики, корпоративные фильмы, съёмка мероприятий и анимационные истории под задачи вашего бизнеса.</p>
           <div class="hero-buttons">
             <a href="#works" class="btn primary">Смотреть портфолио</a>
             <a href="#contacts" class="btn">Обсудить проект</a>
           </div>
           <div class="hero-kpi-line">
-            <strong>52+</strong> роликов
+            <span><strong>52+</strong> роликов</span>
             <span class="hero-kpi-sep">·</span>
-            <strong>50+</strong> клиентов
+            <span><strong>50+</strong> клиентов</span>
             <span class="hero-kpi-sep">·</span>
-            <strong>100%</strong> под ключ
+            <span><strong>100%</strong> под ключ</span>
           </div>
         </div>
       </div>
-    </section>
 
-    <script>
-    (function () {
-      var slides = document.querySelectorAll('.vp-hero__bg-slide');
-      if (slides.length < 2) return;
-      var cur = 0;
-      setInterval(function () {
-        slides[cur].classList.remove('is-active');
-        cur = (cur + 1) % slides.length;
-        slides[cur].classList.add('is-active');
-      }, 4000);
-    }());
-    </script>
+      <div class="hero-scroll-hint" aria-hidden="true">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+      </div>
+
+    </section>
 
     <!-- Форматы видео -->
     <section class="section">
@@ -566,6 +580,67 @@
             <div class="vg-info"><h4>Rodin, Дима Лелюк — Инь-Янь</h4></div>
           </article>
 
+        </div>
+
+        <!-- Кнопка "Смотреть больше" — появляется после 12 карточек -->
+        <div class="vg-show-more" id="vgShowMore">
+          <button type="button" class="btn" id="vgShowMoreBtn">
+            <span>Смотреть больше</span>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+          </button>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Бэкстейдж: как мы снимаем -->
+    <section class="section">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">Бэкстейдж</span>
+          <h2>Как выглядит работа изнутри</h2>
+          <p>Оборудование, команда и атмосфера на площадке — снимаем в Перми и по всей России</p>
+        </div>
+        <div class="bts-grid reveal">
+          <div class="bts-card bts-card--tall">
+            <img src="../cases/lukoil-ai.jpg" alt="Съёмка ЛУКОЙЛ" loading="lazy">
+            <div class="bts-card__label">Рекламный ролик · Локация</div>
+          </div>
+          <div class="bts-card">
+            <img src="../assets/cases/concept-team.jpg" alt="Команда ADERVIS" loading="lazy">
+            <div class="bts-card__label">Команда на площадке</div>
+          </div>
+          <div class="bts-card">
+            <img src="../cases/toyota-supra-green-mamba.jpg" alt="Съёмка автомобиля" loading="lazy">
+            <div class="bts-card__label">Автомобильная съёмка</div>
+          </div>
+          <div class="bts-card bts-card--wide">
+            <img src="../cases/battle-robots-final-moscow-2025.jpg" alt="Съёмка мероприятия" loading="lazy">
+            <div class="bts-card__label">Event · Финал в Москве</div>
+          </div>
+          <div class="bts-card">
+            <img src="../cases/rokstar-soundcheck-2025.jpg" alt="Концертная съёмка" loading="lazy">
+            <div class="bts-card__label">Концертная съёмка</div>
+          </div>
+        </div>
+
+        <div class="bts-facts reveal">
+          <div class="bts-fact">
+            <strong>4К</strong>
+            <span>Съёмка в 4К<br>и выше</span>
+          </div>
+          <div class="bts-fact">
+            <strong>2</strong>
+            <span>Съёмочные<br>камеры</span>
+          </div>
+          <div class="bts-fact">
+            <strong>3–5</strong>
+            <span>Человек на<br>площадке</span>
+          </div>
+          <div class="bts-fact">
+            <strong>1 день</strong>
+            <span>Типовой<br>съёмочный день</span>
+          </div>
         </div>
       </div>
     </section>
@@ -1168,6 +1243,118 @@
   <div id="footer-placeholder"></div>
 
   <script src="../js/app.js"></script>
+
+  <!-- Логика "Смотреть больше" для галереи -->
+  <script>
+  (function () {
+    var STEP    = 12; // 3 строки × 4 колонки за раз
+    var limit   = STEP;
+    var cards   = document.querySelectorAll('.vg-card');
+    var wrapper = document.getElementById('vgShowMore');
+    var btn     = document.getElementById('vgShowMoreBtn');
+    if (!cards.length || !wrapper || !btn) return;
+
+    function currentCat() {
+      var active = document.querySelector('.vg-tab.is-active');
+      return active ? active.dataset.cat : 'all';
+    }
+
+    function applyLimit(cat) {
+      var shown = 0, hasOverflow = false;
+      cards.forEach(function (card) {
+        var matches = cat === 'all' || card.dataset.cat === cat;
+        if (matches) {
+          if (shown < limit) { card.removeAttribute('data-overflow'); shown++; }
+          else                { card.setAttribute('data-overflow', ''); hasOverflow = true; }
+        } else {
+          card.removeAttribute('data-overflow');
+        }
+      });
+      wrapper.hidden = !hasOverflow;
+      // Обновляем счётчик: сколько ещё скрыто
+      var hidden = Array.from(cards).filter(function(c){
+        var m = cat === 'all' || c.dataset.cat === cat;
+        return m && c.hasAttribute('data-overflow');
+      }).length;
+      btn.querySelector('span') && (btn.querySelector('span').textContent =
+        hidden > 0 ? 'Смотреть ещё ' + Math.min(hidden, STEP) + ' работ' : 'Смотреть больше');
+    }
+
+    // Начальное состояние
+    applyLimit('all');
+
+    // Сброс при смене фильтра
+    document.querySelectorAll('.vg-tab').forEach(function (tab) {
+      tab.addEventListener('click', function () {
+        limit = STEP;
+        setTimeout(function () { applyLimit(currentCat()); }, 0);
+      });
+    });
+
+    // Кнопка: +3 строки
+    btn.addEventListener('click', function () {
+      limit += STEP;
+      applyLimit(currentCat());
+    });
+  }());
+  </script>
+
+  <script>
+    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      var s = document.createElement('script');
+      s.type = 'module'; s.src = '../js/hero3d-video.js';
+      document.head.appendChild(s);
+    }
+  </script>
+
+  <!-- Синхронизация HTML-оверлея с 3D-иконой + открытие видео -->
+  <script>
+  (function () {
+    var PROMO = 'https://vkvideo.ru/video_ext.php?oid=-121259819&id=456239192&hd=4&js_api=1';
+    var btn   = document.getElementById('videoHeroPlayBtn');
+    if (!btn) return;
+
+    // Позиционируем кнопку по координатам из hero3d-video.js
+    function syncBtn() {
+      var pos = window.videoHeroIconPos;
+      if (pos && pos.r > 0) {
+        btn.style.left   = (pos.cx - pos.r) + 'px';
+        btn.style.top    = (pos.cy - pos.r) + 'px';
+        btn.style.width  = (pos.r * 2)       + 'px';
+        btn.style.height = (pos.r * 2)       + 'px';
+        if (pos.ready && btn.hidden) btn.hidden = false;
+      }
+      requestAnimationFrame(syncBtn);
+    }
+    syncBtn();
+
+    // Hover → передаём флаг в hero3d-video.js для смены цвета серебро→красный
+    btn.addEventListener('mouseenter', function () { window.videoHeroHovered = true; });
+    btn.addEventListener('mouseleave', function () { window.videoHeroHovered = false; });
+
+    // Клик: CSS-анимация нажатия, затем открытие видео
+    btn.addEventListener('click', function () {
+      btn.classList.remove('is-pressing');
+      void btn.offsetWidth; // reflow чтобы animation перезапустилась
+      btn.classList.add('is-pressing');
+
+      setTimeout(function () {
+        var lb  = document.getElementById('videoLightbox');
+        var ifr = document.getElementById('vlIframe');
+        if (!lb || !ifr) return;
+        ifr.src = PROMO;
+        lb.classList.add('is-open');
+        document.body.style.overflow = 'hidden';
+        var cl = lb.querySelector('#vlClose');
+        if (cl) cl.focus();
+      }, 220);
+    });
+
+    btn.addEventListener('animationend', function () {
+      btn.classList.remove('is-pressing');
+    });
+  }());
+  </script>
   <script>
   (function () {
     var el = document.querySelector('.vp-featured');

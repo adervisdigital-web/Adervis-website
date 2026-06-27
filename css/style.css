@@ -771,6 +771,12 @@ a {
 .site-header__platform .pill-nav__arrow {
   color: rgba(20,20,20,0.65);
 }
+/* Ресет button-тега для platform-кнопки */
+button.site-header__platform {
+  font-family: var(--font-display);
+  font-size: 9.5px;
+  font-weight: 700;
+}
 
 /* Дропдаун с правым выравниванием (для элементов в site-header__end) */
 .nav-mega--right {
@@ -836,6 +842,19 @@ a {
     backdrop-filter: none !important;
     -webkit-backdrop-filter: none !important;
     background: rgba(10,10,10,0.97) !important;
+  }
+
+  /* nav-backdrop находится вне site-header (z-index:200) и сам имеет z-index:299.
+     backdrop-filter на нём размывает всё что ниже — включая pill-nav внутри header.
+     Убираем blur: тёмный rgba-overlay и так создаёт нужное затемнение. */
+  .nav-backdrop {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+
+  /* Скрываем floating CTA когда мобильное меню открыто */
+  body.nav-open .floating-cta {
+    display: none !important;
   }
 
   /* Бургер поверх всего меню */
@@ -6104,7 +6123,17 @@ body.no-clients .clients-ticker-section {
   box-shadow: 0 12px 32px rgba(0,0,0,0.4);
 }
 
-.vg-card[data-hidden] { display: none; }
+.vg-card[data-hidden]   { display: none; }
+.vg-card[data-overflow] { display: none; }
+
+.vg-show-more {
+  text-align: center;
+  padding: 36px 0 4px;
+}
+.vg-show-more .btn {
+  gap: 8px;
+  min-width: 200px;
+}
 
 .vg-thumb {
   aspect-ratio: 16 / 9;
@@ -6336,6 +6365,46 @@ body.no-clients .clients-ticker-section {
   max-width: 560px;
 }
 
+/* ── Hero slide progress line ── */
+.vp-hero__progress {
+  position: absolute;
+  bottom: 20px;
+  left: 0;
+  right: 0;
+  z-index: 3;
+  display: flex;
+  gap: 5px;
+  padding: 0 32px;
+}
+.vp-hero__progress-track {
+  flex: 1;
+  height: 2px;
+  background: rgba(255,255,255,0.18);
+  border-radius: 2px;
+  overflow: hidden;
+}
+.vp-hero__progress-track::after {
+  content: '';
+  display: block;
+  height: 100%;
+  background: rgba(255,255,255,0.9);
+  transform: scaleX(0);
+  transform-origin: left;
+}
+.vp-hero__progress-track.is-active::after {
+  animation: vp-progress-fill 4s linear forwards;
+}
+.vp-hero__progress-track.is-done::after {
+  transform: scaleX(1);
+}
+@keyframes vp-progress-fill {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .vp-hero__progress-track.is-active::after { animation: none; transform: scaleX(1); }
+}
+
 /* Process timeline */
 .vp-process {
   display: grid;
@@ -6492,6 +6561,88 @@ body.no-clients .clients-ticker-section {
   max-width: 400px;
 }
 
+/* ── Backstage (bts) section ─────────────────────────────────── */
+.bts-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: auto auto;
+  gap: 10px;
+  margin-top: var(--sp-8);
+}
+.bts-card {
+  position: relative;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  aspect-ratio: 4 / 3;
+  background: var(--bg3);
+}
+.bts-card--tall {
+  grid-row: span 2;
+  aspect-ratio: auto;
+}
+.bts-card--wide {
+  grid-column: span 2;
+}
+.bts-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.45s cubic-bezier(0.4,0,0.2,1);
+}
+.bts-card:hover img { transform: scale(1.04); }
+.bts-card__label {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 100%);
+  color: rgba(255,255,255,0.75);
+  font-size: 12px;
+  font-family: var(--font-mono);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 20px 16px 12px;
+  pointer-events: none;
+}
+.bts-facts {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  margin-top: 10px;
+}
+.bts-fact {
+  background: var(--bg3);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: var(--sp-6) var(--sp-4);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.bts-fact strong {
+  font-family: var(--font-display);
+  font-size: clamp(22px, 2.8vw, 32px);
+  font-weight: 700;
+  color: var(--c-video);
+  line-height: 1;
+}
+.bts-fact span {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.45;
+}
+@media (max-width: 860px) {
+  .bts-grid { grid-template-columns: repeat(2, 1fr); }
+  .bts-card--tall { grid-row: span 1; aspect-ratio: 4/3; }
+  .bts-facts { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 540px) {
+  .bts-grid { grid-template-columns: 1fr; }
+  .bts-card--wide { grid-column: span 1; }
+  .bts-facts { grid-template-columns: repeat(2, 1fr); }
+}
+
 /* Mid-page CTA banner */
 .vp-cta-banner {
   position: relative;
@@ -6624,6 +6775,11 @@ body.no-clients .clients-ticker-section {
   grid-column: span 2;
   aspect-ratio: 16 / 9;
 }
+.dp-case--full {
+  grid-column: 1 / -1;
+  aspect-ratio: 16 / 7;
+}
+@media (max-width: 700px) { .dp-case--full { aspect-ratio: 16 / 9; } }
 
 .dp-case__img {
   width: 100%;
@@ -7034,6 +7190,33 @@ body.no-clients .clients-ticker-section {
 
 /* Existing hero-bg-text stays behind canvas */
 .hero-bg-text { z-index: 0 !important; }
+
+/* ── HTML-оверлей поверх 3D-иконки на видео-странице ── */
+.video-hero__play {
+  position: absolute;
+  background: transparent;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 10;
+  padding: 0;
+  outline: none;
+  /* Плавная анимация нажатия через CSS */
+  transition: opacity 0.2s;
+}
+.video-hero__play:focus-visible {
+  outline: 3px solid rgba(245, 36, 36, 0.7);
+  outline-offset: 6px;
+}
+.video-hero__play.is-pressing {
+  animation: vhp-press 0.55s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+@keyframes vhp-press {
+  0%   { transform: scale(1); }
+  25%  { transform: scale(0.88); }
+  60%  { transform: scale(1.10); }
+  100% { transform: scale(1); }
+}
 
 /* Hero content above canvas */
 .hero-section .container {
@@ -8239,7 +8422,15 @@ body.no-clients .clients-ticker-section {
 
 /* ─── Система цветовых акцентов по направлению ─── */
 .hero-section[data-dir]            { --hero-accent: var(--gold); }
-.hero-section[data-dir="video"]    { --hero-accent: var(--c-video); }
+.hero-section[data-dir="video"] {
+  --hero-accent: var(--c-video);
+  background-image:
+    radial-gradient(rgba(255, 255, 255, 0.028) 1px, transparent 1px),
+    linear-gradient(rgba(0, 0, 0, 0.52), rgba(0, 0, 0, 0.52)),
+    url('../video/BG_video.jpg');
+  background-size: 36px 36px, cover, cover;
+  background-position: center, center, center;
+}
 .hero-section[data-dir="design"]   { --hero-accent: var(--c-design); }
 .hero-section[data-dir="photo"]    { --hero-accent: var(--c-photo); }
 .hero-section[data-dir="ai"]       { --hero-accent: var(--c-ai); }
@@ -8256,6 +8447,9 @@ body.no-clients .clients-ticker-section {
 .hero-section[data-dir="edu"]      .eyebrow::before { background: var(--gold);     box-shadow: 0 0 10px rgba(246, 189, 58, 0.55); }
 .hero-section[data-dir="crm"]      .eyebrow::before { background: var(--c-crm-2); box-shadow: 0 0 10px rgba(155, 77, 255, 0.55); }
 .hero-section[data-dir="crm"] { --hero-accent: var(--c-crm-1); }
+
+/* .text-gradient на dir-страницах использует цвет направления */
+.hero-section[data-dir] .text-gradient { color: var(--hero-accent); }
 
 /* ─── Page aurora — направленное свечение за hero подстраниц ─── */
 .page-aurora {
@@ -8302,6 +8496,22 @@ body.no-clients .clients-ticker-section {
   0%, 100% { transform: translate(0, 0) scale(1);       opacity: 0.09; }
   50%       { transform: translate(5vw, -4vh) scale(1.09); opacity: 0.14; }
 }
+
+/* Третий blob — нижний правый (только для dir-страниц с data-dir) */
+.hero-section[data-dir] .page-aurora__blob--3 {
+  width: min(480px, 44vw);
+  height: min(480px, 44vw);
+  background: radial-gradient(ellipse at 50% 50%, var(--hero-accent) 0%, transparent 65%);
+  opacity: 0.08;
+  filter: blur(80px);
+  bottom: 5%; right: 4%;
+  animation: pageAurora1 19s ease-in-out infinite reverse;
+}
+
+/* Видео-страница: усиленная красная aurora */
+.hero-section[data-dir="video"] .page-aurora__blob--1 { opacity: 0.28; }
+.hero-section[data-dir="video"] .page-aurora__blob--2 { opacity: 0.18; }
+.hero-section[data-dir="video"] .page-aurora__blob--3 { opacity: 0.18; }
 
 @media (prefers-reduced-motion: reduce) {
   .page-aurora__blob { animation: none !important; }
