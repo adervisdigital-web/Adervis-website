@@ -6674,7 +6674,8 @@ body.no-clients .clients-ticker-section {
   mix-blend-mode: screen;
   opacity: 0.95;
   filter: url(#design-liquid) saturate(1.6) brightness(1.15);
-  /* нет автоанимации — только реакция на курсор через JS */
+  /* Плавный дрейф всего слоя — в дополнение к SVG-деформации */
+  animation: designFluidDrift 32s ease-in-out infinite;
   will-change: transform;
 }
 

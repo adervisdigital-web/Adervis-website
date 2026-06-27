@@ -126,9 +126,16 @@
         <defs>
           <filter id="design-liquid" x="-25%" y="-25%" width="150%" height="150%" color-interpolation-filters="sRGB">
             <feTurbulence id="dsgTurb" type="fractalNoise"
-              baseFrequency="0.003 0.005" numOctaves="2" seed="5" result="noise"/>
+              baseFrequency="0.003 0.005" numOctaves="2" seed="5" result="noise">
+              <!-- Паттерн плавно эволюционирует сам по себе — GPU SMIL, без JS -->
+              <animate attributeName="baseFrequency"
+                values="0.003 0.004;0.004 0.006;0.003 0.005;0.002 0.004;0.003 0.004"
+                dur="26s" repeatCount="indefinite" calcMode="spline"
+                keySplines="0.4 0 0.6 1;0.4 0 0.6 1;0.4 0 0.6 1;0.4 0 0.6 1"/>
+            </feTurbulence>
+            <!-- scale управляется JS: базово 18, с курсором до 38 -->
             <feDisplacementMap id="dsgDisp" in="SourceGraphic" in2="noise"
-              scale="0" xChannelSelector="R" yChannelSelector="G"/>
+              scale="18" xChannelSelector="R" yChannelSelector="G"/>
           </filter>
         </defs>
       </svg>
@@ -680,15 +687,15 @@
     var fluid = document.querySelector('.design-bg-fluid');
     if (!hero || !dp || !fluid) return;
     var mx = 0.5, my = 0.5, lx = 0.5, ly = 0.5;
-    var curScale = 0, tgtScale = 0;
+    var curScale = 18, tgtScale = 18;   /* базово 18 — волна всегда видна */
     function lerp(a, b, k) { return a + (b - a) * k; }
     hero.addEventListener('mousemove', function (e) {
       var r = hero.getBoundingClientRect();
       mx = (e.clientX - r.left) / r.width;
       my = (e.clientY - r.top)  / r.height;
-      tgtScale = 28;
+      tgtScale = 38;   /* усиливается при движении курсора */
     });
-    hero.addEventListener('mouseleave', function () { tgtScale = 0; });
+    hero.addEventListener('mouseleave', function () { tgtScale = 18; }); /* возврат к базе */
     function tick() {
       lx = lerp(lx, mx, 0.05); ly = lerp(ly, my, 0.05);
       curScale = lerp(curScale, tgtScale, 0.07);
