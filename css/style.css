@@ -8482,7 +8482,7 @@ body.no-clients .clients-ticker-section {
   position: absolute;
   inset: -25% 0;
   background: url('../video/BG_video.jpg') center / cover no-repeat;
-  filter: brightness(1.25) saturate(3.4) contrast(1.3);
+  filter: brightness(2.8) saturate(3.2) contrast(0.9);
   will-change: transform;
 }
 .hero-section[data-dir="design"]   { --hero-accent: var(--c-design); }
