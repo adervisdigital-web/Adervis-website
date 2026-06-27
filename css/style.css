@@ -6717,7 +6717,7 @@ body.no-clients .clients-ticker-section {
 .design-promo-block {
   position: relative;
   overflow: hidden;
-  margin: var(--sp-16) 0;
+  margin: 0;
 }
 
 .dpb-bg {
@@ -6780,14 +6780,16 @@ body.no-clients .clients-ticker-section {
 
 .dpb-visual {
   position: relative;
-  min-height: 420px;
+  min-height: 480px;
 }
 
+/* Изображение выступает за колонку — создаёт динамику */
 .dpb-mockup-wrap {
   position: absolute;
-  inset: 0;
+  inset: -8% -12% -8% -8%;
   background: url('../design/BG_3.png') center / contain no-repeat;
   animation: dpbFloat 9s ease-in-out infinite;
+  filter: drop-shadow(0 32px 80px rgba(119, 51, 255, 0.45));
   will-change: transform;
 }
 
