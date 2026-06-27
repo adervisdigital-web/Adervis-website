@@ -1,4 +1,4 @@
-// Flowing purple light field for Design page hero
+// Flowing purple smoke streams — calm, wide, atmospheric
 (function () {
   'use strict';
 
@@ -16,47 +16,60 @@
   resize();
   window.addEventListener('resize', resize, { passive: true });
 
-  /* ── Flow field: multi-frequency sine noise → organic curves ── */
+  /* ── Flow field: horizontal-biased, large sweeping curves ── */
   function fieldAngle(x, y, t) {
-    const nx = x * 0.0022, ny = y * 0.0022;
+    const nx = x * 0.0009, ny = y * 0.0009;
     return (
-      Math.sin(nx * 1.1  + t * 0.22)  * Math.cos(ny * 0.78 - t * 0.14) +
-      Math.sin(nx * 2.6  - ny * 1.7  + t * 0.27) * 0.55 +
-      Math.cos(nx * 0.65 + ny * 2.1  - t * 0.11) * 0.40 +
-      Math.sin(nx * 4.0  + ny * 0.5  + t * 0.35) * 0.18
-    ) * Math.PI * 3.2;
+      Math.sin(ny * 2.2  + t * 0.055) * 0.95 +
+      Math.sin(nx * 1.1  - ny * 0.9  + t * 0.038) * 0.40 +
+      Math.cos(nx * 0.55 + ny * 1.9  + t * 0.028) * 0.22
+    ) * Math.PI * 1.5;
   }
 
-  /* ── Particles ── */
-  const COUNT = 220;
-  const TAIL  = 150;
+  /* ── Smooth curve through trail points ── */
+  function drawSmooth(pts) {
+    if (pts.length < 3) return;
+    ctx.beginPath();
+    ctx.moveTo(pts[0][0], pts[0][1]);
+    for (let i = 1; i < pts.length - 1; i++) {
+      const mx = (pts[i][0] + pts[i + 1][0]) * 0.5;
+      const my = (pts[i][1] + pts[i + 1][1]) * 0.5;
+      ctx.quadraticCurveTo(pts[i][0], pts[i][1], mx, my);
+    }
+    const last = pts[pts.length - 1];
+    ctx.lineTo(last[0], last[1]);
+  }
+
+  /* ── Particles: few, slow, long tails ── */
+  const COUNT = 28;
+  const TAIL  = 420;
 
   function rnd(a, b) { return a + Math.random() * (b - a); }
 
   const particles = Array.from({ length: COUNT }, () => ({
-    x:    rnd(0, window.innerWidth),
-    y:    rnd(0, window.innerHeight),
+    x:     rnd(0, window.innerWidth),
+    y:     rnd(0, window.innerHeight),
     trail: [],
-    spd:  rnd(1.1, 2.6),
-    hue:  rnd(255, 295),   // deep purple → violet
-    sat:  rnd(75, 100),
-    lit:  rnd(52, 78),
+    spd:   rnd(0.35, 0.75),
+    hue:   rnd(262, 290),
+    sat:   rnd(80, 100),
+    lit:   rnd(45, 65),
   }));
 
   let t = 0, raf = null;
 
   function step() {
-    t += 0.0032;
+    t += 0.0025;
     const W = canvas.width, H = canvas.height;
 
-    /* Slow fade → long trailing streaks */
+    /* Very slow fade → long visible smoke trails */
     ctx.globalCompositeOperation = 'source-over';
-    ctx.globalAlpha = 0.038;
-    ctx.fillStyle   = '#06030f';
+    ctx.globalAlpha = 0.014;
+    ctx.fillStyle   = '#050210';
     ctx.fillRect(0, 0, W, H);
     ctx.globalAlpha = 1;
 
-    /* Additive blending — lights stack at crossings */
+    /* Additive blend — streams glow brighter where they cross */
     ctx.globalCompositeOperation = 'lighter';
     ctx.lineCap  = 'round';
     ctx.lineJoin = 'round';
@@ -69,8 +82,7 @@
       p.trail.push([p.x, p.y]);
       if (p.trail.length > TAIL) p.trail.shift();
 
-      /* Reset off-screen */
-      const M = 90;
+      const M = 100;
       if (p.x < -M || p.x > W + M || p.y < -M || p.y > H + M) {
         p.x = rnd(0, W);
         p.y = rnd(0, H);
@@ -80,34 +92,28 @@
 
       const tr  = p.trail;
       const len = tr.length;
-      if (len < 6) continue;
+      if (len < 8) continue;
 
       const h = p.hue, s = p.sat, l = p.lit;
 
-      /* Pass 1 — wide glow halo */
-      ctx.beginPath();
-      ctx.moveTo(tr[0][0], tr[0][1]);
-      for (let i = 1; i < len; i++) ctx.lineTo(tr[i][0], tr[i][1]);
-      ctx.strokeStyle = `hsla(${h},${s}%,${l}%,0.07)`;
-      ctx.lineWidth   = 10;
+      /* Pass 1 — wide soft halo (atmospheric smoke volume) */
+      drawSmooth(tr);
+      ctx.strokeStyle = `hsla(${h},${s}%,${l}%,0.030)`;
+      ctx.lineWidth   = 42;
       ctx.stroke();
 
-      /* Pass 2 — mid glow */
-      const s1 = Math.floor(len * 0.22);
-      ctx.beginPath();
-      ctx.moveTo(tr[s1][0], tr[s1][1]);
-      for (let i = s1 + 1; i < len; i++) ctx.lineTo(tr[i][0], tr[i][1]);
-      ctx.strokeStyle = `hsla(${h},${s}%,${l}%,0.20)`;
-      ctx.lineWidth   = 2.8;
+      /* Pass 2 — medium glow */
+      const t2 = tr.slice(Math.floor(len * 0.15));
+      drawSmooth(t2);
+      ctx.strokeStyle = `hsla(${h},${s}%,${l + 8}%,0.090)`;
+      ctx.lineWidth   = 14;
       ctx.stroke();
 
-      /* Pass 3 — bright core */
-      const s2 = Math.floor(len * 0.55);
-      ctx.beginPath();
-      ctx.moveTo(tr[s2][0], tr[s2][1]);
-      for (let i = s2 + 1; i < len; i++) ctx.lineTo(tr[i][0], tr[i][1]);
-      ctx.strokeStyle = `hsla(${h},${s}%,${Math.min(l + 28, 100)}%,0.88)`;
-      ctx.lineWidth   = 0.85;
+      /* Pass 3 — inner glow, still no white */
+      const t3 = tr.slice(Math.floor(len * 0.45));
+      drawSmooth(t3);
+      ctx.strokeStyle = `hsla(${h},${s}%,${l + 14}%,0.22)`;
+      ctx.lineWidth   = 4;
       ctx.stroke();
     }
 
@@ -117,13 +123,11 @@
     raf = requestAnimationFrame(step);
   }
 
-  /* Initial black fill */
-  ctx.fillStyle = '#06030f';
+  ctx.fillStyle = '#050210';
   ctx.fillRect(0, 0, canvas.width, canvas.height);
 
   step();
 
-  /* Pause when hero scrolls off-screen */
   const heroEl = document.querySelector('.hero-section[data-dir="design"]');
   if (heroEl) {
     new IntersectionObserver(([e]) => {
