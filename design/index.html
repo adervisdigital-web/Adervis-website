@@ -120,6 +120,12 @@
 
     <!-- Hero -->
     <section class="hero-section" data-dir="design">
+
+      <!-- Анимация потоков фиолетового света -->
+      <div class="design-flow-wrap" aria-hidden="true">
+        <canvas id="designFlowBg"></canvas>
+      </div>
+
       <div class="page-aurora" aria-hidden="true">
         <div class="page-aurora__blob page-aurora__blob--1"></div>
         <div class="page-aurora__blob page-aurora__blob--2"></div>
@@ -621,5 +627,12 @@
   <div id="footer-placeholder"></div>
 
   <script src="../js/app.js"></script>
+  <script>
+    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      var s = document.createElement('script');
+      s.src = '../js/hero-design-bg.js';
+      document.head.appendChild(s);
+    }
+  </script>
 </body>
 </html>

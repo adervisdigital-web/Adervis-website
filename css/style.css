@@ -6643,6 +6643,24 @@ body.no-clients .clients-ticker-section {
   .bts-facts { grid-template-columns: repeat(2, 1fr); }
 }
 
+/* ── Design page: flowing light canvas ──────────────────────────── */
+.design-flow-wrap {
+  position: absolute !important;
+  inset: 0;
+  z-index: 0 !important;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.design-flow-wrap canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* aurora на дизайн-странице убираем — canvas создаёт свои цвета */
+.hero-section[data-dir="design"] .page-aurora { display: none; }
+
 /* ── Backstage video grid ──────────────────────────────────────── */
 .bts-videos {
   margin-top: var(--sp-10);
