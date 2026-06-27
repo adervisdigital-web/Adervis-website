@@ -8662,14 +8662,14 @@ body.no-clients .clients-ticker-section {
   min-height: 100%;
   pointer-events: none;
   border: none;
-  filter: brightness(0.30) saturate(1.1);
+  filter: brightness(0.18) saturate(1.0);
 }
 /* тёмный оверлей поверх видео */
 .video-hero-bg__kine::after {
   content: '';
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, 0.58);
+  background: rgba(0, 0, 0, 0.68);
   pointer-events: none;
 }
 
