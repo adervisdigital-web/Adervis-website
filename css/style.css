@@ -8645,12 +8645,49 @@ body.no-clients .clients-ticker-section {
   pointer-events: none;
 }
 
-.video-hero-bg__img {
+/* Kinescope iframe как фоновое видео */
+.video-hero-bg__kine {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+.video-hero-bg__kine iframe {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 177.78vh;
+  height: 56.25vw;
+  min-width: 100%;
+  min-height: 100%;
+  pointer-events: none;
+  border: none;
+  filter: brightness(0.7) saturate(1.2);
+}
+
+/* ── AI hero: BG_video.jpg фон ── */
+.ai-hero-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+.ai-hero-bg__img {
   position: absolute;
   inset: -25% 0;
   background: url('../video/BG_video.jpg') center / cover no-repeat;
   filter: brightness(2.2) saturate(3.0) contrast(0.92) blur(2.5px);
-  will-change: transform;
+}
+.ai-hero-bg__vignette {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse 110% 95% at 52% 46%,
+    transparent 20%,
+    rgba(0, 0, 0, 0.50) 60%,
+    rgba(0, 0, 0, 0.88) 100%
+  );
 }
 
 .video-hero-bg__vignette {
