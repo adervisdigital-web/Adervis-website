@@ -8482,8 +8482,20 @@ body.no-clients .clients-ticker-section {
   position: absolute;
   inset: -25% 0;
   background: url('../video/BG_video.jpg') center / cover no-repeat;
-  filter: brightness(2.8) saturate(3.2) contrast(0.9);
+  filter: brightness(2.2) saturate(3.0) contrast(0.92) blur(2.5px);
   will-change: transform;
+}
+
+.video-hero-bg__vignette {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse 110% 95% at 52% 46%,
+    transparent 20%,
+    rgba(0, 0, 0, 0.50) 60%,
+    rgba(0, 0, 0, 0.88) 100%
+  );
+  pointer-events: none;
 }
 .hero-section[data-dir="design"]   { --hero-accent: var(--c-design); }
 .hero-section[data-dir="photo"]    { --hero-accent: var(--c-photo); }
