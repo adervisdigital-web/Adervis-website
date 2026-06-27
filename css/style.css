@@ -6697,6 +6697,87 @@ body.no-clients .clients-ticker-section {
 /* aurora скрываем — фон создаёт свою атмосферу */
 .hero-section[data-dir="design"] .page-aurora { display: none; }
 
+/* ── Design promo block ──────────────────────────────────────────── */
+.design-promo-block {
+  position: relative;
+  overflow: hidden;
+  min-height: 68vh;
+  display: flex;
+  align-items: center;
+}
+
+.dpb-bg {
+  position: absolute;
+  inset: 0;
+  background: url('../design/BG_1.jpg') center / cover no-repeat;
+  z-index: 0;
+}
+
+.dpb-mid {
+  position: absolute;
+  inset: 0;
+  background: url('../design/BG_2.png') center / cover no-repeat;
+  mix-blend-mode: screen;
+  opacity: 0.75;
+  z-index: 1;
+}
+
+.dpb-items {
+  position: absolute;
+  inset: 0;
+  background: url('../design/BG_3.png') center / contain no-repeat;
+  z-index: 2;
+  animation: dpbFloat 8s ease-in-out infinite;
+}
+
+@keyframes dpbFloat {
+  0%, 100% { transform: translateY(0)    rotate(-1deg) scale(1.00); }
+  50%       { transform: translateY(-14px) rotate(0.5deg) scale(1.02); }
+}
+
+.dpb-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  background: linear-gradient(
+    to right,
+    rgba(6, 3, 18, 0.82) 0%,
+    rgba(6, 3, 18, 0.45) 45%,
+    rgba(6, 3, 18, 0.10) 100%
+  );
+}
+
+.dpb-content {
+  position: relative;
+  z-index: 4;
+  padding-top: clamp(48px, 8vh, 96px);
+  padding-bottom: clamp(48px, 8vh, 96px);
+  max-width: 560px;
+}
+
+.dpb-title {
+  font-family: var(--font-display);
+  font-size: clamp(36px, 4.8vw, 64px);
+  font-weight: 700;
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  color: #fff;
+  margin: var(--sp-4) 0 var(--sp-8);
+}
+
+@media (max-width: 768px) {
+  .design-promo-block { min-height: auto; }
+  .dpb-items { background-size: cover; opacity: 0.45; }
+  .dpb-overlay {
+    background: linear-gradient(
+      to bottom,
+      rgba(6,3,18,0.70) 0%,
+      rgba(6,3,18,0.35) 50%,
+      rgba(6,3,18,0.80) 100%
+    );
+  }
+}
+
 /* ── Backstage video grid ──────────────────────────────────────── */
 .bts-videos {
   margin-top: var(--sp-10);
