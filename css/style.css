@@ -8426,10 +8426,19 @@ body.no-clients .clients-ticker-section {
   --hero-accent: var(--c-video);
   background-image:
     radial-gradient(rgba(255, 255, 255, 0.028) 1px, transparent 1px),
-    linear-gradient(to right, rgba(0, 0, 0, 0.38) 0%, rgba(0, 0, 0, 0.05) 55%, transparent 100%),
-    url('../video/BG_video.jpg');
-  background-size: 36px 36px, cover, cover;
-  background-position: center, center, center;
+    linear-gradient(to right, rgba(0, 0, 0, 0.38) 0%, transparent 55%);
+  background-size: 36px 36px, cover;
+  background-position: center, center;
+}
+
+.hero-section[data-dir="video"]::before {
+  content: '';
+  display: block;
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: url('../video/BG_video.jpg') center / cover no-repeat;
+  filter: brightness(1.9) saturate(2.2) contrast(1.1);
 }
 .hero-section[data-dir="design"]   { --hero-accent: var(--c-design); }
 .hero-section[data-dir="photo"]    { --hero-accent: var(--c-photo); }
