@@ -6728,21 +6728,21 @@ body.no-clients .clients-ticker-section {
   will-change: transform;
 }
 
+.dpb-shade {
+  position: absolute;
+  inset: 0;
+  z-index: 1;   /* под BG_2.png */
+  background: rgba(4, 2, 12, 0.45);
+}
+
 .dpb-mid {
   position: absolute;
   inset: -12%;
   background: url('../design/BG_2.png') center / cover no-repeat;
   mix-blend-mode: screen;
-  filter: brightness(2.8) saturate(1.8) contrast(1.1);
-  z-index: 1;
+  filter: brightness(4.5) saturate(2.2) contrast(1.05);
+  z-index: 2;   /* над shade — свет виден поверх затемнения */
   will-change: transform;
-}
-
-.dpb-shade {
-  position: absolute;
-  inset: 0;
-  z-index: 2;
-  background: rgba(4, 2, 12, 0.50);
 }
 
 /* Двухколоночная сетка: 38% текст / 62% макет */
@@ -6784,14 +6784,20 @@ body.no-clients .clients-ticker-section {
   min-height: 500px;
 }
 
-/* Макет выходит за пределы колонки — выглядит крупно */
+/* Outer — JS cursor parallax (transform без анимации) */
 .dpb-mockup-wrap {
   position: absolute;
-  inset: -15% -5% -15% -10%;
+  inset: -18% -8% -18% -12%;  /* немного крупнее */
+  will-change: transform;
+}
+
+/* Inner — float анимация на изображении, не конфликтует с JS */
+.dpb-mockup-float {
+  width: 100%;
+  height: 100%;
   background: url('../design/BG_3.png') center / contain no-repeat;
   animation: dpbFloat 9s ease-in-out infinite;
   filter: drop-shadow(0 40px 90px rgba(119, 51, 255, 0.50));
-  will-change: transform;
 }
 
 @keyframes dpbFloat {

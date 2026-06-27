@@ -372,7 +372,11 @@
 
         <!-- Правая колонка: 3D-макеты -->
         <div class="dpb-visual" aria-hidden="true">
-          <div class="dpb-mockup-wrap"></div>
+          <!-- wrap: JS cursor parallax -->
+          <div class="dpb-mockup-wrap">
+            <!-- float: CSS float animation (без конфликта) -->
+            <div class="dpb-mockup-float"></div>
+          </div>
         </div>
       </div>
     </section>
@@ -693,7 +697,7 @@
 
       bg.style.transform  = 'translate(' + (cx * 8).toFixed(1)  + 'px,' + (cy * 5).toFixed(1) + 'px)';
       mid.style.transform = 'translate(' + (cx * 16).toFixed(1) + 'px,' + (cy * 10).toFixed(1) + 'px)';
-      if (wrap) wrap.style.transform = 'translate(' + (cx * 14).toFixed(1) + 'px,' + (cy * 9).toFixed(1) + 'px)';
+      if (wrap) wrap.style.transform = 'translate(' + (cx * 22).toFixed(1) + 'px,' + (cy * 14).toFixed(1) + 'px)';
 
       requestAnimationFrame(tick);
     }
