@@ -403,12 +403,24 @@
     <section class="design-promo-block reveal">
       <div class="dpb-bg"></div>
       <div class="dpb-mid"></div>
-      <div class="dpb-items"></div>
-      <div class="dpb-overlay"></div>
-      <div class="container dpb-content">
-        <p class="eyebrow">Adervis Design</p>
-        <h2 class="dpb-title">Выведите бизнес<br>на новый уровень!</h2>
-        <a href="#contacts" class="btn primary">Обсудить проект</a>
+      <div class="dpb-shade"></div>
+
+      <div class="container dpb-grid">
+        <!-- Левая колонка: текст -->
+        <div class="dpb-text">
+          <span class="eyebrow">Adervis Design</span>
+          <h2 class="dpb-title">Выведите бизнес<br>на новый <span class="dpb-accent">уровень!</span></h2>
+          <p class="dpb-desc">Создаём логотипы, фирменный стиль и брендбуки — визуальные системы, которые делают бренд узнаваемым и продают без слов.</p>
+          <div class="hero-buttons">
+            <a href="#contacts" class="btn primary">Обсудить проект</a>
+            <a href="#works" class="btn">Смотреть кейсы</a>
+          </div>
+        </div>
+
+        <!-- Правая колонка: 3D-макеты -->
+        <div class="dpb-visual">
+          <img class="dpb-mockup" src="BG_3.png" alt="" loading="lazy" aria-hidden="true">
+        </div>
       </div>
     </section>
 
@@ -689,10 +701,10 @@
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     var section = document.querySelector('.design-promo-block');
     if (!section) return;
-    var bg    = section.querySelector('.dpb-bg');
-    var mid   = section.querySelector('.dpb-mid');
-    var items = section.querySelector('.dpb-items');
-    if (!bg || !mid || !items) return;
+    var bg     = section.querySelector('.dpb-bg');
+    var mid    = section.querySelector('.dpb-mid');
+    var mockup = section.querySelector('.dpb-mockup');
+    if (!bg || !mid) return;
 
     var tx = 0, ty = 0;   /* цель -1..1 */
     var cx = 0, cy = 0;   /* текущее (lerp) */
@@ -716,9 +728,9 @@
       var fy = Math.sin(floatT) * 11;
       var fr = Math.cos(floatT * 0.6) * 1.2;
 
-      bg.style.transform    = 'translate(' + (cx * 8).toFixed(1)  + 'px,' + (cy * 5).toFixed(1) + 'px)';
-      mid.style.transform   = 'translate(' + (cx * 16).toFixed(1) + 'px,' + (cy * 10).toFixed(1) + 'px)';
-      items.style.transform = 'translate(' + (cx * 26).toFixed(1) + 'px,' + (cy * 16 + fy).toFixed(1) + 'px) rotate(' + fr.toFixed(1) + 'deg)';
+      bg.style.transform  = 'translate(' + (cx * 8).toFixed(1)  + 'px,' + (cy * 5).toFixed(1) + 'px)';
+      mid.style.transform = 'translate(' + (cx * 16).toFixed(1) + 'px,' + (cy * 10).toFixed(1) + 'px)';
+      if (mockup) mockup.style.transform = 'translate(' + (cx * 14).toFixed(1) + 'px,' + (cy * 9).toFixed(1) + 'px)';
 
       requestAnimationFrame(tick);
     }
