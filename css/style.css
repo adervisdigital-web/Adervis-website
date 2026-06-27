@@ -8464,19 +8464,26 @@ body.no-clients .clients-ticker-section {
   --hero-accent: var(--c-video);
   background-image:
     radial-gradient(rgba(255, 255, 255, 0.028) 1px, transparent 1px),
-    linear-gradient(to right, rgba(0, 0, 0, 0.38) 0%, transparent 55%);
+    linear-gradient(to right, rgba(0, 0, 0, 0.42) 0%, rgba(0, 0, 0, 0.10) 50%, transparent 100%);
   background-size: 36px 36px, cover;
   background-position: center, center;
 }
 
-.hero-section[data-dir="video"]::before {
-  content: '';
-  display: block;
+/* фоновый слой с параллакс-поддержкой */
+.video-hero-bg {
   position: absolute;
   inset: 0;
   z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.video-hero-bg__img {
+  position: absolute;
+  inset: -25% 0;
   background: url('../video/BG_video.jpg') center / cover no-repeat;
-  filter: brightness(1.9) saturate(2.2) contrast(1.1);
+  filter: brightness(1.25) saturate(3.4) contrast(1.3);
+  will-change: transform;
 }
 .hero-section[data-dir="design"]   { --hero-accent: var(--c-design); }
 .hero-section[data-dir="photo"]    { --hero-accent: var(--c-photo); }

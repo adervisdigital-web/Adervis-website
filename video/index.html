@@ -131,6 +131,11 @@
     <!-- Hero — 3D иконка плеера + aurora фон -->
     <section class="hero-section" data-dir="video" id="hero">
 
+      <!-- Фоновое изображение с параллакс-слоем -->
+      <div class="video-hero-bg" aria-hidden="true">
+        <div class="video-hero-bg__img"></div>
+      </div>
+
       <!-- Красное aurora-свечение (--hero-accent: var(--c-video) = #F52424) -->
       <div class="page-aurora" aria-hidden="true">
         <div class="page-aurora__blob page-aurora__blob--1"></div>
@@ -1294,6 +1299,25 @@
 
   <!-- Сюда подгрузится подвал -->
   <div id="footer-placeholder"></div>
+
+  <!-- Параллакс фона hero -->
+  <script>
+  (function () {
+    var img  = document.querySelector('.video-hero-bg__img');
+    var hero = document.getElementById('hero');
+    if (!img || !hero) return;
+    var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReduced) return;
+    function tick() {
+      var sy = window.scrollY;
+      var hh = hero.offsetHeight;
+      if (sy > hh) return;
+      img.style.transform = 'translateY(' + (sy * 0.35) + 'px)';
+    }
+    window.addEventListener('scroll', tick, { passive: true });
+    tick();
+  }());
+  </script>
 
   <!-- Клик по бэкстейдж-видео → тот же лайтбокс -->
   <script>
