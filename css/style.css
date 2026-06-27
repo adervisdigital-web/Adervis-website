@@ -6759,7 +6759,7 @@ body.no-clients .clients-ticker-section {
 
 .dpb-title {
   font-family: var(--font-display);
-  font-size: clamp(48px, 6.2vw, 82px);
+  font-size: clamp(30px, 6.2vw, 82px);
   font-weight: 700;
   line-height: 1.05;
   letter-spacing: -0.028em;
@@ -6806,8 +6806,18 @@ body.no-clients .clients-ticker-section {
 }
 
 @media (max-width: 900px) {
-  .dpb-grid { grid-template-columns: 1fr; min-height: auto; }
+  .dpb-grid {
+    grid-template-columns: 1fr;
+    min-height: auto;
+    padding: clamp(48px, 7vh, 80px) 0;
+  }
   .dpb-visual { display: none; }
+  .dpb-desc { max-width: 100%; }
+}
+@media (max-width: 540px) {
+  .dpb-title { font-size: clamp(26px, 7.5vw, 36px); }
+  .dpb-text .hero-buttons { flex-direction: column; }
+  .dpb-text .hero-buttons .btn { width: 100%; text-align: center; justify-content: center; }
 }
 
 /* ── Backstage video grid ──────────────────────────────────────── */
@@ -8664,6 +8674,19 @@ body.no-clients .clients-ticker-section {
   border: none;
   filter: brightness(0.18) saturate(1.0);
 }
+/* На мобиле iframe покрывает фон по высоте */
+@media (max-width: 768px) {
+  .video-hero-bg__kine iframe {
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    transform: none;
+    min-width: unset;
+    min-height: unset;
+  }
+}
+
 /* тёмный оверлей поверх видео */
 .video-hero-bg__kine::after {
   content: '';
