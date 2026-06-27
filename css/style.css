@@ -6657,20 +6657,23 @@ body.no-clients .clients-ticker-section {
   z-index: 0 !important;
   overflow: hidden;
   pointer-events: none;
+  background: #050210;
 }
 
 .design-bg-base {
   position: absolute;
   inset: 0;
   background: url('../design/BG_design.jpg') center / cover no-repeat;
+  filter: brightness(0.28) contrast(0.85);
 }
 
 .design-bg-fluid {
   position: absolute;
-  inset: -18%;
+  inset: -20%;
   background: url('../design/BG-F.png') center / cover no-repeat;
   mix-blend-mode: screen;
-  filter: url(#design-liquid);
+  opacity: 0.95;
+  filter: url(#design-liquid) saturate(1.6) brightness(1.15);
   animation: designFluidDrift 30s ease-in-out infinite;
   will-change: transform;
 }
