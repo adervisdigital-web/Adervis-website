@@ -624,6 +624,59 @@
           </div>
         </div>
 
+        <!-- Бэкстейдж-видео -->
+        <div class="bts-videos reveal">
+          <p class="bts-videos__label">Видео с площадки</p>
+          <div class="bts-vid-grid">
+
+            <article class="bts-vid-card"
+              data-src="https://www.youtube.com/embed/6glN25EoI4Y?autoplay=1">
+              <div class="vg-thumb has-thumb" style="background-image: url('https://img.youtube.com/vi/6glN25EoI4Y/hqdefault.jpg')">
+                <span class="vg-play-btn" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M5 3l14 9-14 9z"/></svg></span>
+                <span class="vg-cat-badge">Бэкстейдж</span>
+              </div>
+              <div class="vg-info"><h4>Битва роботов — Бэкстейдж</h4></div>
+            </article>
+
+            <article class="bts-vid-card"
+              data-src="https://www.youtube.com/embed/Nmji7conTu0?autoplay=1">
+              <div class="vg-thumb has-thumb" style="background-image: url('https://img.youtube.com/vi/Nmji7conTu0/hqdefault.jpg')">
+                <span class="vg-play-btn" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M5 3l14 9-14 9z"/></svg></span>
+                <span class="vg-cat-badge">Бэкстейдж</span>
+              </div>
+              <div class="vg-info"><h4>IGM — Бэкстейдж</h4></div>
+            </article>
+
+            <article class="bts-vid-card"
+              data-src="https://www.youtube.com/embed/ZjGHNASIx3c?autoplay=1">
+              <div class="vg-thumb has-thumb" style="background-image: url('https://img.youtube.com/vi/ZjGHNASIx3c/hqdefault.jpg')">
+                <span class="vg-play-btn" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M5 3l14 9-14 9z"/></svg></span>
+                <span class="vg-cat-badge">Бэкстейдж</span>
+              </div>
+              <div class="vg-info"><h4>ESTEL VIDEO AWARDS — Бэкстейдж</h4></div>
+            </article>
+
+            <article class="bts-vid-card"
+              data-src="https://vk.com/video_ext.php?oid=5240722&amp;id=456240550&amp;autoplay=1">
+              <div class="vg-thumb has-thumb" style="background-image: url('../cases/wet-matches-rodin.jpg')">
+                <span class="vg-play-btn" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M5 3l14 9-14 9z"/></svg></span>
+                <span class="vg-cat-badge">Бэкстейдж</span>
+              </div>
+              <div class="vg-info"><h4>Rodin — «Мокрые спички» | Бэкстейдж</h4></div>
+            </article>
+
+            <article class="bts-vid-card"
+              data-src="https://vk.com/clip_ext.php?oid=-121259819&amp;id=456239206&amp;autoplay=1">
+              <div class="vg-thumb has-thumb" style="background-image: url('../cases/rodin-suffocating.jpg')">
+                <span class="vg-play-btn" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M5 3l14 9-14 9z"/></svg></span>
+                <span class="vg-cat-badge">Бэкстейдж</span>
+              </div>
+              <div class="vg-info"><h4>Plotnikov — «Задыхаюсь» | Бэкстейдж</h4></div>
+            </article>
+
+          </div>
+        </div>
+
         <div class="bts-facts reveal">
           <div class="bts-fact">
             <strong>4К</strong>
@@ -1241,6 +1294,25 @@
 
   <!-- Сюда подгрузится подвал -->
   <div id="footer-placeholder"></div>
+
+  <!-- Клик по бэкстейдж-видео → тот же лайтбокс -->
+  <script>
+  (function () {
+    document.querySelectorAll('.bts-vid-card').forEach(function (card) {
+      card.addEventListener('click', function () {
+        var src = card.dataset.src;
+        var lb  = document.getElementById('videoLightbox');
+        var ifr = document.getElementById('vlIframe');
+        if (!lb || !ifr || !src) return;
+        ifr.src = src;
+        lb.classList.add('is-open');
+        document.body.style.overflow = 'hidden';
+        var cl = lb.querySelector('#vlClose');
+        if (cl) cl.focus();
+      });
+    });
+  }());
+  </script>
 
   <script src="../js/app.js"></script>
 
