@@ -6725,7 +6725,7 @@ body.no-clients .clients-ticker-section {
   inset: -12%;
   background: url('../design/BG_2.png') center / cover no-repeat;
   mix-blend-mode: screen;
-  filter: url(#dpb-warp) brightness(2.8) saturate(1.8) contrast(1.1);
+  filter: brightness(2.8) saturate(1.8) contrast(1.1);
   opacity: 1;
   z-index: 1;
   will-change: transform;
@@ -6736,7 +6736,6 @@ body.no-clients .clients-ticker-section {
   inset: 0;
   background: url('../design/BG_3.png') center / contain no-repeat;
   z-index: 2;
-  transition: transform 0.06s linear;
   will-change: transform;
 }
 
@@ -6747,7 +6746,7 @@ body.no-clients .clients-ticker-section {
   background: linear-gradient(
     to right,
     rgba(4, 2, 12, 0.88) 0%,
-    rgba(4, 2, 12, 0.50) 40%,
+    rgba(4, 2, 12, 0.55) 42%,
     rgba(4, 2, 12, 0.08) 100%
   );
 }
@@ -6757,17 +6756,19 @@ body.no-clients .clients-ticker-section {
   z-index: 4;
   padding-top: clamp(56px, 9vh, 104px);
   padding-bottom: clamp(56px, 9vh, 104px);
-  max-width: 520px;
+  width: 52%;
+  max-width: 700px;
 }
 
 .dpb-title {
   font-family: var(--font-display);
-  font-size: clamp(40px, 5.2vw, 68px);
+  font-size: clamp(44px, 6.2vw, 82px);
   font-weight: 700;
   line-height: 1.06;
-  letter-spacing: -0.025em;
+  letter-spacing: -0.03em;
   color: #fff;
   margin: var(--sp-4) 0 var(--sp-8);
+  width: 100%;
 }
 
 @media (max-width: 768px) {

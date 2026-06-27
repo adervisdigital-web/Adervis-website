@@ -671,20 +671,18 @@
 
   <script src="../js/app.js"></script>
   <script>
-  /* Промо-блок: деформация от курсора + плавный parallax (lerp) */
+  /* Промо-блок: плавный parallax от курсора (lerp, без SVG деформации) */
   (function () {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     var section = document.querySelector('.design-promo-block');
-    var bg    = section && section.querySelector('.dpb-bg');
-    var mid   = section && section.querySelector('.dpb-mid');
-    var items = section && section.querySelector('.dpb-items');
-    var dpbTurb = document.getElementById('dpbTurb');
-    var dpbDisp = document.getElementById('dpbDisp');
-    if (!section || !bg || !mid || !items) return;
+    if (!section) return;
+    var bg    = section.querySelector('.dpb-bg');
+    var mid   = section.querySelector('.dpb-mid');
+    var items = section.querySelector('.dpb-items');
+    if (!bg || !mid || !items) return;
 
-    var tx = 0, ty = 0;     /* target cursor -1..1 */
-    var cx = 0, cy = 0;     /* lerped current */
-    var scaleTarget = 0, scaleCur = 0;
+    var tx = 0, ty = 0;   /* цель -1..1 */
+    var cx = 0, cy = 0;   /* текущее (lerp) */
     var floatT = 0;
 
     function lerp(a, b, k) { return a + (b - a) * k; }
@@ -696,35 +694,18 @@
     });
     section.addEventListener('mouseleave', function () { tx = 0; ty = 0; });
 
-    var frame = 0;
     function tick() {
-      floatT += 0.007;
-      frame++;
+      floatT += 0.006;
+      cx = lerp(cx, tx, 0.06);
+      cy = lerp(cy, ty, 0.06);
 
-      /* Smooth lerp к курсору */
-      cx = lerp(cx, tx, 0.055);
-      cy = lerp(cy, ty, 0.055);
+      /* Плавное покачивание макетов */
+      var fy = Math.sin(floatT) * 11;
+      var fr = Math.cos(floatT * 0.6) * 1.2;
 
-      /* Скорость курсора → деформация */
-      var vel = Math.sqrt((tx - cx) * (tx - cx) + (ty - cy) * (ty - cy));
-      scaleTarget = vel * 320;
-      scaleCur = lerp(scaleCur, scaleTarget, 0.08);
-
-      /* Floating animation для items */
-      var fy = Math.sin(floatT) * 13;
-      var fr = Math.cos(floatT * 0.62) * 1.4;
-
-      bg.style.transform    = 'translate(' + (cx *  9).toFixed(2) + 'px,' + (cy *  5).toFixed(2) + 'px)';
-      mid.style.transform   = 'translate(' + (cx * 22).toFixed(2) + 'px,' + (cy * 14).toFixed(2) + 'px)';
-      items.style.transform = 'translate(' + (cx * 36).toFixed(2) + 'px,' + ((cy * 22 + fy)).toFixed(2) + 'px) rotate(' + fr.toFixed(2) + 'deg)';
-
-      /* Обновляем SVG деформацию (каждые 2 кадра достаточно) */
-      if (frame % 2 === 0 && dpbTurb && dpbDisp) {
-        var bfx = (0.006 + cx * 0.002).toFixed(4);
-        var bfy = (0.008 + cy * 0.002).toFixed(4);
-        dpbTurb.setAttribute('baseFrequency', bfx + ' ' + bfy);
-        dpbDisp.setAttribute('scale', scaleCur.toFixed(1));
-      }
+      bg.style.transform    = 'translate(' + (cx * 8).toFixed(1)  + 'px,' + (cy * 5).toFixed(1) + 'px)';
+      mid.style.transform   = 'translate(' + (cx * 16).toFixed(1) + 'px,' + (cy * 10).toFixed(1) + 'px)';
+      items.style.transform = 'translate(' + (cx * 26).toFixed(1) + 'px,' + (cy * 16 + fy).toFixed(1) + 'px) rotate(' + fr.toFixed(1) + 'deg)';
 
       requestAnimationFrame(tick);
     }
