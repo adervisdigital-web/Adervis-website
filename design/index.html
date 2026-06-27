@@ -121,14 +121,31 @@
     <!-- Hero -->
     <section class="hero-section" data-dir="design">
 
-      <!-- Liquid фон: два слоя + SVG деформация -->
+      <!-- Liquid фон: SMIL-анимация (GPU, без JS рывков) -->
       <svg class="design-svg-defs" aria-hidden="true">
         <defs>
           <filter id="design-liquid" x="-25%" y="-25%" width="150%" height="150%" color-interpolation-filters="sRGB">
-            <feTurbulence id="dsgTurb" type="fractalNoise"
-              baseFrequency="0.0080 0.0100" numOctaves="4" seed="5" result="noise"/>
+            <feTurbulence type="fractalNoise" numOctaves="4" seed="5" result="noise">
+              <animate attributeName="baseFrequency"
+                values="0.0065 0.0088; 0.0102 0.0130; 0.0078 0.0095; 0.0055 0.0115; 0.0065 0.0088"
+                dur="28s" repeatCount="indefinite" calcMode="spline"
+                keySplines="0.4 0 0.6 1;0.4 0 0.6 1;0.4 0 0.6 1;0.4 0 0.6 1"/>
+            </feTurbulence>
             <feDisplacementMap id="dsgDisp" in="SourceGraphic" in2="noise"
-              scale="75" xChannelSelector="R" yChannelSelector="G"/>
+              scale="72" xChannelSelector="R" yChannelSelector="G">
+              <animate attributeName="scale"
+                values="72;95;60;85;72"
+                dur="22s" repeatCount="indefinite" calcMode="spline"
+                keySplines="0.4 0 0.6 1;0.4 0 0.6 1;0.4 0 0.6 1;0.4 0 0.6 1"/>
+            </feDisplacementMap>
+          </filter>
+
+          <!-- Фильтр деформации для промо-блока (курсор управляет scale) -->
+          <filter id="dpb-warp" x="-20%" y="-20%" width="140%" height="140%" color-interpolation-filters="sRGB">
+            <feTurbulence id="dpbTurb" type="fractalNoise"
+              baseFrequency="0.006 0.008" numOctaves="3" seed="12" result="wnoise"/>
+            <feDisplacementMap id="dpbDisp" in="SourceGraphic" in2="wnoise"
+              scale="0" xChannelSelector="R" yChannelSelector="G"/>
           </filter>
         </defs>
       </svg>
@@ -654,20 +671,61 @@
 
   <script src="../js/app.js"></script>
   <script>
-  /* Жидкая анимация: плавно меняем параметры SVG turbulence */
+  /* Промо-блок: деформация от курсора + плавный parallax (lerp) */
   (function () {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    var tb = document.getElementById('dsgTurb');
-    var dp = document.getElementById('dsgDisp');
-    if (!tb || !dp) return;
-    var t = 0;
+    var section = document.querySelector('.design-promo-block');
+    var bg    = section && section.querySelector('.dpb-bg');
+    var mid   = section && section.querySelector('.dpb-mid');
+    var items = section && section.querySelector('.dpb-items');
+    var dpbTurb = document.getElementById('dpbTurb');
+    var dpbDisp = document.getElementById('dpbDisp');
+    if (!section || !bg || !mid || !items) return;
+
+    var tx = 0, ty = 0;     /* target cursor -1..1 */
+    var cx = 0, cy = 0;     /* lerped current */
+    var scaleTarget = 0, scaleCur = 0;
+    var floatT = 0;
+
+    function lerp(a, b, k) { return a + (b - a) * k; }
+
+    section.addEventListener('mousemove', function (e) {
+      var r = section.getBoundingClientRect();
+      tx = (e.clientX - r.left  - r.width  / 2) / (r.width  / 2);
+      ty = (e.clientY - r.top   - r.height / 2) / (r.height / 2);
+    });
+    section.addEventListener('mouseleave', function () { tx = 0; ty = 0; });
+
+    var frame = 0;
     function tick() {
-      t += 0.00035;
-      var bfx = (0.0078 + Math.sin(t * 0.85) * 0.0026).toFixed(4);
-      var bfy = (0.0102 + Math.cos(t * 0.62) * 0.0032).toFixed(4);
-      var sc  = (72    + Math.sin(t * 0.43) * 24).toFixed(1);
-      tb.setAttribute('baseFrequency', bfx + ' ' + bfy);
-      dp.setAttribute('scale', sc);
+      floatT += 0.007;
+      frame++;
+
+      /* Smooth lerp к курсору */
+      cx = lerp(cx, tx, 0.055);
+      cy = lerp(cy, ty, 0.055);
+
+      /* Скорость курсора → деформация */
+      var vel = Math.sqrt((tx - cx) * (tx - cx) + (ty - cy) * (ty - cy));
+      scaleTarget = vel * 320;
+      scaleCur = lerp(scaleCur, scaleTarget, 0.08);
+
+      /* Floating animation для items */
+      var fy = Math.sin(floatT) * 13;
+      var fr = Math.cos(floatT * 0.62) * 1.4;
+
+      bg.style.transform    = 'translate(' + (cx *  9).toFixed(2) + 'px,' + (cy *  5).toFixed(2) + 'px)';
+      mid.style.transform   = 'translate(' + (cx * 22).toFixed(2) + 'px,' + (cy * 14).toFixed(2) + 'px)';
+      items.style.transform = 'translate(' + (cx * 36).toFixed(2) + 'px,' + ((cy * 22 + fy)).toFixed(2) + 'px) rotate(' + fr.toFixed(2) + 'deg)';
+
+      /* Обновляем SVG деформацию (каждые 2 кадра достаточно) */
+      if (frame % 2 === 0 && dpbTurb && dpbDisp) {
+        var bfx = (0.006 + cx * 0.002).toFixed(4);
+        var bfy = (0.008 + cy * 0.002).toFixed(4);
+        dpbTurb.setAttribute('baseFrequency', bfx + ' ' + bfy);
+        dpbDisp.setAttribute('scale', scaleCur.toFixed(1));
+      }
+
       requestAnimationFrame(tick);
     }
     tick();
