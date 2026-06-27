@@ -8662,7 +8662,15 @@ body.no-clients .clients-ticker-section {
   min-height: 100%;
   pointer-events: none;
   border: none;
-  filter: brightness(0.7) saturate(1.2);
+  filter: brightness(0.45) saturate(1.1);
+}
+/* тёмный оверлей поверх видео */
+.video-hero-bg__kine::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  pointer-events: none;
 }
 
 /* ── AI hero: BG_video.jpg фон ── */
