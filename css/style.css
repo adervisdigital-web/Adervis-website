@@ -6662,19 +6662,20 @@ body.no-clients .clients-ticker-section {
 
 .design-bg-base {
   position: absolute;
-  inset: 0;
+  inset: -15%;          /* запас для параллакс-сдвига */
   background: url('../design/BG_design.jpg') center / cover no-repeat;
-  filter: brightness(0.28) contrast(0.85);
+  opacity: 0.15;        /* 15% — очень тонкая текстура */
+  will-change: transform;
 }
 
 .design-bg-fluid {
   position: absolute;
   inset: -20%;
-  background: url('../design/BG-F.png') center / cover no-repeat;
+  /* 60% — сдвиг вправо от центра */
+  background: url('../design/BG-F.png') 60% center / cover no-repeat;
   mix-blend-mode: screen;
   opacity: 0.95;
   filter: url(#design-liquid) saturate(1.6) brightness(1.15);
-  /* Плавный дрейф всего слоя — в дополнение к SVG-деформации */
   animation: designFluidDrift 32s ease-in-out infinite;
   will-change: transform;
 }
@@ -6778,25 +6779,16 @@ body.no-clients .clients-ticker-section {
 }
 
 .dpb-visual {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  position: relative;
+  min-height: 420px;
 }
 
-/* Внешний div — JS параллакс (will-change: transform) */
 .dpb-mockup-wrap {
-  width: 100%;
-  max-width: 580px;
-  will-change: transform;
-}
-
-/* Img — CSS float-анимация (не конфликтует с JS transform на родителе) */
-.dpb-mockup {
-  display: block;
-  width: 100%;
-  height: auto;
+  position: absolute;
+  inset: 0;
+  background: url('../design/BG_3.png') center / contain no-repeat;
   animation: dpbFloat 9s ease-in-out infinite;
-  filter: drop-shadow(0 28px 72px rgba(119, 51, 255, 0.50));
+  will-change: transform;
 }
 
 @keyframes dpbFloat {

@@ -425,12 +425,8 @@
         </div>
 
         <!-- Правая колонка: 3D-макеты -->
-        <div class="dpb-visual">
-          <!-- dpb-mockup-wrap: JS-параллакс -->
-          <!-- dpb-mockup: CSS float-анимация — не конфликтует с JS -->
-          <div class="dpb-mockup-wrap">
-            <img class="dpb-mockup" src="BG_3.png" alt="" aria-hidden="true">
-          </div>
+        <div class="dpb-visual" aria-hidden="true">
+          <div class="dpb-mockup-wrap"></div>
         </div>
       </div>
     </section>
@@ -695,7 +691,17 @@
       my = (e.clientY - r.top)  / r.height;
       tgtScale = 38;   /* усиливается при движении курсора */
     });
-    hero.addEventListener('mouseleave', function () { tgtScale = 18; }); /* возврат к базе */
+    hero.addEventListener('mouseleave', function () { tgtScale = 18; });
+
+    /* Параллакс при скролле — BG_design.jpg движется медленнее страницы */
+    var baseEl = document.querySelector('.design-bg-base');
+    window.addEventListener('scroll', function () {
+      var sy = window.scrollY;
+      var hh = hero ? hero.offsetHeight : window.innerHeight;
+      if (sy > hh + 200) return;
+      if (baseEl) baseEl.style.transform = 'translateY(' + (sy * 0.30).toFixed(1) + 'px)';
+    }, { passive: true });
+
     function tick() {
       lx = lerp(lx, mx, 0.05); ly = lerp(ly, my, 0.05);
       curScale = lerp(curScale, tgtScale, 0.07);
