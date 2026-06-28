@@ -698,25 +698,29 @@ function initVideoCalculator() {
       .map(box => box.parentElement.querySelector("span").textContent.trim());
 
     const lines = [
+      `🎬 <b>Заявка на видео — ADERVIS</b>`,
+      ``,
       `Имя: ${name}`,
       `Контакт: ${contact}`,
       deadline ? `Срок: ${deadline}` : null,
       `Формат: ${formatSelect.selectedOptions[0].textContent.trim()}`,
       `Хронометраж: ${lengthSelect.selectedOptions[0].textContent.trim()}`,
       extras.length ? `Дополнительно: ${extras.join(", ")}` : null,
-      `Ориентировочный бюджет (по калькулятору): от ${formatPrice.format(low)} до ${formatPrice.format(high)} ₽`,
-    ].filter(Boolean).join("\n");
-
-    const tgText = encodeURIComponent(`Заявка на видео с сайта ADERVIS:\n\n${lines}`);
-    const tgUrl = `https://t.me/Adervis_digital?text=${tgText}`;
-    openTgLink(tgUrl);
+      `Бюджет по калькулятору: от ${formatPrice.format(low)} до ${formatPrice.format(high)} ₽`,
+    ].filter(l => l !== null).join("\n");
 
     const sb = form.querySelector('[type="submit"]');
     if (sb) {
       const origHTML = sb.innerHTML;
       sb.disabled = true;
-      sb.innerHTML = `Заявка отправлена — ответим в течение дня&nbsp;&nbsp;<a href="${tgUrl}" target="_blank" rel="noopener noreferrer" style="color:inherit;text-decoration:underline;font-weight:500">открыть Telegram</a>`;
-      setTimeout(() => { sb.innerHTML = origHTML; sb.disabled = false; }, 8000);
+      sb.innerHTML = 'Отправляем...';
+      sendTelegramMessage(lines,
+        () => {
+          sb.innerHTML = '✓ Заявка принята — пришлём КП за 48 часов';
+          setTimeout(() => { sb.innerHTML = origHTML; sb.disabled = false; form.reset(); showStep(1); }, 6000);
+        },
+        () => { sb.innerHTML = origHTML; sb.disabled = false; showToast('Ошибка — напишите: adervis.digital@gmail.com'); }
+      );
     }
   });
 }
@@ -784,23 +788,28 @@ function initSimpleCalculator(formId, tgPrefix) {
       .filter(box => box.checked)
       .map(box => box.parentElement.querySelector("span").textContent.trim());
     const lines = [
+      `🔔 <b>${tgPrefix}</b>`,
+      ``,
       `Имя: ${name}`,
       `Контакт: ${contact}`,
       deadline ? `Срок: ${deadline}` : null,
       `Услуга: ${formatSelect.selectedOptions[0].textContent.trim()}`,
       `Параметр: ${lengthSelect.selectedOptions[0].textContent.trim()}`,
       extras.length ? `Дополнительно: ${extras.join(", ")}` : null,
-      `Ориентировочный бюджет: от ${fmt.format(low)} до ${fmt.format(high)} ₽`,
-    ].filter(Boolean).join("\n");
-    const tgText = encodeURIComponent(`${tgPrefix}:\n\n${lines}`);
-    const tgUrl = `https://t.me/Adervis_digital?text=${tgText}`;
-    openTgLink(tgUrl);
+      `Бюджет по калькулятору: от ${fmt.format(low)} до ${fmt.format(high)} ₽`,
+    ].filter(l => l !== null).join("\n");
     const sb = form.querySelector('[type="submit"]');
     if (sb) {
       const orig = sb.innerHTML;
       sb.disabled = true;
-      sb.innerHTML = `Заявка отправлена — ответим в течение дня&nbsp;&nbsp;<a href="${tgUrl}" target="_blank" rel="noopener noreferrer" style="color:inherit;text-decoration:underline;font-weight:500">открыть Telegram</a>`;
-      setTimeout(() => { sb.innerHTML = orig; sb.disabled = false; }, 8000);
+      sb.innerHTML = 'Отправляем...';
+      sendTelegramMessage(lines,
+        () => {
+          sb.innerHTML = '✓ Заявка принята — пришлём КП за 48 часов';
+          setTimeout(() => { sb.innerHTML = orig; sb.disabled = false; form.reset(); showStep(1); }, 6000);
+        },
+        () => { sb.innerHTML = orig; sb.disabled = false; showToast('Ошибка — напишите: adervis.digital@gmail.com'); }
+      );
     }
   });
 }
