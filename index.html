@@ -700,19 +700,63 @@
     <div class="section-divider" aria-hidden="true"></div>
 
     <!-- ════════════════════════════════
-         ОТЗЫВЫ
+         ОТЗЫВЫ — видео + текст (один блок)
          ════════════════════════════════ -->
     <section class="section">
       <div class="container">
         <div class="section-head reveal">
           <h2>Что говорят клиенты</h2>
-          <p>Работаем с 2018 года. Отношения с клиентами строятся на результате, а не на красивых обещаниях.</p>
+          <p>Рассказывают своими словами — на видео и в тексте. Без редактуры и купюр.</p>
         </div>
-        <div class="reviews-slider">
+
+        <!-- Видео-отзывы -->
+        <div class="vrp reveal" id="vrPlayer">
+          <div class="vrp__area">
+            <div class="vrp__screen" id="vrMain">
+              <div class="vrp__poster" id="vrPoster">
+                <div class="vrp__bg" id="vrBg"></div>
+                <div class="vrp__grad"></div>
+                <div class="vrp__meta">
+                  <div class="vrp__meta-info">
+                    <span class="vrp__meta-name" id="vrName"></span>
+                    <span class="vrp__meta-company" id="vrCompany"></span>
+                  </div>
+                  <span class="vrp__meta-idx" id="vrIdx"></span>
+                </div>
+                <div class="vrp__controls">
+                  <button class="vrp__ctrl-btn" id="vrPrev" aria-label="Предыдущее">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M15 18l-6-6 6-6"/></svg>
+                  </button>
+                  <button class="vrp__play" id="vrPlayBtn" aria-label="Воспроизвести">
+                    <span class="vrp__play-ring"></span>
+                    <svg viewBox="0 0 24 24" fill="currentColor" width="30" height="30" aria-hidden="true"><path d="M8 5.14v14l11-7-11-7z"/></svg>
+                  </button>
+                  <button class="vrp__ctrl-btn" id="vrNextInline" aria-label="Следующее">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M9 18l6-6-6-6"/></svg>
+                  </button>
+                </div>
+              </div>
+              <iframe class="vrp__frame" id="vrFrame" src="" frameborder="0"
+                allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            <div class="vrp__right">
+              <div class="vrp__list" id="vrList"></div>
+              <button class="vrp__nav-btn" id="vrNext" aria-label="Следующее">
+                <svg viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><path d="M6 9l6 6 6-6"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Текстовые отзывы -->
+        <div class="reviews-block-label reveal" style="margin-top:var(--sp-10)">
+          <span class="eyebrow">Письменные отзывы</span>
+        </div>
+        <div class="reviews-slider reveal">
           <div class="reviews-track-outer">
             <div class="reviews-track">
 
-              <div class="review-card reveal">
+              <div class="review-card">
                 <p class="review-text">Баскетбольная команда «Закамск» работает с ADERVIS уже больше года! Всегда очень довольны результатом! Мы заказывали 3 логотипа для команды, дипломы для сборов, рекламные листовки, рекламный ролл ап. Вся работа была выполнена в кратчайшие сроки и с очень точным пониманием наших желаний.</p>
                 <div class="review-author">
                   <a href="https://vk.com/id254553435" class="review-avatar-link" target="_blank" rel="noopener noreferrer" aria-label="ВКонтакте: Максим Мосягин">
@@ -726,7 +770,7 @@
                 </div>
               </div>
 
-              <div class="review-card reveal">
+              <div class="review-card">
                 <p class="review-text">Очень давно сотрудничаем и дружим с ребятами. Способны решить задачу любой сложности — и быстрый техничный монтаж, и комплексный проект со съёмкой в течение года.</p>
                 <div class="review-author">
                   <a href="https://vk.com/permclimber" class="review-avatar-link" target="_blank" rel="noopener noreferrer" aria-label="ВКонтакте: Виктор Пермяков">
@@ -740,7 +784,7 @@
                 </div>
               </div>
 
-              <div class="review-card reveal">
+              <div class="review-card">
                 <p class="review-text">Ребята, очень благодарна вам за слаженную работу! Безумно комфортно и креативно — это супер важная часть! Видеоролик получился офигенный, спасибо что адекватно принимали критику и правки. Очень рада, что интуитивно среди трёх компаний выбрала именно вас! И кстати, наш ролик прошёл в финал конкурса — а это уже наша совместная победа!</p>
                 <div class="review-author">
                   <a href="https://vk.com/dr_lesnikova" class="review-avatar-link" target="_blank" rel="noopener noreferrer" aria-label="ВКонтакте: Алина Лесникова">
@@ -754,7 +798,7 @@
                 </div>
               </div>
 
-              <div class="review-card reveal">
+              <div class="review-card">
                 <p class="review-text">Работают оперативно, подсказывают, придумывают — отличная команда. Процветания и больше работы по данному направлению, удачи ребята — поработаем ещё.</p>
                 <div class="review-author">
                   <a href="https://vk.com/andreuka1" class="review-avatar-link" target="_blank" rel="noopener noreferrer" aria-label="ВКонтакте: Андрей Шуклин">
@@ -768,7 +812,7 @@
                 </div>
               </div>
 
-              <div class="review-card reveal">
+              <div class="review-card">
                 <p class="review-text">Парни отсняли и обработали мне 2 клипа. Процесс съёмки был очень комфортен — провели время так, будто знаем друг друга много лет, помогали по максимуму раскрыться. Итогом работы я более чем доволен! Рекомендую!</p>
                 <div class="review-author">
                   <a href="https://vk.com/rodin_official" class="review-avatar-link" target="_blank" rel="noopener noreferrer" aria-label="ВКонтакте: Дмитрий Родин">
@@ -782,7 +826,7 @@
                 </div>
               </div>
 
-              <div class="review-card reveal">
+              <div class="review-card">
                 <p class="review-text">Вы очень классные и отзывчивые ребята. Сделали всё очень оперативно и качественно. Ролик делали для ТВ — подогнали по всем техническим требованиям. Спасибо огромное! Рекомендуем.</p>
                 <div class="review-author">
                   <a href="https://vk.com/abs_auto" class="review-avatar-link" target="_blank" rel="noopener noreferrer" aria-label="ВКонтакте: Абс Авто">
@@ -796,7 +840,7 @@
                 </div>
               </div>
 
-              <div class="review-card reveal">
+              <div class="review-card">
                 <p class="review-text">Мы впервые заказали ролик и нам очень повезло с первого раза встретить таких профессионалов! Очень хороший результат и по видео, и по фото. Оперативно, пунктуально и очень внимательно отнеслись к работе. Ребята помогли с композицией, с аксессуарами — результат просто прекрасен!</p>
                 <div class="review-author">
                   <a href="https://vk.com/ignatovaanna" class="review-avatar-link" target="_blank" rel="noopener noreferrer" aria-label="ВКонтакте: Анна Игнатова">
@@ -810,7 +854,7 @@
                 </div>
               </div>
 
-              <div class="review-card reveal">
+              <div class="review-card">
                 <p class="review-text">Ребята большие молодцы. Выполнили всё в срок, полностью прислушивались к требованиям клиента, адекватно реагировали на переделки и поправки. Спасибо.</p>
                 <div class="review-author">
                   <a href="https://vk.com/razorynova" class="review-avatar-link" target="_blank" rel="noopener noreferrer" aria-label="ВКонтакте: Екатерина Разорёнова">
@@ -837,68 +881,7 @@
             </button>
           </div>
         </div>
-      </div>
-    </section>
 
-    <div class="section-divider" aria-hidden="true"></div>
-
-    <!-- ════════════════════════════════
-         ВИДЕО-ОТЗЫВЫ
-         Как добавить видео:
-         1. Откройте видео ВКонтакте
-         2. Нажмите «Поделиться» → «Код для вставки»
-         3. Скопируйте src из iframe, добавьте &autoplay=1 в конец
-         4. Вставьте в data-vk="..."
-         5. Добавьте превью: background-image: url('путь/к/скриншоту.jpg')
-         ════════════════════════════════ -->
-    <section class="section">
-      <div class="container">
-        <div class="section-head reveal">
-          <h2>Клиенты — о работе с нами</h2>
-          <p>Рассказывают своими словами: о процессе, результате и о том, почему выбрали нас.</p>
-        </div>
-        <div class="vrp" id="vrPlayer">
-
-          <div class="vrp__area">
-            <div class="vrp__screen" id="vrMain">
-              <div class="vrp__poster" id="vrPoster">
-                <div class="vrp__bg" id="vrBg"></div>
-                <div class="vrp__grad"></div>
-                <!-- Мета-информация об активном отзыве -->
-                <div class="vrp__meta">
-                  <div class="vrp__meta-info">
-                    <span class="vrp__meta-name" id="vrName"></span>
-                    <span class="vrp__meta-company" id="vrCompany"></span>
-                  </div>
-                  <span class="vrp__meta-idx" id="vrIdx"></span>
-                </div>
-                <!-- Кнопки prev/play/next на постере -->
-                <div class="vrp__controls">
-                  <button class="vrp__ctrl-btn" id="vrPrev" aria-label="Предыдущее">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M15 18l-6-6 6-6"/></svg>
-                  </button>
-                  <button class="vrp__play" id="vrPlayBtn" aria-label="Воспроизвести">
-                    <span class="vrp__play-ring"></span>
-                    <svg viewBox="0 0 24 24" fill="currentColor" width="30" height="30" aria-hidden="true"><path d="M8 5.14v14l11-7-11-7z"/></svg>
-                  </button>
-                  <button class="vrp__ctrl-btn" id="vrNextInline" aria-label="Следующее">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M9 18l6-6-6-6"/></svg>
-                  </button>
-                </div>
-              </div>
-              <iframe class="vrp__frame" id="vrFrame" src="" frameborder="0"
-                allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
-            </div>
-
-            <div class="vrp__right">
-              <div class="vrp__list" id="vrList"></div>
-              <button class="vrp__nav-btn" id="vrNext" aria-label="Следующее">
-                <svg viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><path d="M6 9l6 6 6-6"/></svg>
-              </button>
-            </div>
-          </div>
-
-        </div>
       </div>
     </section>
 
@@ -968,62 +951,24 @@
     <div class="section-divider" aria-hidden="true"></div>
 
     <!-- ════════════════════════════════
-         ADERVIS PLATFORM — продукты + CRM
+         ADERVIS PLATFORM — тизер
          ════════════════════════════════ -->
-    <section class="section apps-section" id="platform">
+    <section class="section" id="platform">
       <div class="container">
-        <div class="section-head reveal">
-          <span class="eyebrow">ADERVIS Platform</span>
-          <h2>Студия, которая делает визуал — и строит инструменты для рынка</h2>
-          <p>Создали собственные продукты для студий и агентств — в процессе работы над клиентскими проектами.</p>
-        </div>
-        <div class="apps-grid">
-          <div class="app-card is-live reveal">
-            <span class="app-status live">Доступен</span>
-            <h3>Adervis CRM</h3>
-            <p>Управление проектами, сметами, КП и командой — в одном окне. Без Excel и файлов «смета_финал_v3».</p>
-            <div class="app-card-footer">
-              <a href="https://app.adervis.ru" target="_blank" rel="noopener" class="app-card-link">
-                Открыть платформу
-                <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
-              </a>
-              <a href="pro/" class="app-card-link-secondary">Подробнее</a>
-            </div>
-          </div>
-          <div class="app-card reveal">
-            <span class="app-status dev">В разработке</span>
-            <h3>Adervis Outreach</h3>
-            <p>Трекер исходящих коммуникаций для студий: контакты, касания, статусы и напоминания о follow-up.</p>
-            <div class="app-card-footer">
-              <span class="app-card-hint">Уведомим при запуске</span>
-            </div>
-          </div>
-          <div class="app-card reveal">
-            <span class="app-status soon">Скоро</span>
-            <h3>Adervis Hunter</h3>
-            <p>Автоматический поиск потенциальных клиентов для продакшн-студий и творческих агентств.</p>
-            <div class="app-card-footer">
-              <span class="app-card-hint">В разработке</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- CRM-баннер -->
-        <div class="crm-banner-frame reveal" style="margin-top: var(--sp-8)">
+        <div class="crm-banner-frame reveal">
           <div class="crm-banner crm-banner--2col">
             <div class="crm-text">
-              <span class="badge-crm">Уже работает</span>
-              <h3>Adervis CRM — продакшн под контролем, в одном окне</h3>
-              <p>Сделки, сметы, КП и календарь команды — в одном интерфейсе, а не в десятке вкладок. Мы построили систему для себя — и открыли её другим студиям.</p>
+              <span class="eyebrow">ADERVIS Platform</span>
+              <h2>Adervis CRM — продакшн под контролем</h2>
+              <p>Сделки, сметы, КП и календарь команды в одном окне. Построили для себя — открыли другим студиям.</p>
               <div class="hero-buttons">
-                <a href="pro/" class="btn primary">Подробнее о платформе</a>
+                <a href="pro/" class="btn primary">Узнать подробнее</a>
+                <a href="https://app.adervis.ru" target="_blank" rel="noopener" class="btn">Открыть платформу</a>
               </div>
             </div>
-
             <div class="crm-visual">
               <img src="assets/cases/crm-dashboard.png" alt="Adervis CRM — интерфейс платформы управления проектами" class="crm-screenshot" loading="lazy">
             </div>
-
           </div>
         </div>
       </div>
