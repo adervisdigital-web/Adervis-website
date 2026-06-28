@@ -6,8 +6,26 @@ const rootPath = appScript
   ? new URL(appScript.getAttribute("src"), document.baseURI).pathname.replace(/js\/app\.js$/, "")
   : "/";
 
-// iOS Safari блокирует window.open() как popup даже из submit-событий.
-// Метод с программным кликом по <a> надёжнее — работает как прямой user-action.
+// Отправка заявки в Telegram-группу через Bot API
+// Пользователь ничего не делает — сообщение уходит автоматически
+var TG_BOT_TOKEN = '8947523900:AAFXPhbl2bYZaaUn0pBZiNPh4TYvtqMPtyQ';
+var TG_CHAT_ID   = '-5287777539';
+
+function sendTelegramMessage(text, onSuccess, onError) {
+  fetch('https://api.telegram.org/bot' + TG_BOT_TOKEN + '/sendMessage', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ chat_id: TG_CHAT_ID, text: text, parse_mode: 'HTML' })
+  })
+  .then(function(r) { return r.json(); })
+  .then(function(data) {
+    if (data.ok) { if (onSuccess) onSuccess(); }
+    else { if (onError) onError(); }
+  })
+  .catch(function() { if (onError) onError(); });
+}
+
+// Оставляем openTgLink как fallback для совместимости
 function openTgLink(url) {
   const a = document.createElement('a');
   a.href = url;
@@ -173,7 +191,7 @@ function initQuiz() {
         return;
       }
       const lines = [
-        '📋 КП-запрос с сайта ADERVIS',
+        '📋 <b>КП-запрос с сайта ADERVIS</b>',
         '',
         answers.dir      ? `Направление: ${answers.dir}`   : null,
         answers.budget   ? `Бюджет: ${answers.budget}`     : null,
@@ -183,8 +201,7 @@ function initQuiz() {
         contact ? `Контакт: ${contact}` : null,
       ].filter(l => l !== null).join('\n');
 
-      openTgLink(`https://t.me/Adervis_digital?text=${encodeURIComponent(lines)}`);
-      goTo(5);
+      sendTelegramMessage(lines, function() { goTo(5); }, function() { goTo(5); });
     });
   }
 }
@@ -392,19 +409,21 @@ function initModal() {
 
       const dirLabels = { video: 'Видео', design: 'Дизайн', photo: 'Фото', ai: 'ИИ-контент' };
       const dirName   = dirLabels[direction] || '';
+      const subjectDir = dirName ? ` — ${dirName}` : '';
       const lines = [
+        `🔔 <b>Заявка с сайта ADERVIS${subjectDir}</b>`,
+        '',
         `Имя: ${name}`,
         `Контакт: ${contact}`,
         dirName  ? `Направление: ${dirName}` : null,
-        message  ? `Задача: ${message}` : 'Задача: уточнит при созвоне',
-      ].filter(Boolean).join("\n");
+        message  ? `Задача: ${message}` : null,
+      ].filter(l => l !== null).join('\n');
 
-      const subjectDir = dirName ? ` — ${dirName}` : '';
-      const tgText = encodeURIComponent(`Заявка с сайта ADERVIS${subjectDir}:\n\n${lines}`);
-      const tgUrl = `https://t.me/Adervis_digital?text=${tgText}`;
-      openTgLink(tgUrl);
       closeModal();
-      showToast('✓ Заявка отправлена — ответим за 2 часа в рабочее время');
+      sendTelegramMessage(lines,
+        function() { showToast('✓ Заявка принята — ответим за 2 часа в рабочее время'); },
+        function() { showToast('✓ Заявка принята — ответим за 2 часа в рабочее время'); }
+      );
     });
   }
 }
@@ -1183,26 +1202,34 @@ function initLeadForm() {
 
     const dirLabels = { video: 'Видео', design: 'Дизайн', photo: 'Фото', ai: 'ИИ-контент' };
     const dirName   = dirLabels[direction] || '';
+    const subjectDir = dirName ? ` — ${dirName}` : '';
 
     const lines = [
+      `🔔 <b>Заявка с сайта ADERVIS${subjectDir}</b>`,
+      '',
       `Имя: ${name}`,
       `Контакт: ${contact}`,
       dirName  ? `Направление: ${dirName}` : null,
-      message  ? `Задача: ${message}` : 'Задача: уточнит при созвоне',
-    ].filter(Boolean).join("\n");
-
-    const subjectDir = dirName ? ` — ${dirName}` : '';
-    const tgText = encodeURIComponent(`Заявка с сайта ADERVIS${subjectDir}:\n\n${lines}`);
-    const tgUrl = `https://t.me/Adervis_digital?text=${tgText}`;
-    openTgLink(tgUrl);
+      message  ? `Задача: ${message}` : null,
+    ].filter(l => l !== null).join('\n');
 
     const submitBtn = form.querySelector('[type="submit"]');
     if (submitBtn) {
       const origHTML = submitBtn.innerHTML;
       submitBtn.disabled = true;
-      submitBtn.innerHTML = `Заявка принята — ответим в течение дня&nbsp;&nbsp;<a href="${tgUrl}" target="_blank" rel="noopener noreferrer" style="color:inherit;text-decoration:underline;font-weight:500">открыть Telegram</a>`;
-      showToast('✓ Заявка отправлена — ответим за 2 часа в рабочее время');
-      setTimeout(() => { submitBtn.innerHTML = origHTML; submitBtn.disabled = false; form.reset(); }, 8000);
+      submitBtn.innerHTML = 'Отправляем...';
+      sendTelegramMessage(lines,
+        function() {
+          submitBtn.innerHTML = '✓ Заявка принята — ответим за 2 часа';
+          showToast('✓ Заявка принята — ответим за 2 часа в рабочее время');
+          setTimeout(function() { submitBtn.innerHTML = origHTML; submitBtn.disabled = false; form.reset(); }, 6000);
+        },
+        function() {
+          submitBtn.innerHTML = origHTML;
+          submitBtn.disabled = false;
+          showToast('Ошибка отправки — напишите нам напрямую: adervis.digital@gmail.com');
+        }
+      );
     }
   });
 }
