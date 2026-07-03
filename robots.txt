@@ -1,5 +1,6 @@
 User-agent: *
 Allow: /
 Disallow: /docs/
+Disallow: /edu/
 
 Sitemap: https://adervis.ru/sitemap.xml
