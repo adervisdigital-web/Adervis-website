@@ -830,7 +830,10 @@ button.site-header__platform {
   opacity: 0;
   visibility: hidden;
   transition: opacity 0.3s ease, visibility 0.3s;
-  z-index: 299;
+  /* Должен быть НИЖЕ .site-header (z-index:200, свой stacking context из-за position:fixed) —
+     иначе он перекрывает клики по .pill-nav (z-index:1000), т.к. её z-index считается только
+     относительно .site-header, а не относительно .nav-backdrop, который стоит рядом с ней в DOM. */
+  z-index: 150;
   cursor: pointer;
 }
 .nav-backdrop.is-visible { opacity: 1; visibility: visible; }
@@ -844,8 +847,7 @@ button.site-header__platform {
     background: rgba(10,10,10,0.97) !important;
   }
 
-  /* nav-backdrop находится вне site-header (z-index:200) и сам имеет z-index:299.
-     backdrop-filter на нём размывает всё что ниже — включая pill-nav внутри header.
+  /* backdrop-filter на nav-backdrop размывает всё что ниже — включая pill-nav внутри header.
      Убираем blur: тёмный rgba-overlay и так создаёт нужное затемнение. */
   .nav-backdrop {
     backdrop-filter: none !important;
