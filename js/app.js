@@ -55,24 +55,11 @@ function showToast(msg, duration = 4000) {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  // Функция для подгрузки HTML компонентов — возвращает промис с готовым элементом
-  const loadComponent = (id, url) => {
-    const el = document.getElementById(id);
-    if (!el) return Promise.resolve(null);
-
-    return fetch(url)
-      .then(response => response.text())
-      .then(html => {
-        // header.html/footer.html написаны с путями от корня сайта («/logo.svg», «/video»):
-        // подставляем вычисленный rootPath, чтобы они указывали верно из любой подпапки
-        el.innerHTML = rootPath === "/" ? html : html.replace(/((?:href|src)=")\//g, `$1${rootPath}`);
-        return el;
-      })
-      .catch(error => { console.warn("Ошибка загрузки компонента:", error); return null; });
-  };
-
-  // Загружаем шапку и подвал, затем включаем их интерактивность
-  loadComponent("header-placeholder", `${rootPath}components/header.html`).then(headerRoot => {
+  // header.html/footer.html инлайнятся в каждую страницу на этапе сборки
+  // (build/inline-components.js) — сразу видны в исходном HTML для поисковиков
+  // и без JS; здесь только включаем их интерактивность
+  const headerRoot = document.getElementById("header-placeholder");
+  if (headerRoot) {
     initFloatingHeader(headerRoot);
     initMobileNav(headerRoot);
     markActiveNavLink(headerRoot);
@@ -98,11 +85,13 @@ document.addEventListener("DOMContentLoaded", () => {
         if (toggle)   toggle.setAttribute("aria-expanded", "false");
       });
     });
-  });
-  loadComponent("footer-placeholder", `${rootPath}components/footer.html`).then(el => {
-    initBackToTop(el);
-    initTickerDrag(el);
-  });
+  }
+
+  const footerRoot = document.getElementById("footer-placeholder");
+  if (footerRoot) {
+    initBackToTop(footerRoot);
+    initTickerDrag(footerRoot);
+  }
 
   initServicesGrid();
   initHeroQuiz();
@@ -145,7 +134,12 @@ function initQuiz() {
   function goTo(n) {
     card.querySelectorAll('.quiz-step').forEach(s => s.classList.remove('is-active'));
     const next = card.querySelector(`[data-step="${n}"]`);
-    if (next) next.classList.add('is-active');
+    if (next) {
+      next.classList.add('is-active');
+      // Переносим фокус на новый шаг — иначе смена шага незаметна для скринридера
+      next.setAttribute('tabindex', '-1');
+      next.focus();
+    }
     current = n;
 
     const displayStep = Math.min(n, TOTAL);
@@ -183,11 +177,18 @@ function initQuiz() {
 
   const submitBtn = document.getElementById('quizSubmit');
   if (submitBtn) {
+    const quizNameInput = document.getElementById('quizName');
+    const quizContactInput = document.getElementById('quizContact');
+    [quizNameInput, quizContactInput].forEach(inp => {
+      if (inp) inp.addEventListener('input', () => clearFieldError(inp));
+    });
+
     submitBtn.addEventListener('click', () => {
-      const name    = (document.getElementById('quizName')?.value || '').trim();
-      const contact = (document.getElementById('quizContact')?.value || '').trim();
+      const name    = (quizNameInput?.value || '').trim();
+      const contact = (quizContactInput?.value || '').trim();
       if (!name && !contact) {
-        document.getElementById('quizContact')?.focus();
+        if (quizContactInput) showFieldError(quizContactInput, 'Укажите имя и контакт для связи');
+        quizContactInput?.focus();
         return;
       }
       const lines = [
@@ -201,7 +202,17 @@ function initQuiz() {
         contact ? `Контакт: ${contact}` : null,
       ].filter(l => l !== null).join('\n');
 
-      sendTelegramMessage(lines, function() { goTo(5); }, function() { goTo(5); });
+      const origHTML = submitBtn.innerHTML;
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = 'Отправляем...';
+      sendTelegramMessage(lines,
+        function() { submitBtn.innerHTML = origHTML; submitBtn.disabled = false; goTo(5); },
+        function() {
+          submitBtn.innerHTML = origHTML;
+          submitBtn.disabled = false;
+          showToast('Ошибка отправки — напишите нам напрямую: adervis.digital@gmail.com');
+        }
+      );
     });
   }
 }
@@ -241,14 +252,14 @@ function initHeroQuiz() {
     if (sendBtn) {
       sendBtn.addEventListener('click', () => {
         const active = document.querySelector('.hero-quiz__chip.is-active');
-        openModal(active?.dataset.val || null);
+        openModal(active?.dataset.val || null, sendBtn);
       });
     }
   }
 
   // Мобайл: вертикальный список, один клик = попап
   document.querySelectorAll('.hero-quiz__list-item').forEach(item => {
-    item.addEventListener('click', () => openModal(item.dataset.val || null));
+    item.addEventListener('click', () => openModal(item.dataset.val || null, item));
   });
 }
 
@@ -296,7 +307,7 @@ function initFloatingCta() {
       const active = document.querySelector('.hero-quiz__chip.is-active');
       const dir = active?.dataset.val || null;
       if (modal) {
-        openModal(dir);
+        openModal(dir, btn);
       } else if (contacts) {
         if (dir) syncCtaDirChips(dir);
         contacts.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -315,11 +326,17 @@ function syncCtaDirChips(val) {
 }
 
 // ── Модальное окно быстрой заявки ──────────────────────────────────────────
-function openModal(direction) {
+let modalTrigger = null;
+
+function openModal(direction, trigger) {
   const modal = document.getElementById('requestModal');
   if (!modal) return;
+  modalTrigger = trigger || document.activeElement;
   modal.hidden = false;
   document.body.style.overflow = 'hidden';
+  // Кадр задержки, чтобы браузер успел применить display:flex до перехода в opacity:1 —
+  // иначе CSS-transition не сыграет
+  requestAnimationFrame(() => { modal.classList.add('is-visible'); });
 
   // Синхронизируем направление если выбрано
   if (direction) {
@@ -330,9 +347,9 @@ function openModal(direction) {
     if (field) field.value = direction;
   }
 
-  // Фокус на первый инпут после анимации
+  // Фокус на первый настоящий инпут после анимации (не на honeypot-поле website)
   setTimeout(() => {
-    const first = modal.querySelector('input[type="text"], textarea');
+    const first = modal.querySelector('input[name="name"]');
     if (first) first.focus();
   }, 300);
 }
@@ -340,8 +357,11 @@ function openModal(direction) {
 function closeModal() {
   const modal = document.getElementById('requestModal');
   if (!modal) return;
-  modal.hidden = true;
+  modal.classList.remove('is-visible');
   document.body.style.overflow = '';
+  if (modalTrigger) { modalTrigger.focus(); modalTrigger = null; }
+  // hidden ставим после анимации ухода, чтобы transition успел отыграть
+  setTimeout(() => { modal.hidden = true; }, 250);
 }
 
 function initModal() {
@@ -353,7 +373,17 @@ function initModal() {
   // Закрытие
   if (closeBtn) closeBtn.addEventListener('click', closeModal);
   modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
-  document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !modal.hidden) closeModal(); });
+  document.addEventListener('keydown', (e) => {
+    if (modal.hidden) return;
+    if (e.key === 'Escape') { closeModal(); return; }
+    if (e.key === 'Tab') {
+      const focusables = modal.querySelectorAll('button, [href], input, textarea, select, [tabindex]:not([tabindex="-1"])');
+      if (!focusables.length) return;
+      const first = focusables[0], last = focusables[focusables.length - 1];
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    }
+  });
 
   // Чипы направления в модале
   const chips = modal.querySelectorAll('.modal-dir-chip');
@@ -380,9 +410,7 @@ function initModal() {
   });
   const modalConsent = modal.querySelector('#modalConsent');
   if (modalConsent) {
-    modalConsent.addEventListener('change', () => {
-      modalConsent.closest('.modal-consent-label').style.outline = '';
-    });
+    modalConsent.addEventListener('change', () => clearConsentError(modalConsent));
   }
 
   // Отправка формы через mailto (152-ФЗ согласие обязательно)
@@ -393,7 +421,7 @@ function initModal() {
       if (honeypot && honeypot.value) return;
       const consent = form.querySelector('#modalConsent');
       if (!consent || !consent.checked) {
-        if (consent) consent.closest('.modal-consent-label').style.outline = '2px solid var(--c-video)';
+        if (consent) { showConsentError(consent); consent.focus(); }
         return;
       }
       const nameInput    = form.querySelector('[name="name"]');
@@ -403,7 +431,7 @@ function initModal() {
       let hasError = false;
       if (!name && nameInput)    { showFieldError(nameInput,    'Пожалуйста, укажите имя'); hasError = true; }
       if (!contact && contactInput) { showFieldError(contactInput, 'Укажите телефон, email или Telegram'); hasError = true; }
-      if (hasError) return;
+      if (hasError) { (!name ? nameInput : contactInput)?.focus(); return; }
       const message   = (form.querySelector('[name="message"]')?.value || '').trim();
       const direction = (form.querySelector('[name="direction"]')?.value || '').trim();
 
@@ -419,10 +447,19 @@ function initModal() {
         message  ? `Задача: ${message}` : null,
       ].filter(l => l !== null).join('\n');
 
-      closeModal();
+      const submitBtn = form.querySelector('[type="submit"]');
+      const origHTML = submitBtn ? submitBtn.innerHTML : '';
+      if (submitBtn) { submitBtn.disabled = true; submitBtn.innerHTML = 'Отправляем...'; }
       sendTelegramMessage(lines,
-        function() { showToast('✓ Заявка принята — ответим за 2 часа в рабочее время'); },
-        function() { showToast('✓ Заявка принята — ответим за 2 часа в рабочее время'); }
+        function() {
+          if (submitBtn) { submitBtn.innerHTML = origHTML; submitBtn.disabled = false; }
+          closeModal();
+          showToast('✓ Заявка принята — ответим за 2 часа в рабочее время');
+        },
+        function() {
+          if (submitBtn) { submitBtn.innerHTML = origHTML; submitBtn.disabled = false; }
+          showToast('Ошибка отправки — напишите нам напрямую: adervis.digital@gmail.com');
+        }
       );
     });
   }
@@ -524,10 +561,27 @@ function initMobileNav(headerRoot) {
 
   const isMobile = () => window.innerWidth <= 860;
 
+  // На мобильном закрытое меню анимируется через opacity — без inert его пункты
+  // остаются в порядке табуляции, будучи полностью невидимыми (WCAG 2.1.1/2.4.7)
+  nav.inert = isMobile();
+
+  // Пока открытое мобильное меню — полноэкранный оверлей, остальной контент
+  // страницы (main, footer, кнопка "наверх" и т.п.) должен быть недоступен
+  // табом — иначе фокус после последнего пункта меню уходит в невидимый
+  // контент позади оверлея (WCAG 2.4.3)
+  const setRestOfPageInert = (makeInert) => {
+    Array.from(document.body.children).forEach((el) => {
+      if (el === headerRoot) return;
+      el.inert = makeInert;
+    });
+  };
+
   const setOpen = (open) => {
     toggle.setAttribute("aria-expanded", String(open));
     toggle.setAttribute("aria-label", open ? "Закрыть меню" : "Открыть меню");
     nav.classList.toggle("is-open", open);
+    nav.inert = isMobile() && !open;
+    setRestOfPageInert(isMobile() && open);
     backdrop.classList.toggle("is-visible", open);
     document.body.classList.toggle("nav-open", open);
     if (!open) {
@@ -541,9 +595,17 @@ function initMobileNav(headerRoot) {
   };
 
   toggle.addEventListener("click", () => setOpen(toggle.getAttribute("aria-expanded") !== "true"));
-  backdrop.addEventListener("click", () => setOpen(false));
-  window.addEventListener("keydown", (e) => { if (e.key === "Escape") setOpen(false); });
-  window.addEventListener("resize", () => { if (!isMobile()) setOpen(false); });
+  backdrop.addEventListener("click", () => { setOpen(false); toggle.focus(); });
+  window.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && toggle.getAttribute("aria-expanded") === "true") {
+      setOpen(false);
+      toggle.focus();
+    }
+  });
+  window.addEventListener("resize", () => {
+    if (!isMobile()) { setOpen(false); setRestOfPageInert(false); }
+    nav.inert = isMobile() && !nav.classList.contains("is-open");
+  });
 
   // Закрываем при клике на обычную ссылку (не дропдаун-триггер)
   nav.addEventListener("click", (e) => {
@@ -677,12 +739,18 @@ function initVideoCalculator() {
     if (n === lastStep) calculate();
   };
 
+  // Переносим фокус на новый шаг при навигации — иначе смена шага незаметна для скринридера
+  const focusStep = (n) => {
+    const stepEl = steps.find(s => Number(s.dataset.step) === n);
+    if (stepEl) { stepEl.setAttribute("tabindex", "-1"); stepEl.focus(); }
+  };
+
   form.addEventListener("change", calculate);
   calculate();
   showStep(1);
 
-  backBtn.addEventListener("click", () => { if (current > 1) showStep(current - 1); });
-  nextBtn.addEventListener("click", () => { if (current < lastStep) showStep(current + 1); });
+  backBtn.addEventListener("click", () => { if (current > 1) { showStep(current - 1); focusStep(current); } });
+  nextBtn.addEventListener("click", () => { if (current < lastStep) { showStep(current + 1); focusStep(current); } });
 
   form.addEventListener("submit", (event) => {
     event.preventDefault();
@@ -770,12 +838,17 @@ function initSimpleCalculator(formId, tgPrefix) {
     if (n === lastStep) calculate();
   };
 
+  const focusStep = (n) => {
+    const stepEl = steps.find(s => Number(s.dataset.step) === n);
+    if (stepEl) { stepEl.setAttribute("tabindex", "-1"); stepEl.focus(); }
+  };
+
   form.addEventListener("change", calculate);
   calculate();
   showStep(1);
 
-  backBtn.addEventListener("click", () => { if (current > 1) showStep(current - 1); });
-  nextBtn.addEventListener("click", () => { if (current < lastStep) showStep(current + 1); });
+  backBtn.addEventListener("click", () => { if (current > 1) { showStep(current - 1); focusStep(current); } });
+  nextBtn.addEventListener("click", () => { if (current < lastStep) { showStep(current + 1); focusStep(current); } });
 
   form.addEventListener("submit", (event) => {
     event.preventDefault();
@@ -1151,20 +1224,52 @@ function initTickerDrag(footerRoot) {
 // Заявка на КП (главная, #contacts) — единственная форма захвата на сайте:
 // «гейтит» расчёт за минимальным действием (имя + контакт) и оформляет
 // заявку письмом, без бэкенда — та же схема, что у калькулятора /video
+let fieldErrorCounter = 0;
+
 function showFieldError(input, msg) {
   input.classList.add('is-error');
   let err = input.parentElement.querySelector('.field-error');
   if (!err) {
     err = document.createElement('span');
     err.className = 'field-error';
+    err.id = 'field-error-' + (++fieldErrorCounter);
     input.parentElement.appendChild(err);
   }
   err.textContent = msg;
+  input.setAttribute('aria-invalid', 'true');
+  input.setAttribute('aria-describedby', err.id);
 }
 
 function clearFieldError(input) {
   input.classList.remove('is-error');
+  input.removeAttribute('aria-invalid');
+  input.removeAttribute('aria-describedby');
   const err = input.parentElement.querySelector('.field-error');
+  if (err) err.textContent = '';
+}
+
+// Чекбокс согласия — та же схема, но ошибка не только цветом рамки, а с текстом для скринридера
+function showConsentError(consentEl) {
+  const label = consentEl.closest('.modal-consent-label');
+  label.style.outline = '2px solid var(--c-video)';
+  let err = label.parentElement.querySelector('.consent-error');
+  if (!err) {
+    err = document.createElement('span');
+    err.className = 'field-error consent-error';
+    err.id = 'field-error-' + (++fieldErrorCounter);
+    label.insertAdjacentElement('afterend', err);
+  }
+  err.textContent = 'Нужно подтвердить согласие на обработку данных';
+  consentEl.setAttribute('aria-invalid', 'true');
+  consentEl.setAttribute('aria-describedby', err.id);
+}
+
+function clearConsentError(consentEl) {
+  const label = consentEl.closest('.modal-consent-label');
+  label.style.outline = '';
+  consentEl.removeAttribute('aria-invalid');
+  consentEl.removeAttribute('aria-describedby');
+  const err = label.parentElement.querySelector('.consent-error');
   if (err) err.textContent = '';
 }
 
@@ -1179,9 +1284,7 @@ function initLeadForm() {
 
   const consent = form.querySelector('#leadConsent');
   if (consent) {
-    consent.addEventListener('change', () => {
-      consent.closest('.modal-consent-label').style.outline = '';
-    });
+    consent.addEventListener('change', () => clearConsentError(consent));
   }
 
   form.addEventListener("submit", (event) => {
@@ -1192,8 +1295,9 @@ function initLeadForm() {
 
     const consentEl = form.querySelector('#leadConsent');
     if (consentEl && !consentEl.checked) {
-      consentEl.closest('.modal-consent-label').style.outline = '2px solid var(--c-video)';
+      showConsentError(consentEl);
       consentEl.closest('.modal-consent-label').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      consentEl.focus();
       return;
     }
 
@@ -1204,7 +1308,7 @@ function initLeadForm() {
     let hasError = false;
     if (!name) { showFieldError(nameInput, 'Пожалуйста, укажите имя'); hasError = true; }
     if (!contact) { showFieldError(contactInput, 'Укажите телефон, email или Telegram'); hasError = true; }
-    if (hasError) return;
+    if (hasError) { (!name ? nameInput : contactInput).focus(); return; }
 
     const message   = form.querySelector('[name="message"]')?.value.trim() || '';
     const direction = form.querySelector('[name="direction"]')?.value.trim() || '';
@@ -1466,6 +1570,7 @@ function initVideoReviewsPlayer() {
     if (nameEl) nameEl.textContent = v.name;
     if (compEl) compEl.textContent = v.company;
     if (idxEl)  idxEl.textContent  = String(current + 1).padStart(2, '0') + ' — ' + String(VIDEOS.length).padStart(2, '0');
+    frame.title = 'Видео-отзыв: ' + v.name + ', ' + v.company;
 
     listEl.querySelectorAll('.vrp__item').forEach(function (el, i) {
       el.classList.toggle('is-active', i === current);
@@ -1521,12 +1626,14 @@ function initVimeoModal() {
     frame.src = VIMEO_URL;
     modal.style.display = 'flex';
     document.body.style.overflow = 'hidden';
+    btn.focus();
   }
 
   function closeModal() {
     modal.style.display = 'none';
     frame.src = '';
     document.body.style.overflow = '';
+    imgFrame.focus();
   }
 
   btn.addEventListener('click', closeModal);
@@ -1534,7 +1641,13 @@ function initVimeoModal() {
     if (e.target === modal) closeModal();
   });
   document.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape' && modal.style.display === 'flex') closeModal();
+    if (modal.style.display !== 'flex') return;
+    if (e.key === 'Escape') closeModal();
+    if (e.key === 'Tab') {
+      // Единственный интерактивный элемент внутри — кнопка закрытия
+      e.preventDefault();
+      btn.focus();
+    }
   });
 }
 
@@ -1562,13 +1675,36 @@ function initVideoGallery() {
     });
   });
 
+  // Навигация стрелками по табам — обязательная часть ARIA-паттерна role="tab"
+  const tabList = document.querySelector(".vg-tabs");
+  if (tabList) {
+    tabList.addEventListener("keydown", (e) => {
+      const tabsArr = Array.from(tabs);
+      const i = tabsArr.indexOf(document.activeElement);
+      if (i === -1) return;
+      let next = null;
+      if (e.key === "ArrowRight") next = (i + 1) % tabsArr.length;
+      else if (e.key === "ArrowLeft") next = (i - 1 + tabsArr.length) % tabsArr.length;
+      else if (e.key === "Home") next = 0;
+      else if (e.key === "End") next = tabsArr.length - 1;
+      if (next !== null) {
+        e.preventDefault();
+        tabsArr[next].focus();
+        tabsArr[next].click();
+      }
+    });
+  }
+
   // — Лайтбокс —
   if (!lb) return;
   const iframe  = lb.querySelector("#vlIframe");
   const closeBtn = lb.querySelector("#vlClose");
+  let lastTrigger = null;
 
-  const openLb = (src) => {
+  const openLb = (src, trigger, title) => {
+    lastTrigger = trigger || document.activeElement;
     iframe.src = src;
+    iframe.title = title || "Видео из галереи ADERVIS";
     lb.classList.add("is-open");
     document.body.style.overflow = "hidden";
     closeBtn.focus();
@@ -1578,12 +1714,38 @@ function initVideoGallery() {
     lb.classList.remove("is-open");
     iframe.src = "";
     document.body.style.overflow = "";
+    if (lastTrigger) { lastTrigger.focus(); lastTrigger = null; }
   };
 
+  // Общая точка входа для остальных триггеров на странице (бэкстейдж-видео,
+  // 3D-кнопка hero) — чтобы фокус-трап и возврат фокуса работали отовсюду
+  window.openVideoLightbox = openLb;
+
+  // Ловушка фокуса внутри лайтбокса, пока он открыт
+  lb.addEventListener("keydown", (e) => {
+    if (e.key !== "Tab" || !lb.classList.contains("is-open")) return;
+    const focusables = lb.querySelectorAll('button, [href], iframe, [tabindex]:not([tabindex="-1"])');
+    if (!focusables.length) return;
+    const first = focusables[0];
+    const last = focusables[focusables.length - 1];
+    if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+    else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+  });
+
   cards.forEach((card) => {
-    card.addEventListener("click", () => {
+    card.setAttribute("role", "button");
+    card.setAttribute("tabindex", "0");
+    const title = card.querySelector(".vg-info h3");
+    if (title && !card.hasAttribute("aria-label")) {
+      card.setAttribute("aria-label", title.textContent.trim() + " — смотреть видео");
+    }
+    const activate = (e) => {
       const src = card.dataset.src;
-      if (src) openLb(src);
+      if (src) openLb(src, card, title ? title.textContent.trim() : null);
+    };
+    card.addEventListener("click", activate);
+    card.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") { e.preventDefault(); activate(e); }
     });
   });
 
@@ -1592,10 +1754,10 @@ function initVideoGallery() {
   if (featured) {
     featured.addEventListener("click", () => {
       const src = featured.dataset.src;
-      if (src) openLb(src);
+      if (src) openLb(src, featured, "ADERVIS Promo");
     });
     featured.addEventListener("keydown", (e) => {
-      if (e.key === "Enter" || e.key === " ") { e.preventDefault(); openLb(featured.dataset.src); }
+      if (e.key === "Enter" || e.key === " ") { e.preventDefault(); openLb(featured.dataset.src, featured, "ADERVIS Promo"); }
     });
   }
 

@@ -191,6 +191,12 @@ window.addEventListener('deviceorientation', (e) => {
 }, { passive: true });
 
 // ─── Анимационный цикл ──────────────────────────────────────
+// prefers-reduced-motion: рендерим модель один раз в её финальной позе,
+// без непрерывного requestAnimationFrame (вращение мышью/бесконечное
+// покачивание) — глобальный CSS-предохранитель гасит только CSS-анимации,
+// на этот JS-цикл он не действует (WCAG 2.3.3, требование PRODUCT.md)
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
 let frame         = 0;
 let entryProgress = 0;
 
@@ -221,7 +227,16 @@ function animate() {
 
   renderer.render(scene, camera);
 }
-animate();
+
+if (prefersReducedMotion) {
+  // Финальная поза без входной анимации, без покачивания, без параллакса мыши
+  group.scale.set(s * MOB_SCALE, -s * MOB_SCALE, s * MOB_SCALE);
+  group.position.set(TARGET_X, TARGET_Y, 0);
+  group.rotation.set(0, 0, 0);
+  renderer.render(scene, camera);
+} else {
+  animate();
+}
 
 // ─── Ресайз ─────────────────────────────────────────────────
 window.addEventListener('resize', () => {
@@ -233,6 +248,12 @@ window.addEventListener('resize', () => {
   TARGET_Y  = w > 900 ? 0   : -1.2;
   MOB_SCALE = w > 900 ? 1.0 : 0.6;
   group.position.x = TARGET_X;
+
+  if (prefersReducedMotion) {
+    group.scale.set(s * MOB_SCALE, -s * MOB_SCALE, s * MOB_SCALE);
+    group.position.set(TARGET_X, TARGET_Y, 0);
+    renderer.render(scene, camera);
+  }
 }, { passive: true });
 
 })();

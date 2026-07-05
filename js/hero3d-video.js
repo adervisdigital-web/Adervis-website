@@ -152,6 +152,13 @@
   }, { passive: true });
 
   // ─── Анимационный цикл ───────────────────────────────────────
+  // prefers-reduced-motion: без входной анимации, покачивания и
+  // параллакса мыши/гироскопа — только статичная поза (WCAG 2.3.3).
+  // Цикл продолжает работать, потому что считает позицию иконки для
+  // HTML-оверлея кнопки play и её hover-цвет — это не пространственное
+  // движение, а необходимая логика позиционирования и обратная связь.
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
   let frame = 0, entryProgress = 0;
   const _c = new THREE.Vector3();
   const _e = new THREE.Vector3();
@@ -160,26 +167,33 @@
     requestAnimationFrame(animate);
     frame++;
 
-    currentX += (targetX - currentX) * 0.055;
-    currentY += (targetY - currentY) * 0.055;
-
     const sc = ICON_SCALE * MOB_SCALE;
 
-    if (entryProgress < 1) {
-      entryProgress = Math.min(entryProgress + 0.009, 1);
-      const t  = 1 - Math.pow(1 - entryProgress, 3);
-      const sf = ENTRY_SCALE + (1 - ENTRY_SCALE) * t;
-      group.scale.setScalar(sc * sf);
-      group.position.y = (-0.8 + TARGET_Y) + 0.8 * t;
-      group.position.x = TARGET_X * t;
-      group.rotation.y = currentX - 0.35 * (1 - t);
-      group.rotation.x = currentY;
-    } else {
+    if (prefersReducedMotion) {
+      entryProgress = 1;
       group.scale.setScalar(sc);
-      group.rotation.y = currentX;
-      group.rotation.x = currentY;
-      group.position.y = TARGET_Y + Math.sin(frame * 0.007) * 0.09;
-      group.position.x = TARGET_X;
+      group.rotation.set(0, 0, 0);
+      group.position.set(TARGET_X, TARGET_Y, 0);
+    } else {
+      currentX += (targetX - currentX) * 0.055;
+      currentY += (targetY - currentY) * 0.055;
+
+      if (entryProgress < 1) {
+        entryProgress = Math.min(entryProgress + 0.009, 1);
+        const t  = 1 - Math.pow(1 - entryProgress, 3);
+        const sf = ENTRY_SCALE + (1 - ENTRY_SCALE) * t;
+        group.scale.setScalar(sc * sf);
+        group.position.y = (-0.8 + TARGET_Y) + 0.8 * t;
+        group.position.x = TARGET_X * t;
+        group.rotation.y = currentX - 0.35 * (1 - t);
+        group.rotation.x = currentY;
+      } else {
+        group.scale.setScalar(sc);
+        group.rotation.y = currentX;
+        group.rotation.x = currentY;
+        group.position.y = TARGET_Y + Math.sin(frame * 0.007) * 0.09;
+        group.position.x = TARGET_X;
+      }
     }
 
     // Hover: серебро → красный (диск) / светло-серебро → белая (стрелка)

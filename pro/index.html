@@ -26,13 +26,231 @@
   <meta name="twitter:description" content="Adervis CRM: сделки, сметы, расчёт коммерческих предложений и календарь команды в одном окне.">
   <meta name="twitter:image" content="https://adervis.ru/assets/cases/og-image.jpg">
   <link rel="stylesheet" href="../css/style.css">
+  <script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Главная", "item": "https://adervis.ru/" },
+    { "@type": "ListItem", "position": 2, "name": "Adervis CRM", "item": "https://adervis.ru/pro/" }
+  ]
+  }
+  </script>
 </head>
 <body class="no-clients">
 
   <!-- Сюда подгрузится шапка -->
-  <div id="header-placeholder"></div>
+  <div id="header-placeholder"><!-- BEGIN:header-placeholder -->
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript">
+    (function(m,e,t,r,i,k,a){
+        m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+        m[i].l=1*new Date();
+        for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+    })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=110226682', 'ym');
 
-  <main>
+    ym(110226682, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/110226682" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
+
+<a href="#main-content" class="skip-link">Перейти к содержимому</a>
+
+<header class="site-header" id="siteHeader">
+  <div class="site-header__bar">
+
+    <!-- Лого -->
+    <a href="/" class="brand site-header__logo">
+      <img src="/logo.svg" id="siteLogo" data-dark="/logo.svg" data-light="/logoB.svg" alt="ADERVIS — Продакшн-студия" width="140" height="34">
+    </a>
+
+    <!-- Навигация -->
+    <nav class="pill-nav" id="siteNav" aria-label="Основная навигация">
+      <div class="pill-nav__tubelight" id="tubeIndicator" aria-hidden="true"></div>
+
+      <a href="/" class="pill-nav__link">Главная</a>
+
+      <!-- УСЛУГИ — клик ведёт на раздел #services, выпадашка показывает направления -->
+      <div class="pill-nav__dropdown" id="dropServices">
+        <a href="/#services" class="pill-nav__link pill-nav__link--drop" aria-haspopup="true" aria-expanded="false" aria-controls="megaServices">
+          Услуги
+          <svg class="pill-nav__arrow" width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 3.5l3 3 3-3"/></svg>
+        </a>
+        <div class="nav-mega" id="megaServices" role="menu">
+          <a href="/video/" class="nav-mega__item" role="menuitem">
+            <span class="nav-mega__icon" style="color:var(--c-video)">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M10 8.5l6 3.5-6 3.5z" fill="currentColor" stroke="none"/></svg>
+            </span>
+            <span class="nav-mega__body">
+              <span class="nav-mega__name">Видео</span>
+              <span class="nav-mega__sub">Ролики · Event · Reels · Корп. фильмы</span>
+            </span>
+          </a>
+          <a href="/design/" class="nav-mega__item" role="menuitem">
+            <span class="nav-mega__icon" style="color:var(--c-design)">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20l3.3-1 9.7-9.7a2.1 2.1 0 0 0-3-3L4.3 16l-1 3.7.7.3z"/><path d="M13 6.3l3.7 3.7"/></svg>
+            </span>
+            <span class="nav-mega__body">
+              <span class="nav-mega__name">Дизайн</span>
+              <span class="nav-mega__sub">Брендинг · Фирстиль · Полиграфия · Моушн</span>
+            </span>
+          </a>
+          <a href="/photo/" class="nav-mega__item" role="menuitem">
+            <span class="nav-mega__icon" style="color:var(--c-photo)">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h3l1.6-2h6.8L17 8h3a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z"/><circle cx="12" cy="13.2" r="3.4"/></svg>
+            </span>
+            <span class="nav-mega__body">
+              <span class="nav-mega__name">Фото</span>
+              <span class="nav-mega__sub">Каталог · Предметная · Event · Портреты</span>
+            </span>
+          </a>
+          <a href="/ai/" class="nav-mega__item" role="menuitem">
+            <span class="nav-mega__icon" style="color:var(--c-ai)">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8L12 3z"/></svg>
+            </span>
+            <span class="nav-mega__body">
+              <span class="nav-mega__name">ИИ-контент</span>
+              <span class="nav-mega__sub">AI-генерация · AI-видео · AI-брендинг</span>
+            </span>
+          </a>
+        </div>
+      </div>
+
+      <a href="/cases/" class="pill-nav__link">Кейсы</a>
+      <a href="/careers" class="pill-nav__link">Вакансии</a>
+      <!-- Adervis Platform — видна только в мобильном меню, на десктопе скрыта -->
+      <a href="/#platform" class="pill-nav__link pill-nav__link--platform-mobile">Adervis Platform</a>
+
+    </nav>
+
+    <!-- Правый блок: переключатель темы + ADERVIS PLATFORM + бургер -->
+    <div class="site-header__end">
+      <button type="button" class="theme-toggle" id="themeToggle" aria-label="Светлая тема">
+        <svg class="theme-toggle__icon theme-toggle__sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="4.5"/>
+          <line x1="12" y1="2"   x2="12" y2="5"/>
+          <line x1="12" y1="19"  x2="12" y2="22"/>
+          <line x1="4.22" y1="4.22"   x2="6.34" y2="6.34"/>
+          <line x1="17.66" y1="17.66" x2="19.78" y2="19.78"/>
+          <line x1="2"   y1="12"  x2="5"   y2="12"/>
+          <line x1="19"  y1="12"  x2="22"  y2="12"/>
+          <line x1="4.22"  y1="19.78" x2="6.34"  y2="17.66"/>
+          <line x1="17.66" y1="6.34"  x2="19.78" y2="4.22"/>
+        </svg>
+        <svg class="theme-toggle__icon theme-toggle__moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+        </svg>
+      </button>
+
+      <!-- Быстрый контакт через Telegram -->
+      <a href="https://t.me/adervis_digital" class="site-header__tg" target="_blank" rel="noopener noreferrer" aria-label="Написать в Telegram">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L7.58 13.28l-2.96-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.568.279z"/></svg>
+        <span>Написать</span>
+      </a>
+
+      <!-- ADERVIS PLATFORM — кнопка с дропдауном 3 продуктов -->
+      <div class="pill-nav__dropdown" id="dropPlatform">
+        <button type="button" class="site-header__platform pill-nav__link--drop"
+                aria-haspopup="true" aria-expanded="false" aria-controls="megaPlatform">
+          ADERVIS PLATFORM
+          <svg class="pill-nav__arrow" width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 3.5l3 3 3-3"/></svg>
+        </button>
+        <div class="nav-mega nav-mega--right" id="megaPlatform" role="menu">
+          <a href="https://app.adervis.ru" target="_blank" rel="noopener" class="nav-mega__item" role="menuitem">
+            <span class="nav-mega__icon" style="color:var(--gold)">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+            </span>
+            <span class="nav-mega__body">
+              <span class="nav-mega__name">Adervis CRM</span>
+              <span class="nav-mega__sub">Проекты · Сметы · КП · Команда</span>
+            </span>
+          </a>
+          <a href="/#platform" class="nav-mega__item" role="menuitem" style="opacity:0.65; pointer-events:none; cursor:default">
+            <span class="nav-mega__icon" style="color:var(--muted)">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            </span>
+            <span class="nav-mega__body">
+              <span class="nav-mega__name">Adervis Outreach <span style="font-size:10px;opacity:.6;font-weight:400">в разработке</span></span>
+              <span class="nav-mega__sub">Трекер коммуникаций · Follow-up</span>
+            </span>
+          </a>
+          <a href="/#platform" class="nav-mega__item" role="menuitem" style="opacity:0.65; pointer-events:none; cursor:default">
+            <span class="nav-mega__icon" style="color:var(--muted)">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+            </span>
+            <span class="nav-mega__body">
+              <span class="nav-mega__name">Adervis Hunter <span style="font-size:10px;opacity:.6;font-weight:400">скоро</span></span>
+              <span class="nav-mega__sub">Поиск клиентов · Автоматизация</span>
+            </span>
+          </a>
+        </div>
+      </div>
+
+      <button type="button" class="nav-toggle" id="navToggle" aria-label="Открыть меню" aria-expanded="false" aria-controls="siteNav">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </button>
+    </div>
+
+  </div>
+</header>
+<div class="nav-backdrop" id="navBackdrop" aria-hidden="true"></div>
+
+<script>
+(function () {
+  function initTubelight () {
+    var nav  = document.getElementById('siteNav');
+    var tube = document.getElementById('tubeIndicator');
+    if (!nav || !tube) return;
+
+    var active = nav.querySelector('.nav-active:not(.pill-nav__link--drop)');
+    if (!active) active = nav.querySelector('.pill-nav__link:not(.pill-nav__link--drop)');
+
+    function moveTo (el) {
+      if (!el) return;
+      var navR = nav.getBoundingClientRect();
+      var elR  = el.getBoundingClientRect();
+      tube.style.transform = 'translateX(' + (elR.left - navR.left) + 'px)';
+      tube.style.width     = elR.width + 'px';
+    }
+
+    if (active) {
+      tube.style.transition = 'none';
+      moveTo(active);
+      requestAnimationFrame(function () {
+        tube.style.opacity = '1';
+        tube.style.transition = '';
+      });
+    } else {
+      tube.style.opacity = '1';
+    }
+
+    nav.querySelectorAll('.pill-nav__link, .pill-nav__dropdown').forEach(function (item) {
+      item.addEventListener('mouseenter', function () {
+        var link = item.classList.contains('pill-nav__link') ? item
+                  : item.querySelector('.pill-nav__link--drop');
+        if (link) moveTo(link);
+      });
+    });
+
+    nav.addEventListener('mouseleave', function () {
+      var cur = nav.querySelector('.nav-active');
+      if (cur) moveTo(cur);
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initTubelight);
+  } else {
+    initTubelight();
+  }
+}());
+</script>
+<!-- END:header-placeholder --></div>
+
+  <main id="main-content">
 
     <!-- Hero -->
     <section class="hero-section crm-hero" data-dir="crm">
@@ -222,7 +440,198 @@
   </main>
 
   <!-- Сюда подгрузится подвал -->
-  <div id="footer-placeholder"></div>
+  <div id="footer-placeholder"><!-- BEGIN:footer-placeholder -->
+<!-- Бегущая строка логотипов клиентов -->
+<section class="clients-ticker-section" aria-label="Наши клиенты">
+  <p class="ticker-label">Нам доверяют</p>
+  <div class="clients-ticker">
+    <div class="clients-ticker-track">
+      <!-- set 1 -->
+      <span class="clients-ticker-item"><img src="/assets/clients/sibur.png" alt="Сибур" loading="lazy"></span>
+      <span class="clients-ticker-item"><img src="/assets/clients/himprom.png" alt="Химпром" loading="lazy"></span>
+      <span class="clients-ticker-item"><img src="/assets/clients/promobot.png" alt="Промобот" loading="lazy"></span>
+      <span class="clients-ticker-item"><img src="/assets/clients/ujin.png" alt="UJIN" loading="lazy"></span>
+      <span class="clients-ticker-item"><img src="/assets/clients/anatomiya.png" alt="Анатомия" loading="lazy"></span>
+      <span class="clients-ticker-item"><img src="/assets/clients/express-import.png" alt="Express-Import" loading="lazy"></span>
+      <span class="clients-ticker-item"><img src="/assets/clients/top2b.png" alt="Top2B" loading="lazy"></span>
+      <span class="clients-ticker-item"><img src="/assets/clients/stikbot.png" alt="Stikbot" loading="lazy"></span>
+      <span class="clients-ticker-item"><img src="/assets/clients/psp.png" alt="PSP" loading="lazy"></span>
+      <span class="clients-ticker-item"><img src="/assets/clients/atom.png" alt="Атом" loading="lazy"></span>
+      <span class="clients-ticker-item"><img src="/assets/clients/rsbi.png" alt="РСБИ" loading="lazy"></span>
+      <span class="clients-ticker-item"><img src="/assets/clients/appzone.png" alt="AppZone" loading="lazy"></span>
+      <span class="clients-ticker-item"><img src="/assets/clients/moscow-calling.png" alt="Moscow Calling" loading="lazy"></span>
+      <span class="clients-ticker-item"><img src="/assets/clients/promoil.png" alt="Промойл" loading="lazy"></span>
+      <span class="clients-ticker-item"><img src="/assets/clients/bariton.png" alt="Баритон" loading="lazy"></span>
+      <span class="clients-ticker-item"><img src="/assets/clients/kiokushin.png" alt="Киокушин" loading="lazy"></span>
+      <span class="clients-ticker-item"><img src="/assets/clients/peri.png" alt="PERI" loading="lazy"></span>
+      <span class="clients-ticker-item"><img src="/assets/clients/kadk.png" alt="КАДК" loading="lazy"></span>
+      <span class="clients-ticker-item"><img src="/assets/clients/feliks.png" alt="Феликс" loading="lazy"></span>
+      <span class="clients-ticker-item"><img src="/assets/clients/sosnovyi-bor.png" alt="Сосновый Бор" loading="lazy"></span>
+      <span class="clients-ticker-item"><img src="/assets/clients/forward.png" alt="Forward" loading="lazy"></span>
+      <span class="clients-ticker-item"><img src="/assets/clients/it.png" alt="IT" loading="lazy"></span>
+      <span class="clients-ticker-item"><img src="/assets/clients/avrora.png" alt="Аврора" loading="lazy"></span>
+      <span class="clients-ticker-item"><img src="/assets/clients/tomatolorika.png" alt="Tomatolorika" loading="lazy"></span>
+      <span class="clients-ticker-item"><img src="/assets/clients/aratta.png" alt="Аратта" class="on-dark" loading="lazy"></span>
+      <span class="clients-ticker-item"><img src="/assets/clients/mobilov.png" alt="Mobilov" class="on-dark" loading="lazy"></span>
+      <span class="clients-ticker-item"><img src="/assets/clients/grafsil.png" alt="Графсил" class="on-dark" loading="lazy"></span>
+      <span class="clients-ticker-item"><img src="/assets/clients/injiniring.png" alt="Инжиниринг" class="on-dark" loading="lazy"></span>
+      <span class="clients-ticker-item"><img src="/assets/clients/sk-ferma.png" alt="СК Ферма" class="on-dark" loading="lazy"></span>
+      <span class="clients-ticker-item"><img src="/assets/clients/rtmiss.png" alt="РТМИСС" class="on-dark" loading="lazy"></span>
+      <span class="clients-ticker-item"><img src="/assets/clients/bitva-robotov.png" alt="Битва роботов" class="on-dark" loading="lazy"></span>
+      <span class="clients-ticker-item"><img src="/assets/clients/rokstar.png" alt="Рокстар" class="on-dark" loading="lazy"></span>
+      <span class="clients-ticker-item"><img src="/assets/clients/phuk.png" alt="ПХУК" class="on-dark" loading="lazy"></span>
+      <span class="clients-ticker-item"><img src="/assets/clients/amaks.png" alt="АМАКС" class="on-dark" loading="lazy"></span>
+      <span class="clients-ticker-item"><img src="/assets/clients/molodost.png" alt="Молодость" class="on-dark" loading="lazy"></span>
+      <span class="clients-ticker-item"><img src="/assets/clients/lobanov.png" alt="Lobanov Rest" class="on-dark" loading="lazy"></span>
+      <span class="clients-ticker-item"><img src="/assets/clients/wonder-bar.png" alt="Wonder Bar" class="on-dark" loading="lazy"></span>
+      <span class="clients-ticker-item"><img src="/assets/clients/barbershop.png" alt="Барбершоп" class="on-dark" loading="lazy"></span>
+      <span class="clients-ticker-item"><img src="/assets/clients/abs-avto.png" alt="АБС Авто" class="on-dark" loading="lazy"></span>
+      <span class="clients-ticker-item"><img src="/assets/clients/freedom.png" alt="Freedom" class="on-dark" loading="lazy"></span>
+      <span class="clients-ticker-item"><img src="/assets/clients/vs-music.png" alt="VS-Music" class="on-dark" loading="lazy"></span>
+      <span class="clients-ticker-item"><img src="/assets/clients/nochnaya-liga.png" alt="Ночная лига" loading="lazy"></span>
+      <span class="clients-ticker-item"><img src="/assets/clients/shabani.png" alt="Shabani" loading="lazy"></span>
+      <span class="clients-ticker-item"><img src="/assets/clients/bani-onlayn.png" alt="Бани Онлайн" loading="lazy"></span>
+      <span class="clients-ticker-item"><img src="/assets/clients/frikdens.png" alt="Frikdens" loading="lazy"></span>
+      <span class="clients-ticker-item"><img src="/assets/clients/gnature.png" alt="Gnature" loading="lazy"></span>
+      <!-- set 2 (точная копия для бесшовной петли) -->
+      <span class="clients-ticker-item"><img src="/assets/clients/sibur.png" alt="Сибур" loading="lazy"></span>
+      <span class="clients-ticker-item"><img src="/assets/clients/himprom.png" alt="Химпром" loading="lazy"></span>
+      <span class="clients-ticker-item"><img src="/assets/clients/promobot.png" alt="Промобот" loading="lazy"></span>
+      <span class="clients-ticker-item"><img src="/assets/clients/ujin.png" alt="UJIN" loading="lazy"></span>
+      <span class="clients-ticker-item"><img src="/assets/clients/anatomiya.png" alt="Анатомия" loading="lazy"></span>
+      <span class="clients-ticker-item"><img src="/assets/clients/express-import.png" alt="Express-Import" loading="lazy"></span>
+      <span class="clients-ticker-item"><img src="/assets/clients/top2b.png" alt="Top2B" loading="lazy"></span>
+      <span class="clients-ticker-item"><img src="/assets/clients/stikbot.png" alt="Stikbot" loading="lazy"></span>
+      <span class="clients-ticker-item"><img src="/assets/clients/psp.png" alt="PSP" loading="lazy"></span>
+      <span class="clients-ticker-item"><img src="/assets/clients/atom.png" alt="Атом" loading="lazy"></span>
+      <span class="clients-ticker-item"><img src="/assets/clients/rsbi.png" alt="РСБИ" loading="lazy"></span>
+      <span class="clients-ticker-item"><img src="/assets/clients/appzone.png" alt="AppZone" loading="lazy"></span>
+      <span class="clients-ticker-item"><img src="/assets/clients/moscow-calling.png" alt="Moscow Calling" loading="lazy"></span>
+      <span class="clients-ticker-item"><img src="/assets/clients/promoil.png" alt="Промойл" loading="lazy"></span>
+      <span class="clients-ticker-item"><img src="/assets/clients/bariton.png" alt="Баритон" loading="lazy"></span>
+      <span class="clients-ticker-item"><img src="/assets/clients/kiokushin.png" alt="Киокушин" loading="lazy"></span>
+      <span class="clients-ticker-item"><img src="/assets/clients/peri.png" alt="PERI" loading="lazy"></span>
+      <span class="clients-ticker-item"><img src="/assets/clients/kadk.png" alt="КАДК" loading="lazy"></span>
+      <span class="clients-ticker-item"><img src="/assets/clients/feliks.png" alt="Феликс" loading="lazy"></span>
+      <span class="clients-ticker-item"><img src="/assets/clients/sosnovyi-bor.png" alt="Сосновый Бор" loading="lazy"></span>
+      <span class="clients-ticker-item"><img src="/assets/clients/forward.png" alt="Forward" loading="lazy"></span>
+      <span class="clients-ticker-item"><img src="/assets/clients/it.png" alt="IT" loading="lazy"></span>
+      <span class="clients-ticker-item"><img src="/assets/clients/avrora.png" alt="Аврора" loading="lazy"></span>
+      <span class="clients-ticker-item"><img src="/assets/clients/tomatolorika.png" alt="Tomatolorika" loading="lazy"></span>
+      <span class="clients-ticker-item"><img src="/assets/clients/aratta.png" alt="Аратта" class="on-dark" loading="lazy"></span>
+      <span class="clients-ticker-item"><img src="/assets/clients/mobilov.png" alt="Mobilov" class="on-dark" loading="lazy"></span>
+      <span class="clients-ticker-item"><img src="/assets/clients/grafsil.png" alt="Графсил" class="on-dark" loading="lazy"></span>
+      <span class="clients-ticker-item"><img src="/assets/clients/injiniring.png" alt="Инжиниринг" class="on-dark" loading="lazy"></span>
+      <span class="clients-ticker-item"><img src="/assets/clients/sk-ferma.png" alt="СК Ферма" class="on-dark" loading="lazy"></span>
+      <span class="clients-ticker-item"><img src="/assets/clients/rtmiss.png" alt="РТМИСС" class="on-dark" loading="lazy"></span>
+      <span class="clients-ticker-item"><img src="/assets/clients/bitva-robotov.png" alt="Битва роботов" class="on-dark" loading="lazy"></span>
+      <span class="clients-ticker-item"><img src="/assets/clients/rokstar.png" alt="Рокстар" class="on-dark" loading="lazy"></span>
+      <span class="clients-ticker-item"><img src="/assets/clients/phuk.png" alt="ПХУК" class="on-dark" loading="lazy"></span>
+      <span class="clients-ticker-item"><img src="/assets/clients/amaks.png" alt="АМАКС" class="on-dark" loading="lazy"></span>
+      <span class="clients-ticker-item"><img src="/assets/clients/molodost.png" alt="Молодость" class="on-dark" loading="lazy"></span>
+      <span class="clients-ticker-item"><img src="/assets/clients/lobanov.png" alt="Lobanov Rest" class="on-dark" loading="lazy"></span>
+      <span class="clients-ticker-item"><img src="/assets/clients/wonder-bar.png" alt="Wonder Bar" class="on-dark" loading="lazy"></span>
+      <span class="clients-ticker-item"><img src="/assets/clients/barbershop.png" alt="Барбершоп" class="on-dark" loading="lazy"></span>
+      <span class="clients-ticker-item"><img src="/assets/clients/abs-avto.png" alt="АБС Авто" class="on-dark" loading="lazy"></span>
+      <span class="clients-ticker-item"><img src="/assets/clients/freedom.png" alt="Freedom" class="on-dark" loading="lazy"></span>
+      <span class="clients-ticker-item"><img src="/assets/clients/vs-music.png" alt="VS-Music" class="on-dark" loading="lazy"></span>
+      <span class="clients-ticker-item"><img src="/assets/clients/nochnaya-liga.png" alt="Ночная лига" loading="lazy"></span>
+      <span class="clients-ticker-item"><img src="/assets/clients/shabani.png" alt="Shabani" loading="lazy"></span>
+      <span class="clients-ticker-item"><img src="/assets/clients/bani-onlayn.png" alt="Бани Онлайн" loading="lazy"></span>
+      <span class="clients-ticker-item"><img src="/assets/clients/frikdens.png" alt="Frikdens" loading="lazy"></span>
+      <span class="clients-ticker-item"><img src="/assets/clients/gnature.png" alt="Gnature" loading="lazy"></span>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     Lesse-style footer: сервисные колонки + гигантский ADERVIS
+     ═══════════════════════════════════════════════ -->
+<footer class="footer-lesse">
+
+  <!-- Верхняя зона: контакт слева + 5 колонок услуг справа -->
+  <div class="footer-lesse__top">
+
+    <div class="footer-lesse__brand">
+      <a href="/" class="brand">
+        <img src="/logo.svg" alt="ADERVIS" width="120" height="29">
+      </a>
+      <p class="footer-lesse__tagline">Продакшн-студия с 2018 года · Пермь.<br>Видео, дизайн, фото и ИИ для брендов.</p>
+      <div class="footer-lesse__contacts">
+        <a href="tel:+79223018880">+7 (922) 301-88-80</a>
+        <a href="mailto:adervis.digital@gmail.com">adervis.digital@gmail.com</a>
+      </div>
+    </div>
+
+    <div class="footer-lesse__cols">
+
+      <nav class="footer-lesse__col">
+        <span class="footer-lesse__col-title">Видео</span>
+        <a href="/video/">Рекламные ролики</a>
+        <a href="/video/">Корпоративное видео</a>
+        <a href="/video/">Event-съёмка</a>
+        <a href="/video/">Шоурилы</a>
+        <a href="/video/">Клипы и reels</a>
+      </nav>
+
+      <nav class="footer-lesse__col">
+        <span class="footer-lesse__col-title">Дизайн</span>
+        <a href="/design/">Брендинг</a>
+        <a href="/design/">Фирменный стиль</a>
+        <a href="/design/">Полиграфия</a>
+        <a href="/design/">Моушн-графика</a>
+      </nav>
+
+      <nav class="footer-lesse__col">
+        <span class="footer-lesse__col-title">Фото</span>
+        <a href="/photo/">Каталожная съёмка</a>
+        <a href="/photo/">Предметная съёмка</a>
+        <a href="/photo/">Event-фото</a>
+        <a href="/photo/">Портреты команды</a>
+      </nav>
+
+      <nav class="footer-lesse__col">
+        <span class="footer-lesse__col-title">ИИ-контент</span>
+        <a href="/ai/">AI-генерация</a>
+        <a href="/ai/">AI-видео</a>
+        <a href="/ai/">AI-брендинг</a>
+        <a href="/ai/">AI-автоматизация</a>
+      </nav>
+
+      <nav class="footer-lesse__col">
+        <span class="footer-lesse__col-title">Студия</span>
+        <a href="/pro">Adervis CRM</a>
+        <a href="/careers">Вакансии</a>
+        <a href="/docs#docs-offer">Оферта</a>
+        <a href="/docs#docs-privacy">Политика конфиденциальности</a>
+      </nav>
+
+    </div>
+  </div>
+
+  <!-- Социальные ссылки + копирайт -->
+  <div class="footer-lesse__brand-block">
+    <div class="footer-lesse__social-row">
+      <a href="https://vk.com/adervis_digital" target="_blank" rel="noopener">ВКонтакте</a>
+      <a href="https://t.me/Adervis_digital" target="_blank" rel="noopener">Telegram</a>
+      <a href="https://www.youtube.com/channel/UCwL-PkN9Jul92VJm5gFgY-Q" target="_blank" rel="noopener">YouTube</a>
+      <a href="https://www.behance.net/adervisdigital" target="_blank" rel="noopener">Behance</a>
+    </div>
+    <div class="footer-lesse__legal-row">
+      <span class="footer-lesse__copy">© 2026 Adervis Digital</span>
+      <a href="/docs#docs-offer" class="footer-lesse__legal-link">Оферта</a>
+      <a href="/docs#docs-privacy" class="footer-lesse__legal-link">Политика конфиденциальности</a>
+    </div>
+  </div>
+
+</footer>
+
+<button type="button" class="to-top" id="toTop" aria-label="Наверх страницы">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <path d="M12 19V5M5 12l7-7 7 7"/>
+  </svg>
+</button>
+<!-- END:footer-placeholder --></div>
 
   <script src="../js/app.js"></script>
 </body>
