@@ -3,7 +3,7 @@
 // и на домене целиком, без ручной подгонки путей под способ хостинга
 const appScript = document.currentScript;
 const rootPath = appScript
-  ? new URL(appScript.getAttribute("src"), document.baseURI).pathname.replace(/js\/app\.js$/, "")
+  ? new URL(appScript.getAttribute("src"), document.baseURI).pathname.replace(/js\/app(\.min)?\.js$/, "")
   : "/";
 
 // Отправка заявки в Telegram-группу через Bot API

@@ -11,6 +11,10 @@
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700&family=DM+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700&family=DM+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
   <link rel="icon" type="image/svg+xml" href="../icon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
+  <link rel="shortcut icon" href="../favicon.ico">
   <meta name="robots" content="index,follow">
   <meta http-equiv="content-language" content="ru">
   <link rel="canonical" href="https://adervis.ru/cases/">
@@ -25,7 +29,7 @@
   <meta name="twitter:title" content="Кейсы — портфолио студии | ADERVIS">
   <meta name="twitter:description" content="Портфолио ADERVIS: видео, брендинг, фото, ИИ-контент — реальные проекты с результатами.">
   <meta name="twitter:image" content="https://adervis.ru/assets/cases/og-image.jpg">
-  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/style.min.css?v=d86ba589">
   <script type="application/ld+json">
   {
   "@context": "https://schema.org",
@@ -143,7 +147,7 @@
       </button>
 
       <!-- Быстрый контакт через Telegram -->
-      <a href="https://t.me/adervis_digital" class="site-header__tg" target="_blank" rel="noopener noreferrer" aria-label="Написать в Telegram">
+      <a href="https://t.me/adervis_digital" class="site-header__tg" target="_blank" rel="noopener noreferrer" aria-label="Написать в Telegram (откроется в новой вкладке)">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L7.58 13.28l-2.96-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.568.279z"/></svg>
         <span>Написать</span>
       </a>
@@ -164,8 +168,9 @@
               <span class="nav-mega__name">Adervis CRM</span>
               <span class="nav-mega__sub">Проекты · Сметы · КП · Команда</span>
             </span>
+            <span class="sr-only">(откроется в новой вкладке)</span>
           </a>
-          <a href="/#platform" class="nav-mega__item" role="menuitem" style="opacity:0.65; pointer-events:none; cursor:default">
+          <a class="nav-mega__item" role="menuitem" aria-disabled="true" tabindex="-1" style="opacity:0.65; pointer-events:none; cursor:default">
             <span class="nav-mega__icon" style="color:var(--muted)">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
             </span>
@@ -174,7 +179,7 @@
               <span class="nav-mega__sub">Трекер коммуникаций · Follow-up</span>
             </span>
           </a>
-          <a href="/#platform" class="nav-mega__item" role="menuitem" style="opacity:0.65; pointer-events:none; cursor:default">
+          <a class="nav-mega__item" role="menuitem" aria-disabled="true" tabindex="-1" style="opacity:0.65; pointer-events:none; cursor:default">
             <span class="nav-mega__icon" style="color:var(--muted)">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
             </span>
@@ -257,28 +262,28 @@
       <!-- Фон: мозаика -->
       <div class="chs-mosaic" aria-hidden="true">
         <div class="chs-col">
-          <img src="/cases/jaecoo-j8.jpg" alt="" loading="eager">
-          <img src="/cases/toyota-supra-green-mamba.jpg" alt="" loading="lazy">
-          <img src="/cases/lukoil-ai.jpg" alt="" loading="lazy">
+          <picture><source srcset="/cases/jaecoo-j8.webp" type="image/webp"><img src="/cases/jaecoo-j8.jpg" alt="" loading="eager"></picture>
+          <picture><source srcset="/cases/toyota-supra-green-mamba.webp" type="image/webp"><img src="/cases/toyota-supra-green-mamba.jpg" alt="" loading="lazy"></picture>
+          <picture><source srcset="/cases/lukoil-ai.webp" type="image/webp"><img src="/cases/lukoil-ai.jpg" alt="" loading="lazy"></picture>
           <img src="/cases/rokstar.webp" alt="" loading="lazy">
         </div>
         <div class="chs-col chs-col--offset">
-          <img src="/cases/battle-of-robots.jpg" alt="" loading="lazy">
-          <img src="/cases/stickbot-cosmetics.jpg" alt="" loading="lazy">
-          <img src="/cases/battle-robots-final-moscow-2025.jpg" alt="" loading="lazy">
+          <picture><source srcset="/cases/battle-of-robots.webp" type="image/webp"><img src="/cases/battle-of-robots.jpg" alt="" loading="lazy"></picture>
+          <picture><source srcset="/cases/stickbot-cosmetics.webp" type="image/webp"><img src="/cases/stickbot-cosmetics.jpg" alt="" loading="lazy"></picture>
+          <picture><source srcset="/cases/battle-robots-final-moscow-2025.webp" type="image/webp"><img src="/cases/battle-robots-final-moscow-2025.jpg" alt="" loading="lazy"></picture>
           <img src="/assets/cases/shabani-energy.webp" alt="" loading="lazy">
         </div>
         <div class="chs-col">
-          <img src="/cases/at-350-mini-loader.jpg" alt="" loading="lazy">
+          <picture><source srcset="/cases/at-350-mini-loader.webp" type="image/webp"><img src="/cases/at-350-mini-loader.jpg" alt="" loading="lazy"></picture>
           <img src="/assets/cases/anna-asti.jpg" alt="" loading="lazy">
-          <img src="/cases/rodin-yin-yan.jpg" alt="" loading="lazy">
-          <img src="/cases/it-arc.jpg" alt="" loading="lazy">
+          <picture><source srcset="/cases/rodin-yin-yan.webp" type="image/webp"><img src="/cases/rodin-yin-yan.jpg" alt="" loading="lazy"></picture>
+          <picture><source srcset="/cases/it-arc.webp" type="image/webp"><img src="/cases/it-arc.jpg" alt="" loading="lazy"></picture>
         </div>
         <div class="chs-col chs-col--offset">
-          <img src="/cases/neptune-day-razdolye-2025.jpg" alt="" loading="lazy">
-          <img src="/cases/rokstar-soundcheck-2025.jpg" alt="" loading="lazy">
-          <img src="/cases/brutal-networking-2024.jpg" alt="" loading="lazy">
-          <img src="/cases/halloween-shakeroom.jpg" alt="" loading="lazy">
+          <picture><source srcset="/cases/neptune-day-razdolye-2025.webp" type="image/webp"><img src="/cases/neptune-day-razdolye-2025.jpg" alt="" loading="lazy"></picture>
+          <picture><source srcset="/cases/rokstar-soundcheck-2025.webp" type="image/webp"><img src="/cases/rokstar-soundcheck-2025.jpg" alt="" loading="lazy"></picture>
+          <picture><source srcset="/cases/brutal-networking-2024.webp" type="image/webp"><img src="/cases/brutal-networking-2024.jpg" alt="" loading="lazy"></picture>
+          <picture><source srcset="/cases/halloween-shakeroom.webp" type="image/webp"><img src="/cases/halloween-shakeroom.jpg" alt="" loading="lazy"></picture>
         </div>
       </div>
 
@@ -328,7 +333,7 @@
 
           <a href="/cases/brait/" class="gallery-card reveal" data-dir="photo" data-dir-filter="photo ai">
             <div class="media-frame has-img" data-dir="photo" style="--ratio: 16 / 9">
-              <img src="/assets/cases/brait/06.jpg" alt="Brait — предметная съёмка с AI-фонами" class="media-frame__img" loading="lazy">
+              <picture><source srcset="/assets/cases/brait/06.webp" type="image/webp"><img src="/assets/cases/brait/06.jpg" alt="Brait — предметная съёмка с AI-фонами" class="media-frame__img" loading="lazy"></picture>
               <span class="media-frame__num" aria-hidden="true">01</span>
             </div>
             <div class="gallery-card__info">
@@ -364,7 +369,7 @@
 
           <a href="/cases/lukoil-ai/" class="gallery-card reveal" data-dir="ai" data-dir-filter="ai">
             <div class="media-frame has-img" data-dir="ai" style="--ratio: 16 / 9">
-              <img src="/cases/lukoil-ai.jpg" alt="SAFETY MAN — ИИ-интро для корпоративной игры Лукойл" class="media-frame__img" loading="lazy">
+              <picture><source srcset="/cases/lukoil-ai.webp" type="image/webp"><img src="/cases/lukoil-ai.jpg" alt="SAFETY MAN — ИИ-интро для корпоративной игры Лукойл" class="media-frame__img" loading="lazy"></picture>
               <span class="media-frame__num" aria-hidden="true">04</span>
             </div>
             <div class="gallery-card__info">
@@ -376,7 +381,7 @@
 
           <a href="/cases/battle-of-robots/" class="gallery-card reveal" data-dir="video" data-dir-filter="video">
             <div class="media-frame has-img" data-dir="video" style="--ratio: 16 / 9">
-              <img src="/cases/battle-of-robots.jpg" alt="Битва роботов — суперфинал Игр будущего Казань 2024" class="media-frame__img" loading="lazy">
+              <picture><source srcset="/cases/battle-of-robots.webp" type="image/webp"><img src="/cases/battle-of-robots.jpg" alt="Битва роботов — суперфинал Игр будущего Казань 2024" class="media-frame__img" loading="lazy"></picture>
               <span class="media-frame__num" aria-hidden="true">05</span>
             </div>
             <div class="gallery-card__info">
@@ -388,7 +393,7 @@
 
           <a href="/cases/graphsil/" class="gallery-card reveal" data-dir="design" data-dir-filter="design">
             <div class="media-frame has-img" data-dir="design" style="--ratio: 16 / 9">
-              <img src="/cases/GRAPHSEAL/1GRAPHSEAL.jpg" alt="ГРАФСИЛ — брендбук, фирменный стиль" class="media-frame__img" loading="lazy">
+              <picture><source srcset="/cases/GRAPHSEAL/1GRAPHSEAL.webp" type="image/webp"><img src="/cases/GRAPHSEAL/1GRAPHSEAL.jpg" alt="ГРАФСИЛ — брендбук, фирменный стиль" class="media-frame__img" loading="lazy"></picture>
               <span class="media-frame__num" aria-hidden="true">06</span>
             </div>
             <div class="gallery-card__info">
@@ -400,7 +405,7 @@
 
           <a href="/cases/toyota-supra-green-mamba/" class="gallery-card reveal" data-dir="ai" data-dir-filter="ai">
             <div class="media-frame has-img" data-dir="ai" style="--ratio: 16 / 9">
-              <img src="/cases/toyota-supra-green-mamba.jpg" alt="TOYOTA Supra GR 2026 GREEN MAMBA — ИИ-ролик" class="media-frame__img" loading="lazy">
+              <picture><source srcset="/cases/toyota-supra-green-mamba.webp" type="image/webp"><img src="/cases/toyota-supra-green-mamba.jpg" alt="TOYOTA Supra GR 2026 GREEN MAMBA — ИИ-ролик" class="media-frame__img" loading="lazy"></picture>
               <span class="media-frame__num" aria-hidden="true">07</span>
             </div>
             <div class="gallery-card__info">
@@ -547,8 +552,8 @@
 
     <div class="footer-lesse__cols">
 
-      <nav class="footer-lesse__col">
-        <span class="footer-lesse__col-title">Видео</span>
+      <nav class="footer-lesse__col" aria-labelledby="footer-col-video">
+        <span class="footer-lesse__col-title" id="footer-col-video">Видео</span>
         <a href="/video/">Рекламные ролики</a>
         <a href="/video/">Корпоративное видео</a>
         <a href="/video/">Event-съёмка</a>
@@ -556,32 +561,32 @@
         <a href="/video/">Клипы и reels</a>
       </nav>
 
-      <nav class="footer-lesse__col">
-        <span class="footer-lesse__col-title">Дизайн</span>
+      <nav class="footer-lesse__col" aria-labelledby="footer-col-design">
+        <span class="footer-lesse__col-title" id="footer-col-design">Дизайн</span>
         <a href="/design/">Брендинг</a>
         <a href="/design/">Фирменный стиль</a>
         <a href="/design/">Полиграфия</a>
         <a href="/design/">Моушн-графика</a>
       </nav>
 
-      <nav class="footer-lesse__col">
-        <span class="footer-lesse__col-title">Фото</span>
+      <nav class="footer-lesse__col" aria-labelledby="footer-col-photo">
+        <span class="footer-lesse__col-title" id="footer-col-photo">Фото</span>
         <a href="/photo/">Каталожная съёмка</a>
         <a href="/photo/">Предметная съёмка</a>
         <a href="/photo/">Event-фото</a>
         <a href="/photo/">Портреты команды</a>
       </nav>
 
-      <nav class="footer-lesse__col">
-        <span class="footer-lesse__col-title">ИИ-контент</span>
+      <nav class="footer-lesse__col" aria-labelledby="footer-col-ai">
+        <span class="footer-lesse__col-title" id="footer-col-ai">ИИ-контент</span>
         <a href="/ai/">AI-генерация</a>
         <a href="/ai/">AI-видео</a>
         <a href="/ai/">AI-брендинг</a>
         <a href="/ai/">AI-автоматизация</a>
       </nav>
 
-      <nav class="footer-lesse__col">
-        <span class="footer-lesse__col-title">Студия</span>
+      <nav class="footer-lesse__col" aria-labelledby="footer-col-studio">
+        <span class="footer-lesse__col-title" id="footer-col-studio">Студия</span>
         <a href="/pro">Adervis CRM</a>
         <a href="/careers">Вакансии</a>
         <a href="/docs#docs-offer">Оферта</a>
@@ -594,10 +599,10 @@
   <!-- Социальные ссылки + копирайт -->
   <div class="footer-lesse__brand-block">
     <div class="footer-lesse__social-row">
-      <a href="https://vk.com/adervis_digital" target="_blank" rel="noopener">ВКонтакте</a>
-      <a href="https://t.me/Adervis_digital" target="_blank" rel="noopener">Telegram</a>
-      <a href="https://www.youtube.com/channel/UCwL-PkN9Jul92VJm5gFgY-Q" target="_blank" rel="noopener">YouTube</a>
-      <a href="https://www.behance.net/adervisdigital" target="_blank" rel="noopener">Behance</a>
+      <a href="https://vk.com/adervis_digital" target="_blank" rel="noopener">ВКонтакте<span class="sr-only"> (новая вкладка)</span></a>
+      <a href="https://t.me/Adervis_digital" target="_blank" rel="noopener">Telegram<span class="sr-only"> (новая вкладка)</span></a>
+      <a href="https://www.youtube.com/channel/UCwL-PkN9Jul92VJm5gFgY-Q" target="_blank" rel="noopener">YouTube<span class="sr-only"> (новая вкладка)</span></a>
+      <a href="https://www.behance.net/adervisdigital" target="_blank" rel="noopener">Behance<span class="sr-only"> (новая вкладка)</span></a>
     </div>
     <div class="footer-lesse__legal-row">
       <span class="footer-lesse__copy">© 2026 Adervis Digital</span>
@@ -615,7 +620,7 @@
 </button>
 <!-- END:footer-placeholder --></div>
 
-  <script src="../js/app.js"></script>
+  <script src="../js/app.min.js?v=2288709a"></script>
   <script>
   (function () {
     var filters = document.querySelectorAll('.cases-filter');

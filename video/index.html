@@ -11,6 +11,10 @@
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700&family=DM+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700&family=DM+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
   <link rel="icon" type="image/svg+xml" href="../icon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
+  <link rel="shortcut icon" href="../favicon.ico">
   <meta name="robots" content="index,follow">
   <meta http-equiv="content-language" content="ru">
   <link rel="canonical" href="https://adervis.ru/video/">
@@ -39,7 +43,7 @@
     "offers": { "@type": "Offer", "priceCurrency": "RUB", "availability": "https://schema.org/InStock" }
   }
   </script>
-  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/style.min.css?v=d86ba589">
 
   <!-- Three.js importmap — ES modules CDN -->
   <script type="importmap">
@@ -228,7 +232,7 @@
       </button>
 
       <!-- Быстрый контакт через Telegram -->
-      <a href="https://t.me/adervis_digital" class="site-header__tg" target="_blank" rel="noopener noreferrer" aria-label="Написать в Telegram">
+      <a href="https://t.me/adervis_digital" class="site-header__tg" target="_blank" rel="noopener noreferrer" aria-label="Написать в Telegram (откроется в новой вкладке)">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L7.58 13.28l-2.96-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.568.279z"/></svg>
         <span>Написать</span>
       </a>
@@ -249,8 +253,9 @@
               <span class="nav-mega__name">Adervis CRM</span>
               <span class="nav-mega__sub">Проекты · Сметы · КП · Команда</span>
             </span>
+            <span class="sr-only">(откроется в новой вкладке)</span>
           </a>
-          <a href="/#platform" class="nav-mega__item" role="menuitem" style="opacity:0.65; pointer-events:none; cursor:default">
+          <a class="nav-mega__item" role="menuitem" aria-disabled="true" tabindex="-1" style="opacity:0.65; pointer-events:none; cursor:default">
             <span class="nav-mega__icon" style="color:var(--muted)">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
             </span>
@@ -259,7 +264,7 @@
               <span class="nav-mega__sub">Трекер коммуникаций · Follow-up</span>
             </span>
           </a>
-          <a href="/#platform" class="nav-mega__item" role="menuitem" style="opacity:0.65; pointer-events:none; cursor:default">
+          <a class="nav-mega__item" role="menuitem" aria-disabled="true" tabindex="-1" style="opacity:0.65; pointer-events:none; cursor:default">
             <span class="nav-mega__icon" style="color:var(--muted)">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
             </span>
@@ -527,7 +532,7 @@
           data-src="https://vkvideo.ru/video_ext.php?oid=-121259819&amp;id=456239192&amp;hd=4&amp;js_api=1"
           aria-label="ADERVIS Promo — нажмите для просмотра"
           role="button" tabindex="0">
-          <img class="vp-featured__bg" src="../cases/promo-main.jpg" alt="" aria-hidden="true">
+          <picture><source srcset="../cases/promo-main.webp" type="image/webp"><img class="vp-featured__bg" src="../cases/promo-main.jpg" alt="" aria-hidden="true"></picture>
           <div class="vp-featured__btn" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="currentColor" width="32" height="32"><path d="M5 3l14 9-14 9z"/></svg>
           </div>
@@ -549,52 +554,52 @@
 
           <article class="vg-card reveal" data-cat="ad"
             data-src="https://vkvideo.ru/video_ext.php?oid=-121259819&amp;id=456239215&amp;hd=4&amp;js_api=1">
-            <div class="vg-thumb has-thumb" style="background-image: url('../cases/ujin.jpeg')"><span class="vg-play-btn" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M5 3l14 9-14 9z"/></svg></span><span class="vg-cat-badge">Реклама</span></div>
+            <div class="vg-thumb has-thumb" style="background-image:url('../cases/ujin.webp')"><span class="vg-play-btn" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M5 3l14 9-14 9z"/></svg></span><span class="vg-cat-badge">Реклама</span></div>
             <div class="vg-info"><h3>Ujin — умный дом, умное здание, умный город</h3></div>
           </article>
           <article class="vg-card reveal" data-cat="ad"
             data-src="https://vkvideo.ru/video_ext.php?oid=-121259819&amp;id=456239211&amp;hd=4&amp;js_api=1">
-            <div class="vg-thumb has-thumb" style="background-image: url('../cases/lukoil-ai.jpg')"><span class="vg-play-btn" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M5 3l14 9-14 9z"/></svg></span><span class="vg-cat-badge">Реклама</span></div>
+            <div class="vg-thumb has-thumb" style="background-image:url('../cases/lukoil-ai.webp')"><span class="vg-play-btn" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M5 3l14 9-14 9z"/></svg></span><span class="vg-cat-badge">Реклама</span></div>
             <div class="vg-info"><h3>Лукойл — Safety Man (AI-ролик)</h3></div>
           </article>
           <article class="vg-card reveal" data-cat="event"
             data-src="https://vkvideo.ru/video_ext.php?oid=-121259819&amp;id=456239208&amp;hd=4&amp;js_api=1">
-            <div class="vg-thumb has-thumb" style="background-image: url('../cases/neptune-day-razdolye-2025.jpg')"><span class="vg-play-btn" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M5 3l14 9-14 9z"/></svg></span><span class="vg-cat-badge">Мероприятие</span></div>
+            <div class="vg-thumb has-thumb" style="background-image:url('../cases/neptune-day-razdolye-2025.webp')"><span class="vg-play-btn" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M5 3l14 9-14 9z"/></svg></span><span class="vg-cat-badge">Мероприятие</span></div>
             <div class="vg-info"><h3>День Нептуна в Раздолье — Пермь 2025</h3></div>
           </article>
           <article class="vg-card reveal" data-cat="event"
             data-src="https://vkvideo.ru/video_ext.php?oid=-121259819&amp;id=456239202&amp;hd=4&amp;js_api=1">
-            <div class="vg-thumb has-thumb" style="background-image: url('../cases/battle-robots-final-moscow-2025.jpg')"><span class="vg-play-btn" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M5 3l14 9-14 9z"/></svg></span><span class="vg-cat-badge">Мероприятие</span></div>
+            <div class="vg-thumb has-thumb" style="background-image:url('../cases/battle-robots-final-moscow-2025.webp')"><span class="vg-play-btn" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M5 3l14 9-14 9z"/></svg></span><span class="vg-cat-badge">Мероприятие</span></div>
             <div class="vg-info"><h3>Битва Роботов | Финал Москва 2025</h3></div>
           </article>
           <article class="vg-card reveal" data-cat="ad"
             data-src="https://vkvideo.ru/video_ext.php?oid=-121259819&amp;id=456239200&amp;hd=4&amp;js_api=1">
-            <div class="vg-thumb has-thumb" style="background-image: url('../cases/toyota-supra-green-mamba.jpg')"><span class="vg-play-btn" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M5 3l14 9-14 9z"/></svg></span><span class="vg-cat-badge">Реклама</span></div>
+            <div class="vg-thumb has-thumb" style="background-image:url('../cases/toyota-supra-green-mamba.webp')"><span class="vg-play-btn" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M5 3l14 9-14 9z"/></svg></span><span class="vg-cat-badge">Реклама</span></div>
             <div class="vg-info"><h3>TOYOTA Supra GR 2026 | GREEN MAMBA</h3></div>
           </article>
           <article class="vg-card reveal" data-cat="event"
             data-src="https://vkvideo.ru/video_ext.php?oid=-121259819&amp;id=456239199&amp;hd=4&amp;js_api=1">
-            <div class="vg-thumb has-thumb" style="background-image: url('../cases/battle-robots-qualifier-perm-2025.jpg')"><span class="vg-play-btn" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M5 3l14 9-14 9z"/></svg></span><span class="vg-cat-badge">Мероприятие</span></div>
+            <div class="vg-thumb has-thumb" style="background-image:url('../cases/battle-robots-qualifier-perm-2025.webp')"><span class="vg-play-btn" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M5 3l14 9-14 9z"/></svg></span><span class="vg-cat-badge">Мероприятие</span></div>
             <div class="vg-info"><h3>Битва Роботов — первый отборочный, Пермь 2025</h3></div>
           </article>
           <article class="vg-card reveal" data-cat="event"
             data-src="https://vkvideo.ru/video_ext.php?oid=-121259819&amp;id=456239194&amp;hd=4&amp;js_api=1">
-            <div class="vg-thumb has-thumb" style="background-image: url('../cases/summer-season-razdolye-2025.jpg')"><span class="vg-play-btn" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M5 3l14 9-14 9z"/></svg></span><span class="vg-cat-badge">Мероприятие</span></div>
+            <div class="vg-thumb has-thumb" style="background-image:url('../cases/summer-season-razdolye-2025.webp')"><span class="vg-play-btn" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M5 3l14 9-14 9z"/></svg></span><span class="vg-cat-badge">Мероприятие</span></div>
             <div class="vg-info"><h3>Открытие летнего сезона 2025 — База отдыха «Раздолье»</h3></div>
           </article>
           <article class="vg-card reveal" data-cat="concert"
             data-src="https://vkvideo.ru/video_ext.php?oid=-121259819&amp;id=456239188&amp;hd=4&amp;js_api=1">
-            <div class="vg-thumb has-thumb" style="background-image: url('../cases/rokstar-soundcheck-2025.jpg')"><span class="vg-play-btn" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M5 3l14 9-14 9z"/></svg></span><span class="vg-cat-badge">Концерт</span></div>
+            <div class="vg-thumb has-thumb" style="background-image:url('../cases/rokstar-soundcheck-2025.webp')"><span class="vg-play-btn" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M5 3l14 9-14 9z"/></svg></span><span class="vg-cat-badge">Концерт</span></div>
             <div class="vg-info"><h3>РОКСТАР | Саундчек 2025</h3></div>
           </article>
           <article class="vg-card reveal" data-cat="ad"
             data-src="https://vkvideo.ru/video_ext.php?oid=-121259819&amp;id=456239185&amp;hd=4&amp;js_api=1">
-            <div class="vg-thumb has-thumb" style="background-image: url('../cases/stickbot-cosmetics.jpg')"><span class="vg-play-btn" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M5 3l14 9-14 9z"/></svg></span><span class="vg-cat-badge">Реклама</span></div>
+            <div class="vg-thumb has-thumb" style="background-image:url('../cases/stickbot-cosmetics.webp')"><span class="vg-play-btn" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M5 3l14 9-14 9z"/></svg></span><span class="vg-cat-badge">Реклама</span></div>
             <div class="vg-info"><h3>Косметика StickBot</h3></div>
           </article>
           <article class="vg-card reveal" data-cat="ad"
             data-src="https://vkvideo.ru/video_ext.php?oid=-121259819&amp;id=456239184&amp;hd=4&amp;js_api=1">
-            <div class="vg-thumb has-thumb" style="background-image: url('../cases/magic-air-new-filter.jpg')"><span class="vg-play-btn" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M5 3l14 9-14 9z"/></svg></span><span class="vg-cat-badge">Реклама</span></div>
+            <div class="vg-thumb has-thumb" style="background-image:url('../cases/magic-air-new-filter.webp')"><span class="vg-play-btn" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M5 3l14 9-14 9z"/></svg></span><span class="vg-cat-badge">Реклама</span></div>
             <div class="vg-info"><h3>Magic Air 2.0 — New Filter</h3></div>
           </article>
           <article class="vg-card reveal" data-cat="ad"
@@ -604,22 +609,22 @@
           </article>
           <article class="vg-card reveal" data-cat="ad"
             data-src="https://vkvideo.ru/video_ext.php?oid=-121259819&amp;id=456239179&amp;hash=4b70a3f997a4eda0&amp;hd=4&amp;js_api=1">
-            <div class="vg-thumb has-thumb" style="background-image: url('../cases/black-gun.jpg')"><span class="vg-play-btn" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M5 3l14 9-14 9z"/></svg></span><span class="vg-cat-badge">Реклама</span></div>
+            <div class="vg-thumb has-thumb" style="background-image:url('../cases/black-gun.webp')"><span class="vg-play-btn" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M5 3l14 9-14 9z"/></svg></span><span class="vg-cat-badge">Реклама</span></div>
             <div class="vg-info"><h3>Чёрный Пистолет</h3></div>
           </article>
           <article class="vg-card reveal" data-cat="event"
             data-src="https://vkvideo.ru/video_ext.php?oid=-121259819&amp;id=456239178&amp;hash=ac85f180a998922e&amp;hd=4&amp;js_api=1">
-            <div class="vg-thumb has-thumb" style="background-image: url('../cases/space-inside-us-khimprom.jpg')"><span class="vg-play-btn" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M5 3l14 9-14 9z"/></svg></span><span class="vg-cat-badge">Мероприятие</span></div>
+            <div class="vg-thumb has-thumb" style="background-image:url('../cases/space-inside-us-khimprom.webp')"><span class="vg-play-btn" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M5 3l14 9-14 9z"/></svg></span><span class="vg-cat-badge">Мероприятие</span></div>
             <div class="vg-info"><h3>ХИМПРОМ — The space inside us</h3></div>
           </article>
           <article class="vg-card reveal" data-cat="event"
             data-src="https://vkvideo.ru/video_ext.php?oid=-121259819&amp;id=456239177&amp;hash=fb5e7a6f641052f5&amp;hd=4&amp;js_api=1">
-            <div class="vg-thumb has-thumb" style="background-image: url('../cases/halloween-shakeroom.jpg')"><span class="vg-play-btn" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M5 3l14 9-14 9z"/></svg></span><span class="vg-cat-badge">Мероприятие</span></div>
+            <div class="vg-thumb has-thumb" style="background-image:url('../cases/halloween-shakeroom.webp')"><span class="vg-play-btn" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M5 3l14 9-14 9z"/></svg></span><span class="vg-cat-badge">Мероприятие</span></div>
             <div class="vg-info"><h3>Halloween | ShakeRooM</h3></div>
           </article>
           <article class="vg-card reveal" data-cat="concert"
             data-src="https://vkvideo.ru/video_ext.php?oid=-121259819&amp;id=456239175&amp;hash=4a192fe84ec8d362&amp;hd=4&amp;js_api=1">
-            <div class="vg-thumb has-thumb" style="background-image: url('../cases/obladaet-perm-01-10.jpg')"><span class="vg-play-btn" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M5 3l14 9-14 9z"/></svg></span><span class="vg-cat-badge">Концерт</span></div>
+            <div class="vg-thumb has-thumb" style="background-image:url('../cases/obladaet-perm-01-10.webp')"><span class="vg-play-btn" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M5 3l14 9-14 9z"/></svg></span><span class="vg-cat-badge">Концерт</span></div>
             <div class="vg-info"><h3>OBLADAET / Пермь @М5</h3></div>
           </article>
           <article class="vg-card reveal" data-cat="ad"
@@ -629,7 +634,7 @@
           </article>
           <article class="vg-card reveal" data-cat="ad"
             data-src="https://vkvideo.ru/video_ext.php?oid=-121259819&amp;id=456239170&amp;hash=56bc49bcf842ec62&amp;hd=4&amp;js_api=1">
-            <div class="vg-thumb has-thumb" style="background-image: url('../cases/sk-ferma-construction.jpg')"><span class="vg-play-btn" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M5 3l14 9-14 9z"/></svg></span><span class="vg-cat-badge">Реклама</span></div>
+            <div class="vg-thumb has-thumb" style="background-image:url('../cases/sk-ferma-construction.webp')"><span class="vg-play-btn" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M5 3l14 9-14 9z"/></svg></span><span class="vg-cat-badge">Реклама</span></div>
             <div class="vg-info"><h3>Строительная компания «СК Ферма»</h3></div>
           </article>
           <article class="vg-card reveal" data-cat="ad"
@@ -639,47 +644,47 @@
           </article>
           <article class="vg-card reveal" data-cat="event"
             data-src="https://vkvideo.ru/video_ext.php?oid=-121259819&amp;id=456239162&amp;hash=4156c4a54f478602&amp;hd=4&amp;js_api=1">
-            <div class="vg-thumb has-thumb" style="background-image: url('../cases/brutal-networking-2024.jpg')"><span class="vg-play-btn" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M5 3l14 9-14 9z"/></svg></span><span class="vg-cat-badge">Мероприятие</span></div>
+            <div class="vg-thumb has-thumb" style="background-image:url('../cases/brutal-networking-2024.webp')"><span class="vg-play-btn" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M5 3l14 9-14 9z"/></svg></span><span class="vg-cat-badge">Мероприятие</span></div>
             <div class="vg-info"><h3>Брутальный нетворкинг | 2024</h3></div>
           </article>
           <article class="vg-card reveal" data-cat="event"
             data-src="https://vkvideo.ru/video_ext.php?oid=-121259819&amp;id=456239161&amp;hash=0d6afbab6919bee2&amp;hd=4&amp;js_api=1">
-            <div class="vg-thumb has-thumb" style="background-image: url('../cases/rokstar-soundcheck-2024.jpg')"><span class="vg-play-btn" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M5 3l14 9-14 9z"/></svg></span><span class="vg-cat-badge">Мероприятие</span></div>
+            <div class="vg-thumb has-thumb" style="background-image:url('../cases/rokstar-soundcheck-2024.webp')"><span class="vg-play-btn" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M5 3l14 9-14 9z"/></svg></span><span class="vg-cat-badge">Мероприятие</span></div>
             <div class="vg-info"><h3>РОКСТАР | Саундчек 2024</h3></div>
           </article>
           <article class="vg-card reveal" data-cat="event"
             data-src="https://vkvideo.ru/video_ext.php?oid=-121259819&amp;id=456239159&amp;hash=1622dc21378332bc&amp;hd=4&amp;js_api=1">
-            <div class="vg-thumb has-thumb" style="background-image: url('../cases/parma-cup-2024.jpg')"><span class="vg-play-btn" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M5 3l14 9-14 9z"/></svg></span><span class="vg-cat-badge">Мероприятие</span></div>
+            <div class="vg-thumb has-thumb" style="background-image:url('../cases/parma-cup-2024.webp')"><span class="vg-play-btn" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M5 3l14 9-14 9z"/></svg></span><span class="vg-cat-badge">Мероприятие</span></div>
             <div class="vg-info"><h3>«Кубок Пармы» РСБИ Пермский край</h3></div>
           </article>
           <article class="vg-card reveal" data-cat="event"
             data-src="https://vkvideo.ru/video_ext.php?oid=-121259819&amp;id=456239155&amp;hash=f6a64e14d6673567&amp;hd=4&amp;js_api=1">
-            <div class="vg-thumb has-thumb" style="background-image: url('../cases/jaecoo-j8.jpg')"><span class="vg-play-btn" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M5 3l14 9-14 9z"/></svg></span><span class="vg-cat-badge">Мероприятие</span></div>
+            <div class="vg-thumb has-thumb" style="background-image:url('../cases/jaecoo-j8.webp')"><span class="vg-play-btn" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M5 3l14 9-14 9z"/></svg></span><span class="vg-cat-badge">Мероприятие</span></div>
             <div class="vg-info"><h3>JAECOO J8</h3></div>
           </article>
           <article class="vg-card reveal" data-cat="event"
             data-src="https://vkvideo.ru/video_ext.php?oid=-121259819&amp;id=456239153&amp;hash=1a5213e20d15c4f2&amp;hd=4&amp;js_api=1">
-            <div class="vg-thumb has-thumb" style="background-image: url('../cases/battle-of-robots.jpg')"><span class="vg-play-btn" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M5 3l14 9-14 9z"/></svg></span><span class="vg-cat-badge">Мероприятие</span></div>
+            <div class="vg-thumb has-thumb" style="background-image:url('../cases/battle-of-robots.webp')"><span class="vg-play-btn" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M5 3l14 9-14 9z"/></svg></span><span class="vg-cat-badge">Мероприятие</span></div>
             <div class="vg-info"><h3>Битва роботов — Игры будущего, Казань 2024</h3></div>
           </article>
           <article class="vg-card reveal" data-cat="event"
             data-src="https://vkvideo.ru/video_ext.php?oid=-121259819&amp;id=456239152&amp;hd=4&amp;js_api=1">
-            <div class="vg-thumb has-thumb" style="background-image: url('../cases/battle-robots-semifinal-moscow-2023.jpg')"><span class="vg-play-btn" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M5 3l14 9-14 9z"/></svg></span><span class="vg-cat-badge">Мероприятие</span></div>
+            <div class="vg-thumb has-thumb" style="background-image:url('../cases/battle-robots-semifinal-moscow-2023.webp')"><span class="vg-play-btn" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M5 3l14 9-14 9z"/></svg></span><span class="vg-cat-badge">Мероприятие</span></div>
             <div class="vg-info"><h3>Битва роботов | Полуфинал и финал 2023, Москва</h3></div>
           </article>
           <article class="vg-card reveal" data-cat="event"
             data-src="https://vkvideo.ru/video_ext.php?oid=-121259819&amp;id=456239151&amp;hd=4&amp;js_api=1">
-            <div class="vg-thumb has-thumb" style="background-image: url('../cases/battle-robots-stage2-perm-2023.jpg')"><span class="vg-play-btn" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M5 3l14 9-14 9z"/></svg></span><span class="vg-cat-badge">Мероприятие</span></div>
+            <div class="vg-thumb has-thumb" style="background-image:url('../cases/battle-robots-stage2-perm-2023.webp')"><span class="vg-play-btn" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M5 3l14 9-14 9z"/></svg></span><span class="vg-cat-badge">Мероприятие</span></div>
             <div class="vg-info"><h3>Битва роботов | Второй этап 2023, Пермь</h3></div>
           </article>
           <article class="vg-card reveal" data-cat="event"
             data-src="https://vkvideo.ru/video_ext.php?oid=-121259819&amp;id=456239150&amp;hd=4&amp;js_api=1">
-            <div class="vg-thumb has-thumb" style="background-image: url('../cases/battle-robots-qualifier-moscow-2023.jpg')"><span class="vg-play-btn" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M5 3l14 9-14 9z"/></svg></span><span class="vg-cat-badge">Мероприятие</span></div>
+            <div class="vg-thumb has-thumb" style="background-image:url('../cases/battle-robots-qualifier-moscow-2023.webp')"><span class="vg-play-btn" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M5 3l14 9-14 9z"/></svg></span><span class="vg-cat-badge">Мероприятие</span></div>
             <div class="vg-info"><h3>Битва роботов | Первый отборочный этап 2023, Москва</h3></div>
           </article>
           <article class="vg-card reveal" data-cat="concert"
             data-src="https://vkvideo.ru/video_ext.php?oid=-121259819&amp;id=456239147&amp;hash=6b07c594f40ac13a&amp;hd=4&amp;js_api=1">
-            <div class="vg-thumb has-thumb" style="background-image: url('../cases/disco-fest-90s-perm.jpg')"><span class="vg-play-btn" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M5 3l14 9-14 9z"/></svg></span><span class="vg-cat-badge">Концерт</span></div>
+            <div class="vg-thumb has-thumb" style="background-image:url('../cases/disco-fest-90s-perm.webp')"><span class="vg-play-btn" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M5 3l14 9-14 9z"/></svg></span><span class="vg-cat-badge">Концерт</span></div>
             <div class="vg-info"><h3>Диско FEST 90-х</h3></div>
           </article>
           <article class="vg-card reveal" data-cat="ad"
@@ -689,7 +694,7 @@
           </article>
           <article class="vg-card reveal" data-cat="ad"
             data-src="https://vkvideo.ru/video_ext.php?oid=-121259819&amp;id=456239144&amp;hd=4&amp;js_api=1">
-            <div class="vg-thumb has-thumb" style="background-image: url('../cases/it-arc.jpg')"><span class="vg-play-btn" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M5 3l14 9-14 9z"/></svg></span><span class="vg-cat-badge">Реклама</span></div>
+            <div class="vg-thumb has-thumb" style="background-image:url('../cases/it-arc.webp')"><span class="vg-play-btn" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M5 3l14 9-14 9z"/></svg></span><span class="vg-cat-badge">Реклама</span></div>
             <div class="vg-info"><h3>IT-arc — архитектурная компания</h3></div>
           </article>
           <article class="vg-card reveal" data-cat="concert"
@@ -699,22 +704,22 @@
           </article>
           <article class="vg-card reveal" data-cat="ad"
             data-src="https://vkvideo.ru/video_ext.php?oid=-121259819&amp;id=456239127&amp;hash=94424b8b19b54c28&amp;hd=4&amp;js_api=1">
-            <div class="vg-thumb has-thumb" style="background-image: url('../cases/at-350-mini-loader.jpg')"><span class="vg-play-btn" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M5 3l14 9-14 9z"/></svg></span><span class="vg-cat-badge">Реклама</span></div>
+            <div class="vg-thumb has-thumb" style="background-image:url('../cases/at-350-mini-loader.webp')"><span class="vg-play-btn" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M5 3l14 9-14 9z"/></svg></span><span class="vg-cat-badge">Реклама</span></div>
             <div class="vg-info"><h3>АТОМ Техникс</h3></div>
           </article>
           <article class="vg-card reveal" data-cat="event"
             data-src="https://vkvideo.ru/video_ext.php?oid=-121259819&amp;id=456239106&amp;hd=4&amp;js_api=1">
-            <div class="vg-thumb has-thumb" style="background-image: url('../cases/abs-avto-opening-2021.jpg')"><span class="vg-play-btn" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M5 3l14 9-14 9z"/></svg></span><span class="vg-cat-badge">Мероприятие</span></div>
+            <div class="vg-thumb has-thumb" style="background-image:url('../cases/abs-avto-opening-2021.webp')"><span class="vg-play-btn" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M5 3l14 9-14 9z"/></svg></span><span class="vg-cat-badge">Мероприятие</span></div>
             <div class="vg-info"><h3>АБС АВТО | Открытие автосервиса 2021</h3></div>
           </article>
           <article class="vg-card reveal" data-cat="event"
             data-src="https://vkvideo.ru/video_ext.php?oid=-121259819&amp;id=456239104&amp;hd=4&amp;js_api=1">
-            <div class="vg-thumb has-thumb" style="background-image: url('../cases/helicopter-tour-manpupuner-2021.jpg')"><span class="vg-play-btn" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M5 3l14 9-14 9z"/></svg></span><span class="vg-cat-badge">Мероприятие</span></div>
+            <div class="vg-thumb has-thumb" style="background-image:url('../cases/helicopter-tour-manpupuner-2021.webp')"><span class="vg-play-btn" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M5 3l14 9-14 9z"/></svg></span><span class="vg-cat-badge">Мероприятие</span></div>
             <div class="vg-info"><h3>Вертолётное путешествие — Маньпупунёр и Перевал Дятлова 2021</h3></div>
           </article>
           <article class="vg-card reveal" data-cat="ad"
             data-src="https://vkvideo.ru/video_ext.php?oid=-121259819&amp;id=456239103&amp;hd=4&amp;js_api=1">
-            <div class="vg-thumb has-thumb" style="background-image: url('../cases/motoclub-ad.jpg')"><span class="vg-play-btn" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M5 3l14 9-14 9z"/></svg></span><span class="vg-cat-badge">Реклама</span></div>
+            <div class="vg-thumb has-thumb" style="background-image:url('../cases/motoclub-ad.webp')"><span class="vg-play-btn" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M5 3l14 9-14 9z"/></svg></span><span class="vg-cat-badge">Реклама</span></div>
             <div class="vg-info"><h3>MOTOCLUB</h3></div>
           </article>
           <article class="vg-card reveal" data-cat="concert"
@@ -724,22 +729,22 @@
           </article>
           <article class="vg-card reveal" data-cat="ad"
             data-src="https://vkvideo.ru/video_ext.php?oid=-121259819&amp;id=456239084&amp;hd=4&amp;js_api=1">
-            <div class="vg-thumb has-thumb" style="background-image: url('../cases/royal-barbershop-promo.jpg')"><span class="vg-play-btn" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M5 3l14 9-14 9z"/></svg></span><span class="vg-cat-badge">Реклама</span></div>
+            <div class="vg-thumb has-thumb" style="background-image:url('../cases/royal-barbershop-promo.webp')"><span class="vg-play-btn" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M5 3l14 9-14 9z"/></svg></span><span class="vg-cat-badge">Реклама</span></div>
             <div class="vg-info"><h3>The Royal Barbershop — промо Andrey Fedyuchok</h3></div>
           </article>
           <article class="vg-card reveal" data-cat="ad"
             data-src="https://vkvideo.ru/video_ext.php?oid=-121259819&amp;id=456239075&amp;hd=4&amp;js_api=1">
-            <div class="vg-thumb has-thumb" style="background-image: url('../cases/aratta-architectural-decor.jpg')"><span class="vg-play-btn" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M5 3l14 9-14 9z"/></svg></span><span class="vg-cat-badge">Реклама</span></div>
+            <div class="vg-thumb has-thumb" style="background-image:url('../cases/aratta-architectural-decor.webp')"><span class="vg-play-btn" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M5 3l14 9-14 9z"/></svg></span><span class="vg-cat-badge">Реклама</span></div>
             <div class="vg-info"><h3>Аратта — производитель архитектурного декора</h3></div>
           </article>
           <article class="vg-card reveal" data-cat="ad"
             data-src="https://vkvideo.ru/video_ext.php?oid=-121259819&amp;id=456239063&amp;hd=4&amp;js_api=1">
-            <div class="vg-thumb has-thumb" style="background-image: url('../cases/promobot-research-summary.jpg')"><span class="vg-play-btn" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M5 3l14 9-14 9z"/></svg></span><span class="vg-cat-badge">Реклама</span></div>
+            <div class="vg-thumb has-thumb" style="background-image:url('../cases/promobot-research-summary.webp')"><span class="vg-play-btn" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M5 3l14 9-14 9z"/></svg></span><span class="vg-cat-badge">Реклама</span></div>
             <div class="vg-info"><h3>Promobot — Research Summary</h3></div>
           </article>
           <article class="vg-card reveal" data-cat="event"
             data-src="https://vkvideo.ru/video_ext.php?oid=-121259819&amp;id=456239060&amp;hd=4&amp;js_api=1">
-            <div class="vg-thumb has-thumb" style="background-image: url('../cases/halloween-shakeroom.jpg')"><span class="vg-play-btn" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M5 3l14 9-14 9z"/></svg></span><span class="vg-cat-badge">Мероприятие</span></div>
+            <div class="vg-thumb has-thumb" style="background-image:url('../cases/halloween-shakeroom.webp')"><span class="vg-play-btn" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M5 3l14 9-14 9z"/></svg></span><span class="vg-cat-badge">Мероприятие</span></div>
             <div class="vg-info"><h3>Halloween | ShakeRooM (2)</h3></div>
           </article>
           <article class="vg-card reveal" data-cat="concert"
@@ -754,17 +759,17 @@
           </article>
           <article class="vg-card reveal" data-cat="ad"
             data-src="https://vkvideo.ru/video_ext.php?oid=-121259819&amp;id=456239035&amp;hd=4&amp;js_api=1">
-            <div class="vg-thumb has-thumb" style="background-image: url('../cases/bani-online-bath-complexes.jpg')"><span class="vg-play-btn" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M5 3l14 9-14 9z"/></svg></span><span class="vg-cat-badge">Реклама</span></div>
+            <div class="vg-thumb has-thumb" style="background-image:url('../cases/bani-online-bath-complexes.webp')"><span class="vg-play-btn" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M5 3l14 9-14 9z"/></svg></span><span class="vg-cat-badge">Реклама</span></div>
             <div class="vg-info"><h3>Бани онлайн — для банных комплексов</h3></div>
           </article>
           <article class="vg-card reveal" data-cat="ad"
             data-src="https://vkvideo.ru/video_ext.php?oid=-121259819&amp;id=456239034&amp;hd=4&amp;js_api=1">
-            <div class="vg-thumb has-thumb" style="background-image: url('../cases/bani-online-regional.jpg')"><span class="vg-play-btn" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M5 3l14 9-14 9z"/></svg></span><span class="vg-cat-badge">Реклама</span></div>
+            <div class="vg-thumb has-thumb" style="background-image:url('../cases/bani-online-regional.webp')"><span class="vg-play-btn" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M5 3l14 9-14 9z"/></svg></span><span class="vg-cat-badge">Реклама</span></div>
             <div class="vg-info"><h3>Бани онлайн — для региональных представителей</h3></div>
           </article>
           <article class="vg-card reveal" data-cat="ad"
             data-src="https://vkvideo.ru/video_ext.php?oid=-121259819&amp;id=456239031&amp;hd=4&amp;js_api=1">
-            <div class="vg-thumb has-thumb" style="background-image: url('../cases/express-import-video-case.jpg')"><span class="vg-play-btn" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M5 3l14 9-14 9z"/></svg></span><span class="vg-cat-badge">Реклама</span></div>
+            <div class="vg-thumb has-thumb" style="background-image:url('../cases/express-import-video-case.webp')"><span class="vg-play-btn" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M5 3l14 9-14 9z"/></svg></span><span class="vg-cat-badge">Реклама</span></div>
             <div class="vg-info"><h3>Express-Import — видеокейс компании</h3></div>
           </article>
           <article class="vg-card reveal" data-cat="clip"
@@ -774,37 +779,37 @@
           </article>
           <article class="vg-card reveal" data-cat="clip"
             data-src="https://vkvideo.ru/video_ext.php?oid=-2000113586&amp;id=135113586&amp;hd=4&amp;js_api=1">
-            <div class="vg-thumb has-thumb" style="background-image: url('../cases/rodin-suffocating.jpg')"><span class="vg-play-btn" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M5 3l14 9-14 9z"/></svg></span><span class="vg-cat-badge">Клип</span></div>
+            <div class="vg-thumb has-thumb" style="background-image:url('../cases/rodin-suffocating.webp')"><span class="vg-play-btn" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M5 3l14 9-14 9z"/></svg></span><span class="vg-cat-badge">Клип</span></div>
             <div class="vg-info"><h3>Rodin — «Задыхаюсь»</h3></div>
           </article>
           <article class="vg-card reveal" data-cat="event"
             data-src="https://vkvideo.ru/video_ext.php?oid=165260578&amp;id=456239958&amp;hash=8c9a08d00bb493a0&amp;hd=4&amp;js_api=1">
-            <div class="vg-thumb has-thumb" style="background-image: url('../cases/abs-avto-opening-2021.jpg')"><span class="vg-play-btn" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M5 3l14 9-14 9z"/></svg></span><span class="vg-cat-badge">Мероприятие</span></div>
+            <div class="vg-thumb has-thumb" style="background-image:url('../cases/abs-avto-opening-2021.webp')"><span class="vg-play-btn" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M5 3l14 9-14 9z"/></svg></span><span class="vg-cat-badge">Мероприятие</span></div>
             <div class="vg-info"><h3>АБС АВТО — открытие автосервиса</h3></div>
           </article>
           <article class="vg-card reveal" data-cat="clip"
             data-src="https://vkvideo.ru/video_ext.php?oid=-2000377300&amp;id=132377300&amp;hash=95d275f0e386e5e4&amp;hd=4&amp;js_api=1">
-            <div class="vg-thumb has-thumb" style="background-image: url('../cases/please-stop-plotnikov.jpg')"><span class="vg-play-btn" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M5 3l14 9-14 9z"/></svg></span><span class="vg-cat-badge">Клип</span></div>
+            <div class="vg-thumb has-thumb" style="background-image:url('../cases/please-stop-plotnikov.webp')"><span class="vg-play-btn" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M5 3l14 9-14 9z"/></svg></span><span class="vg-cat-badge">Клип</span></div>
             <div class="vg-info"><h3>Plotnikov feat. Джиос — «Прошу тебя хватит»</h3></div>
           </article>
           <article class="vg-card reveal" data-cat="clip"
             data-src="https://vkvideo.ru/video_ext.php?oid=-2000094109&amp;id=118094109&amp;hash=1b317e4561f769d3&amp;hd=4&amp;js_api=1">
-            <div class="vg-thumb has-thumb" style="background-image: url('../cases/rodin-lost.jpg')"><span class="vg-play-btn" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M5 3l14 9-14 9z"/></svg></span><span class="vg-cat-badge">Клип</span></div>
+            <div class="vg-thumb has-thumb" style="background-image:url('../cases/rodin-lost.webp')"><span class="vg-play-btn" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M5 3l14 9-14 9z"/></svg></span><span class="vg-cat-badge">Клип</span></div>
             <div class="vg-info"><h3>Rodin — «Заблудился»</h3></div>
           </article>
           <article class="vg-card reveal" data-cat="clip"
             data-src="https://vkvideo.ru/video_ext.php?oid=-2000194833&amp;id=116194833&amp;hash=3954131db6e1083e&amp;hd=4&amp;js_api=1">
-            <div class="vg-thumb has-thumb" style="background-image: url('../cases/rodin-lady-night.jpeg')"><span class="vg-play-btn" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M5 3l14 9-14 9z"/></svg></span><span class="vg-cat-badge">Клип</span></div>
+            <div class="vg-thumb has-thumb" style="background-image:url('../cases/rodin-lady-night.webp')"><span class="vg-play-btn" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M5 3l14 9-14 9z"/></svg></span><span class="vg-cat-badge">Клип</span></div>
             <div class="vg-info"><h3>Rodin, Дима Лелюк — Lady Night</h3></div>
           </article>
           <article class="vg-card reveal" data-cat="clip"
             data-src="https://vkvideo.ru/video_ext.php?oid=-2000934465&amp;id=107934465&amp;hash=7160d437acbe7ebd&amp;hd=4&amp;js_api=1">
-            <div class="vg-thumb has-thumb" style="background-image: url('../cases/wet-matches-rodin.jpg')"><span class="vg-play-btn" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M5 3l14 9-14 9z"/></svg></span><span class="vg-cat-badge">Клип</span></div>
+            <div class="vg-thumb has-thumb" style="background-image:url('../cases/wet-matches-rodin.webp')"><span class="vg-play-btn" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M5 3l14 9-14 9z"/></svg></span><span class="vg-cat-badge">Клип</span></div>
             <div class="vg-info"><h3>Rodin — «Мокрые спички»</h3></div>
           </article>
           <article class="vg-card reveal" data-cat="clip"
             data-src="https://vkvideo.ru/video_ext.php?oid=-2000593847&amp;id=107593847&amp;hash=03d484fd5230099b&amp;hd=4&amp;js_api=1">
-            <div class="vg-thumb has-thumb" style="background-image: url('../cases/rodin-yin-yan.jpg')"><span class="vg-play-btn" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M5 3l14 9-14 9z"/></svg></span><span class="vg-cat-badge">Клип</span></div>
+            <div class="vg-thumb has-thumb" style="background-image:url('../cases/rodin-yin-yan.webp')"><span class="vg-play-btn" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M5 3l14 9-14 9z"/></svg></span><span class="vg-cat-badge">Клип</span></div>
             <div class="vg-info"><h3>Rodin, Дима Лелюк — Инь-Янь</h3></div>
           </article>
 
@@ -836,7 +841,7 @@
 
             <article class="bts-vid-card"
               data-src="https://vk.com/clip_ext.php?oid=-121259819&amp;id=456239206&amp;autoplay=1">
-              <div class="vg-thumb has-thumb" style="background-image: url('../cases/rodin-suffocating.jpg')">
+              <div class="vg-thumb has-thumb" style="background-image:url('../cases/rodin-suffocating.webp')">
                 <span class="vg-play-btn" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M5 3l14 9-14 9z"/></svg></span>
                 <span class="vg-cat-badge">Бэкстейдж</span>
               </div>
@@ -845,7 +850,7 @@
 
             <article class="bts-vid-card"
               data-src="https://vk.com/video_ext.php?oid=5240722&amp;id=456240550&amp;autoplay=1">
-              <div class="vg-thumb has-thumb" style="background-image: url('../cases/wet-matches-rodin.jpg')">
+              <div class="vg-thumb has-thumb" style="background-image:url('../cases/wet-matches-rodin.webp')">
                 <span class="vg-play-btn" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M5 3l14 9-14 9z"/></svg></span>
                 <span class="vg-cat-badge">Бэкстейдж</span>
               </div>
@@ -916,7 +921,7 @@
                 <p class="review-text">Баскетбольная команда «Закамск» работает с ADERVIS уже больше года! Всегда очень довольны результатом! Мы заказывали 3 логотипа для команды, дипломы для сборов, рекламные листовки, рекламный ролл ап. Вся работа была выполнена в кратчайшие сроки и с очень точным пониманием наших желаний.</p>
                 <div class="review-author">
                   <a href="https://vk.com/id254553435" class="review-avatar-link" target="_blank" rel="noopener noreferrer" aria-label="ВКонтакте: Максим Мосягин">
-                    <img src="../assets/testimonials/mosyagin.jpg" alt="Максим Мосягин" class="review-avatar" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                    <picture><source srcset="../assets/testimonials/mosyagin.webp" type="image/webp"><img src="../assets/testimonials/mosyagin.jpg" alt="Максим Мосягин" class="review-avatar" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"></picture>
                     <div class="review-avatar-placeholder" style="display:none">М</div>
                   </a>
                   <div class="review-author-info">
@@ -930,7 +935,7 @@
                 <p class="review-text">Парни отсняли и обработали мне 2 клипа. Процесс съёмки был очень комфортен — провели время так, будто знаем друг друга много лет, помогали по максимуму раскрыться. Итогом работы я более чем доволен! Рекомендую!</p>
                 <div class="review-author">
                   <a href="https://vk.com/rodin_official" class="review-avatar-link" target="_blank" rel="noopener noreferrer" aria-label="ВКонтакте: Дмитрий Родин">
-                    <img src="../assets/testimonials/rodin.jpg" alt="Дмитрий Родин" class="review-avatar" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                    <picture><source srcset="../assets/testimonials/rodin.webp" type="image/webp"><img src="../assets/testimonials/rodin.jpg" alt="Дмитрий Родин" class="review-avatar" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"></picture>
                     <div class="review-avatar-placeholder" style="display:none">Д</div>
                   </a>
                   <div class="review-author-info">
@@ -944,7 +949,7 @@
                 <p class="review-text">Очень давно сотрудничаем и дружим с ребятами. Способны решить задачу любой сложности — и быстрый техничный монтаж, и комплексный проект со съёмкой в течение года.</p>
                 <div class="review-author">
                   <a href="https://vk.com/permclimber" class="review-avatar-link" target="_blank" rel="noopener noreferrer" aria-label="ВКонтакте: Виктор Пермяков">
-                    <img src="../assets/testimonials/permyakov.jpg" alt="Виктор Пермяков" class="review-avatar" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                    <picture><source srcset="../assets/testimonials/permyakov.webp" type="image/webp"><img src="../assets/testimonials/permyakov.jpg" alt="Виктор Пермяков" class="review-avatar" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"></picture>
                     <div class="review-avatar-placeholder" style="display:none">В</div>
                   </a>
                   <div class="review-author-info">
@@ -958,7 +963,7 @@
                 <p class="review-text">Вы очень классные и отзывчивые ребята. Сделали всё очень оперативно и качественно. Ролик делали для ТВ — подогнали по всем техническим требованиям. Спасибо огромное! Рекомендуем.</p>
                 <div class="review-author">
                   <a href="https://vk.com/abs_auto" class="review-avatar-link" target="_blank" rel="noopener noreferrer" aria-label="ВКонтакте: Абс Авто">
-                    <img src="../assets/testimonials/abs-avto.jpg" alt="Абс Авто" class="review-avatar" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                    <picture><source srcset="../assets/testimonials/abs-avto.webp" type="image/webp"><img src="../assets/testimonials/abs-avto.jpg" alt="Абс Авто" class="review-avatar" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"></picture>
                     <div class="review-avatar-placeholder" style="display:none">А</div>
                   </a>
                   <div class="review-author-info">
@@ -972,7 +977,7 @@
                 <p class="review-text">Ребята, очень благодарна вам за слаженную работу! Безумно комфортно и креативно — это супер важная часть! Видеоролик получился офигенный, спасибо что адекватно принимали критику и правки. Очень рада, что интуитивно среди трёх компаний выбрала именно вас! И кстати, наш ролик прошёл в финал конкурса — а это уже наша совместная победа!</p>
                 <div class="review-author">
                   <a href="https://vk.com/dr_lesnikova" class="review-avatar-link" target="_blank" rel="noopener noreferrer" aria-label="ВКонтакте: Алина Лесникова">
-                    <img src="../assets/testimonials/lesnikova.jpg" alt="Алина Лесникова" class="review-avatar" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                    <picture><source srcset="../assets/testimonials/lesnikova.webp" type="image/webp"><img src="../assets/testimonials/lesnikova.jpg" alt="Алина Лесникова" class="review-avatar" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"></picture>
                     <div class="review-avatar-placeholder" style="display:none">А</div>
                   </a>
                   <div class="review-author-info">
@@ -986,7 +991,7 @@
                 <p class="review-text">Мы впервые заказали ролик и нам очень повезло с первого раза встретить таких профессионалов! Очень хороший результат и по видео, и по фото. Оперативно, пунктуально и очень внимательно отнеслись к работе. Ребята помогли с композицией, с аксессуарами — результат просто прекрасен!</p>
                 <div class="review-author">
                   <a href="https://vk.com/ignatovaanna" class="review-avatar-link" target="_blank" rel="noopener noreferrer" aria-label="ВКонтакте: Анна Игнатова">
-                    <img src="../assets/testimonials/ignatova.jpg" alt="Анна Игнатова" class="review-avatar" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                    <picture><source srcset="../assets/testimonials/ignatova.webp" type="image/webp"><img src="../assets/testimonials/ignatova.jpg" alt="Анна Игнатова" class="review-avatar" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"></picture>
                     <div class="review-avatar-placeholder" style="display:none">А</div>
                   </a>
                   <div class="review-author-info">
@@ -1000,7 +1005,7 @@
                 <p class="review-text">Работают оперативно, подсказывают, придумывают — отличная команда. Процветания и больше работы по данному направлению, удачи ребята — поработаем ещё.</p>
                 <div class="review-author">
                   <a href="https://vk.com/andreuka1" class="review-avatar-link" target="_blank" rel="noopener noreferrer" aria-label="ВКонтакте: Андрей Шуклин">
-                    <img src="../assets/testimonials/shuklin.jpg" alt="Андрей Шуклин" class="review-avatar" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                    <picture><source srcset="../assets/testimonials/shuklin.webp" type="image/webp"><img src="../assets/testimonials/shuklin.jpg" alt="Андрей Шуклин" class="review-avatar" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"></picture>
                     <div class="review-avatar-placeholder" style="display:none">А</div>
                   </a>
                   <div class="review-author-info">
@@ -1014,7 +1019,7 @@
                 <p class="review-text">Ребята большие молодцы. Выполнили всё в срок, полностью прислушивались к требованиям клиента, адекватно реагировали на переделки и поправки. Спасибо.</p>
                 <div class="review-author">
                   <a href="https://vk.com/razorynova" class="review-avatar-link" target="_blank" rel="noopener noreferrer" aria-label="ВКонтакте: Екатерина Разорёнова">
-                    <img src="../assets/testimonials/razorenova.jpg" alt="Екатерина Разорёнова" class="review-avatar" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                    <picture><source srcset="../assets/testimonials/razorenova.webp" type="image/webp"><img src="../assets/testimonials/razorenova.jpg" alt="Екатерина Разорёнова" class="review-avatar" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"></picture>
                     <div class="review-avatar-placeholder" style="display:none">Е</div>
                   </a>
                   <div class="review-author-info">
@@ -1136,7 +1141,7 @@
             <div class="fvs-canvas" id="fvsCanvas">
 
               <div class="fvs-slide is-active" data-slide="0">
-                <img src="../assets/faq/1.jpg" alt="" loading="lazy">
+                <picture><source srcset="../assets/faq/1.webp" type="image/webp"><img src="../assets/faq/1.jpg" alt="" loading="lazy"></picture>
                 <div class="fvs-ph">
                   <div class="fvs-ph-icon">
                     <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" width="36" height="36"><rect x="8" y="14" width="32" height="22" rx="3"/><path d="M24 10v4M16 36v3M32 36v3"/><path d="M20 24h3a3 3 0 0 1 0 6h-3v-9M23 24v-2M25 30h2"/></svg>
@@ -1147,7 +1152,7 @@
               </div>
 
               <div class="fvs-slide" data-slide="1">
-                <img src="../assets/faq/2.jpg" alt="" loading="lazy">
+                <picture><source srcset="../assets/faq/2.webp" type="image/webp"><img src="../assets/faq/2.jpg" alt="" loading="lazy"></picture>
                 <div class="fvs-ph">
                   <div class="fvs-ph-icon">
                     <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" width="36" height="36"><circle cx="24" cy="26" r="15"/><path d="M24 14v12l7 4"/><path d="M17 9h14"/></svg>
@@ -1158,7 +1163,7 @@
               </div>
 
               <div class="fvs-slide" data-slide="2">
-                <img src="../assets/faq/3.jpg" alt="" loading="lazy">
+                <picture><source srcset="../assets/faq/3.webp" type="image/webp"><img src="../assets/faq/3.jpg" alt="" loading="lazy"></picture>
                 <div class="fvs-ph">
                   <div class="fvs-ph-icon">
                     <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" width="36" height="36"><rect x="10" y="6" width="28" height="36" rx="3"/><path d="M16 16h16M16 23h16M16 30h10"/><path d="M28 34l3 3 5-5" stroke-width="1.8"/></svg>
@@ -1169,7 +1174,7 @@
               </div>
 
               <div class="fvs-slide" data-slide="3">
-                <img src="../assets/faq/4.jpg" alt="" loading="lazy">
+                <picture><source srcset="../assets/faq/4.webp" type="image/webp"><img src="../assets/faq/4.jpg" alt="" loading="lazy"></picture>
                 <div class="fvs-ph">
                   <div class="fvs-ph-icon">
                     <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" width="36" height="36"><path d="M8 32c4-16 28-16 32 0"/><path d="M34 28l6 4-2 6"/><path d="M40 16c-4 16-28 16-32 0"/><path d="M14 20l-6-4 2-6"/></svg>
@@ -1180,7 +1185,7 @@
               </div>
 
               <div class="fvs-slide" data-slide="4">
-                <img src="../assets/faq/5.jpg" alt="" loading="lazy">
+                <picture><source srcset="../assets/faq/5.webp" type="image/webp"><img src="../assets/faq/5.jpg" alt="" loading="lazy"></picture>
                 <div class="fvs-ph">
                   <div class="fvs-ph-icon">
                     <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" width="36" height="36"><ellipse cx="24" cy="24" rx="18" ry="16"/><path d="M6 24h36M24 8c-5 4-8 9-8 16s3 12 8 16M24 8c5 4 8 9 8 16s-3 12-8 16"/><circle cx="24" cy="24" r="3" fill="currentColor" stroke="none"/></svg>
@@ -1604,8 +1609,8 @@
 
     <div class="footer-lesse__cols">
 
-      <nav class="footer-lesse__col">
-        <span class="footer-lesse__col-title">Видео</span>
+      <nav class="footer-lesse__col" aria-labelledby="footer-col-video">
+        <span class="footer-lesse__col-title" id="footer-col-video">Видео</span>
         <a href="/video/">Рекламные ролики</a>
         <a href="/video/">Корпоративное видео</a>
         <a href="/video/">Event-съёмка</a>
@@ -1613,32 +1618,32 @@
         <a href="/video/">Клипы и reels</a>
       </nav>
 
-      <nav class="footer-lesse__col">
-        <span class="footer-lesse__col-title">Дизайн</span>
+      <nav class="footer-lesse__col" aria-labelledby="footer-col-design">
+        <span class="footer-lesse__col-title" id="footer-col-design">Дизайн</span>
         <a href="/design/">Брендинг</a>
         <a href="/design/">Фирменный стиль</a>
         <a href="/design/">Полиграфия</a>
         <a href="/design/">Моушн-графика</a>
       </nav>
 
-      <nav class="footer-lesse__col">
-        <span class="footer-lesse__col-title">Фото</span>
+      <nav class="footer-lesse__col" aria-labelledby="footer-col-photo">
+        <span class="footer-lesse__col-title" id="footer-col-photo">Фото</span>
         <a href="/photo/">Каталожная съёмка</a>
         <a href="/photo/">Предметная съёмка</a>
         <a href="/photo/">Event-фото</a>
         <a href="/photo/">Портреты команды</a>
       </nav>
 
-      <nav class="footer-lesse__col">
-        <span class="footer-lesse__col-title">ИИ-контент</span>
+      <nav class="footer-lesse__col" aria-labelledby="footer-col-ai">
+        <span class="footer-lesse__col-title" id="footer-col-ai">ИИ-контент</span>
         <a href="/ai/">AI-генерация</a>
         <a href="/ai/">AI-видео</a>
         <a href="/ai/">AI-брендинг</a>
         <a href="/ai/">AI-автоматизация</a>
       </nav>
 
-      <nav class="footer-lesse__col">
-        <span class="footer-lesse__col-title">Студия</span>
+      <nav class="footer-lesse__col" aria-labelledby="footer-col-studio">
+        <span class="footer-lesse__col-title" id="footer-col-studio">Студия</span>
         <a href="/pro">Adervis CRM</a>
         <a href="/careers">Вакансии</a>
         <a href="/docs#docs-offer">Оферта</a>
@@ -1651,10 +1656,10 @@
   <!-- Социальные ссылки + копирайт -->
   <div class="footer-lesse__brand-block">
     <div class="footer-lesse__social-row">
-      <a href="https://vk.com/adervis_digital" target="_blank" rel="noopener">ВКонтакте</a>
-      <a href="https://t.me/Adervis_digital" target="_blank" rel="noopener">Telegram</a>
-      <a href="https://www.youtube.com/channel/UCwL-PkN9Jul92VJm5gFgY-Q" target="_blank" rel="noopener">YouTube</a>
-      <a href="https://www.behance.net/adervisdigital" target="_blank" rel="noopener">Behance</a>
+      <a href="https://vk.com/adervis_digital" target="_blank" rel="noopener">ВКонтакте<span class="sr-only"> (новая вкладка)</span></a>
+      <a href="https://t.me/Adervis_digital" target="_blank" rel="noopener">Telegram<span class="sr-only"> (новая вкладка)</span></a>
+      <a href="https://www.youtube.com/channel/UCwL-PkN9Jul92VJm5gFgY-Q" target="_blank" rel="noopener">YouTube<span class="sr-only"> (новая вкладка)</span></a>
+      <a href="https://www.behance.net/adervisdigital" target="_blank" rel="noopener">Behance<span class="sr-only"> (новая вкладка)</span></a>
     </div>
     <div class="footer-lesse__legal-row">
       <span class="footer-lesse__copy">© 2026 Adervis Digital</span>
@@ -1691,7 +1696,7 @@
   }());
   </script>
 
-  <script src="../js/app.js"></script>
+  <script src="../js/app.min.js?v=2288709a"></script>
 
   <!-- Клик/клавиатура по бэкстейдж-видео → тот же лайтбокс -->
   <script>
@@ -1771,7 +1776,7 @@
   <script>
     if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       var s = document.createElement('script');
-      s.type = 'module'; s.src = '../js/hero3d-video.js';
+      s.type = 'module'; s.src = '../js/hero3d-video.min.js?v=7eb6eebe';
       document.head.appendChild(s);
     }
   </script>

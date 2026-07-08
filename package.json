@@ -1,0 +1,12 @@
+{
+  "name": "adervis-website",
+  "private": true,
+  "description": "Статический сайт ADERVIS. Без рантайм-зависимостей — devDependencies нужны только для build/*.js скриптов, запускаемых вручную перед деплоем.",
+  "scripts": {
+    "build": "node build/inline-components.js && node build/minify-assets.js && node build/version-assets.js"
+  },
+  "devDependencies": {
+    "clean-css": "^5.3.3",
+    "terser": "^5.36.0"
+  }
+}

@@ -6731,7 +6731,7 @@ body.no-clients .clients-ticker-section {
 .design-bg-base {
   position: absolute;
   inset: -15%;          /* запас для параллакс-сдвига */
-  background: url('../design/BG_design.jpg') center / cover no-repeat;
+  background: url('../design/BG_design.webp') center / cover no-repeat;
   opacity: 0.15;        /* 15% — очень тонкая текстура */
   will-change: transform;
 }
@@ -6740,7 +6740,7 @@ body.no-clients .clients-ticker-section {
   position: absolute;
   inset: -20%;
   /* 60% — сдвиг вправо от центра */
-  background: url('../design/BG-F.png') 60% center / cover no-repeat;
+  background: url('../design/BG-F.webp') 60% center / cover no-repeat;
   mix-blend-mode: screen;
   opacity: 0.95;
   filter: url(#design-liquid) saturate(1.6) brightness(1.15);
@@ -6791,7 +6791,7 @@ body.no-clients .clients-ticker-section {
 .dpb-bg {
   position: absolute;
   inset: -8%;
-  background: url('../design/BG_1.jpg') center / cover no-repeat;
+  background: url('../design/BG_1.webp') center / cover no-repeat;
   z-index: 0;
   will-change: transform;
 }
@@ -6806,7 +6806,7 @@ body.no-clients .clients-ticker-section {
 .dpb-mid {
   position: absolute;
   inset: -12%;
-  background: url('../design/BG_2.png') center / cover no-repeat;
+  background: url('../design/BG_2.webp') center / cover no-repeat;
   mix-blend-mode: screen;
   filter: brightness(4.5) saturate(2.2) contrast(1.05);
   z-index: 2;   /* над shade — свет виден поверх затемнения */
@@ -6863,7 +6863,7 @@ body.no-clients .clients-ticker-section {
 .dpb-mockup-float {
   width: 100%;
   height: 100%;
-  background: url('../design/BG_3.png') center / contain no-repeat;
+  background: url('../design/BG_3.webp') center / contain no-repeat;
   animation: dpbFloat 9s ease-in-out infinite;
   filter: drop-shadow(0 40px 90px rgba(119, 51, 255, 0.50));
 }
@@ -8769,7 +8769,7 @@ body.no-clients .clients-ticker-section {
 .ai-hero-bg__img {
   position: absolute;
   inset: -25% 0;
-  background: url('../video/BG_video.jpg') center / cover no-repeat;
+  background: url('../video/BG_video.webp') center / cover no-repeat;
   filter: brightness(2.2) saturate(3.0) contrast(0.92) blur(2.5px);
 }
 .ai-hero-bg__vignette {
