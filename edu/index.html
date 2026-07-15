@@ -29,7 +29,7 @@
   <meta name="twitter:title" content="ADERVIS Обучение — курсы по видео, дизайну, фото и ИИ">
   <meta name="twitter:description" content="Обучение от ADERVIS: PDF-гайды, мини-уроки и курсы по видеопроизводству, дизайну, фотосъёмке и ИИ-контенту.">
   <meta name="twitter:image" content="https://adervis.ru/assets/cases/og-image.jpg">
-  <link rel="stylesheet" href="../css/style.min.css?v=7b7dc019">
+  <link rel="stylesheet" href="../css/style.min.css?v=08d79971">
 </head>
 <body class="no-clients">
 
@@ -199,7 +199,28 @@
     var tube = document.getElementById('tubeIndicator');
     if (!nav || !tube) return;
 
-    var active = nav.querySelector('.nav-active:not(.pill-nav__link--drop)');
+    // Цель индикатора — всегда пункт ВЕРХНЕГО уровня. markActiveNavLink() в
+    // app.js помечает .nav-active и пункты внутри мега-меню (это нужно, чтобы
+    // подсветить текущее направление в выпадашке). Раньше индикатор хватал
+    // первый попавшийся .nav-active — на /video/, /design/, /photo/, /ai/ им
+    // оказывался пункт выпадашки, и капсула растягивалась на его ширину
+    // (302px вместо 98), перекрывая половину меню.
+    function activeTopLink () {
+      var direct = nav.querySelector('.pill-nav__link.nav-active:not(.pill-nav__link--drop)');
+      if (direct) return direct;
+      // Активно направление внутри «Услуг» — подсвечиваем сам пункт «Услуги».
+      var inDrop = nav.querySelector('.pill-nav__dropdown .nav-active');
+      if (inDrop) {
+        var drop = inDrop.closest('.pill-nav__dropdown');
+        if (drop) {
+          var trigger = drop.querySelector('.pill-nav__link--drop');
+          if (trigger) return trigger;
+        }
+      }
+      return null;
+    }
+
+    var active = activeTopLink();
     if (!active) active = nav.querySelector('.pill-nav__link:not(.pill-nav__link--drop)');
 
     function moveTo (el) {
@@ -230,8 +251,26 @@
     });
 
     nav.addEventListener('mouseleave', function () {
-      var cur = nav.querySelector('.nav-active');
-      if (cur) moveTo(cur);
+      moveTo(activeTopLink() || active);
+    });
+
+    // Пересчёт по текущему активному пункту.
+    function resync () {
+      moveTo(activeTopLink() || active);
+    }
+
+    // Шрифт Unbounded догружается уже после DOMContentLoaded и делает пункты
+    // шире — без пересчёта индикатор остаётся на координатах запасного шрифта
+    // (промах ~30px), пока пользователь не наведёт мышь.
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(resync);
+    }
+
+    // Resize меняет раскладку шапки — без этого индикатор уезжает.
+    var t;
+    window.addEventListener('resize', function () {
+      clearTimeout(t);
+      t = setTimeout(resync, 100);
     });
   }
 
