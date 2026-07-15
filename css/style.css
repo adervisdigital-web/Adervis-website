@@ -176,12 +176,6 @@ select:focus-visible,
 [data-theme="light"] .pill-nav__tubelight {
   background: rgba(0, 0, 0, 0.05);
 }
-/* Цвет линии наследуется от базового правила (золото) — переопределять нечего.
-   На светлом фоне свечение почти не читается, поэтому просто убираем его,
-   оставляя чистую линию. */
-[data-theme="light"] .pill-nav__tubelight::after {
-  box-shadow: none;
-}
 [data-theme="light"] .site-header {
   background: rgba(255, 255, 255, 0.88);
   border-bottom-color: rgba(0, 0, 0, 0.08);
@@ -719,7 +713,9 @@ a {
   .nav-mega__sub  { display: none; }
 }
 
-/* ─── Tubelight indicator ─── */
+/* ─── Индикатор активного пункта — капсула-подложка, едет за курсором ───
+   Подчёркивания нет намеренно: капсулы достаточно, линия со свечением
+   перегружала шапку. */
 .pill-nav__tubelight {
   position: absolute;
   top: 5px;
@@ -735,22 +731,6 @@ a {
               width    0.28s cubic-bezier(0.25, 0.46, 0.45, 0.94),
               opacity  0.18s ease;
   transform: translateX(0);
-}
-
-/* Tube glow — золотая линия снизу активного пункта.
-   Золото, а не фиолетовый: #6c00ff — цвет продукта Adervis CRM, в шапке он
-   спорил с брендовым золотом. Свечение в один слой и внутри капсулы: тройное
-   (8/18/34px) вылезало из-под шапки сиреневым пятном. */
-.pill-nav__tubelight::after {
-  content: '';
-  position: absolute;
-  bottom: 3px;
-  left: 26%;
-  right: 26%;
-  height: 2px;
-  background: var(--gold);
-  border-radius: 100px;
-  box-shadow: 0 0 8px 1px rgba(246, 189, 58, 0.40);
 }
 
 /* Активная ссылка — отображается поверх индикатора */
