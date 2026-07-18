@@ -4,7 +4,7 @@
   /* Типографика */
   --font-display: 'Unbounded', ui-sans-serif, sans-serif;
   --font-ui: 'DM Sans', ui-sans-serif, sans-serif;
-  --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+  --font-mono: 'Martian Mono', ui-monospace, monospace;
 
   /* Фон (тёмная тема — основная, совпадает с фоном логотипа) */
   --bg:    #141414;

@@ -21,19 +21,19 @@ Eurostile Extd — коммерческий шрифт без поддержки
 |------|-------|--------------|
 | Заголовки / display | **Unbounded** (500, 700) | H1–H3, логотип-надпись, KPI-числа, бейджи направлений |
 | UI / текст | **DM Sans** (400, 500, 600) | Параграфы, кнопки, навигация, формы |
-| Моно / техданные | **IBM Plex Mono** (400, 500) | Коды, теги, технические подписи |
+| Моно / техданные | **Martian Mono** (400, 500) | Коды, теги, технические подписи |
 
 ```css
-@import url('https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700&family=DM+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700&family=DM+Sans:wght@400;500;600&family=Martian+Mono:wght@400;500&display=swap');
 
 :root {
   --font-display: 'Unbounded', ui-sans-serif, sans-serif;
   --font-ui: 'DM Sans', ui-sans-serif, sans-serif;
-  --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+  --font-mono: 'Martian Mono', ui-monospace, monospace;
 }
 ```
 
-> 2026-07-19: JetBrains Mono заменён на IBM Plex Mono по просьбе заказчика («шрифт не нравится») — полная поддержка кириллицы, тот же технический/геометричный характер, что и у Unbounded.
+> 2026-07-19: JetBrains Mono → IBM Plex Mono → **Martian Mono** по просьбе заказчика (обе предыдущие попытки не понравились). Жирный геометричный футуристичный характер сознательно перекликается с Unbounded и духом «Premium Dark Tech» — полная поддержка кириллицы (subsets `cyrillic`/`cyrillic-ext` подтверждены).
 
 > Если у заказчика появятся файлы Eurostile Extd с лицензией — подключить через `@font-face` и переопределить `--font-display`, сохранив Unbounded как fallback.
 
