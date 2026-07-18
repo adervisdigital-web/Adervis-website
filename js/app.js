@@ -6,6 +6,11 @@ const rootPath = appScript
   ? new URL(appScript.getAttribute("src"), document.baseURI).pathname.replace(/js\/app(\.min)?\.js$/, "")
   : "/";
 
+// Сайт всегда открывается с самого верха: отключаем восстановление позиции скролла
+// браузером (иначе при перезагрузке/возврате страница открывается там, где её закрыли).
+// Переход по якорю (#services и т.п.) не трогаем — он не является загрузкой страницы.
+if ("scrollRestoration" in history) history.scrollRestoration = "manual";
+
 // Отправка заявки в Telegram-группу через Bot API
 // Пользователь ничего не делает — сообщение уходит автоматически
 var TG_BOT_TOKEN = '8947523900:AAFXPhbl2bYZaaUn0pBZiNPh4TYvtqMPtyQ';
@@ -55,6 +60,9 @@ function showToast(msg, duration = 4000) {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
+  // Открываем страницу с самого верха — кроме перехода по якорю (#contacts и т.п.)
+  if (!window.location.hash) window.scrollTo(0, 0);
+
   // header.html/footer.html инлайнятся в каждую страницу на этапе сборки
   // (build/inline-components.js) — сразу видны в исходном HTML для поисковиков
   // и без JS; здесь только включаем их интерактивность
@@ -95,7 +103,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   initServicesGrid();
   initHeroQuiz();
-  initFloatingCta();
   initQuiz();
   initModal();
   initCtaDirChips();
@@ -263,59 +270,9 @@ function initHeroQuiz() {
   });
 }
 
-function initFloatingCta() {
-  const bar = document.createElement('div');
-  bar.className = 'floating-cta';
-  bar.id = 'floatingCta';
-  bar.setAttribute('aria-hidden', 'true');
-  bar.innerHTML = `
-    <a href="tel:+79223018880" class="floating-cta__call" aria-label="Позвонить: +7 922 301-88-80">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.36 12 19.79 19.79 0 0 1 1.29 3.33 2 2 0 0 1 3.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-    </a>
-    <button type="button" class="floating-cta__btn" id="floatingCtaBtn">
-      Обсудить проект
-      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-    </button>`;
-  document.body.appendChild(bar);
-
-  const btn = bar.querySelector('#floatingCtaBtn');
-  const contacts = document.getElementById('contacts');
-  let ticking = false;
-
-  const update = () => {
-    const scrollY = window.scrollY;
-    const heroEl = document.querySelector('.hero-section, .vp-hero, .cases-hero');
-    const heroBottom = heroEl ? heroEl.offsetTop + heroEl.offsetHeight * 0.55 : 320;
-    const contactsTop = contacts
-      ? contacts.getBoundingClientRect().top + scrollY - 80
-      : Infinity;
-    const shouldShow = scrollY > heroBottom && scrollY < contactsTop;
-    bar.classList.toggle('is-visible', shouldShow);
-    bar.setAttribute('aria-hidden', String(!shouldShow));
-    ticking = false;
-  };
-
-  window.addEventListener('scroll', () => {
-    if (!ticking) { requestAnimationFrame(update); ticking = true; }
-  }, { passive: true });
-
-  update();
-
-  if (btn) {
-    btn.addEventListener('click', () => {
-      const modal = document.getElementById('requestModal');
-      const active = document.querySelector('.hero-quiz__chip.is-active');
-      const dir = active?.dataset.val || null;
-      if (modal) {
-        openModal(dir, btn);
-      } else if (contacts) {
-        if (dir) syncCtaDirChips(dir);
-        contacts.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        setTimeout(() => document.getElementById('lh-name')?.focus(), 600);
-      }
-    });
-  }
-}
+// initFloatingCta() (плавающая нижняя плашка «Обсудить проект» на мобильных) убрана
+// по просьбе заказчика (2026-07-19) — раньше перекрывала контент внизу экрана.
+// Реализация — в истории git, коммит перед этой правкой.
 
 function syncCtaDirChips(val) {
   document.querySelectorAll('.cta-dir-chip').forEach(c => {
@@ -511,22 +468,43 @@ function initThemeToggle(headerRoot) {
 
   const html = document.documentElement;
 
+  // На мобильных (≤860px) .site-header всегда тёмный — background с !important,
+  // фикс containing-block для backdrop-filter выезжающей панели (style.css).
+  // Тёмный логотип (logoB.svg) на нём нечитаем независимо от темы сайта, поэтому
+  // в шапке на мобильных всегда показываем светлый/золотой logo.svg. Футер фон
+  // реально меняется вместе с темой — его логотип просто следует теме напрямую.
+  const mobileHeaderQuery = window.matchMedia("(max-width: 860px)");
+
+  const swapLogo = (id, src) => {
+    const logo = document.getElementById(id);
+    if (logo && src) logo.src = src.startsWith("/") ? rootPath + src.slice(1) : src;
+  };
+
+  const updateLogos = (theme) => {
+    const headerLogo = document.getElementById("siteLogo");
+    if (headerLogo) {
+      swapLogo("siteLogo", (theme === "light" && !mobileHeaderQuery.matches) ? headerLogo.dataset.light : headerLogo.dataset.dark);
+    }
+    const footerLogo = document.getElementById("footerLogo");
+    if (footerLogo) {
+      swapLogo("footerLogo", theme === "light" ? footerLogo.dataset.light : footerLogo.dataset.dark);
+    }
+  };
+
   const applyTheme = (theme) => {
     html.setAttribute("data-theme", theme);
     localStorage.setItem("adervis-theme", theme);
     btn.setAttribute("aria-label", theme === "dark" ? "Светлая тема" : "Тёмная тема");
-    // Swap logo for light/dark theme
-    const logo = document.getElementById("siteLogo");
-    if (logo) {
-      const src = theme === "light" ? logo.dataset.light : logo.dataset.dark;
-      if (src) logo.src = src.startsWith("/") ? rootPath + src.slice(1) : src;
-    }
+    updateLogos(theme);
   };
 
   // Применяем сохранённую или системную тему (может быть уже выставлена anti-flash скриптом)
   const stored = localStorage.getItem("adervis-theme");
   const sys = window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark";
   applyTheme(stored || sys);
+
+  // Пересчёт при пересечении мобильного брейкпоинта (ресайз окна/поворот экрана)
+  mobileHeaderQuery.addEventListener("change", () => updateLogos(html.getAttribute("data-theme")));
 
   btn.addEventListener("click", () => {
     const next = html.getAttribute("data-theme") === "dark" ? "light" : "dark";
@@ -752,9 +730,19 @@ function initVideoCalculator() {
   backBtn.addEventListener("click", () => { if (current > 1) { showStep(current - 1); focusStep(current); } });
   nextBtn.addEventListener("click", () => { if (current < lastStep) { showStep(current + 1); focusStep(current); } });
 
+  const consentCheckbox = form.querySelector('.modal-consent-check');
+  if (consentCheckbox) consentCheckbox.addEventListener('change', () => clearConsentError(consentCheckbox));
+
   form.addEventListener("submit", (event) => {
     event.preventDefault();
     const { low, high } = calculate();
+
+    if (consentCheckbox && !consentCheckbox.checked) {
+      showConsentError(consentCheckbox);
+      consentCheckbox.closest('.modal-consent-label').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      consentCheckbox.focus();
+      return;
+    }
 
     const name = form.querySelector('[name="leadName"]').value.trim();
     const contact = form.querySelector('[name="leadContact"]').value.trim();
@@ -850,9 +838,20 @@ function initSimpleCalculator(formId, tgPrefix) {
   backBtn.addEventListener("click", () => { if (current > 1) { showStep(current - 1); focusStep(current); } });
   nextBtn.addEventListener("click", () => { if (current < lastStep) { showStep(current + 1); focusStep(current); } });
 
+  const consentCheckbox = form.querySelector('.modal-consent-check');
+  if (consentCheckbox) consentCheckbox.addEventListener('change', () => clearConsentError(consentCheckbox));
+
   form.addEventListener("submit", (event) => {
     event.preventDefault();
     const { low, high } = calculate();
+
+    if (consentCheckbox && !consentCheckbox.checked) {
+      showConsentError(consentCheckbox);
+      consentCheckbox.closest('.modal-consent-label').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      consentCheckbox.focus();
+      return;
+    }
+
     const name = form.querySelector('[name="leadName"]').value.trim();
     const contact = form.querySelector('[name="leadContact"]').value.trim();
     const deadline = form.querySelector('[name="leadDeadline"]').value.trim();
@@ -1557,7 +1556,7 @@ function initVideoReviewsPlayer() {
     poster.style.display = '';
   }
 
-  function go(index) {
+  function go(index, skipScroll) {
     current = (index + VIDEOS.length) % VIDEOS.length;
     var v = VIDEOS[current];
 
@@ -1575,8 +1574,13 @@ function initVideoReviewsPlayer() {
     listEl.querySelectorAll('.vrp__item').forEach(function (el, i) {
       el.classList.toggle('is-active', i === current);
     });
+    // block:'nearest' скроллит ближайшего скроллящегося предка по вертикали, если
+    // активный пункт вне вьюпорта — при первом вызове go(0) (ниже, при инициализации)
+    // секция отзывов ещё не видна на экране (пользователь на hero), и это утаскивало
+    // всю страницу вниз на ~5000px сразу после загрузки. skipScroll=true у начального
+    // вызова отключает это — список миниатюр всё равно виден полностью на старте.
     var active = listEl.querySelectorAll('.vrp__item')[current];
-    if (active) active.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    if (active && !skipScroll) active.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 
     stopVideo();
   }
@@ -1604,7 +1608,7 @@ function initVideoReviewsPlayer() {
     });
   }
 
-  go(0);
+  go(0, true);
 }
 
 // Vimeo-модал для фото команды в секции «Что такое ADERVIS»

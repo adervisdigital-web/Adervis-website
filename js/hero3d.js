@@ -126,6 +126,7 @@ scene.add(group);
 let TARGET_X  = window.innerWidth > 900 ? 2.2 : 0;
 let TARGET_Y  = window.innerWidth > 900 ? 0   : -1.2;
 let MOB_SCALE = window.innerWidth > 900 ? 1.0 : 0.6;
+let IS_MOBILE = window.innerWidth <= 900;
 
 const entryScale = 0.42;
 group.scale.set(s * entryScale * MOB_SCALE, -s * entryScale * MOB_SCALE, s * entryScale * MOB_SCALE);
@@ -219,8 +220,14 @@ function animate() {
     group.rotation.x   = currentY;
   } else {
     group.scale.set(s * MOB_SCALE, -s * MOB_SCALE, s * MOB_SCALE);
-    group.rotation.y   = currentX;
-    group.rotation.x   = currentY;
+    if (IS_MOBILE) {
+      // На мобильной нет курсора для параллакса — иконка вращается сама по кругу
+      group.rotation.y = frame * 0.0065;
+      group.rotation.x = currentY;
+    } else {
+      group.rotation.y = currentX;
+      group.rotation.x = currentY;
+    }
     group.position.y   = TARGET_Y + Math.sin(frame * 0.007) * 0.09;
     group.position.x   = TARGET_X;
   }
@@ -247,6 +254,7 @@ window.addEventListener('resize', () => {
   TARGET_X  = w > 900 ? 2.2 : 0;
   TARGET_Y  = w > 900 ? 0   : -1.2;
   MOB_SCALE = w > 900 ? 1.0 : 0.6;
+  IS_MOBILE = w <= 900;
   group.position.x = TARGET_X;
 
   if (prefersReducedMotion) {

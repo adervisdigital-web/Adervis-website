@@ -2,14 +2,14 @@
 <html lang="ru" data-theme="dark">
 <head>
   <meta charset="utf-8">
-  <script>!function(){var t=localStorage.getItem("adervis-theme");if(t)document.documentElement.setAttribute("data-theme",t);else if(window.matchMedia("(prefers-color-scheme:light)").matches)document.documentElement.setAttribute("data-theme","light")}()</script>
+  <script>if("scrollRestoration"in history)history.scrollRestoration="manual";!function(){var t=localStorage.getItem("adervis-theme");if(t)document.documentElement.setAttribute("data-theme",t);else if(window.matchMedia("(prefers-color-scheme:light)").matches)document.documentElement.setAttribute("data-theme","light")}()</script>
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>ADERVIS — видео, дизайн, фото и ИИ для брендов</title>
   <meta name="description" content="Продакшн-студия ADERVIS: рекламные ролики, фирменный стиль, предметная съёмка и ИИ-контент. С 2018 года — для компаний, которым важно как выглядит их бренд.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700&family=DM+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700&family=DM+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700&family=DM+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700&family=DM+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
   <link rel="icon" type="image/svg+xml" href="icon.svg">
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
@@ -30,7 +30,7 @@
   <meta name="twitter:description" content="Продакшн-студия ADERVIS: рекламные ролики, фирменный стиль, предметная съёмка и ИИ-контент. С 2018 года — для компаний, которым важно как выглядит их бренд.">
   <meta name="twitter:image" content="https://adervis.ru/assets/cases/og-image.jpg">
   <link rel="preload" as="image" href="assets/cases/concept-team-1120.jpg" imagesrcset="assets/cases/concept-team-560.jpg 560w, assets/cases/concept-team-1120.jpg 1120w, assets/cases/concept-team-1680.jpg 1680w" imagesizes="(min-width: 901px) 560px, 100vw" fetchpriority="high">
-  <link rel="stylesheet" href="css/style.min.css?v=7c946c3b">
+  <link rel="stylesheet" href="css/style.min.css?v=894de6eb">
   <link rel="stylesheet" href="css/home.min.css?v=e4340ebc">
   <script type="application/ld+json">
   {
@@ -1430,7 +1430,7 @@
 
     <div class="footer-lesse__brand">
       <a href="/" class="brand">
-        <img src="/logo.svg" alt="ADERVIS" width="120" height="29">
+        <img src="/logo.svg" id="footerLogo" data-dark="/logo.svg" data-light="/logoB.svg" alt="ADERVIS" width="120" height="29">
       </a>
       <p class="footer-lesse__tagline">Продакшн-студия с 2018 года · Пермь.<br>Видео, дизайн, фото и ИИ для брендов.</p>
       <div class="footer-lesse__contacts">
@@ -1509,11 +1509,11 @@
 </button>
 <!-- END:footer-placeholder --></div>
 
-  <script src="js/app.min.js?v=2288709a"></script>
+  <script src="js/app.min.js?v=9bf4a437"></script>
   <script>
     if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       var s = document.createElement('script');
-      s.type = 'module'; s.src = 'js/hero3d.min.js?v=3d13bd1a';
+      s.type = 'module'; s.src = 'js/hero3d.min.js?v=f3afa217';
       document.head.appendChild(s);
     }
   </script>

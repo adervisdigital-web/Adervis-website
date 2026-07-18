@@ -4,7 +4,7 @@
   /* Типографика */
   --font-display: 'Unbounded', ui-sans-serif, sans-serif;
   --font-ui: 'DM Sans', ui-sans-serif, sans-serif;
-  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+  --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
 
   /* Фон (тёмная тема — основная, совпадает с фоном логотипа) */
   --bg:    #141414;
@@ -894,11 +894,6 @@ button.site-header__platform {
   .nav-backdrop {
     backdrop-filter: none !important;
     -webkit-backdrop-filter: none !important;
-  }
-
-  /* Скрываем floating CTA когда мобильное меню открыто */
-  body.nav-open .floating-cta {
-    display: none !important;
   }
 
   /* Бургер поверх всего меню */
@@ -10294,89 +10289,9 @@ body.no-clients .clients-ticker-section {
   }
 }
 
-/* ═══════════════════════════════════════════════════════════════
-   FLOATING MOBILE CTA
-   Появляется после прокрутки hero, исчезает у #contacts
-   ═══════════════════════════════════════════════════════════════ */
-.floating-cta {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  z-index: 880;
-  padding: 10px 16px;
-  padding-bottom: max(10px, env(safe-area-inset-bottom, 0px));
-  background: var(--glass);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border-top: 1px solid var(--line);
-  display: flex;
-  gap: 10px;
-  align-items: center;
-  transform: translateY(110%);
-  transition: transform 0.38s cubic-bezier(0.4, 0, 0.2, 1);
-  will-change: transform;
-}
-
-.floating-cta.is-visible {
-  transform: translateY(0);
-}
-
-.floating-cta__call {
-  width: 48px;
-  min-width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  background: var(--bg3);
-  border: 1px solid var(--line);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--gold);
-  text-decoration: none;
-  transition: background 0.2s, border-color 0.2s;
-}
-
-.floating-cta__call:hover {
-  background: var(--gold-bg);
-  border-color: rgba(246, 189, 58, 0.3);
-}
-
-.floating-cta__btn {
-  flex: 1;
-  height: 48px;
-  background: var(--gold);
-  color: #141414;
-  border: none;
-  border-radius: var(--radius-md);
-  font-family: var(--font-display);
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 0.03em;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 7px;
-  transition: box-shadow 0.2s, transform 0.18s;
-}
-
-.floating-cta__btn:active {
-  transform: scale(0.97);
-}
-
-@media (min-width: 769px) {
-  .floating-cta { display: none; }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .floating-cta {
-    transition: opacity 0.2s;
-    transform: none !important;
-  }
-  .floating-cta:not(.is-visible) { opacity: 0; pointer-events: none; }
-  .floating-cta.is-visible { opacity: 1; }
-}
+/* .floating-cta (плавающая нижняя плашка «Обсудить проект») убрана по просьбе
+   заказчика (2026-07-19) — перекрывала контент внизу экрана на мобильных.
+   JS-инициализация убрана из js/app.js, стили — в истории git. */
 
 /* ─── Hero quiz: direction-aware CTA button ─── */
 .hero-quiz__cta.has-selection {
