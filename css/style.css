@@ -2551,6 +2551,108 @@ button.site-header__platform {
   margin: 0;
 }
 
+/* Тарифы Adervis CRM */
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--sp-6);
+  margin-bottom: var(--sp-6);
+}
+
+.pricing-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--sp-2);
+  position: relative;
+  background: var(--bg3);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: var(--sp-6);
+  transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.pricing-card:hover {
+  border-color: rgba(108, 0, 255, 0.35);
+  transform: translateY(-4px);
+}
+
+.pricing-card--popular {
+  border-color: var(--c-crm-2);
+  box-shadow: 0 0 40px -18px rgba(108, 0, 255, 0.55);
+}
+
+.pricing-card__badge {
+  position: absolute;
+  top: -12px;
+  right: var(--sp-4);
+  font-family: var(--font-display);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #fff;
+  background: var(--crm-gradient);
+  border-radius: var(--radius-sm);
+  padding: 4px 9px;
+}
+
+.pricing-card__period {
+  font-size: 13px;
+  color: var(--muted);
+  font-weight: 600;
+}
+
+.pricing-card__price {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 30px;
+  color: var(--text);
+  letter-spacing: -0.01em;
+}
+
+.pricing-card__price span {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--muted);
+}
+
+.pricing-card__save {
+  font-size: 12px;
+  font-weight: 600;
+  color: color-mix(in srgb, var(--c-crm-2) 70%, #fff);
+}
+
+.pricing-card__users {
+  font-size: 13px;
+  color: var(--muted);
+  margin-bottom: var(--sp-2);
+}
+
+.pricing-card .btn {
+  width: 100%;
+  justify-content: center;
+  margin-top: auto;
+}
+
+.pricing-note {
+  text-align: center;
+  font-size: 14px;
+  color: var(--muted);
+}
+
+.pricing-note strong {
+  color: var(--text);
+}
+
+@media (max-width: 900px) {
+  .pricing-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 560px) {
+  .pricing-grid { grid-template-columns: 1fr; }
+}
+
 /* Шаги процесса — переиспользуется на страницах направлений, карьере и /pro */
 .steps-grid {
   display: grid;
