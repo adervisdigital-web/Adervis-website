@@ -780,11 +780,6 @@ a {
   border-color: rgba(41,182,246,0.4);
   color: #29b6f6;
 }
-.site-header__tg--wa:hover {
-  background: rgba(37,211,102,0.15);
-  border-color: rgba(37,211,102,0.4);
-  color: #25d366;
-}
 .site-header__tg svg { flex-shrink: 0; }
 @media (max-width: 900px) { .site-header__tg span { display: none; } .site-header__tg { padding: 8px; } }
 /* Telegram-иконку оставляем видимой на узких экранах — единственный быстрый контакт в шапке */
