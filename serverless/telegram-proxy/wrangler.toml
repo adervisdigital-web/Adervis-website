@@ -1,0 +1,10 @@
+name = "adervis-lead-proxy"
+main = "worker.js"
+compatibility_date = "2024-11-01"
+
+# Не секрет — можно держать в открытом виде. Меняй, если сменится домен сайта.
+[vars]
+ALLOWED_ORIGIN = "https://adervis.ru"
+
+# Секреты (TG_BOT_TOKEN, TG_CHAT_ID) НЕ хранятся здесь.
+# Их задают отдельно: npx wrangler secret put TG_BOT_TOKEN  (см. README.md)

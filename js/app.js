@@ -11,16 +11,17 @@ const rootPath = appScript
 // Переход по якорю (#services и т.п.) не трогаем — он не является загрузкой страницы.
 if ("scrollRestoration" in history) history.scrollRestoration = "manual";
 
-// Отправка заявки в Telegram-группу через Bot API
-// Пользователь ничего не делает — сообщение уходит автоматически
-var TG_BOT_TOKEN = '8947523900:AAFXPhbl2bYZaaUn0pBZiNPh4TYvtqMPtyQ';
-var TG_CHAT_ID   = '-5287777539';
+// Отправка заявки уходит на серверный прокси, а НЕ напрямую в Telegram Bot API.
+// Токен бота и chat_id хранятся секретами внутри воркера (см. serverless/telegram-proxy/),
+// поэтому их нет в коде сайта и их нельзя вытащить из «Просмотра кода страницы».
+// После деплоя воркера подставь сюда его адрес (…workers.dev/ или свой домен).
+var LEAD_ENDPOINT = 'https://adervis-lead-proxy.adervis-digital.workers.dev/';
 
 function sendTelegramMessage(text, onSuccess, onError) {
-  fetch('https://api.telegram.org/bot' + TG_BOT_TOKEN + '/sendMessage', {
+  fetch(LEAD_ENDPOINT, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ chat_id: TG_CHAT_ID, text: text, parse_mode: 'HTML' })
+    body: JSON.stringify({ text: text })
   })
   .then(function(r) { return r.json(); })
   .then(function(data) {

@@ -6,10 +6,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>ADERVIS — Видеопродакшн: ролики, фильмы, анимация</title>
   <meta name="description" content="Видеопродакшн ADERVIS: рекламные ролики, видео о компании, анимация, съёмка мероприятий. Сценарий, съёмка и монтаж под ключ. Пермь и вся Россия.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700&family=DM+Sans:wght@400;500;600&family=Martian+Mono:wght@400;500&display=swap">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700&family=DM+Sans:wght@400;500;600&family=Martian+Mono:wght@400;500&display=swap">
+  <!-- Шрифты self-hosted: @font-face в css/style.css, woff2 в /fonts -->
   <link rel="icon" type="image/svg+xml" href="../icon.svg">
   <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -43,14 +40,14 @@
     "offers": { "@type": "Offer", "priceCurrency": "RUB", "availability": "https://schema.org/InStock" }
   }
   </script>
-  <link rel="stylesheet" href="../css/style.min.css?v=4e69529c">
+  <link rel="stylesheet" href="../css/style.min.css?v=e7ae96fb">
 
-  <!-- Three.js importmap — ES modules CDN -->
+  <!-- Three.js importmap — self-hosted (../js/vendor/three), больше не с CDN jsdelivr -->
   <script type="importmap">
   {
     "imports": {
-      "three":          "https://cdn.jsdelivr.net/npm/three@0.165.0/build/three.module.js",
-      "three/addons/":  "https://cdn.jsdelivr.net/npm/three@0.165.0/examples/jsm/"
+      "three":          "../js/vendor/three/three.module.min.js",
+      "three/addons/":  "../js/vendor/three/addons/"
     }
   }
   </script>
@@ -2544,7 +2541,7 @@
   }());
   </script>
 
-  <script src="../js/app.min.js?v=9bf4a437"></script>
+  <script src="../js/app.min.js?v=18e5d85a"></script>
 
   <!-- Клик/клавиатура по бэкстейдж-видео → тот же лайтбокс -->
   <script>

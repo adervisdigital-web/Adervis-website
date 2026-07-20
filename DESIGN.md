@@ -20,15 +20,22 @@ Eurostile Extd — коммерческий шрифт без поддержки
 | Роль | Шрифт | Использование |
 |------|-------|--------------|
 | Заголовки / display | **Unbounded** (500, 700) | H1–H3, логотип-надпись, KPI-числа, бейджи направлений |
-| UI / текст | **DM Sans** (400, 500, 600) | Параграфы, кнопки, навигация, формы |
+| UI / текст | **Golos Text** (400, 500, 600) | Параграфы, кнопки, навигация, формы |
 | Моно / техданные | **Martian Mono** (400, 500) | Коды, теги, технические подписи |
 
-```css
-@import url('https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700&family=DM+Sans:wght@400;500;600&family=Martian+Mono:wght@400;500&display=swap');
+> 2026-07-21: UI-шрифт **DM Sans → Golos Text**. У DM Sans нет кириллицы в Google Fonts,
+> из-за чего весь русский текст рендерился системным fallback вразнобой с латиницей.
+> Golos Text — геометричный гротеск с полной кириллицей, сделан под RU-тексты.
 
+Шрифты self-hosted: подмножества `cyrillic`/`cyrillic-ext`/`latin`/`latin-ext` в woff2
+лежат в `/fonts`, `@font-face` (с `font-display: swap`) — в начале `css/style.css`.
+Внешний `<link>`/`@import` с `fonts.googleapis.com` больше не используется (убран
+render-blocking и зависимость от стороннего домена).
+
+```css
 :root {
   --font-display: 'Unbounded', ui-sans-serif, sans-serif;
-  --font-ui: 'DM Sans', ui-sans-serif, sans-serif;
+  --font-ui: 'Golos Text', ui-sans-serif, sans-serif;
   --font-mono: 'Martian Mono', ui-monospace, monospace;
 }
 ```
