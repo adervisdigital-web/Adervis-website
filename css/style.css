@@ -644,6 +644,29 @@ a {
   background: rgba(255, 255, 255, 0.09);
 }
 
+/* Активный пункт — текущий раздел подсвечен цветом направления (--acc) */
+.nav-mega__item.nav-active {
+  background: color-mix(in srgb, var(--acc, var(--gold)) 12%, transparent);
+  color: var(--text);
+}
+.nav-mega__item.nav-active::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 3px;
+  height: 22px;
+  border-radius: 0 3px 3px 0;
+  background: var(--acc, var(--gold));
+}
+.nav-mega__item.nav-active .nav-mega__icon {
+  background: color-mix(in srgb, var(--acc, var(--gold)) 22%, transparent);
+}
+.nav-mega__item.nav-active .nav-mega__name {
+  color: var(--text);
+}
+
 .nav-mega__body {
   flex: 1;
   display: flex;
