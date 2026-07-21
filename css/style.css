@@ -956,6 +956,16 @@ button.site-header__platform {
     z-index: 1001;
   }
 
+  /* Мобильная шапка всегда тёмная (background выше с !important) — поэтому в
+     светлой теме бургер держим светлым, иначе тёмные полоски сливаются с фоном */
+  [data-theme="light"] .nav-toggle {
+    background: rgba(255,255,255,0.08);
+    border-color: rgba(255,255,255,0.14);
+  }
+  [data-theme="light"] .nav-toggle span {
+    background: rgba(255,255,255,0.8);
+  }
+
   .site-header__platform { display: none; }
   .site-header__tg { display: none; }
   #dropPlatform { display: none; }
