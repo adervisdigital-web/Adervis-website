@@ -186,6 +186,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initSimpleCalculator("photoCalc", "Заявка на фотосъёмку с сайта ADERVIS");
   initSimpleCalculator("aiCalc", "Заявка на ИИ-контент с сайта ADERVIS");
   initLeadForm();
+  initLeadMagnet();
   initScrollProgress();
   initCardSpotlight();
   initCustomCursor();
@@ -1376,6 +1377,53 @@ function clearConsentError(consentEl) {
   consentEl.removeAttribute('aria-describedby');
   const err = label.parentElement.querySelector('.consent-error');
   if (err) err.textContent = '';
+}
+
+// Лид-магнит: компактная форма «получить чек-лист». Ловит контакт, шлёт заявку
+// в Telegram (цель lead_magnet) и сразу открывает гайд из data-guide.
+function initLeadMagnet() {
+  document.querySelectorAll("form.lead-magnet-form").forEach(function (form) {
+    const contactInput = form.querySelector('[name="contact"]');
+    const guideUrl = form.getAttribute("data-guide") || "";
+    const title = form.getAttribute("data-title") || "чек-лист";
+    if (contactInput) contactInput.addEventListener("input", function () { clearFieldError(contactInput); });
+
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      const hp = form.querySelector('[name="website"]');
+      if (hp && hp.value) return;
+      const contact = (contactInput && contactInput.value.trim()) || "";
+      if (!contact) { if (contactInput) { showFieldError(contactInput, "Укажите e-mail или Telegram"); contactInput.focus(); } return; }
+
+      const lines = [
+        "📥 <b>Запрос материала с сайта ADERVIS</b>",
+        "",
+        "Материал: " + title,
+        "Контакт: " + contact,
+      ].join("\n");
+
+      const btn = form.querySelector('[type="submit"]');
+      const orig = btn ? btn.innerHTML : "";
+      if (btn) { btn.disabled = true; btn.innerHTML = "Открываем..."; }
+
+      const openGuide = function () { if (guideUrl) window.open(guideUrl, "_blank", "noopener"); };
+      // Гайд отдаём сразу — ценность важнее ответа сервера; заявку шлём фоном
+      openGuide();
+
+      sendTelegramMessage(lines,
+        function () {
+          if (btn) { btn.innerHTML = "✓ Готово"; setTimeout(function () { btn.innerHTML = orig; btn.disabled = false; form.reset(); }, 4000); }
+          showToast("✓ Чек-лист открыт в новой вкладке");
+        },
+        function () {
+          if (btn) { btn.innerHTML = orig; btn.disabled = false; }
+          // гайд уже открыт — просто фиксируем, что заявка не ушла
+          trackGoal("lead_error");
+        },
+        "lead_magnet"
+      );
+    });
+  });
 }
 
 function initLeadForm() {
