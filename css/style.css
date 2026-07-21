@@ -933,6 +933,16 @@ button.site-header__platform {
 }
 .nav-backdrop.is-visible { opacity: 1; visibility: visible; }
 
+/* Platform-ссылка только для мобильного меню — база (скрыта на десктопе),
+   переопределяется на display:block внутри @media ниже. Должна стоять ДО
+   медиа-блока: при равной специфичности CSS-каскад решает по порядку в файле,
+   а не по совпадению @media — если бы база стояла после блока, она бы всегда
+   побеждала и на мобильном тоже (это и было причиной пропавшей ссылки). */
+.pill-nav__link--platform-mobile {
+  display: none;
+  color: var(--gold) !important;
+}
+
 @media (max-width: 860px) {
   /* backdrop-filter создаёт containing block для position:fixed →
      убираем на мобильных, иначе pill-nav не покрывает весь экран */
@@ -1383,12 +1393,6 @@ button.site-header__platform {
   .hero-quiz__row  { display: none; }
   .hero-quiz__list { display: flex; }
   .hero-quiz { max-width: 100%; }
-}
-
-/* Platform-ссылка только для мобильного меню */
-.pill-nav__link--platform-mobile {
-  display: none;
-  color: var(--gold) !important;
 }
 
 /* CTA button group — service page hero and contact sections */
@@ -2622,6 +2626,48 @@ button.site-header__platform {
   font-size: 14px;
   line-height: 1.5;
   margin: 0;
+}
+
+/* Реальные скриншоты интерфейса Adervis CRM — чередующиеся ряды
+   (иконка+текст слева/справа, скриншот с другой стороны) */
+.pro-shots {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-16);
+}
+.pro-shot {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-12);
+}
+.pro-shot:nth-child(even) { flex-direction: row-reverse; }
+.pro-shot__media {
+  flex: 1.05;
+  min-width: 0;
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  border: 1px solid var(--line);
+  background: var(--bg3);
+  box-shadow: 0 24px 64px -24px rgba(108, 0, 255, 0.35);
+}
+.pro-shot__media img { display: block; width: 100%; height: auto; }
+.pro-shot__text { flex: 1; min-width: 0; }
+.pro-shot__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--c-crm-1) 60%, #fff);
+  margin-bottom: var(--sp-3);
+}
+.pro-shot__text h3 { font-size: clamp(20px, 2.4vw, 26px); margin-bottom: var(--sp-3); }
+.pro-shot__text p { color: var(--muted); font-size: 15px; line-height: 1.6; margin: 0; }
+
+@media (max-width: 860px) {
+  .pro-shot, .pro-shot:nth-child(even) { flex-direction: column; }
+  .pro-shots { gap: var(--sp-10); }
 }
 
 /* Тарифы Adervis CRM */
