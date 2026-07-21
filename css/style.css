@@ -9895,21 +9895,25 @@ body.no-clients .clients-ticker-section {
 
 /* ─── Галерея кейса — masonry columns + lightbox ─── */
 .case-gallery {
-  columns: 3;
-  column-gap: 8px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
   margin-bottom: var(--sp-16);
 }
+/* Портретный вариант — для вертикальных кадров (коктейли, продукт) */
+.case-gallery--portrait { grid-template-columns: repeat(4, 1fr); }
 
 .case-gallery__item {
-  break-inside: avoid;
-  margin-bottom: 8px;
-  border-radius: 10px;
+  margin: 0;
+  border-radius: 12px;
   overflow: hidden;
   cursor: zoom-in;
   position: relative;
   background: var(--surface);
-  display: block;
+  aspect-ratio: 3 / 2;
 }
+.case-gallery--portrait .case-gallery__item { aspect-ratio: 3 / 4; }
+.case-gallery__item picture { display: block; width: 100%; height: 100%; }
 
 /* Hover overlay */
 .case-gallery__item::after {
@@ -9930,20 +9934,22 @@ body.no-clients .clients-ticker-section {
 
 .case-gallery__item img {
   width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: cover;
   display: block;
   transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .case-gallery__item:hover img { transform: scale(1.04); }
 
-@media (max-width: 720px) {
-  .case-gallery { columns: 2; column-gap: 6px; }
-  .case-gallery__item { margin-bottom: 6px; }
+@media (max-width: 900px) {
+  .case-gallery { grid-template-columns: repeat(2, 1fr); }
+  .case-gallery--portrait { grid-template-columns: repeat(3, 1fr); }
 }
 
-@media (max-width: 480px) {
-  .case-gallery { columns: 1; }
+@media (max-width: 560px) {
+  .case-gallery,
+  .case-gallery--portrait { grid-template-columns: repeat(2, 1fr); gap: 8px; }
 }
 
 /* ─── Lightbox ─── */
