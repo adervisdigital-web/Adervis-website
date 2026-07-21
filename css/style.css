@@ -3996,7 +3996,7 @@ button.site-header__platform {
   top: 0;
   bottom: 0;
   width: 3px;
-  background: var(--gold);
+  background: var(--dir-color, var(--gold));
   opacity: 0;
   transition: opacity 0.2s;
 }
@@ -4016,7 +4016,7 @@ button.site-header__platform {
   flex-shrink: 0;
   transition: color 0.2s;
 }
-.fvs-item.is-active .fvs-num { color: var(--gold); }
+.fvs-item.is-active .fvs-num { color: var(--dir-color, var(--gold)); }
 
 .fvs-q {
   font-size: 15px;
@@ -4027,14 +4027,14 @@ button.site-header__platform {
   margin: 0;
   transition: color 0.2s;
 }
-.fvs-item.is-active .fvs-q { color: var(--gold); }
+.fvs-item.is-active .fvs-q { color: var(--dir-color, var(--gold)); }
 
 .fvs-arrow {
   color: var(--hint);
   flex-shrink: 0;
   transition: transform 0.35s cubic-bezier(0.4,0,0.2,1), color 0.2s;
 }
-.fvs-item.is-active .fvs-arrow { transform: rotate(180deg); color: var(--gold); }
+.fvs-item.is-active .fvs-arrow { transform: rotate(180deg); color: var(--dir-color, var(--gold)); }
 
 /* Grid-rows trick — плавный accordion без max-height рывков */
 .fvs-body {
@@ -4160,7 +4160,7 @@ button.site-header__platform {
 .fvs-progress-bar {
   height: 100%;
   width: 20%;
-  background: var(--gold);
+  background: var(--dir-color, var(--gold));
   transition: width 0.4s cubic-bezier(0.4,0,0.2,1);
 }
 
