@@ -4229,23 +4229,34 @@ button.site-header__platform {
   letter-spacing: 0.06em;
 }
 
-/* ─── Мобильный (≤760px): одна колонка ─── */
+/* Иллюстрация внутри вопроса — показывается только на мобильном (клонируется JS).
+   На десктопе скрыта: там работает правая панель-канвас. */
+.fvs-inline-img {
+  display: none;
+  margin-top: 16px;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  background: var(--surface);
+}
+.fvs-inline-img img { display: block; width: 100%; height: auto; }
+
+/* ─── Мобильный (≤760px): одна колонка, картинка внутри вопроса ─── */
 @media (max-width: 760px) {
   .fvs-grid {
     grid-template-columns: 1fr;
     border-radius: var(--radius-lg);
   }
-  .fvs-right {
-    position: static;
-    border-top: 1px solid var(--line);
-  }
-  .fvs-canvas { aspect-ratio: 16 / 9; }
+  /* Прячем правую панель-картинку целиком — вместо неё картинка едет в тело
+     активного вопроса (не обрезана, сразу под ответом). */
+  .fvs-right { display: none; }
   .fvs-left {
     padding: 24px 20px;
     border-right: none;
   }
   .fvs-item::before { left: -20px; }
   .fvs-q { font-size: 14px; }
+  .fvs-inline-img { display: block; }
 }
 
 /* FAQ — нативные <details>/<summary>, разворачиваются без JS */

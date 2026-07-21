@@ -187,6 +187,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initSimpleCalculator("aiCalc", "Заявка на ИИ-контент с сайта ADERVIS");
   initLeadForm();
   initLeadMagnet();
+  initFvsInlineImages();
   initScrollProgress();
   initCardSpotlight();
   initCustomCursor();
@@ -719,6 +720,28 @@ function initBackToTop(footerRoot) {
 
   onScroll();
   window.addEventListener("scroll", onScroll, { passive: true });
+}
+
+// FAQ-блок (fvs): на мобильном правая панель-картинка прячется (CSS), а сюда
+// клонируем иллюстрацию каждого вопроса прямо в его тело — под ответом, целиком.
+function initFvsInlineImages() {
+  document.querySelectorAll(".fvs-grid").forEach(function (grid) {
+    var items  = grid.querySelectorAll(".fvs-item");
+    var slides = grid.querySelectorAll(".fvs-slide");
+    if (!items.length || !slides.length) return;
+    items.forEach(function (item, i) {
+      var slide = slides[i];
+      if (!slide) return;
+      var media = slide.querySelector("picture") || slide.querySelector("img");
+      var inner = item.querySelector(".fvs-body-inner");
+      if (!media || !inner || inner.querySelector(".fvs-inline-img")) return;
+      var wrap = document.createElement("div");
+      wrap.className = "fvs-inline-img";
+      wrap.setAttribute("aria-hidden", "true");
+      wrap.appendChild(media.cloneNode(true));
+      inner.appendChild(wrap);
+    });
+  });
 }
 
 // Мобильный CTA «Обсудить проект»: показывается после скролла и прячется,
