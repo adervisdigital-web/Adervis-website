@@ -27,6 +27,8 @@ const PAGES = [
   "ai/index.html",
   "cases/index.html",
   "cases/brait/index.html",
+  "cases/razdolye-neptune/index.html",
+  "cases/rockstar-cocktails/index.html",
   "cases/battle-of-robots/index.html",
   "cases/graphsil/index.html",
   "cases/lukoil-ai/index.html",

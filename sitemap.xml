@@ -95,6 +95,19 @@
     <priority>0.6</priority>
   </url>
 
+  <url>
+    <loc>https://adervis.ru/cases/razdolye-neptune/</loc>
+    <lastmod>2026-07-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://adervis.ru/cases/rockstar-cocktails/</loc>
+    <lastmod>2026-07-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
   <!-- Полезные материалы -->
   <url>
     <loc>https://adervis.ru/guides/brief.html</loc>
