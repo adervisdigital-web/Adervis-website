@@ -965,6 +965,16 @@ button.site-header__platform {
   [data-theme="light"] .nav-toggle span {
     background: rgba(255,255,255,0.8);
   }
+  /* Переключатель темы — тоже на тёмной шапке, держим светлым в светлой теме */
+  [data-theme="light"] .theme-toggle {
+    background: rgba(255,255,255,0.08);
+    border-color: rgba(255,255,255,0.14);
+    color: rgba(255,255,255,0.72);
+  }
+  [data-theme="light"] .theme-toggle:hover {
+    background: rgba(255,255,255,0.14);
+    color: #fff;
+  }
 
   .site-header__platform { display: none; }
   .site-header__tg { display: none; }
