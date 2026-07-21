@@ -731,40 +731,305 @@
           <h2>То, что обычно спрашивают перед стартом</h2>
           <p>Если вашего вопроса здесь нет — напишите или позвоните, ответим за 2 часа в рабочее время</p>
         </div>
-        <div class="faq-list">
-          <details class="faq-item reveal">
-            <summary>Сколько стоит разработка логотипа или фирменного стиля?
-              <span class="faq-icon" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M8 3v10M3 8h10"/></svg></span>
-            </summary>
-            <p>Зависит от объёма: один знак — это одна смета, знак плюс полноценный фирменный стиль и брендбук — другая. Расскажите о бизнесе и задаче — вернёмся с точным расчётом и сроками, без «средней по рынку» цифры наугад.</p>
-          </details>
-          <details class="faq-item reveal">
-            <summary>Сколько времени занимает разработка?
-              <span class="faq-icon" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M8 3v10M3 8h10"/></svg></span>
-            </summary>
-            <p>Логотип — обычно 2–3 недели вместе с правками. Полный фирменный стиль с брендбуком — 4–6 недель: больше носителей, решений и точек, которые мы сверяем с вами на каждом этапе, а не сдаём «сюрпризом» в конце.</p>
-          </details>
-          <details class="faq-item reveal">
-            <summary>Сколько вариантов концепции вы предлагаете?
-              <span class="faq-icon" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M8 3v10M3 8h10"/></svg></span>
-            </summary>
-            <p>Обычно 2–3 разных направления с обоснованием, почему каждое из них работает на задачу бизнеса. Выбираете не «то, что больше понравилось с одного взгляда», а то, что выдержит проверку временем и масштабированием.</p>
-          </details>
-          <details class="faq-item reveal">
-            <summary>Что именно входит в брендбук?
-              <span class="faq-icon" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M8 3v10M3 8h10"/></svg></span>
-            </summary>
-            <p>Логика и варианты использования знака, палитра, типографика, паттерны, примеры на ключевых носителях и чёткие правила — документ, по которому дизайнер, печатник и маркетолог говорят на одном языке без ваших дополнительных пояснений.</p>
-          </details>
-          <details class="faq-item reveal">
-            <summary>Вы передаёте исходники и файлы для печати?
-              <span class="faq-icon" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M8 3v10M3 8h10"/></svg></span>
-            </summary>
-            <p>Да, всегда — векторные файлы знака, шрифты (там, где это предусмотрено лицензией) и брендбук в удобных форматах для работы и печати. Это ваш актив, который остаётся с вами, а не наш внутренний рабочий файл.</p>
-          </details>
+        <div class="fvs-grid reveal">
+
+          <!-- Левая колонка: вопросы -->
+          <div class="fvs-left">
+            <div class="fvs-list" id="fvsList" role="list">
+
+              <button class="fvs-item is-active" data-fvs="0" aria-expanded="true" role="listitem">
+                <div class="fvs-item-top">
+                  <span class="fvs-num">01</span>
+                  <p class="fvs-q">Сколько стоит разработка логотипа или фирменного стиля?</p>
+                  <span class="fvs-arrow" aria-hidden="true">
+                    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><path d="M4 6l4 4 4-4"/></svg>
+                  </span>
+                </div>
+                <div class="fvs-body">
+                  <div class="fvs-body-inner">
+                    <p class="fvs-a">Зависит от объёма: один знак — это одна смета, знак плюс полноценный фирменный стиль и брендбук — другая. Расскажите о бизнесе и задаче — вернёмся с точным расчётом и сроками, без «средней по рынку» цифры наугад.</p>
+                  </div>
+                </div>
+              </button>
+
+              <button class="fvs-item" data-fvs="1" aria-expanded="false" role="listitem">
+                <div class="fvs-item-top">
+                  <span class="fvs-num">02</span>
+                  <p class="fvs-q">Сколько времени занимает разработка?</p>
+                  <span class="fvs-arrow" aria-hidden="true">
+                    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><path d="M4 6l4 4 4-4"/></svg>
+                  </span>
+                </div>
+                <div class="fvs-body">
+                  <div class="fvs-body-inner">
+                    <p class="fvs-a">Логотип — обычно 2–3 недели вместе с правками. Полный фирменный стиль с брендбуком — 4–6 недель: больше носителей, решений и точек, которые мы сверяем с вами на каждом этапе, а не сдаём «сюрпризом» в конце.</p>
+                  </div>
+                </div>
+              </button>
+
+              <button class="fvs-item" data-fvs="2" aria-expanded="false" role="listitem">
+                <div class="fvs-item-top">
+                  <span class="fvs-num">03</span>
+                  <p class="fvs-q">Сколько вариантов концепции вы предлагаете?</p>
+                  <span class="fvs-arrow" aria-hidden="true">
+                    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><path d="M4 6l4 4 4-4"/></svg>
+                  </span>
+                </div>
+                <div class="fvs-body">
+                  <div class="fvs-body-inner">
+                    <p class="fvs-a">Обычно 2–3 разных направления с обоснованием, почему каждое из них работает на задачу бизнеса. Выбираете не «то, что больше понравилось с одного взгляда», а то, что выдержит проверку временем и масштабированием.</p>
+                  </div>
+                </div>
+              </button>
+
+              <button class="fvs-item" data-fvs="3" aria-expanded="false" role="listitem">
+                <div class="fvs-item-top">
+                  <span class="fvs-num">04</span>
+                  <p class="fvs-q">Что именно входит в брендбук?</p>
+                  <span class="fvs-arrow" aria-hidden="true">
+                    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><path d="M4 6l4 4 4-4"/></svg>
+                  </span>
+                </div>
+                <div class="fvs-body">
+                  <div class="fvs-body-inner">
+                    <p class="fvs-a">Логика и варианты использования знака, палитра, типографика, паттерны, примеры на ключевых носителях и чёткие правила — документ, по которому дизайнер, печатник и маркетолог говорят на одном языке без ваших дополнительных пояснений.</p>
+                  </div>
+                </div>
+              </button>
+
+              <button class="fvs-item" data-fvs="4" aria-expanded="false" role="listitem">
+                <div class="fvs-item-top">
+                  <span class="fvs-num">05</span>
+                  <p class="fvs-q">Вы передаёте исходники и файлы для печати?</p>
+                  <span class="fvs-arrow" aria-hidden="true">
+                    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><path d="M4 6l4 4 4-4"/></svg>
+                  </span>
+                </div>
+                <div class="fvs-body">
+                  <div class="fvs-body-inner">
+                    <p class="fvs-a">Да, всегда — векторные файлы знака, шрифты (там, где это предусмотрено лицензией) и брендбук в удобных форматах для работы и печати. Это ваш актив, который остаётся с вами, а не наш внутренний рабочий файл.</p>
+                  </div>
+                </div>
+              </button>
+
+            </div>
+          </div>
+
+          <!-- Правая колонка: иллюстрация -->
+          <div class="fvs-right" aria-hidden="true">
+            <div class="fvs-canvas" id="fvsCanvas">
+
+              <div class="fvs-slide is-active" data-slide="0">
+                <picture><source srcset="../assets/faq-design/1.webp" type="image/webp"><img src="../assets/faq-design/1.jpg" alt="" loading="lazy" width="2448" height="3264"></picture>
+                <div class="fvs-ph">
+                  <div class="fvs-ph-icon">
+                    <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" width="36" height="36"><rect x="8" y="14" width="32" height="22" rx="3"/><path d="M24 10v4M16 36v3M32 36v3"/><path d="M20 24h3a3 3 0 0 1 0 6h-3v-9M23 24v-2M25 30h2"/></svg>
+                  </div>
+                  <span class="fvs-ph-label">Смета под задачу</span>
+                  <span class="fvs-ph-num">01</span>
+                </div>
+              </div>
+
+              <div class="fvs-slide" data-slide="1">
+                <picture><source srcset="../assets/faq-design/2.webp" type="image/webp"><img src="../assets/faq-design/2.jpg" alt="" loading="lazy" width="1536" height="2048"></picture>
+                <div class="fvs-ph">
+                  <div class="fvs-ph-icon">
+                    <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" width="36" height="36"><circle cx="24" cy="26" r="15"/><path d="M24 14v12l7 4"/><path d="M17 9h14"/></svg>
+                  </div>
+                  <span class="fvs-ph-label">Сроки разработки</span>
+                  <span class="fvs-ph-num">02</span>
+                </div>
+              </div>
+
+              <div class="fvs-slide" data-slide="2">
+                <picture><source srcset="../assets/faq-design/3.webp" type="image/webp"><img src="../assets/faq-design/3.jpg" alt="" loading="lazy" width="1536" height="2048"></picture>
+                <div class="fvs-ph">
+                  <div class="fvs-ph-icon">
+                    <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" width="36" height="36"><rect x="8" y="16" width="20" height="26" rx="2"/><rect x="16" y="10" width="20" height="26" rx="2"/><path d="M24 20h6M24 26h4"/></svg>
+                  </div>
+                  <span class="fvs-ph-label">2–3 концепции</span>
+                  <span class="fvs-ph-num">03</span>
+                </div>
+              </div>
+
+              <div class="fvs-slide" data-slide="3">
+                <picture><source srcset="../assets/faq-design/4.webp" type="image/webp"><img src="../assets/faq-design/4.jpg" alt="" loading="lazy" width="1536" height="2048"></picture>
+                <div class="fvs-ph">
+                  <div class="fvs-ph-icon">
+                    <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" width="36" height="36"><path d="M8 10a3 3 0 0 1 3-3h13v34H11a3 3 0 0 0-3 3z"/><path d="M40 10a3 3 0 0 0-3-3H24v34h13a3 3 0 0 1 3 3z"/><path d="M14 15h6M14 21h6"/></svg>
+                  </div>
+                  <span class="fvs-ph-label">Брендбук</span>
+                  <span class="fvs-ph-num">04</span>
+                </div>
+              </div>
+
+              <div class="fvs-slide" data-slide="4">
+                <picture><source srcset="../assets/faq-design/5.webp" type="image/webp"><img src="../assets/faq-design/5.jpg" alt="" loading="lazy" width="1536" height="2048"></picture>
+                <div class="fvs-ph">
+                  <div class="fvs-ph-icon">
+                    <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" width="36" height="36"><path d="M14 6h13l9 9v21a3 3 0 0 1-3 3H14a3 3 0 0 1-3-3V9a3 3 0 0 1 3-3z"/><path d="M27 6v9h9"/><path d="M24 22v11M20 29l4 4 4-4"/></svg>
+                  </div>
+                  <span class="fvs-ph-label">Исходники и файлы</span>
+                  <span class="fvs-ph-num">05</span>
+                </div>
+              </div>
+
+              <!-- Подпись и прогресс — внутри canvas, не торчат за границы -->
+              <div class="fvs-caption">
+                <div class="fvs-progress">
+                  <div class="fvs-progress-bar" id="fvsBar"></div>
+                </div>
+                <div class="fvs-caption-row">
+                  <span class="fvs-caption-icon" id="fvsIcon" aria-hidden="true"></span>
+                  <span class="fvs-caption-text" id="fvsCaption">Смета под задачу</span>
+                  <span class="fvs-caption-counter" id="fvsCounter">01 / 05</span>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
         </div>
       </div>
     </section>
+
+    <script>
+    (function () {
+      var items    = document.querySelectorAll('.fvs-item');
+      var slides   = document.querySelectorAll('.fvs-slide');
+      var bar      = document.getElementById('fvsBar');
+      var caption  = document.getElementById('fvsCaption');
+      var counter  = document.getElementById('fvsCounter');
+      var iconEl   = document.getElementById('fvsIcon');
+      var captions = ['Смета под задачу','Сроки разработки','2–3 концепции','Брендбук','Исходники и файлы'];
+      var S = 'stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"';
+      var icons = [
+        '<svg viewBox="0 0 48 48" fill="none" ' + S + ' width="18" height="18"><rect x="8" y="14" width="32" height="22" rx="3"/><path d="M24 10v4M16 36v3M32 36v3"/><path d="M20 24h3a3 3 0 0 1 0 6h-3v-9M23 24v-2M25 30h2"/></svg>',
+        '<svg viewBox="0 0 48 48" fill="none" ' + S + ' width="18" height="18"><circle cx="24" cy="26" r="15"/><path d="M24 14v12l7 4"/><path d="M17 9h14"/></svg>',
+        '<svg viewBox="0 0 48 48" fill="none" ' + S + ' width="18" height="18"><rect x="8" y="16" width="20" height="26" rx="2"/><rect x="16" y="10" width="20" height="26" rx="2"/><path d="M24 20h6M24 26h4"/></svg>',
+        '<svg viewBox="0 0 48 48" fill="none" ' + S + ' width="18" height="18"><path d="M8 10a3 3 0 0 1 3-3h13v34H11a3 3 0 0 0-3 3z"/><path d="M40 10a3 3 0 0 0-3-3H24v34h13a3 3 0 0 1 3 3z"/><path d="M14 15h6M14 21h6"/></svg>',
+        '<svg viewBox="0 0 48 48" fill="none" ' + S + ' width="18" height="18"><path d="M14 6h13l9 9v21a3 3 0 0 1-3 3H14a3 3 0 0 1-3-3V9a3 3 0 0 1 3-3z"/><path d="M27 6v9h9"/><path d="M24 22v11M20 29l4 4 4-4"/></svg>'
+      ];
+      if (!items.length) return;
+
+      function activate(idx) {
+        items.forEach(function (el, i) {
+          el.classList.toggle('is-active', i === idx);
+          el.setAttribute('aria-expanded', i === idx ? 'true' : 'false');
+        });
+        slides.forEach(function (el, i) { el.classList.toggle('is-active', i === idx); });
+        if (bar)     bar.style.width = ((idx + 1) / items.length * 100) + '%';
+        if (caption) caption.textContent = captions[idx] || '';
+        if (counter) counter.textContent = String(idx + 1).padStart(2,'0') + ' / ' + String(items.length).padStart(2,'0');
+        if (iconEl)  iconEl.innerHTML = icons[idx] || '';
+      }
+
+      items.forEach(function (btn, idx) {
+        btn.addEventListener('click', function () { activate(idx); });
+      });
+
+      activate(0);
+    }());
+    </script>
+
+    <script>
+    /* ─── Multi-layer 3D Parallax ────────────────────────────── */
+    (function () {
+      var panel  = document.querySelector('.fvs-right');
+      var canvas = document.getElementById('fvsCanvas');
+      if (!panel || !canvas || window.matchMedia('(pointer: coarse)').matches) return;
+
+      var TILT      = 6;
+      var LERP      = 0.09;
+
+      var LAYERS = [
+        { sel: '.fvs-slide.is-active img', speed: 14 },
+        { sel: '.fvs-slide.is-active .fvs-ph', speed: 26 },
+        { sel: '.fvs-progress', speed: 36 },
+        { sel: '.fvs-caption',  speed: 28 },
+      ];
+
+      var tRX = 0, tRY = 0, cRX = 0, cRY = 0;
+      var rafId = null, hovered = false;
+
+      function lerp(a, b, t) { return a + (b - a) * t; }
+
+      function scaleForEdges() {
+        canvas.querySelectorAll('.fvs-slide img').forEach(function (img) {
+          img.style.transform = 'scale(1.08)';
+          img.style.transformOrigin = 'center';
+          img.style.transition = 'none';
+          img.style.willChange = 'transform';
+        });
+      }
+      scaleForEdges();
+
+      panel.style.perspective = '1000px';
+      canvas.style.willChange = 'transform, box-shadow';
+
+      function getLayer(sel) {
+        return canvas.querySelector(sel) || panel.querySelector(sel);
+      }
+
+      function tick() {
+        cRX = lerp(cRX, tRX, LERP);
+        cRY = lerp(cRY, tRY, LERP);
+
+        canvas.style.transform = 'rotateX(' + cRX + 'deg) rotateY(' + cRY + 'deg)';
+        canvas.style.boxShadow =
+          (-cRY * 1.5) + 'px ' + (cRX * 1.5) + 'px 40px rgba(0,0,0,0.55),' +
+          '0 0 0 1px rgba(255,255,255,0.06)';
+
+        LAYERS.forEach(function (layer) {
+          var el = getLayer(layer.sel);
+          if (!el) return;
+          var dx = (-cRY / TILT) * layer.speed;
+          var dy = ( cRX / TILT) * layer.speed;
+          var base = el.tagName === 'IMG' ? ' scale(1.08)' : '';
+          el.style.transform = 'translate(' + dx + 'px,' + dy + 'px)' + base;
+          el.style.transition = 'none';
+        });
+
+        if (!hovered && Math.abs(cRX) < 0.04 && Math.abs(cRY) < 0.04) {
+          canvas.style.transform = '';
+          canvas.style.boxShadow = '';
+          LAYERS.forEach(function (layer) {
+            var el = getLayer(layer.sel);
+            if (el) {
+              var base = el.tagName === 'IMG' ? 'scale(1.08)' : '';
+              el.style.transform = base;
+            }
+          });
+          rafId = null;
+          return;
+        }
+
+        rafId = requestAnimationFrame(tick);
+      }
+
+      panel.addEventListener('mousemove', function (e) {
+        var r  = canvas.getBoundingClientRect();
+        var nx = (e.clientX - r.left - r.width  / 2) / (r.width  / 2);
+        var ny = (e.clientY - r.top  - r.height / 2) / (r.height / 2);
+        tRY =  nx * TILT;
+        tRX = -ny * TILT;
+        hovered = true;
+        if (!rafId) rafId = requestAnimationFrame(tick);
+      });
+
+      panel.addEventListener('mouseleave', function () {
+        hovered = false;
+        tRX = tRY = 0;
+        if (!rafId) rafId = requestAnimationFrame(tick);
+      });
+
+      document.querySelectorAll('.fvs-item').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          setTimeout(scaleForEdges, 50);
+        });
+      });
+    }());
+    </script>
 
     <!-- Калькулятор стоимости -->
     <section class="section">

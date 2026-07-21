@@ -752,40 +752,305 @@
           <h2>То, что обычно спрашивают про ИИ-контент</h2>
           <p>Если сомневаетесь, подходит ли это вашей задаче — спросите напрямую, разберём конкретный кейс</p>
         </div>
-        <div class="faq-list">
-          <details class="faq-item reveal">
-            <summary>Чем ИИ-контент отличается от обычного дизайна или съёмки?
-              <span class="faq-icon" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M8 3v10M3 8h10"/></svg></span>
-            </summary>
-            <p>Скоростью и объёмом. Там, где нужно протестировать 50 вариантов визуала за неделю, а не получить один кадр за месяц, — нейросети экономят время и бюджет. Авторский продакшн остаётся там, где решает «человеческий» кадр и ручная работа.</p>
-          </details>
-          <details class="faq-item reveal">
-            <summary>Можно ли использовать такой контент в коммерческих целях?
-              <span class="faq-icon" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M8 3v10M3 8h10"/></svg></span>
-            </summary>
-            <p>Да — мы прорабатываем результат через арт-дирекшн и ручную доводку, и используем инструменты с условиями, которые допускают коммерческое применение. Это всегда обсуждаем на старте, чтобы вы были уверены в чистоте результата.</p>
-          </details>
-          <details class="faq-item reveal">
-            <summary>Результат не будет выглядеть «сгенерированным»?
-              <span class="faq-icon" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M8 3v10M3 8h10"/></svg></span>
-            </summary>
-            <p>Нет — финальный результат всегда проходит через ручную доработку: цвет, композицию, детали, монтаж. Именно эта разница отделяет «черновик из нейросети» от готового материала, который можно показать клиенту или вывести в публикацию.</p>
-          </details>
-          <details class="faq-item reveal">
-            <summary>Какие нейросети вы используете?
-              <span class="faq-icon" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M8 3v10M3 8h10"/></svg></span>
-            </summary>
-            <p>Подбираем модель под конкретную задачу — для изображений, видео, голоса и текста подходят разные инструменты. Регулярно обновляем стек по мере появления более качественных решений, а не держимся за один сервис «по привычке».</p>
-          </details>
-          <details class="faq-item reveal">
-            <summary>Сколько это стоит и как быстро будет готово?
-              <span class="faq-icon" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M8 3v10M3 8h10"/></svg></span>
-            </summary>
-            <p>Дешевле и быстрее классического продакшна — генерация и отбор занимают дни, а не недели. Точную стоимость и сроки считаем после короткого брифа: на итог влияют объём, формат и уровень ручной доработки.</p>
-          </details>
+        <div class="fvs-grid reveal">
+
+          <!-- Левая колонка: вопросы -->
+          <div class="fvs-left">
+            <div class="fvs-list" id="fvsList" role="list">
+
+              <button class="fvs-item is-active" data-fvs="0" aria-expanded="true" role="listitem">
+                <div class="fvs-item-top">
+                  <span class="fvs-num">01</span>
+                  <p class="fvs-q">Чем ИИ-контент отличается от обычного дизайна или съёмки?</p>
+                  <span class="fvs-arrow" aria-hidden="true">
+                    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><path d="M4 6l4 4 4-4"/></svg>
+                  </span>
+                </div>
+                <div class="fvs-body">
+                  <div class="fvs-body-inner">
+                    <p class="fvs-a">Скоростью и объёмом. Там, где нужно протестировать 50 вариантов визуала за неделю, а не получить один кадр за месяц, — нейросети экономят время и бюджет. Авторский продакшн остаётся там, где решает «человеческий» кадр и ручная работа.</p>
+                  </div>
+                </div>
+              </button>
+
+              <button class="fvs-item" data-fvs="1" aria-expanded="false" role="listitem">
+                <div class="fvs-item-top">
+                  <span class="fvs-num">02</span>
+                  <p class="fvs-q">Можно ли использовать такой контент в коммерческих целях?</p>
+                  <span class="fvs-arrow" aria-hidden="true">
+                    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><path d="M4 6l4 4 4-4"/></svg>
+                  </span>
+                </div>
+                <div class="fvs-body">
+                  <div class="fvs-body-inner">
+                    <p class="fvs-a">Да — мы прорабатываем результат через арт-дирекшн и ручную доводку, и используем инструменты с условиями, которые допускают коммерческое применение. Это всегда обсуждаем на старте, чтобы вы были уверены в чистоте результата.</p>
+                  </div>
+                </div>
+              </button>
+
+              <button class="fvs-item" data-fvs="2" aria-expanded="false" role="listitem">
+                <div class="fvs-item-top">
+                  <span class="fvs-num">03</span>
+                  <p class="fvs-q">Результат не будет выглядеть «сгенерированным»?</p>
+                  <span class="fvs-arrow" aria-hidden="true">
+                    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><path d="M4 6l4 4 4-4"/></svg>
+                  </span>
+                </div>
+                <div class="fvs-body">
+                  <div class="fvs-body-inner">
+                    <p class="fvs-a">Нет — финальный результат всегда проходит через ручную доработку: цвет, композицию, детали, монтаж. Именно эта разница отделяет «черновик из нейросети» от готового материала, который можно показать клиенту или вывести в публикацию.</p>
+                  </div>
+                </div>
+              </button>
+
+              <button class="fvs-item" data-fvs="3" aria-expanded="false" role="listitem">
+                <div class="fvs-item-top">
+                  <span class="fvs-num">04</span>
+                  <p class="fvs-q">Какие нейросети вы используете?</p>
+                  <span class="fvs-arrow" aria-hidden="true">
+                    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><path d="M4 6l4 4 4-4"/></svg>
+                  </span>
+                </div>
+                <div class="fvs-body">
+                  <div class="fvs-body-inner">
+                    <p class="fvs-a">Подбираем модель под конкретную задачу — для изображений, видео, голоса и текста подходят разные инструменты. Регулярно обновляем стек по мере появления более качественных решений, а не держимся за один сервис «по привычке».</p>
+                  </div>
+                </div>
+              </button>
+
+              <button class="fvs-item" data-fvs="4" aria-expanded="false" role="listitem">
+                <div class="fvs-item-top">
+                  <span class="fvs-num">05</span>
+                  <p class="fvs-q">Сколько это стоит и как быстро будет готово?</p>
+                  <span class="fvs-arrow" aria-hidden="true">
+                    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><path d="M4 6l4 4 4-4"/></svg>
+                  </span>
+                </div>
+                <div class="fvs-body">
+                  <div class="fvs-body-inner">
+                    <p class="fvs-a">Дешевле и быстрее классического продакшна — генерация и отбор занимают дни, а не недели. Точную стоимость и сроки считаем после короткого брифа: на итог влияют объём, формат и уровень ручной доработки.</p>
+                  </div>
+                </div>
+              </button>
+
+            </div>
+          </div>
+
+          <!-- Правая колонка: иллюстрация -->
+          <div class="fvs-right" aria-hidden="true">
+            <div class="fvs-canvas" id="fvsCanvas">
+
+              <div class="fvs-slide is-active" data-slide="0">
+                <picture><source srcset="../assets/faq-ai/1.webp" type="image/webp"><img src="../assets/faq-ai/1.jpg" alt="" loading="lazy" width="1536" height="2048"></picture>
+                <div class="fvs-ph">
+                  <div class="fvs-ph-icon">
+                    <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" width="36" height="36"><path d="M18 6l2.5 6L27 14l-6.5 2L18 22l-2.5-6L9 14l6.5-2z"/><path d="M34 24l1.6 4 4 1.6-4 1.6L34 36l-1.6-4-4-1.6 4-1.6z"/></svg>
+                  </div>
+                  <span class="fvs-ph-label">ИИ против продакшна</span>
+                  <span class="fvs-ph-num">01</span>
+                </div>
+              </div>
+
+              <div class="fvs-slide" data-slide="1">
+                <picture><source srcset="../assets/faq-ai/2.webp" type="image/webp"><img src="../assets/faq-ai/2.jpg" alt="" loading="lazy" width="1536" height="2048"></picture>
+                <div class="fvs-ph">
+                  <div class="fvs-ph-icon">
+                    <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" width="36" height="36"><path d="M24 6l14 6v9c0 9-6 16-14 21-8-5-14-12-14-21v-9z"/><path d="M18 24l4 4 8-9"/></svg>
+                  </div>
+                  <span class="fvs-ph-label">Коммерческая лицензия</span>
+                  <span class="fvs-ph-num">02</span>
+                </div>
+              </div>
+
+              <div class="fvs-slide" data-slide="2">
+                <picture><source srcset="../assets/faq-ai/3.webp" type="image/webp"><img src="../assets/faq-ai/3.jpg" alt="" loading="lazy" width="1536" height="2048"></picture>
+                <div class="fvs-ph">
+                  <div class="fvs-ph-icon">
+                    <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" width="36" height="36"><path d="M8 40L30 18l-4-4L4 36z" transform="translate(2 -2)"/><path d="M30 6l3 3M34 4l4 4-6 6-4-4z"/><path d="M12 8l1.5 3.5L17 13l-3.5 1.5L12 18l-1.5-3.5L7 13l3.5-1.5z"/></svg>
+                  </div>
+                  <span class="fvs-ph-label">Ручная доводка</span>
+                  <span class="fvs-ph-num">03</span>
+                </div>
+              </div>
+
+              <div class="fvs-slide" data-slide="3">
+                <picture><source srcset="../assets/faq-ai/4.webp" type="image/webp"><img src="../assets/faq-ai/4.jpg" alt="" loading="lazy" width="1536" height="2048"></picture>
+                <div class="fvs-ph">
+                  <div class="fvs-ph-icon">
+                    <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" width="36" height="36"><rect x="14" y="14" width="20" height="20" rx="3"/><path d="M20 14V8M28 14V8M20 40v-6M28 40v-6M14 20H8M14 28H8M40 20h-6M40 28h-6"/><circle cx="24" cy="24" r="3"/></svg>
+                  </div>
+                  <span class="fvs-ph-label">Стек нейросетей</span>
+                  <span class="fvs-ph-num">04</span>
+                </div>
+              </div>
+
+              <div class="fvs-slide" data-slide="4">
+                <picture><source srcset="../assets/faq-ai/5.webp" type="image/webp"><img src="../assets/faq-ai/5.jpg" alt="" loading="lazy" width="1536" height="2048"></picture>
+                <div class="fvs-ph">
+                  <div class="fvs-ph-icon">
+                    <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" width="36" height="36"><circle cx="20" cy="26" r="14"/><path d="M20 16v10l6 3"/><path d="M34 12l6-6M40 6l-2 6 6-2"/></svg>
+                  </div>
+                  <span class="fvs-ph-label">Бюджет и сроки</span>
+                  <span class="fvs-ph-num">05</span>
+                </div>
+              </div>
+
+              <!-- Подпись и прогресс -->
+              <div class="fvs-caption">
+                <div class="fvs-progress">
+                  <div class="fvs-progress-bar" id="fvsBar"></div>
+                </div>
+                <div class="fvs-caption-row">
+                  <span class="fvs-caption-icon" id="fvsIcon" aria-hidden="true"></span>
+                  <span class="fvs-caption-text" id="fvsCaption">ИИ против продакшна</span>
+                  <span class="fvs-caption-counter" id="fvsCounter">01 / 05</span>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
         </div>
       </div>
     </section>
+
+    <script>
+    (function () {
+      var items    = document.querySelectorAll('.fvs-item');
+      var slides   = document.querySelectorAll('.fvs-slide');
+      var bar      = document.getElementById('fvsBar');
+      var caption  = document.getElementById('fvsCaption');
+      var counter  = document.getElementById('fvsCounter');
+      var iconEl   = document.getElementById('fvsIcon');
+      var captions = ['ИИ против продакшна','Коммерческая лицензия','Ручная доводка','Стек нейросетей','Бюджет и сроки'];
+      var S = 'stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"';
+      var icons = [
+        '<svg viewBox="0 0 48 48" fill="none" ' + S + ' width="18" height="18"><path d="M18 6l2.5 6L27 14l-6.5 2L18 22l-2.5-6L9 14l6.5-2z"/><path d="M34 24l1.6 4 4 1.6-4 1.6L34 36l-1.6-4-4-1.6 4-1.6z"/></svg>',
+        '<svg viewBox="0 0 48 48" fill="none" ' + S + ' width="18" height="18"><path d="M24 6l14 6v9c0 9-6 16-14 21-8-5-14-12-14-21v-9z"/><path d="M18 24l4 4 8-9"/></svg>',
+        '<svg viewBox="0 0 48 48" fill="none" ' + S + ' width="18" height="18"><path d="M8 40L30 18l-4-4L4 36z" transform="translate(2 -2)"/><path d="M30 6l3 3M34 4l4 4-6 6-4-4z"/><path d="M12 8l1.5 3.5L17 13l-3.5 1.5L12 18l-1.5-3.5L7 13l3.5-1.5z"/></svg>',
+        '<svg viewBox="0 0 48 48" fill="none" ' + S + ' width="18" height="18"><rect x="14" y="14" width="20" height="20" rx="3"/><path d="M20 14V8M28 14V8M20 40v-6M28 40v-6M14 20H8M14 28H8M40 20h-6M40 28h-6"/><circle cx="24" cy="24" r="3"/></svg>',
+        '<svg viewBox="0 0 48 48" fill="none" ' + S + ' width="18" height="18"><circle cx="20" cy="26" r="14"/><path d="M20 16v10l6 3"/><path d="M34 12l6-6M40 6l-2 6 6-2"/></svg>'
+      ];
+      if (!items.length) return;
+
+      function activate(idx) {
+        items.forEach(function (el, i) {
+          el.classList.toggle('is-active', i === idx);
+          el.setAttribute('aria-expanded', i === idx ? 'true' : 'false');
+        });
+        slides.forEach(function (el, i) { el.classList.toggle('is-active', i === idx); });
+        if (bar)     bar.style.width = ((idx + 1) / items.length * 100) + '%';
+        if (caption) caption.textContent = captions[idx] || '';
+        if (counter) counter.textContent = String(idx + 1).padStart(2,'0') + ' / ' + String(items.length).padStart(2,'0');
+        if (iconEl)  iconEl.innerHTML = icons[idx] || '';
+      }
+
+      items.forEach(function (btn, idx) {
+        btn.addEventListener('click', function () { activate(idx); });
+      });
+
+      activate(0);
+    }());
+    </script>
+
+    <script>
+    /* ─── Multi-layer 3D Parallax ────────────────────────────── */
+    (function () {
+      var panel  = document.querySelector('.fvs-right');
+      var canvas = document.getElementById('fvsCanvas');
+      if (!panel || !canvas || window.matchMedia('(pointer: coarse)').matches) return;
+
+      var TILT      = 6;
+      var LERP      = 0.09;
+
+      var LAYERS = [
+        { sel: '.fvs-slide.is-active img', speed: 14 },
+        { sel: '.fvs-slide.is-active .fvs-ph', speed: 26 },
+        { sel: '.fvs-progress', speed: 36 },
+        { sel: '.fvs-caption',  speed: 28 },
+      ];
+
+      var tRX = 0, tRY = 0, cRX = 0, cRY = 0;
+      var rafId = null, hovered = false;
+
+      function lerp(a, b, t) { return a + (b - a) * t; }
+
+      function scaleForEdges() {
+        canvas.querySelectorAll('.fvs-slide img').forEach(function (img) {
+          img.style.transform = 'scale(1.08)';
+          img.style.transformOrigin = 'center';
+          img.style.transition = 'none';
+          img.style.willChange = 'transform';
+        });
+      }
+      scaleForEdges();
+
+      panel.style.perspective = '1000px';
+      canvas.style.willChange = 'transform, box-shadow';
+
+      function getLayer(sel) {
+        return canvas.querySelector(sel) || panel.querySelector(sel);
+      }
+
+      function tick() {
+        cRX = lerp(cRX, tRX, LERP);
+        cRY = lerp(cRY, tRY, LERP);
+
+        canvas.style.transform = 'rotateX(' + cRX + 'deg) rotateY(' + cRY + 'deg)';
+        canvas.style.boxShadow =
+          (-cRY * 1.5) + 'px ' + (cRX * 1.5) + 'px 40px rgba(0,0,0,0.55),' +
+          '0 0 0 1px rgba(255,255,255,0.06)';
+
+        LAYERS.forEach(function (layer) {
+          var el = getLayer(layer.sel);
+          if (!el) return;
+          var dx = (-cRY / TILT) * layer.speed;
+          var dy = ( cRX / TILT) * layer.speed;
+          var base = el.tagName === 'IMG' ? ' scale(1.08)' : '';
+          el.style.transform = 'translate(' + dx + 'px,' + dy + 'px)' + base;
+          el.style.transition = 'none';
+        });
+
+        if (!hovered && Math.abs(cRX) < 0.04 && Math.abs(cRY) < 0.04) {
+          canvas.style.transform = '';
+          canvas.style.boxShadow = '';
+          LAYERS.forEach(function (layer) {
+            var el = getLayer(layer.sel);
+            if (el) {
+              var base = el.tagName === 'IMG' ? 'scale(1.08)' : '';
+              el.style.transform = base;
+            }
+          });
+          rafId = null;
+          return;
+        }
+
+        rafId = requestAnimationFrame(tick);
+      }
+
+      panel.addEventListener('mousemove', function (e) {
+        var r  = canvas.getBoundingClientRect();
+        var nx = (e.clientX - r.left - r.width  / 2) / (r.width  / 2);
+        var ny = (e.clientY - r.top  - r.height / 2) / (r.height / 2);
+        tRY =  nx * TILT;
+        tRX = -ny * TILT;
+        hovered = true;
+        if (!rafId) rafId = requestAnimationFrame(tick);
+      });
+
+      panel.addEventListener('mouseleave', function () {
+        hovered = false;
+        tRX = tRY = 0;
+        if (!rafId) rafId = requestAnimationFrame(tick);
+      });
+
+      document.querySelectorAll('.fvs-item').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          setTimeout(scaleForEdges, 50);
+        });
+      });
+    }());
+    </script>
 
     <!-- Калькулятор стоимости -->
     <section class="section">
