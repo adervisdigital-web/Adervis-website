@@ -17,15 +17,65 @@ if ("scrollRestoration" in history) history.scrollRestoration = "manual";
 // После деплоя воркера подставь сюда его адрес (…workers.dev/ или свой домен).
 var LEAD_ENDPOINT = 'https://adervis-lead-proxy.adervis-digital.workers.dev/';
 
-function sendTelegramMessage(text, onSuccess, onError) {
+// Яндекс.Метрика — единый ID счётчика для целей (reachGoal)
+var YM_ID = 110226682;
+
+// Безопасно отправляет цель в Метрику (не падает, если ym ещё не загрузился)
+function trackGoal(name, params) {
+  try { if (window.ym) window.ym(YM_ID, 'reachGoal', name, params || {}); } catch (e) {}
+}
+
+// Блок «источник лида» для добавления в текст заявки в Telegram:
+// страница, UTM-метки и реферер — чтобы видеть, откуда пришёл клиент.
+function leadSourceText() {
+  var lines = ['———'];
+  try {
+    lines.push('Страница: ' + (location.pathname || '/'));
+    var q = new URLSearchParams(location.search);
+    var utm = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term']
+      .filter(function (k) { return q.get(k); })
+      .map(function (k) { return k.replace('utm_', '') + '=' + q.get(k); });
+    if (utm.length) lines.push('UTM · ' + utm.join(' · '));
+    if (document.referrer) lines.push('Переход с: ' + document.referrer);
+  } catch (e) {}
+  return lines.join('\n');
+}
+
+// Показывает ошибку отправки с рабочими кнопками (Telegram / звонок), а не только текстом
+function leadErrorToast() {
+  trackGoal('lead_error');
+  showToast('Не удалось отправить заявку. Напишите нам напрямую — ответим быстро:', 9000, [
+    { label: 'Telegram', href: 'https://t.me/Adervis_digital' },
+    { label: 'Позвонить', href: 'tel:+79223018880' }
+  ]);
+}
+
+// Клики по контактам (телефон / почта / Telegram) как микроцели в Метрике
+function initContactGoals() {
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest ? e.target.closest('a[href]') : null;
+    if (!a) return;
+    var href = a.getAttribute('href') || '';
+    if (href.indexOf('tel:') === 0) trackGoal('click_phone');
+    else if (href.indexOf('mailto:') === 0) trackGoal('click_email');
+    else if (/(^https?:)?\/\/t\.me\//i.test(href)) trackGoal('click_telegram');
+  }, true);
+}
+
+function sendTelegramMessage(text, onSuccess, onError, goalName) {
+  var fullText = text + '\n\n' + leadSourceText();
   fetch(LEAD_ENDPOINT, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ text: text })
+    body: JSON.stringify({ text: fullText })
   })
   .then(function(r) { return r.json(); })
   .then(function(data) {
-    if (data.ok) { if (onSuccess) onSuccess(); }
+    if (data.ok) {
+      trackGoal('lead');                 // общая цель «оставлена заявка»
+      if (goalName) trackGoal(goalName); // конкретный источник заявки
+      if (onSuccess) onSuccess();
+    }
     else { if (onError) onError(); }
   })
   .catch(function() { if (onError) onError(); });
@@ -42,7 +92,7 @@ function openTgLink(url) {
   document.body.removeChild(a);
 }
 
-function showToast(msg, duration = 4000) {
+function showToast(msg, duration = 4000, actions = null) {
   const existing = document.getElementById('adervis-toast');
   if (existing) existing.remove();
 
@@ -50,7 +100,27 @@ function showToast(msg, duration = 4000) {
   toast.id = 'adervis-toast';
   toast.setAttribute('role', 'status');
   toast.setAttribute('aria-live', 'polite');
-  toast.textContent = msg;
+
+  const text = document.createElement('span');
+  text.className = 'toast-text';
+  text.textContent = msg;
+  toast.appendChild(text);
+
+  // Опциональные кнопки-действия (напр. резервный Telegram / звонок при ошибке)
+  if (actions && actions.length) {
+    const row = document.createElement('div');
+    row.className = 'toast-actions';
+    actions.forEach(a => {
+      const link = document.createElement('a');
+      link.className = 'toast-action';
+      link.href = a.href;
+      link.textContent = a.label;
+      if (/^https?:/i.test(a.href)) { link.target = '_blank'; link.rel = 'noopener'; }
+      row.appendChild(link);
+    });
+    toast.appendChild(row);
+  }
+
   document.body.appendChild(toast);
 
   requestAnimationFrame(() => { toast.classList.add('is-visible'); });
@@ -101,6 +171,7 @@ document.addEventListener("DOMContentLoaded", () => {
     initBackToTop(footerRoot);
     initTickerDrag(footerRoot);
   }
+  initMobileCta();
 
   initServicesGrid();
   initHeroQuiz();
@@ -126,6 +197,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initVideoReviewThumbnails(); // применяет data-thumb если задан вручную
   initVideoReviewsPlayer();
   initVimeoModal();
+  initContactGoals();
 });
 
 function initQuiz() {
@@ -218,8 +290,9 @@ function initQuiz() {
         function() {
           submitBtn.innerHTML = origHTML;
           submitBtn.disabled = false;
-          showToast('Ошибка отправки — напишите нам напрямую: adervis.digital@gmail.com');
-        }
+          leadErrorToast();
+        },
+        'lead_quiz'
       );
     });
   }
@@ -416,8 +489,9 @@ function initModal() {
         },
         function() {
           if (submitBtn) { submitBtn.innerHTML = origHTML; submitBtn.disabled = false; }
-          showToast('Ошибка отправки — напишите нам напрямую: adervis.digital@gmail.com');
-        }
+          leadErrorToast();
+        },
+        'lead_hero'
       );
     });
   }
@@ -646,6 +720,35 @@ function initBackToTop(footerRoot) {
   window.addEventListener("scroll", onScroll, { passive: true });
 }
 
+// Мобильный CTA «Обсудить проект»: показывается после скролла и прячется,
+// когда форма контакта во вьюпорте (чтобы не перекрывать её и футер).
+function initMobileCta() {
+  const cta = document.getElementById("mobileCta");
+  if (!cta) return;
+  const target = document.getElementById("contacts");
+  if (!target) { cta.remove(); return; } // нет формы на странице — плашка не нужна
+
+  cta.setAttribute("aria-hidden", "false");
+  cta.removeAttribute("tabindex");
+  cta.addEventListener("click", () => trackGoal("click_mobile_cta"));
+
+  let contactsVisible = false;
+  const update = () => {
+    const show = window.scrollY > 700 && !contactsVisible;
+    cta.classList.toggle("is-visible", show);
+  };
+
+  if ("IntersectionObserver" in window) {
+    new IntersectionObserver((entries) => {
+      contactsVisible = entries[0].isIntersecting;
+      update();
+    }, { rootMargin: "0px 0px -35% 0px" }).observe(target);
+  }
+
+  update();
+  window.addEventListener("scroll", update, { passive: true });
+}
+
 // Плавное появление секций и карточек при попадании во вьюпорт (DESIGN.md §7)
 function initScrollReveal() {
   const targets = document.querySelectorAll(".reveal");
@@ -776,7 +879,8 @@ function initVideoCalculator() {
           sb.innerHTML = '✓ Заявка принята — пришлём КП за 48 часов';
           setTimeout(() => { sb.innerHTML = origHTML; sb.disabled = false; form.reset(); showStep(1); }, 6000);
         },
-        () => { sb.innerHTML = origHTML; sb.disabled = false; showToast('Ошибка — напишите: adervis.digital@gmail.com'); }
+        () => { sb.innerHTML = origHTML; sb.disabled = false; leadErrorToast(); },
+        'calc_video'
       );
     }
   });
@@ -881,7 +985,8 @@ function initSimpleCalculator(formId, tgPrefix) {
           sb.innerHTML = '✓ Заявка принята — пришлём КП за 48 часов';
           setTimeout(() => { sb.innerHTML = orig; sb.disabled = false; form.reset(); showStep(1); }, 6000);
         },
-        () => { sb.innerHTML = orig; sb.disabled = false; showToast('Ошибка — напишите: adervis.digital@gmail.com'); }
+        () => { sb.innerHTML = orig; sb.disabled = false; leadErrorToast(); },
+        'calc_' + (form.id || '').replace(/Calc$/i, '').toLowerCase()
       );
     }
   });
@@ -1340,8 +1445,9 @@ function initLeadForm() {
         function() {
           submitBtn.innerHTML = origHTML;
           submitBtn.disabled = false;
-          showToast('Ошибка отправки — напишите нам напрямую: adervis.digital@gmail.com');
-        }
+          leadErrorToast();
+        },
+        'lead_form'
       );
     }
   });
