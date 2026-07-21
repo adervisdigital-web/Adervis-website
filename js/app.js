@@ -171,7 +171,6 @@ document.addEventListener("DOMContentLoaded", () => {
     initBackToTop(footerRoot);
     initTickerDrag(footerRoot);
   }
-  initMobileCta();
 
   initServicesGrid();
   initHeroQuiz();
@@ -742,35 +741,6 @@ function initFvsInlineImages() {
       inner.appendChild(wrap);
     });
   });
-}
-
-// Мобильный CTA «Обсудить проект»: показывается после скролла и прячется,
-// когда форма контакта во вьюпорте (чтобы не перекрывать её и футер).
-function initMobileCta() {
-  const cta = document.getElementById("mobileCta");
-  if (!cta) return;
-  const target = document.getElementById("contacts");
-  if (!target) { cta.remove(); return; } // нет формы на странице — плашка не нужна
-
-  cta.setAttribute("aria-hidden", "false");
-  cta.removeAttribute("tabindex");
-  cta.addEventListener("click", () => trackGoal("click_mobile_cta"));
-
-  let contactsVisible = false;
-  const update = () => {
-    const show = window.scrollY > 700 && !contactsVisible;
-    cta.classList.toggle("is-visible", show);
-  };
-
-  if ("IntersectionObserver" in window) {
-    new IntersectionObserver((entries) => {
-      contactsVisible = entries[0].isIntersecting;
-      update();
-    }, { rootMargin: "0px 0px -35% 0px" }).observe(target);
-  }
-
-  update();
-  window.addEventListener("scroll", update, { passive: true });
 }
 
 // Плавное появление секций и карточек при попадании во вьюпорт (DESIGN.md §7)

@@ -4940,46 +4940,6 @@ body.nav-open {
   }
 }
 
-/* Мобильный CTA — компактная плашка снизу по центру, только на мобильных.
-   Показывается JS после скролла и прячется, когда видна форма контакта,
-   поэтому не перекрывает контент внизу страницы. */
-.mobile-cta {
-  position: fixed;
-  left: 50%;
-  bottom: calc(16px + env(safe-area-inset-bottom, 0px));
-  transform: translate(-50%, 24px);
-  display: none;
-  align-items: center;
-  gap: 8px;
-  padding: 13px 22px;
-  border-radius: 100px;
-  background: var(--gold);
-  color: #0d0d0d;
-  font-family: var(--font-ui);
-  font-weight: 600;
-  font-size: 15px;
-  line-height: 1;
-  text-decoration: none;
-  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.45);
-  opacity: 0;
-  pointer-events: none;
-  z-index: 88;
-  transition: opacity 0.3s ease, transform 0.3s ease;
-}
-@media (max-width: 768px) {
-  .mobile-cta { display: inline-flex; }
-  .mobile-cta.is-visible {
-    opacity: 1;
-    transform: translate(-50%, 0);
-    pointer-events: auto;
-  }
-  /* чтобы «наверх» не наезжал на центральную плашку — приподнимаем его */
-  .mobile-cta.is-visible ~ .to-top.is-visible { bottom: calc(var(--sp-6) + 56px); }
-}
-@media (prefers-reduced-motion: reduce) {
-  .mobile-cta { transition: opacity 0.01ms; transform: translate(-50%, 0); }
-}
-
 @media (max-width: 900px) {
   .footer-inner {
     grid-template-columns: 1fr 1fr;
