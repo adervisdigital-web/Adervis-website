@@ -26,7 +26,8 @@ function trackGoal(name, params) {
 }
 
 // Блок «источник лида» для добавления в текст заявки в Telegram:
-// страница, UTM-метки и реферер — чтобы видеть, откуда пришёл клиент.
+// страница, UTM-метки, реферер и последний просмотренный кейс — чтобы видеть,
+// откуда пришёл клиент и что из портфолио его подтолкнуло оставить заявку.
 function leadSourceText() {
   var lines = ['———'];
   try {
@@ -37,8 +38,30 @@ function leadSourceText() {
       .map(function (k) { return k.replace('utm_', '') + '=' + q.get(k); });
     if (utm.length) lines.push('UTM · ' + utm.join(' · '));
     if (document.referrer) lines.push('Переход с: ' + document.referrer);
+    var lastCase = sessionStorage.getItem('adervis_last_case');
+    if (lastCase) lines.push('Смотрел кейс: ' + lastCase);
   } catch (e) {}
   return lines.join('\n');
+}
+
+// Реальный трекинг кейсов (вместо выдуманной статистики на страницах):
+// 1) запоминаем последний просмотренный кейс в sessionStorage — он попадёт
+//    в текст заявки через leadSourceText(), если человек оставит её в течение
+//    этой же сессии, даже на другой странице (например, дошёл до калькулятора);
+// 2) клик по CTA «Заказать» на странице кейса — микроцель в Метрике с меткой
+//    конкретного кейса, чтобы через какое-то время увидеть реальный CTR кейсов.
+function initCaseTracking() {
+  var m = location.pathname.match(/^\/cases\/([^/]+)\/?$/);
+  if (!m) return;
+  var slug = m[1];
+  try { sessionStorage.setItem('adervis_last_case', slug); } catch (e) {}
+
+  // Делегирование, а не привязка к одному узлу: разные шаблоны кейс-страниц
+  // держат CTA «Заказать»/«Услуга: …» в разных местах (footer или mid-page).
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest ? e.target.closest('a.btn.primary') : null;
+    if (a) trackGoal('case_cta_click', { case: slug });
+  }, true);
 }
 
 // Показывает ошибку отправки с рабочими кнопками (Telegram / звонок), а не только текстом
@@ -199,6 +222,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initVideoReviewsPlayer();
   initVimeoModal();
   initContactGoals();
+  initCaseTracking();
 });
 
 function initQuiz() {
