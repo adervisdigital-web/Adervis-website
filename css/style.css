@@ -9785,6 +9785,30 @@ body.no-clients .clients-ticker-section {
   color: #000;
 }
 
+/* Вторая ось фильтра — по нише клиента, а не по услуге */
+.cases-niche-head {
+  margin-bottom: var(--sp-2);
+}
+
+.cases-niche-head .eyebrow {
+  margin-bottom: 0;
+  font-size: 11px;
+}
+
+.cases-filters--niche {
+  margin-bottom: var(--sp-10);
+}
+
+.cases-filters--niche .cases-filter {
+  padding: 6px 16px;
+  font-size: 10px;
+  opacity: 0.85;
+}
+
+.cases-filters--niche .cases-filter.active {
+  opacity: 1;
+}
+
 /* Сетка кейсов */
 .cases-grid {
   display: grid;

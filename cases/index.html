@@ -26,7 +26,7 @@
   <meta name="twitter:title" content="Кейсы — портфолио студии | ADERVIS">
   <meta name="twitter:description" content="Портфолио ADERVIS: видео, брендинг, фото, ИИ-контент — реальные проекты с результатами.">
   <meta name="twitter:image" content="https://adervis.ru/assets/og/og-cases.jpg">
-  <link rel="stylesheet" href="../css/style.min.css?v=947bb25a">
+  <link rel="stylesheet" href="../css/style.min.css?v=e34479b7">
   <script type="application/ld+json">
   {
   "@context": "https://schema.org",
@@ -364,9 +364,22 @@
           <button class="cases-filter" data-filter="ai">ИИ</button>
         </div>
 
+        <div class="cases-niche-head">
+          <span class="eyebrow">Или по вашей нише</span>
+        </div>
+        <div class="cases-filters cases-filters--niche" id="casesNicheFilters">
+          <button class="cases-filter active" data-niche="all">Все ниши</button>
+          <button class="cases-filter" data-niche="production">Производство и B2B</button>
+          <button class="cases-filter" data-niche="finance">Финансы, недвижимость, услуги</button>
+          <button class="cases-filter" data-niche="horeca">HoReCa и отдых</button>
+          <button class="cases-filter" data-niche="sport">Спорт и ивенты</button>
+          <button class="cases-filter" data-niche="beauty">Beauty и FMCG</button>
+          <button class="cases-filter" data-niche="ai-corp">ИИ-проекты</button>
+        </div>
+
         <div class="gallery-grid" id="casesGrid">
 
-          <a href="/cases/brait/" class="gallery-card reveal" data-dir="photo" data-dir-filter="photo ai">
+          <a href="/cases/brait/" class="gallery-card reveal" data-dir="photo" data-dir-filter="photo ai" data-niche="production">
             <div class="media-frame has-img" data-dir="photo" style="--ratio: 16 / 9">
               <picture><source srcset="/assets/cases/brait/06.webp" type="image/webp"><img src="/assets/cases/brait/06.jpg" alt="Brait — предметная съёмка с AI-фонами" width="2560" height="1440" class="media-frame__img" loading="lazy"></picture>
               <span class="media-frame__num" aria-hidden="true">01</span>
@@ -378,7 +391,7 @@
             </div>
           </a>
 
-          <a href="/cases/razdolye-neptune/" class="gallery-card reveal" data-dir="photo" data-dir-filter="photo">
+          <a href="/cases/razdolye-neptune/" class="gallery-card reveal" data-dir="photo" data-dir-filter="photo" data-niche="horeca">
             <div class="media-frame has-img" data-dir="photo" style="--ratio: 16 / 9">
               <picture><source srcset="/assets/cases/razdolye-neptune/06.webp" type="image/webp"><img src="/assets/cases/razdolye-neptune/06.jpg" alt="День Нептуна в «Раздолье» — репортажная съёмка праздника" width="1600" height="1067" class="media-frame__img" loading="lazy"></picture>
               <span class="media-frame__num" aria-hidden="true">02</span>
@@ -390,7 +403,7 @@
             </div>
           </a>
 
-          <a href="/cases/rockstar-cocktails/" class="gallery-card reveal" data-dir="photo" data-dir-filter="photo">
+          <a href="/cases/rockstar-cocktails/" class="gallery-card reveal" data-dir="photo" data-dir-filter="photo" data-niche="horeca">
             <div class="media-frame has-img" data-dir="photo" style="--ratio: 16 / 9">
               <picture><source srcset="/assets/cases/rockstar-cocktails/04.webp" type="image/webp"><img src="/assets/cases/rockstar-cocktails/04.jpg" alt="ROCKSTAR бар — предметная съёмка коктейлей" width="787" height="1400" class="media-frame__img" loading="lazy"></picture>
               <span class="media-frame__num" aria-hidden="true">03</span>
@@ -402,7 +415,7 @@
             </div>
           </a>
 
-          <a href="/video/#works" class="gallery-card reveal" data-dir="video" data-dir-filter="video">
+          <a href="/video/#works" class="gallery-card reveal" data-dir="video" data-dir-filter="video" data-niche="beauty">
             <div class="media-frame has-img" data-dir="video" style="--ratio: 16 / 9">
               <img src="/assets/cases/shabani-energy.webp" alt="SHABANI ENERGY «Яблоко-Киви» — рекламный ролик" width="1280" height="720" class="media-frame__img" loading="lazy">
               <span class="media-frame__num" aria-hidden="true">04</span>
@@ -414,7 +427,7 @@
             </div>
           </a>
 
-          <a href="/cases/stickbot/" class="gallery-card reveal" data-dir="photo" data-dir-filter="photo">
+          <a href="/cases/stickbot/" class="gallery-card reveal" data-dir="photo" data-dir-filter="photo" data-niche="beauty">
             <div class="media-frame has-img" data-dir="photo" style="--ratio: 16 / 9">
               <img src="/cases/stickbot/gallery-main.jpg" alt="StickBot — рекламная съёмка косметики" width="1600" height="1067" class="media-frame__img" loading="lazy">
               <span class="media-frame__num" aria-hidden="true">05</span>
@@ -426,7 +439,7 @@
             </div>
           </a>
 
-          <a href="/cases/lukoil-ai/" class="gallery-card reveal" data-dir="ai" data-dir-filter="ai">
+          <a href="/cases/lukoil-ai/" class="gallery-card reveal" data-dir="ai" data-dir-filter="ai" data-niche="ai-corp">
             <div class="media-frame has-img" data-dir="ai" style="--ratio: 16 / 9">
               <picture><source srcset="/cases/lukoil-ai.webp" type="image/webp"><img src="/cases/lukoil-ai.jpg" alt="SAFETY MAN — ИИ-интро для корпоративной игры Лукойл" width="5504" height="3072" class="media-frame__img" loading="lazy"></picture>
               <span class="media-frame__num" aria-hidden="true">06</span>
@@ -438,7 +451,7 @@
             </div>
           </a>
 
-          <a href="/cases/battle-of-robots/" class="gallery-card reveal" data-dir="video" data-dir-filter="video">
+          <a href="/cases/battle-of-robots/" class="gallery-card reveal" data-dir="video" data-dir-filter="video" data-niche="sport">
             <div class="media-frame has-img" data-dir="video" style="--ratio: 16 / 9">
               <picture><source srcset="/cases/battle-of-robots.webp" type="image/webp"><img src="/cases/battle-of-robots.jpg" alt="Битва роботов — суперфинал Игр будущего Казань 2024" width="1920" height="1080" class="media-frame__img" loading="lazy"></picture>
               <span class="media-frame__num" aria-hidden="true">07</span>
@@ -450,7 +463,7 @@
             </div>
           </a>
 
-          <a href="/cases/graphsil/" class="gallery-card reveal" data-dir="design" data-dir-filter="design">
+          <a href="/cases/graphsil/" class="gallery-card reveal" data-dir="design" data-dir-filter="design" data-niche="production">
             <div class="media-frame has-img" data-dir="design" style="--ratio: 16 / 9">
               <picture><source srcset="/cases/GRAPHSEAL/1GRAPHSEAL.webp" type="image/webp"><img src="/cases/GRAPHSEAL/1GRAPHSEAL.jpg" alt="ГРАФСИЛ — брендбук, фирменный стиль" width="1920" height="1080" class="media-frame__img" loading="lazy"></picture>
               <span class="media-frame__num" aria-hidden="true">08</span>
@@ -462,7 +475,7 @@
             </div>
           </a>
 
-          <a href="/cases/injiniring/" class="gallery-card reveal" data-dir="design" data-dir-filter="design">
+          <a href="/cases/injiniring/" class="gallery-card reveal" data-dir="design" data-dir-filter="design" data-niche="production">
             <div class="media-frame has-img" data-dir="design" style="--ratio: 16 / 9">
               <picture><source srcset="/cases/injiniring/1injiniring.webp" type="image/webp"><img src="/cases/injiniring/1injiniring.jpg" alt="ИНЖИНИРИНГ+ — фирменный стиль" width="1920" height="1080" class="media-frame__img" loading="lazy"></picture>
               <span class="media-frame__num" aria-hidden="true">09</span>
@@ -474,7 +487,7 @@
             </div>
           </a>
 
-          <a href="/cases/express-import/" class="gallery-card reveal" data-dir="design" data-dir-filter="design">
+          <a href="/cases/express-import/" class="gallery-card reveal" data-dir="design" data-dir-filter="design" data-niche="production">
             <div class="media-frame has-img" data-dir="design" style="--ratio: 16 / 9">
               <picture><source srcset="/cases/express-import/1express-import.webp" type="image/webp"><img src="/cases/express-import/1express-import.jpg" alt="EXPRESS-IMPORT — фирменный стиль и сайт" width="808" height="632" class="media-frame__img" loading="lazy"></picture>
               <span class="media-frame__num" aria-hidden="true">10</span>
@@ -486,7 +499,7 @@
             </div>
           </a>
 
-          <a href="/cases/mobilov/" class="gallery-card reveal" data-dir="design" data-dir-filter="design">
+          <a href="/cases/mobilov/" class="gallery-card reveal" data-dir="design" data-dir-filter="design" data-niche="finance">
             <div class="media-frame has-img" data-dir="design" style="--ratio: 16 / 9">
               <picture><source srcset="/cases/mobilov/1mobilov.webp" type="image/webp"><img src="/cases/mobilov/1mobilov.jpg" alt="MOBILOV — фирменный стиль сервисного центра" width="808" height="632" class="media-frame__img" loading="lazy"></picture>
               <span class="media-frame__num" aria-hidden="true">11</span>
@@ -498,7 +511,7 @@
             </div>
           </a>
 
-          <a href="/cases/psp-sport/" class="gallery-card reveal" data-dir="design" data-dir-filter="design">
+          <a href="/cases/psp-sport/" class="gallery-card reveal" data-dir="design" data-dir-filter="design" data-niche="sport">
             <div class="media-frame has-img" data-dir="design" style="--ratio: 16 / 9">
               <picture><source srcset="/cases/psp-sport/1psp-sport.webp" type="image/webp"><img src="/cases/psp-sport/1psp-sport.jpg" alt="PSP SPORT NUTRITION — дизайн упаковки" width="1400" height="788" class="media-frame__img" loading="lazy"></picture>
               <span class="media-frame__num" aria-hidden="true">12</span>
@@ -510,7 +523,7 @@
             </div>
           </a>
 
-          <a href="/cases/aratta/" class="gallery-card reveal" data-dir="design" data-dir-filter="design">
+          <a href="/cases/aratta/" class="gallery-card reveal" data-dir="design" data-dir-filter="design" data-niche="production">
             <div class="media-frame has-img" data-dir="design" style="--ratio: 16 / 9">
               <picture><source srcset="/cases/aratta/1aratta.webp" type="image/webp"><img src="/cases/aratta/1aratta.jpg" alt="АРАТТА — фирменный стиль" width="808" height="632" class="media-frame__img" loading="lazy"></picture>
               <span class="media-frame__num" aria-hidden="true">13</span>
@@ -522,7 +535,7 @@
             </div>
           </a>
 
-          <a href="/cases/panorama/" class="gallery-card reveal" data-dir="design" data-dir-filter="design">
+          <a href="/cases/panorama/" class="gallery-card reveal" data-dir="design" data-dir-filter="design" data-niche="finance">
             <div class="media-frame has-img" data-dir="design" style="--ratio: 16 / 9">
               <picture><source srcset="/cases/panorama/1panorama.webp" type="image/webp"><img src="/cases/panorama/1panorama.jpg" alt="«ПАНОРАМА» — фирменный стиль и сайт" width="808" height="632" class="media-frame__img" loading="lazy"></picture>
               <span class="media-frame__num" aria-hidden="true">14</span>
@@ -534,7 +547,7 @@
             </div>
           </a>
 
-          <a href="/cases/felix/" class="gallery-card reveal" data-dir="design" data-dir-filter="design">
+          <a href="/cases/felix/" class="gallery-card reveal" data-dir="design" data-dir-filter="design" data-niche="finance">
             <div class="media-frame has-img" data-dir="design" style="--ratio: 16 / 9">
               <picture><source srcset="/cases/felix/1felix.webp" type="image/webp"><img src="/cases/felix/1felix.jpg" alt="«Феликс» — фирменный стиль бухгалтерского агентства" width="808" height="632" class="media-frame__img" loading="lazy"></picture>
               <span class="media-frame__num" aria-hidden="true">15</span>
@@ -546,7 +559,7 @@
             </div>
           </a>
 
-          <a href="/cases/toyota-supra-green-mamba/" class="gallery-card reveal" data-dir="ai" data-dir-filter="ai">
+          <a href="/cases/toyota-supra-green-mamba/" class="gallery-card reveal" data-dir="ai" data-dir-filter="ai" data-niche="ai-corp">
             <div class="media-frame has-img" data-dir="ai" style="--ratio: 16 / 9">
               <picture><source srcset="/cases/toyota-supra-green-mamba.webp" type="image/webp"><img src="/cases/toyota-supra-green-mamba.jpg" alt="TOYOTA Supra GR 2026 GREEN MAMBA — ИИ-ролик" width="2048" height="1143" class="media-frame__img" loading="lazy"></picture>
               <span class="media-frame__num" aria-hidden="true">16</span>
@@ -767,22 +780,40 @@
   <script src="../js/app.min.js?v=fe1922aa"></script>
   <script>
   (function () {
-    var filters = document.querySelectorAll('.cases-filter');
-    var cards   = document.querySelectorAll('.gallery-card[data-dir-filter]');
+    var serviceFilters = document.querySelectorAll('.cases-filter[data-filter]');
+    var nicheFilters    = document.querySelectorAll('.cases-filter[data-niche]');
+    var cards           = document.querySelectorAll('.gallery-card[data-dir-filter]');
 
-    filters.forEach(function (btn) {
+    var currentService = 'all';
+    var currentNiche    = 'all';
+
+    // Две независимые оси фильтра (услуга + ниша клиента) работают одновременно —
+    // карточка видна, только если проходит по обеим.
+    function applyFilters() {
+      cards.forEach(function (card) {
+        var dirs  = (card.dataset.dirFilter || '').split(' ');
+        var niche = card.dataset.niche || '';
+        var matchesService = currentService === 'all' || dirs.indexOf(currentService) !== -1;
+        var matchesNiche   = currentNiche === 'all' || niche === currentNiche;
+        card.style.display = (matchesService && matchesNiche) ? '' : 'none';
+      });
+    }
+
+    serviceFilters.forEach(function (btn) {
       btn.addEventListener('click', function () {
-        var f = btn.dataset.filter;
-        filters.forEach(function (b) { b.classList.remove('active'); });
+        currentService = btn.dataset.filter;
+        serviceFilters.forEach(function (b) { b.classList.remove('active'); });
         btn.classList.add('active');
-        cards.forEach(function (card) {
-          var dirs = (card.dataset.dirFilter || '').split(' ');
-          if (f === 'all' || dirs.indexOf(f) !== -1) {
-            card.style.display = '';
-          } else {
-            card.style.display = 'none';
-          }
-        });
+        applyFilters();
+      });
+    });
+
+    nicheFilters.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        currentNiche = btn.dataset.niche;
+        nicheFilters.forEach(function (b) { b.classList.remove('active'); });
+        btn.classList.add('active');
+        applyFilters();
       });
     });
   }());
