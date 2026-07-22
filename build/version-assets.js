@@ -50,6 +50,7 @@ const PAGES = [
 const ASSETS = [
   "css/style.min.css",
   "css/home.min.css",
+  "css/pro.min.css",
   "js/app.min.js",
   "js/gallery.min.js",
   "js/hero3d.min.js",
