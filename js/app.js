@@ -193,6 +193,7 @@ document.addEventListener("DOMContentLoaded", () => {
   if (footerRoot) {
     initBackToTop(footerRoot);
     initTickerDrag(footerRoot);
+    initCookieBanner(footerRoot);
   }
 
   initServicesGrid();
@@ -743,6 +744,23 @@ function initBackToTop(footerRoot) {
 
   onScroll();
   window.addEventListener("scroll", onScroll, { passive: true });
+}
+
+// Баннер согласия на cookie/Яндекс.Метрику — показывается один раз,
+// пока пользователь не нажмёт «Принимаю» (флаг живёт в localStorage).
+function initCookieBanner(footerRoot) {
+  const banner = footerRoot && footerRoot.querySelector("#cookieBanner");
+  const accept = footerRoot && footerRoot.querySelector("#cookieBannerAccept");
+  if (!banner || !accept) return;
+
+  const STORAGE_KEY = "adervis-cookie-consent";
+  if (localStorage.getItem(STORAGE_KEY) === "accepted") return;
+
+  banner.hidden = false;
+  accept.addEventListener("click", () => {
+    localStorage.setItem(STORAGE_KEY, "accepted");
+    banner.hidden = true;
+  });
 }
 
 // FAQ-блок (fvs): на мобильном правая панель-картинка прячется (CSS), а сюда

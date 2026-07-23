@@ -5330,6 +5330,53 @@ body.nav-open {
 #adervis-toast .toast-action:hover { filter: brightness(1.08); }
 
 /* ============================================================
+   Баннер согласия на cookie / Яндекс.Метрику
+   ============================================================ */
+.cookie-banner {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 9500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  padding: 16px clamp(20px,4vw,48px);
+  background: var(--bg-elevated, #272727);
+  border-top: 1px solid var(--line);
+  box-shadow: 0 -8px 32px rgba(0,0,0,0.35);
+}
+.cookie-banner[hidden] { display: none; }
+.cookie-banner__text {
+  margin: 0;
+  max-width: 720px;
+  font-family: var(--font-ui);
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--text);
+}
+.cookie-banner__text a { color: var(--gold); }
+.cookie-banner__accept {
+  flex-shrink: 0;
+  padding: 10px 24px;
+  border: none;
+  border-radius: 100px;
+  background: var(--gold);
+  color: #0d0d0d;
+  font-family: var(--font-ui);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: filter 0.2s ease;
+}
+.cookie-banner__accept:hover { filter: brightness(1.08); }
+@media (max-width: 640px) {
+  .cookie-banner { flex-direction: column; text-align: center; gap: 12px; padding: 14px 20px; }
+}
+
+/* ============================================================
    Прогресс-бар прокрутки — тонкая золотая линия сверху
    ============================================================ */
 .scroll-progress {
