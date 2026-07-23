@@ -47,6 +47,45 @@
   background: radial-gradient(circle, rgba(155, 77, 255, 0.18), transparent 70%);
 }
 
+/* Hero /pro/ — текст + мокап ноутбук/телефон (тот же компонент, что и на
+   баннере главной, см. css/style.css) вместо пустого текстового hero */
+.crm-hero__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--sp-12);
+  align-items: center;
+  width: 100%;
+}
+
+.crm-hero__text { min-width: 0; }
+
+.crm-hero__visual {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: hero-in 0.8s cubic-bezier(0.4, 0, 0.2, 1) both;
+  animation-delay: 520ms;
+}
+
+/* Переопределяем каскад .hero-section > .container p (style.css) — у нас
+   между .container и <p> появился .crm-hero__text, прямой child-селектор
+   больше не совпадает */
+.crm-hero__text p {
+  animation: hero-in 0.7s cubic-bezier(0.4, 0, 0.2, 1) both;
+  animation-delay: 200ms;
+}
+
+@media (max-width: 900px) {
+  .crm-hero__grid {
+    grid-template-columns: 1fr;
+  }
+  .crm-hero__visual {
+    order: -1;
+    max-width: 420px;
+    margin: 0 auto var(--sp-6);
+  }
+}
+
 /* Карточки возможностей Adervis CRM — гradient-обводка по hover, как у service-card */
 .crm-feature-grid {
   display: grid;

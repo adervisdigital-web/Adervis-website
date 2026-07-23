@@ -180,22 +180,9 @@
   justify-content: center;
 }
 
-.crm-screenshot {
-  width: 100%;
-  max-width: 560px;
-  border-radius: 12px;
-  box-shadow: 0 24px 64px rgba(0,0,0,0.45), 0 0 0 1px rgba(255,255,255,0.06);
-  display: block;
-  animation: crm-float 6s ease-in-out infinite;
-  transform-origin: center bottom;
-}
-
-@keyframes crm-float {
-  0%   { transform: translateY(0px) rotate(0deg); }
-  30%  { transform: translateY(-10px) rotate(0.4deg); }
-  70%  { transform: translateY(-6px) rotate(-0.3deg); }
-  100% { transform: translateY(0px) rotate(0deg); }
-}
+/* Мокап «ноутбук + телефон» (.crm-devices/.device-laptop*/.device-phone*/
+   .crm-detail-card*) вынесен в общий css/style.css — используется и здесь,
+   и в hero /pro/, дублировать ~280 строк в двух файлах смысла нет. */
 
 /* Reveal animation для CRM-блока — более эффектный вход чем стандартный .reveal */
 .crm-banner-frame.reveal {
@@ -223,20 +210,13 @@
   to   { opacity: 1; transform: scale(1.05); }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .crm-screenshot { animation: none; }
-  .crm-visual::after { animation: none; }
-  .crm-banner-frame { transition: none; }
-}
+/* Отдельного prefers-reduced-motion здесь не нужно — общий *,*::before,*::after
+   { animation-duration/transition-duration:0.01ms !important } в style.css
+   уже гасит crm-glow-pulse и transition у .crm-banner-frame глобально. */
 
 @media (max-width: 860px) {
   .crm-banner--2col {
     grid-template-columns: 1fr !important;
     gap: 28px;
-  }
-  .crm-screenshot {
-    max-height: 240px;
-    object-fit: cover;
-    object-position: top;
   }
 }

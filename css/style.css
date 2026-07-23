@@ -10243,3 +10243,263 @@ body.no-clients .clients-ticker-section {
   .cta-card.quiz-arrived,
   .cta-dir-chip.quiz-popped { animation: none; }
 }
+
+/* ═══════════════════════════════════════════════════════════════
+   МОКАП «НОУТБУК + ТЕЛЕФОН» — чистый CSS, без стоковых картинок.
+   Общий компонент: используется в баннере главной (.crm-banner) и
+   в hero /pro/ (.crm-hero) — держим в одном месте, не дублируем.
+   ═══════════════════════════════════════════════════════════════ */
+.crm-devices {
+  position: relative;
+  width: 100%;
+  max-width: 480px;
+  padding: 4% 0 16% 0;
+}
+
+.device-laptop {
+  position: relative;
+  width: 100%;
+  perspective: 1600px;
+  animation: crm-float 6s ease-in-out infinite;
+}
+
+/* Весь корпус ноутбука — один жёсткий блок, наклонённый в 3D через perspective
+   родителя (не настоящий шарнир экран/клавиатура, но читается как «ноутбук
+   под углом» без риска разъехавшихся плоскостей) */
+.device-laptop__body {
+  transform: rotateX(8deg) rotateY(-16deg);
+  transform-origin: 50% 100%;
+}
+
+.device-laptop__screen {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  background: #0b0b12;
+  border: 8px solid #1d1d27;
+  border-bottom: none;
+  border-radius: 12px 12px 2px 2px;
+  overflow: hidden;
+  box-shadow: 0 30px 70px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.06);
+}
+
+.device-laptop__screen::before {
+  content: '';
+  position: absolute;
+  top: -5px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #3a3a46;
+  z-index: 2;
+}
+
+.device-laptop__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+  display: block;
+}
+
+.device-laptop__hinge {
+  height: 4px;
+  background: #0d0d12;
+}
+
+.device-laptop__base {
+  position: relative;
+  height: 15px;
+  background: linear-gradient(180deg, #2c2c38, #15151c);
+  clip-path: polygon(4% 0, 96% 0, 100% 100%, 0% 100%);
+  box-shadow: 0 14px 26px rgba(0,0,0,0.4);
+}
+
+.device-laptop__trackpad {
+  position: absolute;
+  top: 3px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 16%;
+  height: 5px;
+  border-radius: 2px;
+  background: rgba(255,255,255,0.07);
+}
+
+.device-phone {
+  position: absolute;
+  right: 2%;
+  bottom: -2%;
+  width: 30%;
+  min-width: 110px;
+  max-width: 168px;
+  padding: 7px;
+  background: #131318;
+  border-radius: 20px;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.08);
+  z-index: 3;
+}
+
+.device-phone__screen {
+  position: relative;
+  aspect-ratio: 390 / 844;
+  border-radius: 14px;
+  overflow: hidden;
+  background: #0b0b12;
+}
+
+.device-phone__notch {
+  position: absolute;
+  top: 6px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 26%;
+  height: 5px;
+  background: #000;
+  border-radius: 4px;
+  z-index: 2;
+}
+
+.device-phone__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+  display: block;
+}
+
+/* ── Плавающие карточки-детали (акцент живости, паттерн подсмотрен у конкурентов) ── */
+.crm-detail-card {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 16px 10px 12px;
+  background: rgba(20, 20, 28, 0.82);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 14px;
+  box-shadow: 0 16px 40px rgba(0,0,0,0.4);
+  animation: crm-card-float 7s ease-in-out infinite;
+  z-index: 4;
+}
+
+.crm-detail-card--payment {
+  left: -4%;
+  bottom: 14%;
+  animation-delay: 0.4s;
+}
+
+.crm-detail-card--growth {
+  top: -2%;
+  right: 8%;
+  animation-delay: 1.8s;
+}
+
+.crm-detail-card__icon {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: rgba(34, 197, 94, 0.18);
+  color: #4ade80;
+  font-size: 14px;
+  flex: 0 0 auto;
+}
+
+.crm-detail-card__icon::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 1px solid currentColor;
+  opacity: 0;
+  animation: crm-icon-pulse 3s ease-out infinite;
+}
+
+.crm-detail-card__icon--up {
+  background: rgba(155, 77, 255, 0.18);
+  color: #b98bff;
+}
+
+.crm-detail-card__text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.3;
+}
+
+.crm-detail-card__text strong {
+  font-size: 12px;
+  font-weight: 600;
+  color: #fff;
+  white-space: nowrap;
+}
+
+.crm-detail-card__text span {
+  font-size: 13px;
+  font-weight: 700;
+  color: #4ade80;
+}
+
+.crm-detail-card--growth .crm-detail-card__text span {
+  color: #b98bff;
+}
+
+@keyframes crm-float {
+  0%   { transform: translateY(0px) rotate(0deg); }
+  30%  { transform: translateY(-10px) rotate(0.4deg); }
+  70%  { transform: translateY(-6px) rotate(-0.3deg); }
+  100% { transform: translateY(0px) rotate(0deg); }
+}
+
+@keyframes crm-card-float {
+  0%   { transform: translateY(0); }
+  50%  { transform: translateY(-8px); }
+  100% { transform: translateY(0); }
+}
+
+@keyframes crm-icon-pulse {
+  0%   { opacity: 0.5; transform: scale(1); }
+  100% { opacity: 0; transform: scale(1.6); }
+}
+
+/* Отдельного prefers-reduced-motion здесь не нужно — общий *,*::before,*::after
+   { animation-duration:0.01ms !important } (см. выше по файлу) уже гасит
+   crm-float/crm-card-float/crm-icon-pulse глобально. */
+
+@media (max-width: 860px) {
+  .crm-devices {
+    max-width: 400px;
+    padding-bottom: 16%;
+  }
+  .crm-detail-card--payment {
+    left: -2%;
+    bottom: 8%;
+  }
+  .crm-detail-card--growth {
+    top: 2%;
+    right: 2%;
+  }
+  .crm-detail-card {
+    padding: 8px 12px 8px 10px;
+  }
+  .crm-detail-card__text strong {
+    font-size: 11px;
+  }
+  .crm-detail-card__text span {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .crm-detail-card {
+    display: none;
+  }
+  .device-phone {
+    right: -2%;
+  }
+}
