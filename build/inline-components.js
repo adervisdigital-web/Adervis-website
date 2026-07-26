@@ -46,6 +46,7 @@ const PAGES = [
   "cases/toyota-supra-green-mamba/index.html",
   "careers/index.html",
   "pro/index.html",
+  "pro/smeta/index.html",
   "edu/index.html",
   "docs/index.html",
 ];
