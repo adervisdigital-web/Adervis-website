@@ -2,3 +2,9 @@ design-references/
 PRODUCT.md
 node_modules/
 assets/faq-*/PROMPTS.md
+# Исходные 4K/5K-рендеры мокапов Adervis CRM (~64 МБ) — в репо не нужны,
+# на сайт идут сжатые assets/cases/crm-laptop-3d*.webp и crm-phone-3d*.webp
+ADERVIS-CRM-banner/
+# Локальные разрешения Claude Code — у каждого свои.
+# .claude/skills/ и .agents/ наоборот коммитим: это общая настройка проекта.
+.claude/settings.local.json

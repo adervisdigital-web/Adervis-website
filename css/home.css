@@ -168,8 +168,8 @@
    ═══════════════════════════════════════════════════════════════ */
 .crm-banner--2col {
   display: grid !important;
-  grid-template-columns: 1fr 1fr;
-  gap: 48px;
+  grid-template-columns: 1fr 1.18fr;
+  gap: 28px;
   align-items: center;
 }
 
@@ -180,9 +180,14 @@
   justify-content: center;
 }
 
-/* Мокап «ноутбук + телефон» (.crm-devices/.device-laptop*/.device-phone*/
-   .crm-detail-card*) вынесен в общий css/style.css — используется и здесь,
-   и в hero /pro/, дублировать ~280 строк в двух файлах смысла нет. */
+/* Мокап «ноутбук + телефон» (.crm-devices и .crm-detail-card) вынесен в общий
+   css/style.css: используется и здесь, и в hero /pro/, дублировать ~280 строк
+   в двух файлах смысла нет.
+   ВНИМАНИЕ: не писать в комментариях звёздочку перед слэшем — раньше здесь
+   стояло «.device-laptop*/», комментарий закрывался на середине, и остаток
+   строки уезжал в селектор правила ниже. Невалидный селектор в списке рубит
+   всё правило целиком, поэтому reveal-анимация .crm-banner-frame на боевом
+   сайте не работала вообще. */
 
 /* Reveal animation для CRM-блока — более эффектный вход чем стандартный .reveal */
 .crm-banner-frame.reveal {
@@ -196,19 +201,9 @@
   opacity: 1 !important;
 }
 
-.crm-visual::after {
-  content: '';
-  position: absolute;
-  inset: -20px;
-  background: radial-gradient(ellipse 80% 60% at 50% 50%, rgba(155,77,255,0.25) 0%, transparent 70%);
-  pointer-events: none;
-  animation: crm-glow-pulse 4s ease-in-out infinite alternate;
-}
-
-@keyframes crm-glow-pulse {
-  from { opacity: 0.5; transform: scale(0.95); }
-  to   { opacity: 1; transform: scale(1.05); }
-}
+/* Свечение под техникой теперь рисует .crm-devices__glow в style.css — оно
+   привязано к силуэту рендера и одинаково работает на главной и на /pro/.
+   Второй ореол на .crm-visual::after только замыливал картинку, поэтому убран. */
 
 /* Отдельного prefers-reduced-motion здесь не нужно — общий *,*::before,*::after
    { animation-duration/transition-duration:0.01ms !important } в style.css

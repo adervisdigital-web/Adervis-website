@@ -68,7 +68,7 @@ function initCaseTracking() {
 function leadErrorToast() {
   trackGoal('lead_error');
   showToast('Не удалось отправить заявку. Напишите нам напрямую — ответим быстро:', 9000, [
-    { label: 'Telegram', href: 'https://t.me/Adervis_digital' },
+    { label: 'Telegram', href: 'https://t.me/adervis_manager' },
     { label: 'Позвонить', href: 'tel:+79223018880' }
   ]);
 }

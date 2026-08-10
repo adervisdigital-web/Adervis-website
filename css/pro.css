@@ -49,12 +49,14 @@
 
 /* Hero /pro/ — текст + мокап ноутбук/телефон (тот же компонент, что и на
    баннере главной, см. css/style.css) вместо пустого текстового hero */
+/* Без width:100% — оно перебивало width:min(1400px, 100% - 48px) у .container
+   на том же элементе, и hero /pro/ единственный на сайте лип текстом вплотную
+   к краю окна, без боковых полей. */
 .crm-hero__grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: var(--sp-12);
   align-items: center;
-  width: 100%;
 }
 
 .crm-hero__text { min-width: 0; }

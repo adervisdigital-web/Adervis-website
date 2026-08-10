@@ -13,14 +13,10 @@
 @font-face{font-family:'Golos Text';font-style:normal;font-weight:600;font-display:swap;src:url(../fonts/golostext-600-cyrillic.woff2) format('woff2');unicode-range:U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116}
 @font-face{font-family:'Golos Text';font-style:normal;font-weight:600;font-display:swap;src:url(../fonts/golostext-600-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF}
 @font-face{font-family:'Golos Text';font-style:normal;font-weight:600;font-display:swap;src:url(../fonts/golostext-600-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
-@font-face{font-family:'Martian Mono';font-style:normal;font-weight:400;font-display:swap;src:url(../fonts/martianmono-400-cyrillic-ext.woff2) format('woff2');unicode-range:U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F}
-@font-face{font-family:'Martian Mono';font-style:normal;font-weight:400;font-display:swap;src:url(../fonts/martianmono-400-cyrillic.woff2) format('woff2');unicode-range:U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116}
-@font-face{font-family:'Martian Mono';font-style:normal;font-weight:400;font-display:swap;src:url(../fonts/martianmono-400-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF}
-@font-face{font-family:'Martian Mono';font-style:normal;font-weight:400;font-display:swap;src:url(../fonts/martianmono-400-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
-@font-face{font-family:'Martian Mono';font-style:normal;font-weight:500;font-display:swap;src:url(../fonts/martianmono-500-cyrillic-ext.woff2) format('woff2');unicode-range:U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F}
-@font-face{font-family:'Martian Mono';font-style:normal;font-weight:500;font-display:swap;src:url(../fonts/martianmono-500-cyrillic.woff2) format('woff2');unicode-range:U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116}
-@font-face{font-family:'Martian Mono';font-style:normal;font-weight:500;font-display:swap;src:url(../fonts/martianmono-500-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF}
-@font-face{font-family:'Martian Mono';font-style:normal;font-weight:500;font-display:swap;src:url(../fonts/martianmono-500-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:'JetBrains Mono';font-style:normal;font-weight:400 800;font-display:swap;src:url(../fonts/jetbrainsmono-400-cyrillic-ext.woff2) format('woff2');unicode-range:U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F}
+@font-face{font-family:'JetBrains Mono';font-style:normal;font-weight:400 800;font-display:swap;src:url(../fonts/jetbrainsmono-400-cyrillic.woff2) format('woff2');unicode-range:U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116}
+@font-face{font-family:'JetBrains Mono';font-style:normal;font-weight:400 800;font-display:swap;src:url(../fonts/jetbrainsmono-400-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF}
+@font-face{font-family:'JetBrains Mono';font-style:normal;font-weight:400 800;font-display:swap;src:url(../fonts/jetbrainsmono-400-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
 @font-face{font-family:'Unbounded';font-style:normal;font-weight:500;font-display:swap;src:url(../fonts/unbounded-500-cyrillic-ext.woff2) format('woff2');unicode-range:U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F}
 @font-face{font-family:'Unbounded';font-style:normal;font-weight:500;font-display:swap;src:url(../fonts/unbounded-500-cyrillic.woff2) format('woff2');unicode-range:U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116}
 @font-face{font-family:'Unbounded';font-style:normal;font-weight:500;font-display:swap;src:url(../fonts/unbounded-500-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF}
@@ -34,7 +30,7 @@
   /* Типографика */
   --font-display: 'Unbounded', ui-sans-serif, sans-serif;
   --font-ui: 'Golos Text', ui-sans-serif, sans-serif;
-  --font-mono: 'Martian Mono', ui-monospace, monospace;
+  --font-mono: 'JetBrains Mono', ui-monospace, 'SFMono-Regular', Consolas, monospace;
 
   /* Фон (тёмная тема — основная, совпадает с фоном логотипа) */
   --bg:    #141414;
@@ -940,7 +936,6 @@ button.site-header__platform {
    побеждала и на мобильном тоже (это и было причиной пропавшей ссылки). */
 .pill-nav__link--platform-mobile {
   display: none;
-  color: var(--gold) !important;
 }
 
 @media (max-width: 860px) {
@@ -1019,8 +1014,12 @@ button.site-header__platform {
 
   .pill-nav__tubelight { display: none; }
 
-  /* Ссылки — крупные, по центру */
+  /* Ссылки — крупные, по центру.
+     justify-content обязателен: .pill-nav__link это display:inline-flex, а во
+     flex-контейнере text-align:center ничего не центрирует — пункты молча
+     прижимались влево, хотя в коде стояло выравнивание по центру. */
   .pill-nav__link {
+    justify-content: center;
     font-size: 22px;
     font-weight: 700;
     padding: 14px 24px;
@@ -1037,19 +1036,26 @@ button.site-header__platform {
 
   .pill-nav__dropdown { width: 100%; max-width: 320px; }
 
-  /* Аккордеон — Услуги */
+  /* Аккордеон — Услуги.
+     font-family здесь обязательно var(--font-display): раньше стояло
+     `inherit`, и «Услуги» отваливались на Golos Text, пока все остальные
+     пункты меню набраны Unbounded. Пункт визуально выпадал из списка.
+     justify-content: center — чтобы текст стоял по центру, как у соседей,
+     а стрелка шла сразу за ним, а не улетала к правому краю. */
   .pill-nav__link--drop {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
+    gap: 8px;
     width: 100%;
     max-width: 320px;
     background: none;
     border: none;
     cursor: pointer;
-    font-family: inherit;
+    font-family: var(--font-display);
     font-size: 22px;
     font-weight: 700;
+    text-transform: uppercase;
     color: rgba(255,255,255,0.75);
     padding: 14px 24px;
     border-radius: 12px;
@@ -1086,17 +1092,47 @@ button.site-header__platform {
   .nav-mega__sub { display: none; }
   .nav-mega__badge { display: none; }
 
-  /* Platform-ссылка появляется только в мобильном меню */
+  /* Platform появляется только в мобильном меню — и не блёклой ссылкой, а
+     золотой кнопкой, как .site-header__platform на десктопе. Это единственный
+     коммерческий пункт меню, он должен читаться как действие, а не как ещё
+     один раздел. */
   .pill-nav__link--platform-mobile {
-    display: block;
-    margin-top: 4px;
-    font-size: 14px !important;
-    font-weight: 600 !important;
-    padding: 10px 24px !important;
-    letter-spacing: 0.02em !important;
-    opacity: 0.8;
+    display: inline-flex !important;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+    max-width: 320px;
+    margin-top: 20px;
+    background: var(--gold);
+    color: #141414 !important;
+    font-family: var(--font-display);
+    font-size: 13px !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.09em !important;
+    text-transform: uppercase;
+    padding: 15px 24px !important;
+    border-radius: 100px;
+    box-shadow: 0 10px 30px rgba(246,189,58,0.22);
+    transition: box-shadow 0.2s, transform 0.2s, background 0.2s;
   }
-  .pill-nav__link--platform-mobile:hover { opacity: 1; }
+  .pill-nav__link--platform-mobile:hover,
+  .pill-nav__link--platform-mobile:active,
+  .pill-nav__link--platform-mobile.nav-active {
+    background: var(--gold);
+    color: #141414 !important;
+    box-shadow: 0 12px 34px rgba(246,189,58,0.38);
+    transform: translateY(-1px);
+  }
+  .pill-nav__link--platform-mobile::after {
+    content: "";
+    width: 6px;
+    height: 6px;
+    border-right: 2px solid rgba(20,20,20,0.6);
+    border-bottom: 2px solid rgba(20,20,20,0.6);
+    transform: rotate(-45deg);
+    margin-left: 2px;
+  }
 }
 
 /* Кастомный курсор скрываем на тач-устройствах */
@@ -2467,6 +2503,24 @@ button.site-header__platform {
   color: rgba(255, 255, 255, 0.82);
   font-size: 16px;
 }
+
+/* Строка фактов под кнопками. На фиолетовой подложке дефолтная .hero-kpi-line
+   (28% белого) не читается — поднимаем контраст. Заодно она закрывает пустоту
+   под кнопками: без неё левая колонка заканчивалась вверху, и половина баннера
+   стояла пустой, пока справа была техника во всю высоту. */
+.crm-kpi-line {
+  color: rgba(255, 255, 255, 0.88);
+  font-size: 12px;
+  letter-spacing: 0.03em;
+  margin-top: 24px;
+}
+
+/* Подложка баннера анимированная и в светлой фазе уходит в бледную лаванду —
+   на ней приглушённый белый 12px мономом переставал читаться. Держим высокую
+   непрозрачность: контраст должен выживать на любом кадре анимации, а не
+   только на том, где градиент потемнее. */
+.crm-kpi-line strong { color: #fff; font-weight: 600; }
+.crm-kpi-line .hero-kpi-sep { color: rgba(255, 255, 255, 0.45); }
 
 /* На насыщенной живой подложке фирменный градиент бейджа сливается с фоном —
    меняем его на «стеклянный» вариант, чтобы бейдж читался поверх любой фазы анимации */
@@ -10249,128 +10303,140 @@ body.no-clients .clients-ticker-section {
 }
 
 /* ═══════════════════════════════════════════════════════════════
-   МОКАП «НОУТБУК + ТЕЛЕФОН» — чистый CSS, без стоковых картинок.
-   Общий компонент: используется в баннере главной (.crm-banner) и
-   в hero /pro/ (.crm-hero) — держим в одном месте, не дублируем.
+   МОКАП «НОУТБУК + ТЕЛЕФОН» — 3D-рендер реального интерфейса CRM.
+   Раньше корпуса рисовались из div'ов (.device-laptop/.device-phone),
+   а внутрь подставлялись плоские скриншоты. Теперь это один PNG-рендер
+   с прозрачным фоном (assets/cases/crm-devices.webp), поэтому вся
+   «столярка» из CSS убрана — остались слои поверх картинки:
+     .crm-devices__glow  — фиолетовое свечение под техникой
+     .crm-devices__float — левитация всей связки
+     .crm-devices__tilt  — доворот в 3D при наведении
+     .crm-devices__shine — блик, обрезанный по силуэту техники через mask
+   Общий компонент: баннер главной (.crm-banner) и hero /pro/ (.crm-hero).
    ═══════════════════════════════════════════════════════════════ */
 .crm-devices {
   position: relative;
   width: 100%;
-  max-width: 480px;
-  padding: 4% 0 16% 0;
+  max-width: 640px;
+  /* Широкая и низкая коробка вместо квадрата: раньше это был один
+     квадратный рендер 1:1, и баннер тянулся вниз на всю его высоту.
+     Теперь ноутбук и телефон — два независимых слоя внутри 16:10. */
+  aspect-ratio: 16 / 9;
+  perspective: 1400px;
 }
 
-.device-laptop {
-  position: relative;
-  width: 100%;
-  perspective: 1600px;
-  animation: crm-float 6s ease-in-out infinite;
-}
-
-/* Весь корпус ноутбука — один жёсткий блок, наклонённый в 3D через perspective
-   родителя (не настоящий шарнир экран/клавиатура, но читается как «ноутбук
-   под углом» без риска разъехавшихся плоскостей) */
-.device-laptop__body {
-  transform: rotateX(8deg) rotateY(-16deg);
-  transform-origin: 50% 100%;
-}
-
-.device-laptop__screen {
-  position: relative;
-  aspect-ratio: 16 / 10;
-  background: #0b0b12;
-  border: 8px solid #1d1d27;
-  border-bottom: none;
-  border-radius: 12px 12px 2px 2px;
-  overflow: hidden;
-  box-shadow: 0 30px 70px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.06);
-}
-
-.device-laptop__screen::before {
-  content: '';
+/* Свечение под техникой — задаёт «объём» сцене и связывает рендер с фоном */
+.crm-devices__glow {
   position: absolute;
-  top: -5px;
   left: 50%;
-  transform: translateX(-50%);
-  width: 5px;
-  height: 5px;
-  border-radius: 50%;
-  background: #3a3a46;
+  top: 52%;
+  width: 86%;
+  aspect-ratio: 1 / 1;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle,
+    rgba(155, 77, 255, 0.30) 0%,
+    rgba(155, 77, 255, 0.12) 38%,
+    rgba(155, 77, 255, 0) 68%);
+  filter: blur(18px);
+  animation: crm-glow-pulse 9s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Ноутбук и телефон левитируют по отдельности, с разной длиной цикла —
+   связка «дышит» вразнобой и выглядит живее, чем один общий блок */
+.crm-devices__laptop,
+.crm-devices__phone {
+  position: absolute;
+  transition: translate 0.7s cubic-bezier(0.22, 0.7, 0.2, 1),
+              rotate 0.7s cubic-bezier(0.22, 0.7, 0.2, 1),
+              scale 0.7s cubic-bezier(0.22, 0.7, 0.2, 1);
+  will-change: transform;
+}
+
+/* Ноутбук — якорь сцены, стоит справа и целиком внутри рамки: .crm-banner
+   режет всё по overflow:hidden, поэтому вылет за правый край читается не как
+   «уходит в кадр», а как обрезанная картинка. */
+.crm-devices__laptop {
+  right: 0;
+  bottom: -3%;
+  height: 104%;
+  width: auto;
   z-index: 2;
+  animation: crm-float 7s ease-in-out infinite;
 }
 
-.device-laptop__img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: top;
-  display: block;
-}
-
-.device-laptop__hinge {
-  height: 4px;
-  background: #0d0d12;
-}
-
-.device-laptop__base {
-  position: relative;
-  height: 15px;
-  background: linear-gradient(180deg, #2c2c38, #15151c);
-  clip-path: polygon(4% 0, 96% 0, 100% 100%, 0% 100%);
-  box-shadow: 0 14px 26px rgba(0,0,0,0.4);
-}
-
-.device-laptop__trackpad {
-  position: absolute;
-  top: 3px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 16%;
-  height: 5px;
-  border-radius: 2px;
-  background: rgba(255,255,255,0.07);
-}
-
-.device-phone {
-  position: absolute;
-  right: 2%;
-  bottom: -2%;
-  width: 30%;
-  min-width: 110px;
-  max-width: 168px;
-  padding: 7px;
-  background: #131318;
-  border-radius: 20px;
-  box-shadow: 0 20px 50px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.08);
+/* Телефон стоит ПЕРЕД ноутбуком с перекрытием и на общей с ним линии низа.
+   Разнесённые по разным углам, они читались как два случайных объекта:
+   рендеры сняты разными камерами, и без перекрытия связь сцены теряется. */
+.crm-devices__phone {
+  left: 26%;
+  bottom: 2%;
+  height: 62%;
+  width: auto;
   z-index: 3;
+  animation: crm-float 5.5s ease-in-out infinite;
+  animation-delay: 0.9s;
 }
 
-.device-phone__screen {
-  position: relative;
-  aspect-ratio: 390 / 844;
-  border-radius: 14px;
-  overflow: hidden;
-  background: #0b0b12;
+/* Наведение чуть разводит технику в стороны и доворачивает её.
+   Здесь именно отдельные свойства translate/rotate/scale, а не transform:
+   левитация уже занимает transform в @keyframes, и обычное объявление
+   transform анимация бы просто перебила (у неё выше приоритет в каскаде,
+   пока она играет). Отдельные свойства с transform перемножаются, а не
+   спорят — обёртка-прослойка под наклон не нужна. */
+.crm-devices:hover .crm-devices__laptop {
+  translate: 1.5% -1.5%;
+  rotate: -1.2deg;
+  scale: 1.03;
 }
 
-.device-phone__notch {
-  position: absolute;
-  top: 6px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 26%;
-  height: 5px;
-  background: #000;
-  border-radius: 4px;
-  z-index: 2;
+.crm-devices:hover .crm-devices__phone {
+  translate: -4% -3%;
+  rotate: 1.5deg;
+  scale: 1.05;
 }
 
-.device-phone__img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: top;
+.crm-devices__laptop .crm-devices__img,
+.crm-devices__phone .crm-devices__img { height: 100%; width: auto; }
+
+.crm-devices__img {
   display: block;
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 26px 50px rgba(0,0,0,0.5));
+}
+
+/* Блик: диагональная полоса света, обрезанная по альфе самого рендера —
+   маска берёт ту же картинку, поэтому свет не вылезает на фон секции */
+.crm-devices__shine {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(112deg,
+    rgba(255,255,255,0) 38%,
+    rgba(255,255,255,0.14) 47%,
+    rgba(185,139,255,0.22) 51%,
+    rgba(255,255,255,0.10) 55%,
+    rgba(255,255,255,0) 64%);
+  background-size: 280% 100%;
+  background-repeat: no-repeat;
+  -webkit-mask-image: url(../assets/cases/crm-laptop-3d.webp);
+  mask-image: url(../assets/cases/crm-laptop-3d.webp);
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  mix-blend-mode: screen;
+  pointer-events: none;
+  animation: crm-shine 9s ease-in-out infinite;
+}
+
+/* Телефон уезжает по бликом чуть позже ноутбука — свет как будто идёт
+   по сцене слева направо, а не вспыхивает на обоих сразу */
+.crm-devices__shine--phone {
+  -webkit-mask-image: url(../assets/cases/crm-phone-3d.webp);
+  mask-image: url(../assets/cases/crm-phone-3d.webp);
+  animation-delay: 0.7s;
 }
 
 /* ── Плавающие карточки-детали (акцент живости, паттерн подсмотрен у конкурентов) ── */
@@ -10389,16 +10455,25 @@ body.no-clients .clients-ticker-section {
   z-index: 4;
 }
 
+/* Карточки цепляются за саму технику, а не висят по углам коробки: одна у
+   нижнего края телефона, вторая у верхнего угла экрана ноутбука. Раньше они
+   стояли в трёх дальних углах и читались как случайно раскиданные плашки. */
 .crm-detail-card--payment {
-  left: -4%;
-  bottom: 14%;
+  left: 0;
+  bottom: 6%;
   animation-delay: 0.4s;
 }
 
 .crm-detail-card--growth {
-  top: -2%;
-  right: 8%;
+  top: 0;
+  right: 0;
   animation-delay: 1.8s;
+}
+
+.crm-detail-card--estimate {
+  left: 2%;
+  top: 16%;
+  animation-delay: 3.1s;
 }
 
 .crm-detail-card__icon {
@@ -10430,6 +10505,11 @@ body.no-clients .clients-ticker-section {
   color: #b98bff;
 }
 
+.crm-detail-card__icon--doc {
+  background: rgba(246, 189, 58, 0.18);
+  color: var(--gold);
+}
+
 .crm-detail-card__text {
   display: flex;
   flex-direction: column;
@@ -10453,11 +10533,31 @@ body.no-clients .clients-ticker-section {
   color: #b98bff;
 }
 
+.crm-detail-card--estimate .crm-detail-card__text span {
+  color: var(--gold);
+}
+
 @keyframes crm-float {
   0%   { transform: translateY(0px) rotate(0deg); }
   30%  { transform: translateY(-10px) rotate(0.4deg); }
   70%  { transform: translateY(-6px) rotate(-0.3deg); }
   100% { transform: translateY(0px) rotate(0deg); }
+}
+
+@keyframes crm-glow-pulse {
+  0%   { opacity: 0.55; transform: translate(-50%, -50%) scale(0.94); }
+  50%  { opacity: 1;    transform: translate(-50%, -50%) scale(1.06); }
+  100% { opacity: 0.55; transform: translate(-50%, -50%) scale(0.94); }
+}
+
+/* Блик проходит по технике и уходит, потом долгая пауза — чтобы движение
+   читалось как акцент, а не как назойливая мигалка */
+@keyframes crm-shine {
+  0%   { background-position: 130% 0; opacity: 0; }
+  8%   { opacity: 1; }
+  26%  { background-position: -30% 0; opacity: 1; }
+  34%  { background-position: -30% 0; opacity: 0; }
+  100% { background-position: -30% 0; opacity: 0; }
 }
 
 @keyframes crm-card-float {
@@ -10475,18 +10575,24 @@ body.no-clients .clients-ticker-section {
    { animation-duration:0.01ms !important } (см. выше по файлу) уже гасит
    crm-float/crm-card-float/crm-icon-pulse глобально. */
 
+/* На планшете колонки сжимаются, техника уменьшается, а карточки нет — нижняя
+   начинает лежать прямо на экране телефона. Оставляем только верхнюю: она
+   стоит над ноутбуком и в тесноте не мешает. */
+@media (max-width: 1100px) {
+  .crm-detail-card--payment { display: none; }
+}
+
 @media (max-width: 860px) {
   .crm-devices {
-    max-width: 400px;
-    padding-bottom: 16%;
+    max-width: 460px;
   }
   .crm-detail-card--payment {
-    left: -2%;
-    bottom: 8%;
+    left: 0;
+    bottom: 0;
   }
   .crm-detail-card--growth {
     top: 2%;
-    right: 2%;
+    right: 0;
   }
   .crm-detail-card {
     padding: 8px 12px 8px 10px;
@@ -10497,13 +10603,13 @@ body.no-clients .clients-ticker-section {
   .crm-detail-card__text span {
     font-size: 12px;
   }
+  /* Тач-устройства не наводят курсор — доворот только мешал бы скроллу */
+  .crm-devices:hover .crm-devices__laptop,
+  .crm-devices:hover .crm-devices__phone { translate: none; rotate: none; scale: none; }
 }
 
 @media (max-width: 480px) {
   .crm-detail-card {
     display: none;
-  }
-  .device-phone {
-    right: -2%;
   }
 }
