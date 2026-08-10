@@ -10032,13 +10032,17 @@ body.no-clients .clients-ticker-section {
   touch-action: none;
   user-select: none;
   -webkit-user-select: none;
+  aspect-ratio: 16 / 9;
 }
 
-/* After image — baseline full width */
+/* After image — fills container, same box model as the before overlay */
 .ba-after {
   display: block;
+  position: absolute;
+  inset: 0;
   width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: cover;
   pointer-events: none;
 }
 
