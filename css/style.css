@@ -10296,22 +10296,10 @@ body.no-clients .clients-ticker-section {
   margin-bottom: var(--sp-16);
 }
 
-/* Сетка для дополнительных пар «до/после» под главным широким слайдером.
-   На узких экранах схлопывается в одну колонку: два слайдера рядом на 400px
-   дают полосу шириной в палец, перетаскивать разделитель невозможно. */
-.ba-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: var(--sp-6);
-  margin-bottom: var(--sp-16);
-}
-
-@media (max-width: 760px) {
-  .ba-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
+/* Пары «до/после» лежат в листалке .case-slider (js/gallery.js): видно одну,
+   остальные листаются стрелками и точками. Сетка .ba-grid, в которой они стояли
+   в два столбца, удалена — в столбце пара показывалась вдвое мельче, а именно
+   в мелочах и видна разница между исходником и ИИ-доработкой. */
 .ba-compare {
   position: relative;
   overflow: hidden;
