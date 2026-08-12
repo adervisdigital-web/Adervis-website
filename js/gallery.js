@@ -94,7 +94,7 @@
      Несколько кадров под общей подписью, видно всегда один. Прогрессивное
      улучшение: сама прокрутка — нативный scroll-snap в CSS, поэтому без JS
      кадры листаются свайпом и вёрстка не меняется. JS добавляет только то,
-     чего у скролла нет: стрелки, точки и счётчик.
+     чего у скролла нет: стрелки и навигацию по кадрам.
 
      Слайды — обычные .media-frame, в том числе .js-lightbox-item: клик по
      кадру по-прежнему открывает лайтбокс, стрелки и точки клик не перехватят,
@@ -105,33 +105,57 @@
       var slides = track ? Array.prototype.slice.call(track.children) : [];
       if (slides.length < 2) return;
 
+      /* Два вида навигации:
+         по умолчанию — пилюля с точками ПОВЕРХ кадра (компактно, не меняет
+         высоту карточки и не ломает ряд, где карточки должны сойтись);
+         data-slider-nav="thumbs" — лента превью ПОД кадром. Нужна там, где
+         кадров много и точки уже ничего не говорят, а также там, где внутри
+         кадра своя механика и пилюле поверх просто негде встать: у слайдера
+         «до/после» вертикальный разделитель проходит ровно по центру низа. */
+      var thumbs = root.getAttribute('data-slider-nav') === 'thumbs';
+
       var nav = document.createElement('div');
-      nav.className = 'case-slider__nav';
+      nav.className = 'case-slider__nav' + (thumbs ? ' case-slider__nav--thumbs' : '');
       nav.innerHTML =
         '<button type="button" class="case-slider__arrow" data-step="-1" aria-label="Предыдущий кадр">&#8592;</button>' +
-        '<div class="case-slider__dots" role="tablist"></div>' +
+        '<div class="case-slider__' + (thumbs ? 'thumbs' : 'dots') + '" role="tablist"></div>' +
         '<button type="button" class="case-slider__arrow" data-step="1" aria-label="Следующий кадр">&#8594;</button>';
       root.appendChild(nav);
 
-      var dotsBox = nav.querySelector('.case-slider__dots');
-      var dots = slides.map(function (_, i) {
+      var box = nav.querySelector('[role="tablist"]');
+      var marks = slides.map(function (slide, i) {
         var d = document.createElement('button');
         d.type = 'button';
-        d.className = 'case-slider__dot';
         d.setAttribute('role', 'tab');
         d.setAttribute('aria-label', 'Кадр ' + (i + 1) + ' из ' + slides.length);
+        if (thumbs) {
+          /* Превью берётся из data-thumb — отдельный мелкий файл. Без него
+             пришлось бы ставить в ленту полноразмерный кадр, и все они
+             грузились бы сразу, ради полоски в 72px. */
+          var src = slide.getAttribute('data-thumb');
+          if (!src) { var img = slide.querySelector('img'); src = img && (img.getAttribute('src') || ''); }
+          d.className = 'case-slider__thumb';
+          d.innerHTML = '<img src="' + src + '" alt="" loading="lazy" decoding="async">';
+        } else {
+          d.className = 'case-slider__dot';
+        }
         d.addEventListener('click', function () { go(i); });
-        dotsBox.appendChild(d);
+        box.appendChild(d);
         return d;
       });
 
       var current = 0;
       function paint() {
-        dots.forEach(function (d, i) {
+        marks.forEach(function (d, i) {
           d.classList.toggle('is-active', i === current);
           d.setAttribute('aria-selected', i === current ? 'true' : 'false');
         });
         slides.forEach(function (s, i) { s.setAttribute('aria-hidden', i === current ? 'false' : 'true'); });
+        /* Лента превью на узком экране прокручивается — держим активное в виду */
+        if (thumbs && marks[current] && box.scrollWidth > box.clientWidth) {
+          var m = marks[current];
+          box.scrollTo({ left: m.offsetLeft - (box.clientWidth - m.offsetWidth) / 2, behavior: 'smooth' });
+        }
       }
       function go(i) {
         current = (i + slides.length) % slides.length;

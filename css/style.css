@@ -10001,8 +10001,85 @@ body.no-clients .clients-ticker-section {
   transform: scale(1.3);
 }
 
+/* ─── Второй вид навигации: лента превью ПОД кадром ────────────────────────
+   Ставится через data-slider-nav="thumbs". Нужна там, где кадров много и точки
+   уже ничего не говорят, и там, где пилюле поверх кадра негде встать: у
+   слайдера «до/после» вертикальный разделитель проходит ровно по центру низа
+   и перечёркивает её. */
+.case-slider__nav--thumbs {
+  position: static;
+  transform: none;
+  margin-top: var(--sp-4);
+  padding: 0;
+  border: 0;
+  background: none;
+  backdrop-filter: none;
+  justify-content: center;
+  gap: var(--sp-4);
+}
+
+.case-slider__nav--thumbs .case-slider__arrow {
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  border: 1px solid var(--line);
+  background: var(--bg3);
+  color: var(--muted);
+  font-size: 16px;
+}
+.case-slider__nav--thumbs .case-slider__arrow:hover {
+  color: var(--text);
+  border-color: var(--card-color, var(--gold));
+  background: var(--bg3);
+}
+
+.case-slider__thumbs {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  /* Обводка активного превью не должна срезаться контейнером прокрутки */
+  padding: 3px;
+  margin: -3px;
+}
+.case-slider__thumbs::-webkit-scrollbar { display: none; }
+
+.case-slider__thumb {
+  flex: 0 0 auto;
+  width: 88px;
+  height: 50px;
+  padding: 0;
+  border: 0;
+  border-radius: 8px;
+  overflow: hidden;
+  cursor: pointer;
+  background: var(--surface);
+  opacity: 0.5;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.08);
+  transition: opacity 0.25s ease, box-shadow 0.25s ease;
+}
+.case-slider__thumb img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.case-slider__thumb:hover { opacity: 0.85; }
+.case-slider__thumb.is-active {
+  opacity: 1;
+  box-shadow: 0 0 0 2px var(--card-color, var(--gold));
+}
+
+@media (max-width: 760px) {
+  .case-slider__nav--thumbs { gap: 10px; }
+  .case-slider__nav--thumbs .case-slider__arrow { width: 36px; height: 36px; }
+  .case-slider__thumb { width: 68px; height: 39px; }
+}
+
 .case-slider__arrow:focus-visible,
-.case-slider__dot:focus-visible {
+.case-slider__dot:focus-visible,
+.case-slider__thumb:focus-visible {
   outline: 2px solid var(--gold);
   outline-offset: 3px;
 }
@@ -10292,7 +10369,16 @@ body.no-clients .clients-ticker-section {
 /* ═══════════════════════════════════════════════════════════════
    Before / After Comparison Slider
    ═══════════════════════════════════════════════════════════════ */
+/* Кадр 16:9 во всю ширину контейнера даёт 783px высоты, а под ним ещё лента
+   превью — на ноутбуке пара и её навигация вместе на экран уже не помещаются,
+   и, ткнув в превью, видишь низ фотографии вместо неё самой. Поэтому ширина
+   ограничена высотой окна: ~230px резервируем под шапку, ленту и отступы,
+   остальное раскладываем по 16:9. Нижняя граница в 700px — чтобы на совсем
+   низком окне блок не схлопнулся в марку. */
 .ba-wrap {
+  max-width: min(100%, max(700px, calc((100vh - 230px) * 16 / 9)));
+  margin-left: auto;
+  margin-right: auto;
   margin-bottom: var(--sp-16);
 }
 
