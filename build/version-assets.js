@@ -57,6 +57,7 @@ const ASSETS = [
   "js/gallery.min.js",
   "js/hero3d.min.js",
   "js/hero3d-video.min.js",
+  "js/spin360.min.js",
 ];
 
 function hashOf(relPath) {

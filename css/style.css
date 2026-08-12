@@ -7197,7 +7197,8 @@ body.no-clients .clients-ticker-section {
   font-weight: 500;
   letter-spacing: 0.10em;
   text-transform: uppercase;
-  color: rgba(255,255,255,0.38);
+  /* Было 0.38 — контраст 3.49 при норме 4.5 для мелкого текста */
+  color: rgba(255,255,255,0.58);
   text-decoration: none;
   transition: color 0.2s;
 }
@@ -7213,21 +7214,26 @@ body.no-clients .clients-ticker-section {
   flex-wrap: wrap;
 }
 
+/* Нижняя полоса футера. Здесь стояло rgba(255,255,255,0.22) — контраст 1.89,
+   то есть «Оферта» и «Политика конфиденциальности» на тёмном фоне физически
+   не читались. Это не декоративная подпись, а юридические документы, на
+   которые мы ссылаемся в cookie-уведомлении: они обязаны быть видимыми.
+   0.55 даёт ~6:1 на #141414, с запасом проходит AA. */
 .footer-lesse__copy {
   font-family: var(--font-ui);
   font-size: 12px;
-  color: rgba(255,255,255,0.22);
+  color: rgba(255,255,255,0.55);
 }
 
 .footer-lesse__legal-link {
   font-family: var(--font-ui);
   font-size: 12px;
-  color: rgba(255,255,255,0.22);
+  color: rgba(255,255,255,0.55);
   text-decoration: none;
   transition: color 0.2s;
 }
 
-.footer-lesse__legal-link:hover { color: rgba(255,255,255,0.55); }
+.footer-lesse__legal-link:hover { color: rgba(255,255,255,0.9); }
 
 @media (max-width: 1100px) {
   .footer-lesse__cols { grid-template-columns: repeat(3,1fr); }
@@ -7538,8 +7544,13 @@ body.no-clients .clients-ticker-section {
 [data-theme="light"] .footer-lesse__col a:hover {
   color: var(--text);
 }
+/* Фирменное золото #f6bd3a на светлом фоне футера даёт контраст 1.57:
+   заголовки колонок «ВИДЕО», «ДИЗАЙН», «ФОТО» просто выцветали. В светлой
+   теме берём затемнённый вариант того же оттенка — бренд читается, текст
+   тоже. Тёмную тему не трогаем, там золото на месте. */
 [data-theme="light"] .footer-lesse__col-title {
-  border-bottom-color: rgba(246, 189, 58, 0.20);
+  color: #8a6410;
+  border-bottom-color: rgba(246, 189, 58, 0.35);
 }
 [data-theme="light"] .footer-lesse__social-row {
   border-top-color: var(--line);
@@ -7550,14 +7561,16 @@ body.no-clients .clients-ticker-section {
 [data-theme="light"] .footer-lesse__social-row a:hover {
   color: var(--text);
 }
+/* --hint в светлой теме это #999: на белом даёт 2.85 при норме 4.5.
+   Для юридических ссылок берём собственный тон вместо токена-подсказки. */
 [data-theme="light"] .footer-lesse__copy {
-  color: var(--hint);
+  color: #6b6b6b;
 }
 [data-theme="light"] .footer-lesse__legal-link {
-  color: var(--hint);
+  color: #6b6b6b;
 }
 [data-theme="light"] .footer-lesse__legal-link:hover {
-  color: var(--muted);
+  color: var(--text);
 }
 [data-theme="light"] .site-header__platform {
   background: var(--gold);
@@ -9856,6 +9869,212 @@ body.no-clients .clients-ticker-section {
 @media (max-width: 560px) {
   .case-gallery,
   .case-gallery--portrait { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+}
+
+/* ─── «Кухня проекта» на странице кейса ────────────────────────────────────
+   Бенто под материалы производства: слева вертикальный кадр с площадки,
+   справа стопкой широкие скриншоты рабочих экранов. Кропать скриншот
+   интерфейса в портрет нельзя — от него остаётся полоса, поэтому колонки
+   живут с разными пропорциями, а не в общей сетке. Дети — обычные
+   .gallery-card (рамка + заголовок + текст). */
+.case-kitchen {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--sp-6);
+  align-items: start;
+}
+.case-kitchen__tall { grid-row: span 2; }
+/* Ряд из трёх одинаковых по пропорции кадров */
+.case-kitchen--trio { grid-template-columns: repeat(3, 1fr); }
+
+/* Ряд из двух ландшафтных кадров РАЗНОЙ пропорции: скриншот рабочего экрана
+   1600/847 и развёртка этикетки 1600/1252. Пополам такой ряд делить нельзя —
+   рамки выходят разной высоты (362 против 535 при 684px), подписи разъезжаются
+   и ряд читается кривым. Колонки заданы так, чтобы высоты рамок совпали:
+   W1 / 1.889 = W2 / 1.278  →  W1 / W2 = 1.478. */
+.case-kitchen--landscape { grid-template-columns: 1.478fr 1fr; }
+
+/* .media-frame.has-img снимает у метки position: absolute (она там живёт
+   внутри .media-frame__hover и всплывает по наведению). Здесь метка нужна
+   всегда, поэтому возвращаем её в угол и делаем читаемой поверх любого
+   кадра — светлого скриншота и тёмного бэкстейджа одинаково.
+
+   Селектор по ПРЯМОМУ потомку: метки внутри .media-frame__hover (паттерн
+   /photo/) остаются как были, правило ловит только метки, положенные прямо
+   в рамку. Раньше здесь стоял .case-kitchen — и метка отваливалась в центр,
+   стоило вынести карточку из сетки. */
+.media-frame.has-img > .media-frame-tag {
+  position: absolute;
+  top: var(--sp-4);
+  left: var(--sp-4);
+  z-index: 2;
+  color: #fff;
+  background: rgba(0, 0, 0, 0.58);
+  border-color: rgba(255, 255, 255, 0.24);
+  backdrop-filter: blur(6px);
+}
+
+/* ─── Листалка кадров внутри карточки (js/gallery.js, .js-slider) ─────────
+   Несколько кадров под одной подписью, видно всегда один — карточка занимает
+   столько же места, сколько с одним кадром. Прокрутка нативная: scroll-snap,
+   поэтому без JS листается свайпом, а стрелки и точки дорисовывает скрипт. */
+.case-slider { position: relative; }
+
+.case-slider__track {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  /* overflow-x: auto делает и вертикальную ось непрозрачной для выноса, а по
+     ховеру у рамки мягкая тень вниз. Поля только по вертикали: горизонтальные
+     сдвинули бы scrollLeft и первый кадр вставал бы не в начало. */
+  padding: 24px 0;
+  margin: -24px 0;
+}
+.case-slider__track::-webkit-scrollbar { display: none; }
+
+.case-slider__track > * {
+  flex: 0 0 100%;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+}
+
+/* Навигация лежит ПОВЕРХ кадра, а не под ним. Иначе карточка с листалкой выше
+   соседних на высоту этой панели, и в ряду разъезжаются подписи. Пилюля
+   собрана как .spin__hint и метка в углу — та же подложка и блюр. */
+.case-slider__nav {
+  position: absolute;
+  left: 50%;
+  bottom: var(--sp-4);
+  transform: translateX(-50%);
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 5px 9px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  background: rgba(0, 0, 0, 0.58);
+  backdrop-filter: blur(6px);
+}
+
+.case-slider__arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  padding: 0;
+  border-radius: 50%;
+  border: 0;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 14px;
+  line-height: 1;
+  cursor: pointer;
+  transition: color 0.25s ease, background 0.25s ease;
+}
+.case-slider__arrow:hover {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.16);
+}
+
+.case-slider__dots {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.case-slider__dot {
+  width: 7px;
+  height: 7px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.34);
+  cursor: pointer;
+  transition: background 0.25s ease, transform 0.25s ease;
+}
+.case-slider__dot.is-active {
+  background: #fff;
+  transform: scale(1.3);
+}
+
+.case-slider__arrow:focus-visible,
+.case-slider__dot:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+}
+
+/* Скриншоты интерфейса в вёрстке нечитаемы — открываются в лайтбоксе.
+   Селектор по самому кадру, а не по контейнеру: карточку не раз выносили из
+   .case-kitchen, и курсор молча терялся. */
+.js-lightbox-item { cursor: zoom-in; }
+
+/* ─── Вращение продукта по кадрам (js/spin360.js) ───────────────────────── */
+.js-spin { touch-action: pan-y; }              /* вертикальный скролл на телефоне не перехватываем */
+.js-spin.is-spinnable { cursor: grab; }
+.js-spin.is-dragging  { cursor: grabbing; }
+
+/* Кадр ложится поверх постера из <picture>: без JS остаётся обычная картинка */
+.spin__frame {
+  z-index: 1;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+/* Ховер-зум .media-frame__img здесь мешает — кадр должен стоять ровно */
+.js-spin:hover .media-frame__img,
+.gallery-card:hover .js-spin .media-frame__img { transform: none; }
+
+.spin__hint {
+  position: absolute;
+  left: 50%;
+  bottom: var(--sp-4);
+  transform: translateX(-50%);
+  z-index: 3;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  background: rgba(0, 0, 0, 0.58);
+  backdrop-filter: blur(6px);
+  color: #fff;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+.js-spin.is-spinnable .spin__hint { opacity: 1; }
+/* Один раз повернули — подсказка больше не нужна */
+.js-spin.has-spun .spin__hint { opacity: 0; }
+
+.js-spin:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .spin__hint { transition: none; }
+}
+
+@media (max-width: 760px) {
+  .case-kitchen,
+  .case-kitchen--trio,
+  .case-kitchen--landscape { grid-template-columns: 1fr; }
+  .case-kitchen__tall { grid-row: auto; }
+  /* min-height: 260px у .media-frame выигрывает у пропорции на узком экране:
+     широкий скриншот (1.89:1) получает высоту 260px вместо 181px и обрезается
+     по бокам через object-fit: cover — от интерфейса остаётся середина.
+     Здесь пропорция важнее минимальной высоты. */
+  .case-kitchen .media-frame,
+  .case-slider .media-frame { min-height: 0; }
 }
 
 /* ─── Lightbox ─── */

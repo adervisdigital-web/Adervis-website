@@ -5,6 +5,12 @@ assets/faq-*/PROMPTS.md
 # Исходные 4K/5K-рендеры мокапов Adervis CRM (~64 МБ) — в репо не нужны,
 # на сайт идут сжатые assets/cases/crm-laptop-3d*.webp и crm-phone-3d*.webp
 ADERVIS-CRM-banner/
+# Исходники от заказчика: RAW-фото, .obj-модели, печатные макеты, скриншоты
+# в полном разрешении. Одна папка SHABANI — 286 МБ, репо и так 375 МБ.
+# В git идут только сжатые версии из assets/cases/<кейс>/.
+# Структура и содержимое описаны в _source/README.md.
+_source/
+
 # Локальные разрешения Claude Code — у каждого свои.
 # .claude/skills/ и .agents/ наоборот коммитим: это общая настройка проекта.
 .claude/settings.local.json
