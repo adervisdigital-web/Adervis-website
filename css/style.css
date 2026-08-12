@@ -9914,6 +9914,33 @@ body.no-clients .clients-ticker-section {
   backdrop-filter: blur(6px);
 }
 
+/* ─── Пара роликов в кейсе (.case-videos) ─────────────────────────────────
+   Два плеера рядом под общим заголовком. Отдельная сетка, а не .case-kitchen:
+   там колонки заданы под карточки с рамками и подписями, здесь — под iframe
+   с жёсткой пропорцией 16:9. На ≤760px в одну колонку: два плеера рядом на
+   узком экране дают полоску, в которой ничего не видно. */
+.case-videos {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--sp-6);
+}
+
+.case-video__frame {
+  aspect-ratio: 16 / 9;
+  border-radius: 14px;
+  overflow: hidden;
+  background: var(--bg2);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.case-video h3 {
+  margin: 14px 0 0;
+}
+
+@media (max-width: 760px) {
+  .case-videos { grid-template-columns: 1fr; }
+}
+
 /* ─── Листалка кадров внутри карточки (js/gallery.js, .js-slider) ─────────
    Несколько кадров под одной подписью, видно всегда один — карточка занимает
    столько же места, сколько с одним кадром. Прокрутка нативная: scroll-snap,
