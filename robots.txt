@@ -1,4 +1,9 @@
 User-agent: *
 Allow: /
 
+# Рекламные метки не должны плодить дубли страниц в индексе Яндекса:
+# /video/?utm_source=vk и /video/ — это одна и та же страница.
+# Clean-param понимает только Яндекс, Google игнорирует строку молча.
+Clean-param: utm_source&utm_medium&utm_campaign&utm_term&utm_content&utm_referrer&yclid&ymclid&gclid&fbclid&_openstat&roistat&from&erid
+
 Sitemap: https://adervis.ru/sitemap.xml

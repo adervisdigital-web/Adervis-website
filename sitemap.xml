@@ -1,173 +1,180 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- Сгенерирован build/generate-sitemap.js — вручную не править:
+     правки перезапишутся при следующем `npm run build`.
+     URL берутся из canonical страниц, даты — из истории git. -->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-
-  <!-- Главная -->
   <url>
     <loc>https://adervis.ru/</loc>
-    <lastmod>2026-06-29</lastmod>
+    <lastmod>2026-09-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
-
-  <!-- Услуги -->
   <url>
-    <loc>https://adervis.ru/video/</loc>
-    <lastmod>2026-06-29</lastmod>
+    <loc>https://adervis.ru/ai/</loc>
+    <lastmod>2026-09-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://adervis.ru/design/</loc>
-    <lastmod>2026-06-29</lastmod>
+    <lastmod>2026-09-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://adervis.ru/photo/</loc>
-    <lastmod>2026-06-29</lastmod>
+    <lastmod>2026-09-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://adervis.ru/ai/</loc>
-    <lastmod>2026-06-29</lastmod>
+    <loc>https://adervis.ru/video/</loc>
+    <lastmod>2026-09-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
-
-  <!-- Портфолио -->
   <url>
     <loc>https://adervis.ru/cases/</loc>
-    <lastmod>2026-08-12</lastmod>
+    <lastmod>2026-09-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://adervis.ru/cases/brait/</loc>
-    <lastmod>2026-06-26</lastmod>
+    <loc>https://adervis.ru/pro/</loc>
+    <lastmod>2026-09-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://adervis.ru/cases/aratta/</loc>
+    <lastmod>2026-09-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://adervis.ru/cases/battle-of-robots/</loc>
-    <lastmod>2026-06-26</lastmod>
+    <lastmod>2026-09-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://adervis.ru/cases/toyota-supra-green-mamba/</loc>
-    <lastmod>2026-06-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://adervis.ru/cases/lukoil-ai/</loc>
-    <lastmod>2026-06-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://adervis.ru/cases/shabani-energy/</loc>
-    <lastmod>2026-08-12</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://adervis.ru/cases/stickbot/</loc>
-    <lastmod>2026-06-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://adervis.ru/cases/graphsil/</loc>
-    <lastmod>2026-06-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://adervis.ru/cases/injiniring/</loc>
-    <lastmod>2026-07-22</lastmod>
+    <loc>https://adervis.ru/cases/brait/</loc>
+    <lastmod>2026-09-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://adervis.ru/cases/express-import/</loc>
-    <lastmod>2026-07-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://adervis.ru/cases/mobilov/</loc>
-    <lastmod>2026-07-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://adervis.ru/cases/psp-sport/</loc>
-    <lastmod>2026-07-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://adervis.ru/cases/aratta/</loc>
-    <lastmod>2026-07-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://adervis.ru/cases/panorama/</loc>
-    <lastmod>2026-07-22</lastmod>
+    <lastmod>2026-09-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://adervis.ru/cases/felix/</loc>
-    <lastmod>2026-07-22</lastmod>
+    <lastmod>2026-09-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
-
-  <!-- Платформа -->
   <url>
-    <loc>https://adervis.ru/pro/</loc>
-    <lastmod>2026-06-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://adervis.ru/pro/smeta/</loc>
-    <lastmod>2026-07-26</lastmod>
+    <loc>https://adervis.ru/cases/graphsil/</loc>
+    <lastmod>2026-09-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
-
-  <!-- Прочее -->
   <url>
-    <loc>https://adervis.ru/careers/</loc>
-    <lastmod>2026-06-26</lastmod>
+    <loc>https://adervis.ru/cases/injiniring/</loc>
+    <lastmod>2026-09-10</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <priority>0.7</priority>
   </url>
-
+  <url>
+    <loc>https://adervis.ru/cases/lukoil-ai/</loc>
+    <lastmod>2026-09-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://adervis.ru/cases/mobilov/</loc>
+    <lastmod>2026-09-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://adervis.ru/cases/panorama/</loc>
+    <lastmod>2026-09-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://adervis.ru/cases/psp-sport/</loc>
+    <lastmod>2026-09-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
   <url>
     <loc>https://adervis.ru/cases/razdolye-neptune/</loc>
-    <lastmod>2026-07-22</lastmod>
+    <lastmod>2026-09-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://adervis.ru/cases/rockstar-cocktails/</loc>
-    <lastmod>2026-07-22</lastmod>
+    <lastmod>2026-09-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
-
-  <!-- Полезные материалы -->
   <url>
-    <loc>https://adervis.ru/guides/brief.html</loc>
-    <lastmod>2026-07-21</lastmod>
+    <loc>https://adervis.ru/cases/shabani-energy/</loc>
+    <lastmod>2026-09-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://adervis.ru/cases/stickbot/</loc>
+    <lastmod>2026-09-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://adervis.ru/cases/toyota-supra-green-mamba/</loc>
+    <lastmod>2026-09-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://adervis.ru/pro/smeta/</loc>
+    <lastmod>2026-09-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://adervis.ru/careers/</loc>
+    <lastmod>2026-09-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
-
+  <url>
+    <loc>https://adervis.ru/design/perm/</loc>
+    <lastmod>2026-09-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://adervis.ru/guides/brief.html</loc>
+    <lastmod>2026-08-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://adervis.ru/photo/perm/</loc>
+    <lastmod>2026-09-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://adervis.ru/video/perm/</loc>
+    <lastmod>2026-09-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
 </urlset>

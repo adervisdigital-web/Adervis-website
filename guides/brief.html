@@ -4,8 +4,8 @@
   <meta charset="utf-8">
   <script>if("scrollRestoration"in history)history.scrollRestoration="manual";!function(){var t=localStorage.getItem("adervis-theme");if(t)document.documentElement.setAttribute("data-theme",t);else if(window.matchMedia("(prefers-color-scheme:light)").matches)document.documentElement.setAttribute("data-theme","light")}()</script>
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Чек-лист брифа на продакшн — как поставить задачу и не переплатить | ADERVIS</title>
-  <meta name="description" content="Бесплатный чек-лист ADERVIS: как поставить задачу на видео, фото или дизайн, что прислать подрядчику, как считать бюджет и принимать работу — чтобы не переплатить и не переделывать.">
+  <title>Чек-лист брифа на продакшн — как поставить задачу | ADERVIS</title>
+  <meta name="description" content="Бесплатный чек-лист ADERVIS: как поставить задачу на видео, фото или дизайн, что прислать подрядчику и как считать бюджет — чтобы не переделывать.">
   <link rel="icon" type="image/svg+xml" href="../icon.svg">
   <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
   <link rel="shortcut icon" href="../favicon.ico">
@@ -21,10 +21,15 @@
   <meta property="og:image" content="https://adervis.ru/assets/og/og-home.jpg">
   <link rel="stylesheet" href="../css/style.min.css">
   <style>
-    .guide-wrap { max-width: 820px; margin: 0 auto; padding: 48px 24px 96px; }
+    /* 820px давали ~95 символов в строке — многовато для страницы, которую
+       читают подряд. 720px укладывают текст в комфортные ~78. */
+    .guide-wrap { max-width: 720px; margin: 0 auto; padding: 48px 24px 96px; }
     .guide-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 40px; gap: 16px; }
     .guide-top .brand img { width: 130px; height: auto; }
     .guide-kicker { color: var(--gold); font-weight: 600; font-size: 14px; letter-spacing: 0.02em; }
+    /* Золото на белом даёт 1.71:1 — в светлой теме берём затемнённый оттенок,
+       как это уже сделано для заголовков колонок футера в style.css */
+    [data-theme="light"] .guide-kicker { color: #8a6410; }
     .guide-wrap h1 { font-size: clamp(28px, 5vw, 44px); line-height: 1.08; margin: 8px 0 16px; }
     .guide-lead { color: var(--muted); font-size: 17px; line-height: 1.6; margin-bottom: 8px; }
     .guide-block { margin-top: 40px; padding-top: 28px; border-top: 1px solid var(--line); }

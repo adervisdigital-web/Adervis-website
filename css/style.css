@@ -41,7 +41,13 @@
   /* Текст */
   --text:  #fdfdfd;
   --muted: #9a9a9a;
-  --hint:  #5c5c5c;
+  /* Было #5c5c5c — 2.76:1 на карточках, ниже нормы WCAG AA (4.5:1) для
+     текста. Токеном покрашены в том числе подписи полей калькулятора, а их
+     нужно читать, чтобы заполнить форму. #8d8d8d даёт ровно 4.5:1 на самой
+     светлой поверхности тёмной темы (--bg-elevated #272727), на остальных —
+     с запасом. Разница с --muted стала меньше, но иерархию здесь держат
+     размер, капс и трекинг, а не одна лишь светлота. */
+  --hint:  #8d8d8d;
 
   /* Бренд / акцент — золото логотипа */
   --gold:      #f6bd3a;
@@ -86,6 +92,17 @@
   --radius-lg: 16px;
   --radius-xl: 24px;
 
+  /* Длина строки. Контейнер сайта — 1392px, и абзац во всю его ширину даёт
+     ~185 символов в строке при комфортных 65–75: на такой длине глаз теряет
+     начало следующей строки и текст читается заметно тяжелее.
+     Ставится на прозу внутри широких блоков (FAQ, карточки шагов, баннеры),
+     а не на всё подряд: заголовки и подписи в ограничении не нуждаются.
+     Значения подобраны замером, а не на глаз: единица ch равна ширине знака
+     «0», а строчная кириллица заметно уже, поэтому 68ch давали 84 реальных
+     символа. 58ch укладываются в целевые 70–72. */
+  --measure: 58ch;
+  --measure-tight: 50ch;
+
   /* Цвет фокус-кольца — золото даёт отличный контраст на тёмном фоне,
      но проваливает WCAG 1.4.11 (3:1) на светлом, поэтому вынесено в
      отдельный токен и переопределено под светлую тему ниже */
@@ -105,7 +122,9 @@
   /* Текст */
   --text:  #111111;
   --muted: #555555;
-  --hint:  #999999;
+  /* Светлый аналог правки выше: #999999 давал 2.85:1. #6a6a6a проходит
+     4.5:1 на самой тёмной поверхности светлой темы (--bg3 #eeeeee). */
+  --hint:  #6a6a6a;
 
   /* Структура */
   --glass:  rgba(255, 255, 255, 0.92);
@@ -681,11 +700,15 @@ a {
 .nav-mega__sub {
   font-family: var(--font-ui);
   font-size: 11px;
-  color: rgba(255, 255, 255, 0.35);
+  /* было 0.35 — подписи пунктов в выпадашке шапки давали 3.19:1 */
+  color: rgba(255, 255, 255, 0.68);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
+/* Светлая тема для .nav-mega__sub задаётся ниже, в общем блоке светлых
+   переопределений шапки — второе правило здесь только конфликтовало бы. */
 
 .nav-mega__count {
   font-family: var(--font-mono);
@@ -1236,7 +1259,8 @@ button.site-header__platform {
   font-size: 11px;
   font-weight: 400;
   letter-spacing: 0.10em;
-  color: rgba(255, 255, 255, 0.38);
+  /* было 0.38 — надпись над H1 давала 3.43:1 */
+  color: rgba(255, 255, 255, 0.66);
 }
 
 .hero-section .eyebrow::before {
@@ -2614,6 +2638,7 @@ button.site-header__platform {
   font-size: 14px;
   line-height: 1.5;
   margin: 0;
+  max-width: var(--measure);
 }
 
 /* Контактный CTA — premium card */
@@ -3086,6 +3111,7 @@ button.site-header__platform {
   font-size: 15px;
   color: var(--t2);
   line-height: 1.6;
+  max-width: var(--measure);
 }
 .career-status-banner strong { color: var(--t1); }
 .career-status-banner a { color: var(--gold); text-decoration: underline; }
@@ -3414,6 +3440,9 @@ button.site-header__platform {
   letter-spacing: 0.01em;
   line-height: 1.6;
   max-width: 32ch;
+  /* Цвет наследовался от рамки-плейсхолдера и давал 2.54:1 — подпись
+     объясняет, что здесь будет, и должна читаться */
+  color: var(--muted);
 }
 
 .media-frame-tag {
@@ -3938,6 +3967,7 @@ button.site-header__platform {
   font-size: 13px;
   color: var(--muted);
   line-height: 1.7;
+  max-width: var(--measure);
   padding-top: 10px;
   padding-left: 22px;
   margin: 0;
@@ -4172,14 +4202,21 @@ button.site-header__platform {
   border-color: rgba(246, 189, 58, 0.4);
 }
 
+/* Разделитель между вопросом и ответом висел на самом абзаце (border-top).
+   Ответ ограничен по ширине ради читаемости, и линия обрезалась бы вместе
+   с текстом — поэтому она переехала на открытый summary, которому и
+   принадлежит по смыслу: отделяет вопрос от ответа, а не текст от текста. */
+.faq-item[open] summary {
+  border-bottom: 1px solid var(--line);
+}
+
 .faq-item p {
   color: var(--muted);
   font-size: 14px;
   line-height: 1.6;
   margin: 0;
-  padding: 0 0 var(--sp-4);
-  border-top: 1px solid var(--line);
-  padding-top: var(--sp-4);
+  padding: var(--sp-4) 0;
+  max-width: var(--measure);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -4208,6 +4245,10 @@ button.site-header__platform {
   display: flex;
   flex-direction: column;
   gap: var(--sp-2);
+  /* Без min-width:0 грид-элемент не сжимается уже своего min-content, а у
+     нативного <select> min-content равен самой длинной опции («Съёмка
+     мероприятия» и т.п.). На 360px это выдавливало страницу вбок на 2px. */
+  min-width: 0;
 }
 
 .calc-field-label {
@@ -4228,6 +4269,10 @@ button.site-header__platform {
   padding: 12px 16px;
   cursor: pointer;
   transition: border-color 0.2s ease;
+  /* см. комментарий у .calc-field — селект обязан сжиматься по контейнеру,
+     а не по длине самой длинной опции */
+  width: 100%;
+  min-width: 0;
 }
 
 .calc-select:hover,
@@ -4416,6 +4461,14 @@ button.site-header__platform {
 
   .calc-progress-step:not(:last-child)::after {
     width: 16px;
+  }
+
+  /* Три шага с подписями («Параметры · Опции · Контакты») в одну строку на
+     360px не помещаются и выдавливали страницу вбок на 27px. Разрешаем
+     перенос: лучше две строки, чем горизонтальная прокрутка всей страницы. */
+  .calc-progress {
+    flex-wrap: wrap;
+    row-gap: var(--sp-2);
   }
 
   .calc-nav {
@@ -5509,10 +5562,24 @@ body.nav-open {
   white-space: nowrap;
 }
 
-.dir-m-item.c-video  { color: rgba(239, 68, 68, 0.52); }
-.dir-m-item.c-design { color: rgba(139, 92, 246, 0.52); }
-.dir-m-item.c-photo  { color: rgba(246, 189, 58, 0.52); }
-.dir-m-item.c-ai     { color: rgba(34, 197, 94, 0.52); }
+/* Прозрачность была 0.52 — цветные пункты бегущей строки давали 3.9:1 и
+   ниже. Это не декор, а названия услуг, их читают, поэтому берём цвет
+   направления в полную силу. Приглушённость даёт мелкий кегль и трекинг. */
+/* На тёмной подложке тикера (--bg2) насыщенные красный и фиолетовый сами по
+   себе тёмные: #ef4444 давал 3.64:1, #8b5cf6 — около 4.06:1. Берём осветлённые
+   тона тех же оттенков; золото и зелёный проходят и без правки. */
+.dir-m-item.c-video  { color: #ff9d9d; }
+.dir-m-item.c-design { color: #bda6ff; }
+.dir-m-item.c-photo  { color: #f6bd3a; }
+.dir-m-item.c-ai     { color: #22c55e; }
+
+/* На белом фоне те же цвета не дотягивают даже без прозрачности: красный
+   даёт 3.76:1, зелёный и золото ещё меньше. В светлой теме берём затемнённые
+   варианты тех же оттенков — тот же приём, что у золота в футере. */
+[data-theme="light"] .dir-m-item.c-video  { color: #c62828; }
+[data-theme="light"] .dir-m-item.c-design { color: #6d28d9; }
+[data-theme="light"] .dir-m-item.c-photo  { color: #8a6410; }
+[data-theme="light"] .dir-m-item.c-ai     { color: #15803d; }
 
 .dir-m-dot {
   color: rgba(255, 255, 255, 0.1);
@@ -5831,6 +5898,7 @@ body.has-custom-cursor *:not(input):not(textarea):not(select):not([contenteditab
   font-size: 15px;
   line-height: 1.7;
   margin: 0 0 var(--sp-3);
+  max-width: var(--measure);
 }
 
 .ai-case-result {
@@ -6704,6 +6772,16 @@ body.no-clients .clients-ticker-section {
   position: relative;
   overflow: hidden;
   margin: 0;
+  /* Блок задуман тёмным (белый заголовок, затемняющий .dpb-shade), но своего
+     фона не имел. В светлой теме сквозь него просвечивала белая страница, а
+     .dpb-mid с mix-blend-mode: screen поверх белого выбеливается полностью —
+     белый текст становился нечитаемым (1.36:1). Собственный тёмный фон
+     делает блок одинаковым в обеих темах.
+     isolation: isolate обязателен: без него mix-blend-mode у .dpb-mid
+     смешивается не с фоном блока, а со всем, что под ним на странице, и в
+     светлой теме режим screen выбеливал блок поверх собственного фона. */
+  background: #0a0210;
+  isolation: isolate;
 }
 
 .dpb-bg {
@@ -6731,10 +6809,33 @@ body.no-clients .clients-ticker-section {
   will-change: transform;
 }
 
+/* .dpb-shade затемняет фон, но .dpb-mid светится ПОВЕРХ него (mix-blend-mode:
+   screen плюс brightness 4.5), и светлые всполохи попадают ровно под текст
+   левой колонки. Контраст там «плавал» вместе с анимацией и в худшей фазе
+   падал до 3.77:1. Эта подложка идёт последней в потоке, то есть рисуется
+   над .dpb-mid, но под .dpb-grid (z-index 3), и гасит свет только слева —
+   правая часть с макетом остаётся яркой. */
+.design-promo-block::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  /* Строго выше .dpb-mid (z-index 2) и ниже .dpb-grid (поднят до 4):
+     на одинаковом z-index порядок зависел от режима смешивания и был
+     ненадёжным. */
+  z-index: 3;
+  pointer-events: none;
+  background: linear-gradient(
+    to right,
+    rgba(4, 2, 12, 0.74) 0%,
+    rgba(4, 2, 12, 0.5) 34%,
+    rgba(4, 2, 12, 0) 58%
+  );
+}
+
 /* Двухколоночная сетка: 38% текст / 62% макет */
 .dpb-grid {
   position: relative;
-  z-index: 3;
+  z-index: 4;
   display: grid;
   grid-template-columns: 38% 62%;
   align-items: center;
@@ -6756,7 +6857,9 @@ body.no-clients .clients-ticker-section {
 .dpb-accent { color: var(--c-design); }
 
 .dpb-desc {
-  color: rgba(255, 255, 255, 0.58);
+  /* было 0.58 — на светлом фоне подпись выцветала; 0.78 читается и всё ещё
+     отступает на шаг от белого заголовка */
+  color: rgba(255, 255, 255, 0.78);
   font-size: 16px;
   line-height: 1.65;
   max-width: 380px;
@@ -7162,6 +7265,19 @@ body.no-clients .clients-ticker-section {
   padding-left: 4px;
 }
 
+/* На телефоне ссылки футера были высотой 20px — в них тяжело попасть пальцем
+   (рекомендуемый минимум тач-цели 44px). Добавляем вертикальные отступы и
+   съедаем их отрицательным margin у колонки, чтобы визуальный ритм списка
+   не разъехался: кликабельная зона растёт, картинка остаётся прежней. */
+@media (max-width: 860px) {
+  .footer-lesse__col a {
+    padding-block: 12px;
+  }
+  .footer-lesse__col {
+    margin-block: -12px;
+  }
+}
+
 /* Гигантский wordmark */
 .footer-lesse__brand-block {
   position: relative;
@@ -7552,6 +7668,13 @@ body.no-clients .clients-ticker-section {
   color: #8a6410;
   border-bottom-color: rgba(246, 189, 58, 0.35);
 }
+
+/* Та же история, что строкой выше, ещё в двух местах: золотая ссылка на
+   Политику конфиденциальности в cookie-баннере давала на белом 1.71:1 —
+   ссылку, которой подтверждают согласие, должно быть видно. */
+[data-theme="light"] .cookie-banner__text a {
+  color: #8a6410;
+}
 [data-theme="light"] .footer-lesse__social-row {
   border-top-color: var(--line);
 }
@@ -7592,7 +7715,8 @@ body.no-clients .clients-ticker-section {
   color: rgba(0, 0, 0, 0.85);
 }
 [data-theme="light"] .nav-mega__sub {
-  color: rgba(0, 0, 0, 0.38);
+  /* было 0.38 — на светлой подложке выпадашки это 2.68:1 */
+  color: rgba(0, 0, 0, 0.62);
 }
 [data-theme="light"] .nav-mega__icon {
   background: rgba(0, 0, 0, 0.04);
@@ -8382,6 +8506,7 @@ body.no-clients .clients-ticker-section {
   color: var(--muted);
   line-height: 1.65;
   margin: 0;
+  max-width: var(--measure);
 }
 
 @media (max-width: 600px) {

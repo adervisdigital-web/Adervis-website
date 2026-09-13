@@ -50,6 +50,10 @@ const PAGES = [
   "pro/smeta/index.html",
   "edu/index.html",
   "docs/index.html",
+  // Гео-страницы под локальные запросы («видеопродакшн в Перми» и т.п.)
+  "video/perm/index.html",
+  "photo/perm/index.html",
+  "design/perm/index.html",
 ];
 
 function escapeRe(s) {

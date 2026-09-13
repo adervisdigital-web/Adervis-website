@@ -5,7 +5,7 @@
   <script>if("scrollRestoration"in history)history.scrollRestoration="manual";!function(){var t=localStorage.getItem("adervis-theme");if(t)document.documentElement.setAttribute("data-theme",t);else if(window.matchMedia("(prefers-color-scheme:light)").matches)document.documentElement.setAttribute("data-theme","light")}()</script>
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>EXPRESS-IMPORT — фирменный стиль и сайт | Кейс ADERVIS</title>
-  <meta name="description" content="Кейс ADERVIS: комплексный бренд для EXPRESS-IMPORT — поставщика промышленного оборудования. Логотип, брендбук, сайт, фотосессия сотрудников, спортивная форма, фирменная документация.">
+  <meta name="description" content="Кейс ADERVIS: комплексный бренд для EXPRESS-IMPORT — поставщика промышленного оборудования. Логотип, брендбук, сайт, фотосессия сотрудников, документация.">
   <!-- Шрифты self-hosted: @font-face в css/style.css, woff2 в /fonts -->
   <link rel="icon" type="image/svg+xml" href="../../icon.svg">
   <link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32x32.png">
@@ -23,7 +23,7 @@
   <meta property="og:description" content="Комплексный бренд для EXPRESS-IMPORT: логотип, брендбук, сайт, фотосессия сотрудников, спортивная форма, фирменная документация.">
   <meta property="og:image" content="https://adervis.ru/cases/express-import/1express-import.jpg">
   <meta name="twitter:card" content="summary_large_image">
-  <link rel="stylesheet" href="../../css/style.min.css?v=c753c30f">
+  <link rel="stylesheet" href="../../css/style.min.css?v=c933f0ac">
   <style>
     /* ── Behance-style project page ── */
     .bh-page {
@@ -95,7 +95,7 @@
       font-size: 10px;
       letter-spacing: 0.1em;
       text-transform: uppercase;
-      color: rgba(255,255,255,0.25);
+      color: rgba(255,255,255,0.62);
     }
     .bh-meta-value {
       font-size: 14px;
@@ -288,7 +288,7 @@
       </div>
 
       <a href="/cases/" class="pill-nav__link">Кейсы</a>
-      <a href="/careers" class="pill-nav__link">Вакансии</a>
+      <a href="/careers/" class="pill-nav__link">Вакансии</a>
       <!-- Adervis Platform — видна только в мобильном меню, на десктопе скрыта -->
       <a href="/#platform" class="pill-nav__link pill-nav__link--platform-mobile">Adervis Platform</a>
 
@@ -329,7 +329,7 @@
           <svg class="pill-nav__arrow" width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 3.5l3 3 3-3"/></svg>
         </button>
         <div class="nav-mega nav-mega--right" id="megaPlatform" role="menu">
-          <a href="/pro" class="nav-mega__item" role="menuitem" style="--acc:var(--gold)">
+          <a href="/pro/" class="nav-mega__item" role="menuitem" style="--acc:var(--gold)">
             <span class="nav-mega__icon" style="color:var(--acc)">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
             </span>
@@ -698,6 +698,7 @@
         <a href="/video/">Event-съёмка</a>
         <a href="/video/">Шоурилы</a>
         <a href="/video/">Клипы и reels</a>
+        <a href="/video/perm/">Видеопродакшн в Перми</a>
       </nav>
 
       <nav class="footer-lesse__col" aria-labelledby="footer-col-design">
@@ -706,6 +707,7 @@
         <a href="/design/">Фирменный стиль</a>
         <a href="/design/">Полиграфия</a>
         <a href="/design/">Моушн-графика</a>
+        <a href="/design/perm/">Фирменный стиль в Перми</a>
       </nav>
 
       <nav class="footer-lesse__col" aria-labelledby="footer-col-photo">
@@ -714,6 +716,7 @@
         <a href="/photo/">Предметная съёмка</a>
         <a href="/photo/">Event-фото</a>
         <a href="/photo/">Портреты команды</a>
+        <a href="/photo/perm/">Фотосъёмка в Перми</a>
       </nav>
 
       <nav class="footer-lesse__col" aria-labelledby="footer-col-ai">
@@ -726,10 +729,13 @@
 
       <nav class="footer-lesse__col" aria-labelledby="footer-col-studio">
         <span class="footer-lesse__col-title" id="footer-col-studio">Студия</span>
-        <a href="/pro">Adervis CRM</a>
-        <a href="/careers">Вакансии</a>
-        <a href="/docs#docs-offer">Оферта</a>
-        <a href="/docs#docs-privacy">Политика конфиденциальности</a>
+        <a href="/pro/">Adervis CRM</a>
+        <a href="/pro/smeta/">Калькулятор стоимости</a>
+        <a href="/cases/">Портфолио</a>
+        <a href="/guides/brief.html">Чек-лист брифа</a>
+        <a href="/careers/">Вакансии</a>
+        <a href="/docs/#docs-offer">Оферта</a>
+        <a href="/docs/#docs-privacy">Политика конфиденциальности</a>
       </nav>
 
     </div>
@@ -745,8 +751,8 @@
     </div>
     <div class="footer-lesse__legal-row">
       <span class="footer-lesse__copy">© 2026 Adervis Digital</span>
-      <a href="/docs#docs-offer" class="footer-lesse__legal-link">Оферта</a>
-      <a href="/docs#docs-privacy" class="footer-lesse__legal-link">Политика конфиденциальности</a>
+      <a href="/docs/#docs-offer" class="footer-lesse__legal-link">Оферта</a>
+      <a href="/docs/#docs-privacy" class="footer-lesse__legal-link">Политика конфиденциальности</a>
       <span class="footer-lesse__copy">Сайт использует cookie и Яндекс.Метрику для аналитики</span>
     </div>
   </div>
@@ -761,12 +767,12 @@
 
 <div class="cookie-banner" id="cookieBanner" role="dialog" aria-label="Уведомление об использовании cookie" hidden>
   <p class="cookie-banner__text">
-    Сайт использует файлы cookie и сервис веб-аналитики «Яндекс.Метрика». Они помогают понимать, как посетители пользуются сайтом и какая реклама приводит заявки. Продолжая пользоваться сайтом, вы соглашаетесь с этим. Подробности — в <a href="/docs#docs-privacy">Политике конфиденциальности</a>.
+    Сайт использует файлы cookie и сервис веб-аналитики «Яндекс.Метрика». Они помогают понимать, как посетители пользуются сайтом и какая реклама приводит заявки. Продолжая пользоваться сайтом, вы соглашаетесь с этим. Подробности — в <a href="/docs/#docs-privacy">Политике конфиденциальности</a>.
   </p>
   <button type="button" class="cookie-banner__accept" id="cookieBannerAccept">Принимаю</button>
 </div>
 <!-- END:footer-placeholder --></div>
 
-  <script src="../../js/app.min.js?v=5cd3c619"></script>
+  <script src="../../js/app.min.js?v=4258308c"></script>
 </body>
 </html>

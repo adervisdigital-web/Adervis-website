@@ -918,7 +918,7 @@ function initVideoCalculator() {
       sb.innerHTML = 'Отправляем...';
       sendTelegramMessage(lines,
         () => {
-          sb.innerHTML = '✓ Заявка принята — пришлём КП за 48 часов';
+          sb.innerHTML = '✓ Заявка принята — пришлём КП';
           setTimeout(() => { sb.innerHTML = origHTML; sb.disabled = false; form.reset(); showStep(1); }, 6000);
         },
         () => { sb.innerHTML = origHTML; sb.disabled = false; leadErrorToast(); },
@@ -1024,7 +1024,7 @@ function initSimpleCalculator(formId, tgPrefix) {
       sb.innerHTML = 'Отправляем...';
       sendTelegramMessage(lines,
         () => {
-          sb.innerHTML = '✓ Заявка принята — пришлём КП за 48 часов';
+          sb.innerHTML = '✓ Заявка принята — пришлём КП';
           setTimeout(() => { sb.innerHTML = orig; sb.disabled = false; form.reset(); showStep(1); }, 6000);
         },
         () => { sb.innerHTML = orig; sb.disabled = false; leadErrorToast(); },
