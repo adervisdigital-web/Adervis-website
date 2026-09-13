@@ -55,8 +55,22 @@ function walk(dir, out = []) {
   return out;
 }
 
-function gitDate(file) {
+const TODAY = new Date().toISOString().slice(0, 10);
+
+// Дата последнего изменения страницы.
+//
+// Тонкость, из-за которой первая версия всегда отставала ровно на одну
+// выкатку: сборка запускается ДО коммита, поэтому `git log -1` отдаёт дату
+// предыдущего коммита, а не тех правок, которые прямо сейчас уходят в прод.
+// Поэтому сначала смотрим рабочее дерево: если файл изменён или ещё не под
+// версионным контролем — правки свежие, ставим сегодня.
+function lastModified(file) {
   try {
+    const dirty = execFileSync("git", ["status", "--porcelain", "--", file], {
+      cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "ignore"],
+    }).trim();
+    if (dirty) return TODAY;
+
     const out = execFileSync("git", ["log", "-1", "--format=%cs", "--", file], {
       cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "ignore"],
     }).trim();
@@ -91,7 +105,7 @@ for (const file of walk(ROOT)) {
   }
 
   const urlPath = loc.slice(ORIGIN.length) || "/";
-  entries.push({ loc, urlPath, lastmod: gitDate(file), ...weightFor(urlPath) });
+  entries.push({ loc, urlPath, lastmod: lastModified(file), ...weightFor(urlPath) });
 }
 
 // Сортировка: сначала по весу (важное выше), внутри веса — по алфавиту.
