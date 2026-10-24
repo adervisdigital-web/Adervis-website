@@ -85,8 +85,20 @@ function initContactGoals() {
   }, true);
 }
 
+// Копия заявки в Hub ADERVIS (рабочая программа студии): там она сразу
+// становится лидом в воронке. Отправка «на всякий случай» — успех формы
+// по-прежнему определяет Telegram-воркер, Hub на него не влияет.
+var HUB_LEAD_ENDPOINT = 'https://mlsmybtspqqpsvbukbcj.supabase.co/functions/v1/site-lead';
+function sendHubLead(fullText) {
+  try {
+    fetch(HUB_LEAD_ENDPOINT, { method: 'POST', keepalive: true, headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ text: fullText }) })
+      .catch(function () {});
+  } catch (e) {}
+}
+
 function sendTelegramMessage(text, onSuccess, onError, goalName) {
   var fullText = text + '\n\n' + leadSourceText();
+  sendHubLead(fullText);
   fetch(LEAD_ENDPOINT, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
