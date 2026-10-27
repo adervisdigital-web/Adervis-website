@@ -311,7 +311,7 @@
   .pricing-grid { grid-template-columns: 1fr; }
 }
 
-/* Встроенный калькулятор сметы (/pro/smeta/) — iframe на app.adervis.ru?calc=1.
+/* Встроенный калькулятор сметы (/pro/smeta/) — iframe на crm.adervis.ru?calc=1.
    Высоту iframe диктует сама встроенная страница через postMessage (см. скрипт
    в pro/smeta/index.html) — здесь только рамка и стартовая высота до первого
    сообщения, чтобы не было пустого проёма/прыжка макета при загрузке. */

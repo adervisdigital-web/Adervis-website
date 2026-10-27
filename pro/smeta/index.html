@@ -28,10 +28,10 @@
   <meta name="twitter:image" content="https://adervis.ru/assets/og/og-pro.jpg">
   <link rel="stylesheet" href="../../css/style.min.css?v=c933f0ac">
   <link rel="stylesheet" href="../../css/pro.min.css?v=7e42cce3">
-  <!-- Заранее договариваемся с браузером о соединении с калькулятором (app.adervis.ru) —
+  <!-- Заранее договариваемся с браузером о соединении с калькулятором (crm.adervis.ru) —
        он встраивается ниже в iframe, и без preconnect первый рендер iframe ждёт
        полный DNS+TLS handshake после того, как браузер вообще узнает о домене. -->
-  <link rel="preconnect" href="https://app.adervis.ru">
+  <link rel="preconnect" href="https://crm.adervis.ru">
   <script type="application/ld+json">
   {
   "@context": "https://schema.org",
@@ -500,7 +500,7 @@
         </div>
         <div class="hero-buttons" style="justify-content:center;margin-top:var(--sp-10)">
           <a href="/pro/" class="btn crm">Подробнее про Adervis CRM</a>
-          <a href="https://app.adervis.ru" class="btn" target="_blank" rel="noopener">Открыть CRM</a>
+          <a href="https://crm.adervis.ru" class="btn" target="_blank" rel="noopener">Открыть CRM</a>
         </div>
       </div>
     </section>
@@ -730,7 +730,7 @@
 
   <script src="../../js/app.min.js?v=13e4420a"></script>
   <script>
-    // Синхронизация высоты встроенного калькулятора: app.adervis.ru шлёт свою
+    // Синхронизация высоты встроенного калькулятора: crm.adervis.ru шлёт свою
     // scrollHeight через postMessage (см. _calcPostHeight() в app.js калькулятора),
     // чтобы внутри iframe не было второго скролла поверх скролла страницы —
     // самое неприятное, что может быть у встроенного виджета на телефоне.
@@ -751,18 +751,18 @@
       // выключен, сервер каталог не отдаёт и страница честно скажет, что расчёт
       // недоступен, — вместо того чтобы молча показать чужие цены.
       var agencyId = '47880b74-de7b-4ef5-8fcf-5e9ae7497edc';
-      frame.src = 'https://app.adervis.ru/?calc=1&a=' + agencyId + '&theme=' + hostTheme;
+      frame.src = 'https://crm.adervis.ru/?calc=1&a=' + agencyId + '&theme=' + hostTheme;
 
       // Живое переключение темы сайта (кнопка в шапке) — пересылаем в уже
       // загруженный iframe через свой canal, а не перезагрузкой src.
       document.addEventListener('adervis:theme-change', function (e) {
         var theme = e.detail && e.detail.theme;
         if (theme !== 'light' && theme !== 'dark') return;
-        frame.contentWindow.postMessage({ type: 'adervis-set-theme', theme: theme }, 'https://app.adervis.ru');
+        frame.contentWindow.postMessage({ type: 'adervis-set-theme', theme: theme }, 'https://crm.adervis.ru');
       });
 
       window.addEventListener('message', function (e) {
-        if (e.origin !== 'https://app.adervis.ru') return;
+        if (e.origin !== 'https://crm.adervis.ru') return;
         var data = e.data;
         if (!data) return;
 
@@ -788,7 +788,7 @@
           var reply = function (ok) {
             frame.contentWindow.postMessage(
               { type: 'adervis-calc-lead-result', id: data.id, ok: ok },
-              'https://app.adervis.ru'
+              'https://crm.adervis.ru'
             );
           };
           if (typeof sendTelegramMessage !== 'function') { reply(false); return; }
