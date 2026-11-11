@@ -43,6 +43,7 @@ const PAGES = [
   "cases/felix/index.html",
   "cases/lukoil-ai/index.html",
   "cases/shabani-energy/index.html",
+  "cases/zagadkino/index.html",
   "cases/stickbot/index.html",
   "cases/toyota-supra-green-mamba/index.html",
   "careers/index.html",

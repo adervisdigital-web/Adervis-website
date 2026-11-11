@@ -18,7 +18,7 @@ const { minify: minifyJs } = require("terser");
 
 const ROOT = path.join(__dirname, "..");
 
-const CSS_FILES = ["css/style.css", "css/home.css", "css/pro.css"];
+const CSS_FILES = ["css/style.css", "css/home.css", "css/pro.css", "css/case-zagadkino.css"];
 const JS_FILES = ["js/app.js", "js/gallery.js", "js/hero3d.js", "js/hero3d-video.js", "js/spin360.js"];
 
 async function minifyCss(rel) {
