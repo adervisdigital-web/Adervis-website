@@ -148,7 +148,7 @@
 /* ── Персонажи ─────────────────────────────────────────────────────────── */
 .zg-family .zg-card { text-align: left; }
 .zg-family__pic { height: 300px; display: flex; align-items: flex-end; justify-content: center; margin-bottom: 18px; }
-.zg-family__pic img { max-height: 100%; max-width: 100%; transition: transform .5s var(--zg-spring); }
+.zg-family__pic img { width: auto; height: auto; max-height: 100%; max-width: 100%; object-fit: contain; transition: transform .5s var(--zg-spring); }
 .zg-family .zg-card:hover .zg-family__pic img { transform: translateY(-8px) rotate(-2deg); }
 .zg-family h3 { color: var(--zg-ink); font-size: 22px; }
 .zg-role { font: 700 12px/1 var(--font-ui); letter-spacing: .1em; text-transform: uppercase; color: var(--zg-honey-dark); margin-bottom: 10px; }
@@ -223,6 +223,18 @@
 .zg-photos__side { display: grid; grid-template-rows: repeat(3, 1fr); gap: 14px; }
 .zg-photos__side figure { background: #fff; border-radius: 20px; padding: 12px; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; }
 .zg-photos__side img { max-height: 150px; width: auto; max-width: 100%; }
+
+
+/* иконки карточек идеи */
+.zg-ico { display: inline-flex; width: 56px; height: 56px; border-radius: 16px; background: #FFF1D6; align-items: center; justify-content: center; margin-bottom: 14px; }
+.zg-ico svg { width: 36px; height: 36px; }
+
+/* предметка v2: наборы крупно в ряд, головоломки под ними */
+.zg-sets { display: grid; grid-template-columns: .72fr 1fr 1fr; gap: 20px; align-items: end; margin-bottom: 28px; }
+.zg-sets figure { background: #fff; border-radius: 20px; padding: 20px 16px 16px; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; height: 100%; }
+.zg-sets img { width: 100%; height: auto; max-height: 360px; object-fit: contain; }
+.zg-puzzles img { width: 100%; height: auto; display: block; max-width: 1100px; margin: 0 auto; }
+@media (max-width: 760px) { .zg-sets { grid-template-columns: minmax(0, 1fr); } .zg-sets img { max-height: 300px; } }
 
 /* ── Видео ─────────────────────────────────────────────────────────────── */
 .zg-video { display: grid; grid-template-columns: 1fr 1.4fr; gap: 40px; align-items: start; }
