@@ -414,6 +414,10 @@
 .zg .zg-end .btn:not(.primary):hover { background: #FFFBF3; border-color: var(--zg-brown); }
 .zg .zg-end .btn:focus-visible { outline: 3px solid var(--zg-ink); outline-offset: 3px; }
 /* === /сетка === */
+/* === фото у «Как снимали» === */
+.zg-bts__photo { margin: clamp(18px, 2.4vw, 28px) 0 0; max-width: 360px; transform: rotate(-1.5deg); }
+.zg-bts__photo img { display: block; width: 100%; height: auto; border-radius: 16px; border: 4px solid #FFF4E1; box-shadow: 0 18px 40px rgba(0, 0, 0, .4); }
+/* === /фото === */
 @media (prefers-reduced-motion: reduce) {
   .zg *, .zg *::before, .zg *::after { animation: none !important; transition: none !important; }
   .zg .zg-colors .zg-chip { opacity: 1 !important; transform: none !important; }
