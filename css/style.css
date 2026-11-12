@@ -7117,7 +7117,8 @@ body.no-clients .clients-ticker-section {
   pointer-events: none;
 }
 
-.dp-case:hover .dp-case__overlay { opacity: 1; }
+.dp-case:hover .dp-case__overlay,
+.dp-case:focus-visible .dp-case__overlay { opacity: 1; }
 
 .dp-case__client {
   font-size: 15px;
