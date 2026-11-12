@@ -247,7 +247,7 @@ function initQuiz() {
   const stepNum  = document.getElementById('quizStepNum');
   const answers  = {};
   let current    = 1;
-  const TOTAL    = 3;
+  const TOTAL    = 4;
 
   function goTo(n) {
     card.querySelectorAll('.quiz-step').forEach(s => s.classList.remove('is-active'));
@@ -304,8 +304,9 @@ function initQuiz() {
     submitBtn.addEventListener('click', () => {
       const name    = (quizNameInput?.value || '').trim();
       const contact = (quizContactInput?.value || '').trim();
-      if (!name && !contact) {
-        if (quizContactInput) showFieldError(quizContactInput, 'Укажите имя и контакт для связи');
+      // Без контакта заявку не обработать — контакт обязателен, имя желательно
+      if (!contact) {
+        if (quizContactInput) showFieldError(quizContactInput, 'Укажите телефон, e-mail или Telegram, чтобы мы ответили');
         quizContactInput?.focus();
         return;
       }
@@ -418,6 +419,13 @@ function openModal(direction, trigger) {
 
   // Фокус на первый настоящий инпут после анимации (не на honeypot-поле website)
   setTimeout(() => {
+    const coarse = window.matchMedia && window.matchMedia('(pointer: coarse)').matches;
+    const title = document.getElementById('modalTitle');
+    if (coarse && title) {
+      title.setAttribute('tabindex', '-1');
+      title.focus({ preventScroll: true });
+      return;
+    }
     const first = modal.querySelector('input[name="name"]');
     if (first) first.focus();
   }, 300);
@@ -679,6 +687,8 @@ function initMobileNav(headerRoot) {
     nav.classList.toggle("is-open", open);
     nav.inert = isMobile() && !open;
     setRestOfPageInert(isMobile() && open);
+    // логотип и переключатель темы закрыты панелью меню — убираем их из таб-порядка
+    headerRoot.querySelectorAll(".site-header__logo, #themeToggle").forEach(el => { el.inert = isMobile() && open; });
     backdrop.classList.toggle("is-visible", open);
     document.body.classList.toggle("nav-open", open);
     if (!open) {
@@ -778,6 +788,8 @@ function initCookieBanner(footerRoot) {
   accept.addEventListener("click", () => {
     localStorage.setItem(STORAGE_KEY, "accepted");
     banner.hidden = true;
+    const main = document.getElementById("main-content");
+    if (main) { if (!main.hasAttribute("tabindex")) main.setAttribute("tabindex", "-1"); main.focus({ preventScroll: true }); }
   });
 }
 
@@ -902,10 +914,18 @@ function initVideoCalculator() {
       return;
     }
 
-    const name = form.querySelector('[name="leadName"]').value.trim();
-    const contact = form.querySelector('[name="leadContact"]').value.trim();
+    const nameEl = form.querySelector('[name="leadName"]');
+    const contactEl = form.querySelector('[name="leadContact"]');
+    const name = nameEl.value.trim();
+    const contact = contactEl.value.trim();
     const deadline = form.querySelector('[name="leadDeadline"]').value.trim();
-    if (!name || !contact) return;
+    if (!name || !contact) {
+      if (!name) showFieldError(nameEl, 'Укажите имя');
+      if (!contact) showFieldError(contactEl, 'Укажите телефон, e-mail или Telegram');
+      [nameEl, contactEl].forEach(el => el.addEventListener('input', () => clearFieldError(el), { once: true }));
+      (!name ? nameEl : contactEl).focus();
+      return;
+    }
 
     const extras = Array.from(checkboxes)
       .filter(box => box.checked)
@@ -1011,10 +1031,18 @@ function initSimpleCalculator(formId, tgPrefix) {
       return;
     }
 
-    const name = form.querySelector('[name="leadName"]').value.trim();
-    const contact = form.querySelector('[name="leadContact"]').value.trim();
+    const nameEl = form.querySelector('[name="leadName"]');
+    const contactEl = form.querySelector('[name="leadContact"]');
+    const name = nameEl.value.trim();
+    const contact = contactEl.value.trim();
     const deadline = form.querySelector('[name="leadDeadline"]').value.trim();
-    if (!name || !contact) return;
+    if (!name || !contact) {
+      if (!name) showFieldError(nameEl, 'Укажите имя');
+      if (!contact) showFieldError(contactEl, 'Укажите телефон, e-mail или Telegram');
+      [nameEl, contactEl].forEach(el => el.addEventListener('input', () => clearFieldError(el), { once: true }));
+      (!name ? nameEl : contactEl).focus();
+      return;
+    }
     const extras = Array.from(checkboxes)
       .filter(box => box.checked)
       .map(box => box.parentElement.querySelector("span").textContent.trim());
@@ -1351,11 +1379,14 @@ function initTickerDrag(footerRoot) {
   });
 
   // --- touch ---
+  let touchStartY = 0, touchAxis = null;
   ticker.addEventListener("touchstart", (e) => {
     if (rafId) { cancelAnimationFrame(rafId); rafId = null; }
     freeze();
     isDragging = true;
     startX = lastX = e.touches[0].clientX;
+    touchStartY = e.touches[0].clientY;
+    touchAxis = null;
     startPos = currentPos;
     lastTime = performance.now();
     velocity = 0;
@@ -1363,6 +1394,19 @@ function initTickerDrag(footerRoot) {
 
   ticker.addEventListener("touchmove", (e) => {
     if (!isDragging) return;
+    // Направление жеста решаем по первым пикселям: вертикальный — отдаём странице
+    if (!touchAxis) {
+      const ddx = Math.abs(e.touches[0].clientX - startX);
+      const ddy = Math.abs(e.touches[0].clientY - touchStartY);
+      if (ddx < 6 && ddy < 6) return;
+      touchAxis = ddx > ddy ? "x" : "y";
+      if (touchAxis === "y") {
+        isDragging = false;
+        velocity = 0;
+        rafId = requestAnimationFrame(glide);
+        return;
+      }
+    }
     e.preventDefault();
     const now = performance.now();
     const dt = now - lastTime || 16;
@@ -1385,15 +1429,24 @@ function initTickerDrag(footerRoot) {
 // заявку письмом, без бэкенда — та же схема, что у калькулятора /video
 let fieldErrorCounter = 0;
 
-function showFieldError(input, msg) {
-  input.classList.add('is-error');
-  let err = input.parentElement.querySelector('.field-error');
-  if (!err) {
+function fieldErrorEl(input, create) {
+  const host = input.parentElement;
+  const inLabel = host.tagName === 'LABEL';
+  let err = inLabel
+    ? (host.nextElementSibling && host.nextElementSibling.classList.contains('field-error') ? host.nextElementSibling : null)
+    : host.querySelector('.field-error');
+  if (!err && create) {
     err = document.createElement('span');
     err.className = 'field-error';
     err.id = 'field-error-' + (++fieldErrorCounter);
-    input.parentElement.appendChild(err);
+    if (inLabel) host.after(err); else host.appendChild(err);
   }
+  return err;
+}
+
+function showFieldError(input, msg) {
+  input.classList.add('is-error');
+  const err = fieldErrorEl(input, true);
   err.textContent = msg;
   input.setAttribute('aria-invalid', 'true');
   input.setAttribute('aria-describedby', err.id);
@@ -1403,7 +1456,7 @@ function clearFieldError(input) {
   input.classList.remove('is-error');
   input.removeAttribute('aria-invalid');
   input.removeAttribute('aria-describedby');
-  const err = input.parentElement.querySelector('.field-error');
+  const err = fieldErrorEl(input, false);
   if (err) err.textContent = '';
 }
 
@@ -1643,9 +1696,19 @@ function initReviewsSlider() {
   const next = () => { current = current >= getMax() ? 0 : current + 1; update(); };
   const prev = () => { current = current <= 0 ? getMax() : current - 1; update(); };
 
+  // Автопрокрутка останавливается навсегда после касания (на телефоне нет hover,
+  // иначе карточку уносит из-под пальца), на время фокуса клавиатуры и при reduced motion
+  let autoOff = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const startAuto = () => {
     stopAuto();
-    autoTimer = setInterval(() => { if (!isHovered) next(); }, 5000);
+    if (autoOff) return;
+    autoTimer = setInterval(() => {
+      if (isHovered || isFocused) return;
+      // автопрокрутку не зачитываем — счётчик объявляется только при действиях человека
+      if (counterEl) counterEl.setAttribute('aria-live', 'off');
+      next();
+      requestAnimationFrame(() => { if (counterEl) counterEl.setAttribute('aria-live', 'polite'); });
+    }, 5000);
   };
   const stopAuto = () => { if (autoTimer) { clearInterval(autoTimer); autoTimer = null; } };
 
@@ -1667,7 +1730,11 @@ function initReviewsSlider() {
 
   // Touch-свайп для мобильных
   let touchStartX = 0;
-  outer.addEventListener("touchstart", (e) => { touchStartX = e.touches[0].clientX; }, { passive: true });
+  outer.addEventListener("touchstart", (e) => { touchStartX = e.touches[0].clientX; autoOff = true; stopAuto(); }, { passive: true });
+  let isFocused = false;
+  slider.addEventListener("focusin", () => { isFocused = true; });
+  slider.addEventListener("focusout", (e) => { if (!slider.contains(e.relatedTarget)) isFocused = false; });
+  slider.addEventListener("pointerdown", (e) => { if (e.pointerType === "touch") { autoOff = true; stopAuto(); } });
   outer.addEventListener("touchend", (e) => {
     const dx = e.changedTouches[0].clientX - touchStartX;
     if (Math.abs(dx) > 50) { dx < 0 ? next() : prev(); startAuto(); }

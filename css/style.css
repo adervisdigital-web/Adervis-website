@@ -11081,3 +11081,177 @@ body.no-clients .clients-ticker-section {
     display: none;
   }
 }
+
+/* ═══════════════════════════════════════════════════════════════
+   МОБИЛЬНАЯ ПОЛИРОВКА 2026-11 — только ≤760px, десктоп не трогаем.
+   Основание: автоматический прогон 31 страницы на 360px (Playwright).
+   1) Поля ввода 16px: при 15px iOS Safari увеличивает страницу при фокусе.
+   2) Тач-цели не меньше 44px (Apple HIG / WCAG 2.5.5); где визуально
+      элемент должен остаться маленьким — невидимая зона ::after.
+   3) Текст не мельче 12px.
+   4) Баннер cookie компактнее (было 214px из 780 по высоте экрана).
+   ═══════════════════════════════════════════════════════════════ */
+@media (max-width: 760px) {
+  /* 1. Поля ввода */
+  .lead-input, .calc-select,
+  .calc-field input, .calc-field select, .calc-field textarea,
+  .quiz-fields input, .quiz-fields textarea, .quiz-fields select {
+    font-size: 16px;
+  }
+
+  /* 2. Шапка: бургер и тема — 44×44, логотип с зоной нажатия на всю высоту */
+  /* размер кнопок прежний (40/36), чтобы шапка не выросла; зона нажатия 44 */
+  .nav-toggle::after, .theme-toggle::after { content: ""; position: absolute; inset: -4px; }
+  .nav-toggle { position: relative; }
+  .site-header__logo { position: relative; }
+  .site-header__logo::after { content: ""; position: absolute; inset: -6px -4px; }
+  .pill-nav__link--platform-mobile { min-height: 48px; }
+
+  /* Квиз на главной */
+  .hero-quiz__list-item { min-height: 44px; }
+
+  /* Отзывы: стрелки 44 (было 38), точки — зона 24×24 с шагом 24 */
+  .reviews-arrow { width: 44px; height: 44px; }
+  .reviews-dots { gap: 18px; }
+  .reviews-dot { position: relative; }
+  .reviews-dot::after { content: ""; position: absolute; inset: -9px; }
+  .review-author-role--link { display: inline-block; padding: 12px 0; margin: -12px 0; }
+
+  /* Видео-отзывы, до/после, бэкстейдж «Загадкино» */
+  .vrp__ctrl-btn { width: 44px; height: 44px; }
+  .ba-divider__btn { width: 44px; height: 44px; }
+  #zgBtsToggle { min-height: 44px; padding: 0 18px; }
+
+  /* Листалка кадров в кейсах */
+  .case-slider__arrow { position: relative; }
+  .case-slider__arrow::after { content: ""; position: absolute; inset: -9px; }
+  .case-slider__nav--thumbs .case-slider__arrow { width: 44px; height: 44px; }
+  .case-slider__dots { gap: 17px; }
+  .case-slider__dot { position: relative; }
+  .case-slider__dot::after { content: ""; position: absolute; inset: -8.5px; }
+  .case-slider__thumb { height: 44px; }
+
+  /* Фильтры /cases/: выше и крупнее */
+  .cases-filter,
+  .cases-filters--niche .cases-filter {
+    min-height: 40px;
+    display: inline-flex;
+    align-items: center;
+    font-size: 12px;
+  }
+
+  /* Подвал: контакты и логотип */
+  .footer-lesse__contacts { gap: 0; }
+  .footer-lesse__contacts a { display: block; padding: 11px 0; }
+  .footer-lesse__brand .brand { position: relative; }
+  .footer-lesse__brand .brand::after { content: ""; position: absolute; inset: -8px 0; }
+
+  /* Ссылки-заголовки карточек на гео-страницах */
+  .case-group h3 a { display: inline-block; padding: 11px 0; margin: -11px 0; }
+
+  /* Кейсы в стиле Behance: «← Все кейсы» */
+  html .bh-back { display: inline-block; padding: 13px 0; margin: -13px 0; }
+
+  /* 3. Текст не мельче 12px */
+  .footer-lesse__col-title,
+  .footer-lesse__social-row a,
+  .eyebrow,
+  .clients-ticker-section .ticker-label,
+  .hero-kpi-line, .hero-kpi-line strong, .hero-kpi-line span,
+  .vp-trust-line, .vp-trust-line span,
+  .case-meta-item__label,
+  .gallery-card__dir,
+  .fvs-num,
+  .process-card-step,
+  html .bh-back, html .bh-eyebrow, html .bh-meta-label, html .bh-tag {
+    font-size: 12px;
+  }
+
+  /* 4. Баннер cookie: плотнее, текст слева, кнопка на всю ширину */
+  .cookie-banner {
+    align-items: stretch;
+    text-align: left;
+    gap: 10px;
+    padding: 12px 16px calc(12px + env(safe-area-inset-bottom, 0px));
+  }
+  .cookie-banner__text { font-size: 12px; line-height: 1.45; }
+  .cookie-banner__accept { min-height: 44px; padding: 10px 20px; }
+}
+
+/* Якоря и фокус клавиатуры не прячутся под фиксированной шапкой (WCAG 2.4.11) */
+html { scroll-padding-top: 84px; }
+
+/* === МОБИЛЬНЫЙ ПРОХОД 2 === */
+/* Светлая тема: первые экраны /video/, /design/, /ai/ остаются тёмными (3D, видео,
+   жидкий фон) — текст на них должен оставаться светлым, иначе тёмное на тёмном */
+[data-theme="light"] .hero-section--dark h1 { color: #fff; }
+[data-theme="light"] .hero-section--dark p { color: rgba(255, 255, 255, 0.68); }
+[data-theme="light"] .hero-section--dark p a { color: #fff; }
+[data-theme="light"] .hero-section--dark .eyebrow { color: rgba(255, 255, 255, 0.72); }
+[data-theme="light"] .hero-section--dark .hero-kpi-line { color: rgba(255, 255, 255, 0.55); }
+[data-theme="light"] .hero-section--dark .hero-kpi-line strong { color: #fff; }
+[data-theme="light"] .hero-section--dark .btn:not(.primary) {
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.22);
+}
+/* Подпись над H1 на светлых героях (/photo/, кейсы, вакансии) — было белое на белом */
+[data-theme="light"] .hero-section[data-dir]:not(.hero-section--dark) .eyebrow { color: var(--muted); }
+/* CTA-баннер всегда тёмный — подзаголовок светлый и в светлой теме */
+[data-theme="light"] .vp-cta-banner__text p { color: rgba(255, 255, 255, 0.66); }
+/* Логотипы клиентов в светлой теме читались на ~20% */
+[data-theme="light"] .clients-ticker-item img { filter: grayscale(1) opacity(0.66); }
+[data-theme="light"] .clients-ticker-item img.on-dark { background: #262626; filter: grayscale(1) opacity(0.8); }
+
+/* Мобильное меню */
+@media (max-width: 860px) {
+  /* В светлой теме панель белая, а крестик оставался белым — закрыть было нечем */
+  [data-theme="light"] .nav-toggle[aria-expanded="true"] {
+    background: rgba(0, 0, 0, 0.06);
+    border-color: rgba(0, 0, 0, 0.14);
+  }
+  [data-theme="light"] .nav-toggle[aria-expanded="true"] span { background: #111; }
+  /* В альбомной ориентации верх меню обрезался и не прокручивался */
+  .pill-nav { justify-content: safe center; }
+}
+
+/* Поля 16px на любых тач-экранах (iOS приближает страницу при фокусе на поле <16px) */
+@media (pointer: coarse) {
+  .lead-input, .calc-select,
+  .calc-field input, .calc-field select, .calc-field textarea,
+  .quiz-fields input, .quiz-fields textarea, .quiz-fields select { font-size: 16px; }
+}
+
+/* Баннер cookie ниже модалок, лайтбоксов и уведомлений; фокус не прячется под ним */
+.cookie-banner { z-index: 950; }
+html:has(#cookieBanner:not([hidden])) { scroll-padding-bottom: 180px; }
+
+/* Модалка заявки прокручивается, когда не влезает (клавиатура, альбомная ориентация) */
+.modal-overlay { overflow-y: auto; align-items: safe center; }
+
+/* Закрытый лайтбокс галереи не должен ловить Tab и экранного диктора */
+.gallery-lightbox { visibility: hidden; transition: opacity 0.28s ease, visibility 0s linear 0.28s; }
+.gallery-lightbox.is-open { visibility: visible; transition: opacity 0.28s ease, visibility 0s; }
+
+@media (max-width: 760px) {
+  /* «Честные цифры» и такие же блоки — 2×2 вместо стены карточек в одну колонку */
+  .stats-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+  .stats-grid .stat-card { padding: 16px; }
+  .stats-grid .stat-number { font-size: 28px; }
+  .stats-grid .stat-label { font-size: 13px; }
+  /* Строка цифр в героях переносится — висящие «·» не нужны */
+  .hero-kpi-sep { display: none; }
+  /* Кнопка «наверх» не закрывает поле, в которое печатают */
+  body:has(input:focus, textarea:focus, select:focus) .to-top { display: none; }
+}
+/* /photo/: слово «останавливает» в H1 не помещалось на 360–390px */
+@media (max-width: 420px) {
+  .hero-section[data-dir="photo"] h1 { font-size: clamp(1.75rem, 5vw + 0.6rem, 2.375rem); }
+}
+
+/* Фокус-цель после «Принимаю» в баннере cookie — без рамки вокруг всего main */
+#main-content:focus { outline: none; }
+/* 320px: стрелки 44 + точки + счётчик не влезали в ширину — точки прячем, счётчик остаётся */
+@media (max-width: 380px) {
+  .reviews-dots { display: none; }
+}
