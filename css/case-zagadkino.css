@@ -395,6 +395,25 @@
 @media (max-width: 760px) { .zg-lids { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; } .zg-family__pic { height: 210px; } .zg-real { margin-top: 18px; } }
 @media (max-width: 480px) { .zg-lids { grid-template-columns: minmax(0, 1fr); } }
 /* === /компактнее === */
+/* === сетка и композиция === */
+.zg-puzzles { background: #fff; border-radius: 20px; padding: clamp(14px, 2vw, 24px); }
+.zg-uz, .zg-booklet { align-items: start; }
+@media (min-width: 761px) {
+  .zg-bts { grid-template-columns: minmax(0, 560px) auto; justify-content: start; gap: clamp(28px, 4vw, 56px); }
+}
+.zg .contact-section.zg-end .container {
+  background: url(../assets/cases/zagadkino/doodles-soft.webp) no-repeat left -170px bottom -150px / 620px auto,
+              url(../assets/cases/zagadkino/doodles-soft.webp) no-repeat right -230px top -190px / 560px auto,
+              var(--zg-cream);
+  border: 0; color: var(--zg-ink);
+}
+.zg .contact-section.zg-end .container::before, .zg .contact-section.zg-end .container::after { display: none; }
+.zg .contact-section.zg-end h2 { color: var(--zg-ink); }
+.zg .contact-section.zg-end p { color: var(--zg-brown2); }
+.zg .zg-end .btn:not(.primary) { color: var(--zg-ink); background: #fff; border-color: var(--zg-brown2); }
+.zg .zg-end .btn:not(.primary):hover { background: #FFFBF3; border-color: var(--zg-brown); }
+.zg .zg-end .btn:focus-visible { outline: 3px solid var(--zg-ink); outline-offset: 3px; }
+/* === /сетка === */
 @media (prefers-reduced-motion: reduce) {
   .zg *, .zg *::before, .zg *::after { animation: none !important; transition: none !important; }
   .zg .zg-colors .zg-chip { opacity: 1 !important; transform: none !important; }
