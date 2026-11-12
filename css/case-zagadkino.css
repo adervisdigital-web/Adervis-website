@@ -331,20 +331,17 @@
 
 /* ── Меньше движения ───────────────────────────────────────────────────── */
 
-/* Фирменные элементы, сцены, крышки в дереве */
+/* Фирменные элементы, крышки в дереве */
 .zg-kit { margin-top: 26px; }
-.zg-kit__row { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 14px; }
+.zg-kit__row { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 14px; }
 .zg-kit__row li { background: #FFFBF3; border-radius: 18px; border: 2px solid #F5E8CC; aspect-ratio: 1; display: flex; align-items: center; justify-content: center; padding: 16px; }
 .zg-kit__row img { max-width: 100%; max-height: 100%; width: auto; height: auto; object-fit: contain; filter: drop-shadow(0 8px 10px rgba(90,51,24,.16)); }
 .zg-kit .zg-cap { margin-bottom: 12px; }
-.zg-scenes { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, .65fr); gap: 20px; margin-top: 20px; }
-.zg-scenes .zg-card { margin: 0; padding: 0; overflow: hidden; }
-.zg-scenes img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .zg-real { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 36px; margin-top: 30px; }
 .zg-real figure { margin: 0; display: flex; flex-direction: column; align-items: center; gap: 14px; }
 .zg-real img { width: 100%; height: auto; filter: drop-shadow(0 22px 20px rgba(59,33,15,.22)) drop-shadow(0 4px 4px rgba(59,33,15,.25)); }
 @media (max-width: 1100px) { .zg-kit__row { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
-@media (max-width: 760px) { .zg-scenes, .zg-real { grid-template-columns: minmax(0, 1fr); } .zg-scenes img { height: auto; } .zg-kit__row { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; } .zg-kit__row li { padding: 10px; } .zg-real { gap: 24px; } }
+@media (max-width: 760px) { .zg-real { grid-template-columns: minmax(0, 1fr); } .zg-kit__row { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; } .zg-kit__row li { padding: 10px; } .zg-real { gap: 24px; } }
 
 @media (prefers-reduced-motion: reduce) {
   .zg *, .zg *::before, .zg *::after { animation: none !important; transition: none !important; }
