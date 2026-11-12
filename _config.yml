@@ -1,0 +1,19 @@
+# GitHub Pages собирает сайт через Jekyll (файла .nojekyll нет).
+# Этот файл нужен только для одного: служебные файлы проекта не публикуются
+# на adervis.ru. Без него журнал, планы, дизайн-заметки и скрипты сборки
+# открывались по прямой ссылке и как .md, и как .html.
+# Добавляя новый служебный файл в корень, допишите его сюда.
+exclude:
+  - PROJECT_LOG.md
+  - DESIGN.md
+  - ROADMAP.md
+  - PRODUCT.md
+  - package.json
+  - package-lock.json
+  - build/
+  - serverless/
+  - components/
+  - docs/CSS-DEAD-CODE.md
+  - node_modules/
+  - design-references/
+  - ADERVIS-CRM-banner/
