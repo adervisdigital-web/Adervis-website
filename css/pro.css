@@ -311,6 +311,95 @@
   .pricing-grid { grid-template-columns: 1fr; }
 }
 
+/* Три тарифа (с 21.09.2026 в CRM «Старт / Стандарт / Про» × четыре срока).
+   Те же карточки, внутри: название, для кого, цена месяца, лесенка по срокам,
+   что входит. */
+.pricing-grid--tiers { grid-template-columns: repeat(3, 1fr); }
+
+.pricing-card__tier {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--text);
+}
+
+.pricing-card__for {
+  margin: 0 0 var(--sp-2);
+  font-size: 14px;
+  color: var(--muted);
+}
+
+.pricing-card__ladder,
+.pricing-card__features {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+.pricing-card__ladder {
+  display: grid;
+  gap: 4px;
+  font-size: 13px;
+  color: var(--muted);
+  padding-bottom: var(--sp-4);
+  margin-bottom: var(--sp-2);
+  border-bottom: 1px solid var(--line);
+}
+
+.pricing-card__ladder b {
+  font-weight: 600;
+  color: var(--text);
+}
+
+.pricing-card__features {
+  display: grid;
+  gap: 8px;
+  font-size: 14px;
+  line-height: 1.4;
+  color: var(--text);
+  margin-bottom: var(--sp-4);
+}
+
+.pricing-card__features li {
+  position: relative;
+  padding-left: 22px;
+}
+
+/* Галочка рисуется рамкой: без картинок и без символа, который зачитает диктор */
+.pricing-card__features li::before {
+  content: "";
+  position: absolute;
+  left: 2px;
+  top: 0.32em;
+  width: 10px;
+  height: 6px;
+  border-left: 2px solid var(--c-crm-2);
+  border-bottom: 2px solid var(--c-crm-2);
+  transform: rotate(-45deg);
+}
+
+[data-theme="light"] .pricing-card__features li::before { border-color: #5a00d6; }
+
+@media (max-width: 900px) {
+  .pricing-grid--tiers { grid-template-columns: 1fr; max-width: 520px; margin-inline: auto; }
+}
+
+/* Белый текст значка на светлом конце фирменного градиента (#9b4dff) давал
+   4.29:1 — градиент затемнён до AA (ревью доступности 13.11.2026) */
+.pricing-card__badge { background: linear-gradient(135deg, #6c00ff, #8a3dff); }
+
+/* На телефоне текст не мельче 12px (правило Mobile 1.0) */
+@media (max-width: 760px) {
+  .pricing-card__badge { font-size: 12px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pricing-card:hover { transform: none; }
+}
+
 /* Встроенный калькулятор сметы (/pro/smeta/) — iframe на crm.adervis.ru?calc=1.
    Высоту iframe диктует сама встроенная страница через postMessage (см. скрипт
    в pro/smeta/index.html) — здесь только рамка и стартовая высота до первого

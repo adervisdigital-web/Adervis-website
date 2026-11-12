@@ -27,7 +27,7 @@
   <meta name="twitter:description" content="Adervis CRM: сделки, сметы, расчёт коммерческих предложений и календарь команды в одном окне.">
   <meta name="twitter:image" content="https://adervis.ru/assets/og/og-pro.jpg">
   <link rel="preload" href="/fonts/unbounded-700-cyrillic.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="/fonts/unbounded-700-latin.woff2" as="font" type="font/woff2" crossorigin><link rel="stylesheet" href="../css/style.min.css?v=f54a0148">
-  <link rel="stylesheet" href="../css/pro.min.css?v=7e42cce3">
+  <link rel="stylesheet" href="../css/pro.min.css?v=24dbb5f8">
   <script type="application/ld+json">
   {
   "@context": "https://schema.org",
@@ -51,7 +51,7 @@
       "description": "Adervis CRM: сделки, сметы, расчёт коммерческих предложений и календарь команды в одном окне. Инструмент для продакшн-студий и фрилансеров.",
       "featureList": [
         "Воронка сделок с историей переписки",
-        "Сметы по каталогу из 105 позиций",
+        "Сметы по каталогу из 200+ позиций",
         "Расчёт и отправка коммерческих предложений",
         "Календарь команды и съёмочных дней",
         "Финансы и отчёты по проектам"
@@ -60,15 +60,13 @@
       "offers": {
         "@type": "AggregateOffer",
         "priceCurrency": "RUB",
-        "lowPrice": "490",
+        "lowPrice": "290",
         "highPrice": "890",
-        "offerCount": "4",
-        "unitText": "за пользователя в месяц, до 3 пользователей",
+        "offerCount": "3",
         "offers": [
-          { "@type": "Offer", "name": "Месяц", "price": "890", "priceCurrency": "RUB", "url": "https://adervis.ru/pro/" },
-          { "@type": "Offer", "name": "3 месяца", "price": "690", "priceCurrency": "RUB", "url": "https://adervis.ru/pro/" },
-          { "@type": "Offer", "name": "6 месяцев", "price": "590", "priceCurrency": "RUB", "url": "https://adervis.ru/pro/" },
-          { "@type": "Offer", "name": "Год", "price": "490", "priceCurrency": "RUB", "url": "https://adervis.ru/pro/" }
+          { "@type": "Offer", "name": "Старт", "description": "Для одного человека. 290 ₽/мес помесячно, от 150 ₽/мес при оплате за год", "price": "290", "priceCurrency": "RUB", "url": "https://adervis.ru/pro/#pricing" },
+          { "@type": "Offer", "name": "Стандарт", "description": "До 3 человек в команде. 490 ₽/мес помесячно, от 290 ₽/мес при оплате за год", "price": "490", "priceCurrency": "RUB", "url": "https://adervis.ru/pro/#pricing" },
+          { "@type": "Offer", "name": "Про", "description": "До 10 человек в команде. 890 ₽/мес помесячно, от 490 ₽/мес при оплате за год", "price": "890", "priceCurrency": "RUB", "url": "https://adervis.ru/pro/#pricing" }
         ]
       }
     }
@@ -341,7 +339,7 @@
             <a href="#contacts" class="btn">Задать вопрос о платформе</a>
           </div>
           <div class="hero-kpi-line">
-            <strong>105</strong> позиций в каталоге смет
+            <strong>200+</strong> позиций в каталоге смет
             <span class="hero-kpi-sep">·</span>
             <strong>4</strong> модуля в одном окне
             <span class="hero-kpi-sep">·</span>
@@ -542,38 +540,72 @@
     <section class="section" id="pricing">
       <div class="container">
         <div class="section-head reveal">
-          <h2>Один тариф на всю систему, без урезанных версий</h2>
-          <p>Оплата разовая, без автосписаний: продлеваете вручную, мы напомним заранее. Все функции доступны на любом сроке, отличается только число мест в команде</p>
+          <h2>Три тарифа: под одного, под студию, под агентство</h2>
+          <p>Первые 7 дней бесплатно, карта не нужна. Дальше оплата разовая, без автосписаний: продлеваете вручную, мы напомним заранее. Чем длиннее срок, тем дешевле месяц</p>
         </div>
-        <div class="pricing-grid">
-          <div class="pricing-card reveal">
-            <div class="pricing-card__period">Месяц</div>
-            <div class="pricing-card__price">890 <span>₽/мес</span></div>
-            <div class="pricing-card__users">до 3 пользователей</div>
-            <a href="https://crm.adervis.ru" target="_blank" rel="noopener" class="btn">Выбрать</a>
-          </div>
-          <div class="pricing-card pricing-card--popular reveal">
-            <span class="pricing-card__badge">Популярный</span>
-            <div class="pricing-card__period">3 месяца</div>
-            <div class="pricing-card__price">690 <span>₽/мес</span></div>
-            <div class="pricing-card__save">Экономия 22%</div>
-            <div class="pricing-card__users">до 3 пользователей</div>
-            <a href="https://crm.adervis.ru" target="_blank" rel="noopener" class="btn crm">Выбрать</a>
-          </div>
-          <div class="pricing-card reveal">
-            <div class="pricing-card__period">6 месяцев</div>
-            <div class="pricing-card__price">590 <span>₽/мес</span></div>
-            <div class="pricing-card__save">Экономия 34%</div>
-            <div class="pricing-card__users">до 3 пользователей</div>
-            <a href="https://crm.adervis.ru" target="_blank" rel="noopener" class="btn">Выбрать</a>
-          </div>
-          <div class="pricing-card reveal">
-            <div class="pricing-card__period">Год</div>
+        <!-- Цены, места и списки сверены с витриной CRM (PLANS, TIER_RULES,
+             tierFeatureMap в app.js, crm.adervis.ru) 13.11.2026. Меняются там —
+             меняем здесь и в JSON-LD выше. -->
+        <div class="pricing-grid pricing-grid--tiers">
+          <article class="pricing-card reveal" aria-labelledby="tier-start">
+            <h3 class="pricing-card__tier" id="tier-start">Старт</h3>
+            <p class="pricing-card__for">Снимаю один</p>
+            <div class="pricing-card__price">290 <span>₽/мес</span></div>
+            <ul class="pricing-card__ladder" aria-label="Цена месяца при оплате на срок">
+              <li>3 месяца: <b>230 ₽/мес</b></li>
+              <li>6 месяцев: <b>190 ₽/мес</b></li>
+              <li>Год: <b>150 ₽/мес</b></li>
+            </ul>
+            <ul class="pricing-card__features">
+              <li>До 5 съёмок в работе</li>
+              <li>Каталог услуг фото и видео</li>
+              <li>КП по ссылке с авансом</li>
+              <li>Клиенты и календарь съёмок</li>
+              <li>Деньги: оплачено и сколько должны</li>
+              <li>Один пользователь</li>
+            </ul>
+            <a href="https://crm.adervis.ru" target="_blank" rel="noopener" class="btn">Выбрать «Старт»<span class="sr-only"> (откроется в новой вкладке)</span></a>
+          </article>
+          <article class="pricing-card pricing-card--popular reveal" aria-labelledby="tier-std">
+            <h3 class="pricing-card__tier" id="tier-std">Стандарт</h3>
+            <span class="pricing-card__badge"><span class="sr-only">тариф </span>Популярный</span>
+            <p class="pricing-card__for">Небольшая студия</p>
             <div class="pricing-card__price">490 <span>₽/мес</span></div>
-            <div class="pricing-card__save">Экономия 45%</div>
-            <div class="pricing-card__users">до 3 пользователей</div>
-            <a href="https://crm.adervis.ru" target="_blank" rel="noopener" class="btn">Выбрать</a>
-          </div>
+            <ul class="pricing-card__ladder" aria-label="Цена месяца при оплате на срок">
+              <li>3 месяца: <b>390 ₽/мес</b></li>
+              <li>6 месяцев: <b>340 ₽/мес</b></li>
+              <li>Год: <b>290 ₽/мес</b></li>
+            </ul>
+            <ul class="pricing-card__features">
+              <li>Сделок без ограничения</li>
+              <li>До 3 человек в команде</li>
+              <li>Полный каталог: 200+ позиций</li>
+              <li>Договоры и онлайн-брифы</li>
+              <li>Дашборд: графики и прогноз</li>
+              <li>ИИ-помощник для КП</li>
+            </ul>
+            <a href="https://crm.adervis.ru" target="_blank" rel="noopener" class="btn crm">Выбрать «Стандарт»<span class="sr-only"> (откроется в новой вкладке)</span></a>
+          </article>
+          <article class="pricing-card reveal" aria-labelledby="tier-pro">
+            <h3 class="pricing-card__tier" id="tier-pro">Про</h3>
+            <p class="pricing-card__for">Агентство</p>
+            <div class="pricing-card__price">890 <span>₽/мес</span></div>
+            <ul class="pricing-card__ladder" aria-label="Цена месяца при оплате на срок">
+              <li>3 месяца: <b>690 ₽/мес</b></li>
+              <li>6 месяцев: <b>590 ₽/мес</b></li>
+              <li>Год: <b>490 ₽/мес</b></li>
+            </ul>
+            <ul class="pricing-card__features">
+              <li>Всё из «Стандарта»</li>
+              <li>До 10 человек в команде</li>
+              <li>Онлайн-тайминг съёмки по ссылке</li>
+              <li>Ваш бренд вместо нашего в КП</li>
+              <li>Калькулятор на вашем сайте</li>
+              <li>Приоритетная поддержка</li>
+              <li>Помощь с переносом цен</li>
+            </ul>
+            <a href="https://crm.adervis.ru" target="_blank" rel="noopener" class="btn">Выбрать «Про»<span class="sr-only"> (откроется в новой вкладке)</span></a>
+          </article>
         </div>
         <p class="pricing-note reveal">Приведите знакомую студию или фрилансера: когда они оплатят любой тариф, вам начислится <strong>+30 дней</strong> подписки бесплатно.</p>
       </div>
@@ -647,7 +679,7 @@
             <summary>Есть бесплатный период?
               <span class="faq-icon" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M8 3v10M3 8h10"/></svg></span>
             </summary>
-            <p>Да, 7 дней с полным доступом ко всем модулям, без ограничений по функциям, чтобы вы успели попробовать систему на своих реальных сделках, а не на демо-данных.</p>
+            <p>Да, 7 дней бесплатно, карта не нужна. На это время открыт весь «Стандарт»: сделки без ограничения, калькулятор смет, КП для клиентов и 5 генераций КП с ИИ. Хватит, чтобы попробовать систему на своих реальных сделках, а не на демо-данных.</p>
           </details>
           <details class="faq-item reveal">
             <summary>Оплата разовая или подписка со списаниями?
