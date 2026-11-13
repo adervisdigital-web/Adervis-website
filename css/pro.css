@@ -478,3 +478,103 @@
 [data-theme="light"] .pro-shot__eyebrow,
 [data-theme="light"] .crm-feature-card .feature-icon,
 [data-theme="light"] .pricing-card__save { color: #4f43d9; }
+
+/* === /crm/ ПРОХОД 2: ПЛАШКИ, РОЛИКИ, АНИМАЦИЯ (2026-11) === */
+/* Плашки в первом экране: появляются по очереди после загрузки, потом плавают.
+   Появление анимирует отдельные свойства opacity/scale/translate, а плавание
+   (crm-card-float) — transform, поэтому две анимации не перебивают друг друга. */
+/* Бесконечное покачивание убрано (WCAG 2.2.2: движение дольше 5 с без паузы).
+   Плашки появляются по очереди и встают; «плавают», только пока человек
+   держит курсор над техникой — это движение он запускает сам. */
+.crm-hero .crm-detail-card {
+  animation:
+    crm-chip-in 0.7s cubic-bezier(0.22, 1, 0.36, 1) var(--in, 0.8s) both,
+    crm-card-float 3.5s ease-in-out 0s infinite paused;
+}
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .crm-hero .crm-devices:hover .crm-detail-card { animation-play-state: running, running; }
+}
+@keyframes crm-chip-in {
+  from { opacity: 0; scale: 0.86; translate: 0 14px; }
+  to   { opacity: 1; scale: 1;    translate: 0 0; }
+}
+.crm-hero .crm-detail-card--estimate { left: -2%; top: 6%;   right: auto; bottom: auto; }
+.crm-hero .crm-detail-card--kp       { right: -1%; top: 42%; }
+.crm-hero .crm-detail-card--payment  { left: 4%;  bottom: 2%; display: flex; }
+.crm-hero .crm-detail-card--growth   { right: 4%; top: -6%; }
+.crm-detail-card__icon--kp { background: rgba(140, 128, 255, 0.20); color: #b3abff; }
+.crm-detail-card__icon--doc { background: rgba(246, 189, 58, 0.16); color: #f6bd3a; }
+.crm-detail-card__icon--up { background: rgba(140, 128, 255, 0.20); color: #b3abff; }
+.crm-hero .crm-detail-card__icon svg { display: block; }
+
+/* Телефон: из четырёх плашек остаются две, мельче, чтобы не закрывать экраны */
+@media (max-width: 860px) {
+  .crm-hero .crm-detail-card--kp, .crm-hero .crm-detail-card--growth { display: none; }
+  .crm-hero .crm-detail-card--estimate { left: 0; top: 2%; }
+  .crm-hero .crm-detail-card--payment { left: auto; right: 0; bottom: 4%; }
+}
+@media (max-width: 480px) {
+  .crm-hero .crm-detail-card--estimate, .crm-hero .crm-detail-card--payment { display: flex; padding: 6px 10px 6px 8px; gap: 8px; }
+  .crm-hero .crm-detail-card__icon { width: 22px; height: 22px; }
+}
+
+/* Промо-ролик */
+.crm-video {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.7fr);
+  gap: var(--sp-12);
+  align-items: center;
+}
+.crm-video__text h2 { margin: var(--sp-2) 0 var(--sp-4); }
+.crm-video__text p { color: var(--muted); font-size: 16px; line-height: 1.6; margin: 0; max-width: 42ch; }
+.crm-video__player, .crm-howto__player {
+  margin: 0;
+  position: relative;
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  background: #0e0b24;
+  border: 1px solid rgba(140, 128, 255, 0.30);
+  box-shadow: 0 30px 80px -30px rgba(91, 78, 232, 0.55);
+}
+.crm-video__player video, .crm-howto__player video {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  background: #0e0b24;
+}
+.crm-video__player video::cue, .crm-howto__player video::cue { font-size: 0.9em; background: rgba(0, 0, 0, 0.78); }
+
+/* Видеоинструкции */
+.crm-howto-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--sp-8); }
+.crm-howto h3 { margin: var(--sp-2) 0 var(--sp-2); font-size: clamp(18px, 1.6vw, 22px); }
+.crm-howto p { margin: 0; color: var(--muted); font-size: 15px; line-height: 1.6; }
+.crm-howto__meta { display: flex; align-items: center; gap: 10px; margin-top: var(--sp-4); font-size: 13px; color: var(--muted); }
+.crm-howto__len {
+  padding: 3px 9px; border-radius: 999px;
+  font-weight: 700; color: var(--text);
+  background: var(--bg3); border: 1px solid var(--line);
+}
+.crm-howto__player { transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s ease; }
+.crm-howto:hover .crm-howto__player { transform: translateY(-4px); box-shadow: 0 36px 90px -30px rgba(91, 78, 232, 0.7); }
+
+/* Скриншоты: лёгкий подъём при наведении */
+.pro-shot__media { transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.4s ease; }
+.pro-shot:hover .pro-shot__media { transform: translateY(-6px); }
+
+@media (max-width: 900px) {
+  .crm-video { grid-template-columns: 1fr; gap: var(--sp-6); }
+  .crm-howto-grid { grid-template-columns: 1fr; gap: var(--sp-10); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .crm-hero .crm-detail-card { animation: none; }
+  .crm-howto:hover .crm-howto__player, .pro-shot:hover .pro-shot__media { transform: none; }
+}
+.crm-detail-card--kp .crm-detail-card__text span { color: #b3abff; }
+.crm-detail-card--estimate .crm-detail-card__text span { color: #f6bd3a; }
+
+/* Видеоинструкция: заголовок и описание стоят в коде перед плеером (переход по
+   заголовкам ведёт к ним, а не проскакивает видео), а на экране — под ним */
+.crm-howto { display: flex; flex-direction: column; }
+.crm-howto .crm-howto__player { order: -2; }
+.crm-howto .crm-howto__meta { order: -1; }
