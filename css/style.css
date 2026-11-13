@@ -11595,3 +11595,80 @@ html:has(.cx-filterbar) { scroll-padding-top: 160px; }             /* фокус
 .footer-lesse__top { padding-left: 0; padding-right: 0; width: min(var(--page-max), calc(100% - 48px)); }
 /* Под колонку 1200px заголовок /cases/ чуть меньше: две-три строки, а не четыре */
 .cx-hero__title { font-size: clamp(2.5rem, 4.4vw, 4.25rem); }
+
+/* Квиз «Получить КП» v2 (13.11): третья колонка — как выглядит КП (рендер
+   телефона в Blender), список «что будет в КП» слева. Колонка с телефоном
+   всегда тёмная: на светлом сайте тёмный экран контрастнее. */
+.quiz-shell { grid-template-columns: 300px minmax(0, 1fr) 300px; }
+.quiz-lhs__list { list-style: none; margin: 18px 0 0; padding: 0; display: grid; gap: 8px; }
+.quiz-lhs__list li { position: relative; padding-left: 20px; font-size: 13px; line-height: 1.45; color: var(--text); }
+.quiz-lhs__list li::before {
+  content: ""; position: absolute; left: 2px; top: 0.35em;
+  width: 8px; height: 5px; border-left: 2px solid var(--gold); border-bottom: 2px solid var(--gold); transform: rotate(-45deg);
+}
+[data-theme="light"] .quiz-lhs__list li::before { border-color: #8a5a00; }
+.quiz-lhs__desc { flex: 0 0 auto; }
+.quiz-lhs .quiz-track { margin-top: auto; }
+.quiz-lhs__list { margin-bottom: 28px; }
+
+.quiz-visual {
+  position: relative; margin: 0;
+  display: flex; align-items: center; justify-content: center;
+  padding: 28px 24px;
+  background:
+    radial-gradient(70% 60% at 50% 45%, rgba(111, 98, 240, 0.35) 0%, rgba(111, 98, 240, 0) 70%),
+    radial-gradient(60% 40% at 50% 100%, rgba(246, 189, 58, 0.14) 0%, rgba(246, 189, 58, 0) 70%),
+    #121212;
+  border-left: 1px solid var(--line);
+  overflow: hidden;
+}
+.quiz-visual img {
+  width: 220px; height: auto; display: block;
+  filter: drop-shadow(0 30px 40px rgba(0, 0, 0, 0.55));
+  transform: rotate(-2deg);
+  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.quiz-visual:hover img { transform: rotate(0deg) translateY(-6px); }
+.quiz-visual__chip {
+  position: absolute; left: 16px; right: 16px; bottom: 18px;
+  padding: 9px 12px; border-radius: 12px;
+  font-size: 12px; line-height: 1.35; text-align: center; color: #fff;
+  background: rgba(16, 13, 40, 0.86);
+  -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+}
+/* Появление телефона один раз вместе с блоком */
+.quiz-shell.reveal .quiz-visual img { opacity: 0; translate: 0 24px; }
+.quiz-shell.reveal.is-visible .quiz-visual img { opacity: 1; translate: 0 0; transition: opacity 0.7s ease 0.25s, translate 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.25s, transform 0.6s; }
+
+@media (max-width: 1100px) {
+  .quiz-shell { grid-template-columns: 280px minmax(0, 1fr); }
+  .quiz-visual { display: none; }
+}
+@media (max-width: 860px) {
+  .quiz-shell { grid-template-columns: 1fr; }
+  .quiz-lhs__list { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .quiz-visual:hover img { transform: rotate(-2deg); }
+  .quiz-shell.reveal .quiz-visual img { opacity: 1; translate: none; }
+}
+.quiz-lhs__title { font-size: clamp(20px, 1.75vw, 25px); hyphens: manual; overflow-wrap: anywhere; }
+[data-theme="light"] .quiz-lhs__kicker { color: #8a5a00; }
+[data-theme="light"] .quiz-lhs__kicker::before { background: #8a5a00; }
+
+/* Квиз компактнее (13.11, «слишком большой блок»): без списка, плитки ниже,
+   телефон меньше и выглядывает снизу колонки — видна шапка КП и итог */
+.quiz-shell { grid-template-columns: 270px minmax(0, 1fr) 270px; min-height: 0; }
+.quiz-lhs { padding: 32px 30px; }
+.quiz-rhs { padding: 32px 36px; }
+.quiz-lhs__desc { margin-bottom: 20px; }
+.quiz-dc { min-height: 92px; padding: 16px 20px; }
+.quiz-dc__title { font-size: clamp(17px, 1.6vw, 21px); }
+.quiz-q { margin-bottom: 18px; }
+.quiz-visual { align-items: flex-start; padding: 64px 0 0; }
+.quiz-visual img { width: 210px; margin-bottom: -170px; transform: rotate(-6deg); }
+.quiz-visual:hover img { transform: rotate(-3deg) translateY(-8px); }
+.quiz-visual__chip { top: 14px; bottom: auto; left: 14px; right: 14px; font-size: 11.5px; padding: 7px 10px; }
+@media (prefers-reduced-motion: reduce) { .quiz-visual:hover img { transform: rotate(-6deg); } }
+.quiz-lhs__title { font-size: clamp(18px, 1.45vw, 21px); overflow-wrap: normal; hyphens: none; }
