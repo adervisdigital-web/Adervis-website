@@ -26,7 +26,7 @@
   <meta name="twitter:title" content="Кейсы — портфолио студии | ADERVIS">
   <meta name="twitter:description" content="Портфолио ADERVIS: видео, брендинг, фото, ИИ-контент. Реальные проекты с результатами.">
   <meta name="twitter:image" content="https://adervis.ru/assets/og/og-cases.jpg">
-  <link rel="preload" href="/fonts/unbounded-700-cyrillic.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="/fonts/unbounded-700-latin.woff2" as="font" type="font/woff2" crossorigin><link rel="stylesheet" href="../css/style.min.css?v=ec3c4d36">
+  <link rel="preload" href="/fonts/unbounded-700-cyrillic.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="/fonts/unbounded-700-latin.woff2" as="font" type="font/woff2" crossorigin><link rel="stylesheet" href="../css/style.min.css?v=10e1d1c2">
   <script type="application/ld+json">
   {
   "@context": "https://schema.org",
@@ -302,9 +302,38 @@
   <main id="main-content">
 
     <!-- ══ Cases Hero ══ -->
-    <!-- Первый экран v2 (13.11.2026): без мозаики. Идеи с Behance: цифры колонками
-         (CA Film Creatives), лента «Latest work» (HOODYAKOV PRODUCTION). -->
-    <section class="cx-hero" id="casesHero" aria-labelledby="cx-title">
+    <!-- Первый экран v2 (13.11.2026): мозаика работ на фоне, цифры колонками (CA Film Creatives, Behance). -->
+    <section class="cx-hero cx-hero--mosaic" id="casesHero" aria-labelledby="cx-title">
+      <!-- Фон: мозаика работ (вернули по просьбе владельца 13.11): справа видна, к тексту гаснет -->
+      <div class="chs-mosaic" aria-hidden="true">
+        <div class="chs-col">
+          <picture><source srcset="/cases/thumbs/jaecoo-j8.webp" type="image/webp"><img src="/cases/jaecoo-j8.jpg" alt="" loading="eager" width="1920" height="1080"></picture>
+          <picture><source srcset="/cases/thumbs/toyota-supra-green-mamba.webp" type="image/webp"><img src="/cases/toyota-supra-green-mamba.jpg" alt="" loading="lazy" width="2048" height="1143"></picture>
+          <picture><source srcset="/cases/thumbs/lukoil-ai.webp" type="image/webp"><img src="/cases/lukoil-ai.jpg" alt="" loading="lazy" width="5504" height="3072"></picture>
+          <img src="/cases/thumbs/rokstar.webp" alt="" loading="lazy" width="1280" height="720">
+        </div>
+        <div class="chs-col chs-col--offset">
+          <picture><source srcset="/cases/thumbs/battle-of-robots.webp" type="image/webp"><img src="/cases/battle-of-robots.jpg" alt="" loading="lazy" width="1920" height="1080"></picture>
+          <picture><source srcset="/cases/thumbs/stickbot-cosmetics.webp" type="image/webp"><img src="/cases/stickbot-cosmetics.jpg" alt="" loading="lazy" width="2048" height="1152"></picture>
+          <picture><source srcset="/cases/thumbs/battle-robots-final-moscow-2025.webp" type="image/webp"><img src="/cases/battle-robots-final-moscow-2025.jpg" alt="" loading="lazy" width="1920" height="1080"></picture>
+          <img src="/assets/cases/shabani-energy.webp" alt="" loading="lazy" width="1280" height="720">
+        </div>
+        <div class="chs-col">
+          <picture><source srcset="/cases/thumbs/at-350-mini-loader.webp" type="image/webp"><img src="/cases/at-350-mini-loader.jpg" alt="" loading="lazy" width="2048" height="1152"></picture>
+          <img src="/assets/cases/anna-asti.jpg" alt="" loading="lazy" width="1280" height="720">
+          <picture><source srcset="/cases/thumbs/rodin-yin-yan.webp" type="image/webp"><img src="/cases/rodin-yin-yan.jpg" alt="" loading="lazy" width="2048" height="1152"></picture>
+          <picture><source srcset="/cases/thumbs/it-arc.webp" type="image/webp"><img src="/cases/it-arc.jpg" alt="" loading="lazy" width="2048" height="1152"></picture>
+        </div>
+        <div class="chs-col chs-col--offset">
+          <picture><source srcset="/cases/thumbs/neptune-day-razdolye-2025.webp" type="image/webp"><img src="/cases/neptune-day-razdolye-2025.jpg" alt="" loading="lazy" width="1920" height="1080"></picture>
+          <picture><source srcset="/cases/thumbs/rokstar-soundcheck-2025.webp" type="image/webp"><img src="/cases/rokstar-soundcheck-2025.jpg" alt="" loading="lazy" width="1920" height="1080"></picture>
+          <picture><source srcset="/cases/thumbs/brutal-networking-2024.webp" type="image/webp"><img src="/cases/brutal-networking-2024.jpg" alt="" loading="lazy" width="1920" height="1080"></picture>
+          <picture><source srcset="/cases/thumbs/halloween-shakeroom.webp" type="image/webp"><img src="/cases/halloween-shakeroom.jpg" alt="" loading="lazy" width="1920" height="1080"></picture>
+        </div>
+      </div>
+
+      <!-- Оверлей -->
+      <div class="chs-overlay" aria-hidden="true"></div>
       <div class="container cx-hero__grid">
         <div class="cx-hero__main">
           <span class="eyebrow">Портфолио ADERVIS</span>
@@ -316,58 +345,6 @@
           <div class="cx-stat"><dt class="cx-stat__label">ниш в портфолио</dt><dd class="cx-stat__num">60<span>+</span></dd></div>
           <div class="cx-stat"><dt class="cx-stat__label">кейсов на странице</dt><dd class="cx-stat__num">17</dd></div>
         </dl>
-      </div>
-      <div class="cx-latest">
-        <div class="container cx-latest__head">
-          <h2 class="cx-label" id="cx-latest-title">Свежие работы</h2>
-          <a href="#casesGrid" class="cx-latest__all">Все кейсы <span aria-hidden="true">↓</span></a>
-        </div>
-        <div class="cx-strip-wrap">
-          <ul class="cx-strip" aria-labelledby="cx-latest-title">
-            <li class="cx-tile">
-              <a href="/cases/zagadkino/" class="cx-tile__link">
-                <span class="cx-tile__media"><picture><source srcset="/assets/cases/zagadkino/cover-card.webp" type="image/webp"><img class="cx-tile__img" src="/assets/cases/zagadkino/cover-card.jpg" alt="" loading="lazy" decoding="async" width="640" height="360"></picture></span>
-                <span class="cx-tile__meta"><span class="cx-tile__year">2026</span> Бренд, персонажи, упаковка</span>
-                <span class="cx-tile__name">«Загадкино»</span>
-              </a>
-            </li>
-            <li class="cx-tile">
-              <a href="/cases/razdolye-neptune/" class="cx-tile__link">
-                <span class="cx-tile__media"><picture><source srcset="/assets/cases/razdolye-neptune/card-ad-2026-640.webp" type="image/webp"><img class="cx-tile__img" src="/assets/cases/razdolye-neptune/card-ad-2026.jpg" alt="" loading="lazy" decoding="async" width="640" height="360"></picture></span>
-                <span class="cx-tile__meta"><span class="cx-tile__year">2026</span> Рекламный ролик базы отдыха</span>
-                <span class="cx-tile__name">«Раздолье»</span>
-              </a>
-            </li>
-            <li class="cx-tile">
-              <a href="/cases/toyota-supra-green-mamba/" class="cx-tile__link">
-                <span class="cx-tile__media"><picture><source srcset="/cases/toyota-supra-green-mamba-640.webp" type="image/webp"><img class="cx-tile__img" src="/cases/toyota-supra-green-mamba.jpg" alt="" loading="lazy" decoding="async" width="640" height="360"></picture></span>
-                <span class="cx-tile__meta"><span class="cx-tile__year">2026</span> Ролик целиком на нейросетях</span>
-                <span class="cx-tile__name">TOYOTA GR Supra</span>
-              </a>
-            </li>
-            <li class="cx-tile">
-              <a href="/cases/rockstar-cocktails/" class="cx-tile__link">
-                <span class="cx-tile__media"><picture><source srcset="/assets/cases/rockstar-cocktails/card-triptych-640.webp" type="image/webp"><img class="cx-tile__img" src="/assets/cases/rockstar-cocktails/card-triptych.jpg" alt="" loading="lazy" decoding="async" width="640" height="360"></picture></span>
-                <span class="cx-tile__meta"><span class="cx-tile__year">2025</span> Съёмка коктейлей</span>
-                <span class="cx-tile__name">ROCKSTAR</span>
-              </a>
-            </li>
-            <li class="cx-tile">
-              <a href="/cases/stickbot/" class="cx-tile__link">
-                <span class="cx-tile__media"><picture><img class="cx-tile__img" src="/cases/stickbot/gallery-main.jpg" alt="" loading="lazy" decoding="async" width="640" height="360"></picture></span>
-                <span class="cx-tile__meta"><span class="cx-tile__year">2025</span> Рекламная съёмка косметики</span>
-                <span class="cx-tile__name">StickBot</span>
-              </a>
-            </li>
-            <li class="cx-tile">
-              <a href="/cases/shabani-energy/" class="cx-tile__link">
-                <span class="cx-tile__media"><picture><source srcset="/assets/cases/shabani-energy.webp" type="image/webp"><img class="cx-tile__img" src="/assets/cases/shabani-energy.webp" alt="" loading="lazy" decoding="async" width="640" height="360"></picture></span>
-                <span class="cx-tile__meta"><span class="cx-tile__year">2024</span> Рекламный ролик</span>
-                <span class="cx-tile__name">SHABANI ENERGY</span>
-              </a>
-            </li>
-          </ul>
-        </div>
       </div>
     </section>
 

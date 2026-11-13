@@ -11533,3 +11533,53 @@ html:has(.cx-filterbar) { scroll-padding-top: 160px; }             /* фокус
 [data-theme="light"] .cx-niche__select {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath d='M2.5 4.5 6 8l3.5-3.5' fill='none' stroke='%23666' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
 }
+
+/* /cases/: мозаика работ на фоне первого экрана (вернули 13.11). Экран всегда
+   тёмный в обеих темах: мозаика справа видна, к тексту слева гаснет. Дрейф
+   мозаики (chs-drift) — бесконечный, его ставит на паузу «Остановить анимацию». */
+.cx-hero--mosaic {
+  min-height: min(88vh, 880px);
+  display: flex; flex-direction: column; justify-content: flex-end;
+  padding: 140px 0 80px;
+  background: #0e0e0e;
+  isolation: isolate;
+}
+.cx-hero--mosaic::before { display: none; }
+.cx-hero--mosaic .chs-mosaic {
+  z-index: -2;
+  left: 28%;
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 38%);
+          mask-image: linear-gradient(to right, transparent 0%, #000 38%);
+}
+.cx-hero--mosaic .chs-col img { filter: brightness(0.82) saturate(0.95); }
+.cx-hero--mosaic .chs-overlay {
+  z-index: -1;
+  background:
+    linear-gradient(to right, #0e0e0e 0%, rgba(14, 14, 14, 0.88) 34%, rgba(14, 14, 14, 0.25) 70%, rgba(14, 14, 14, 0.1) 100%),
+    linear-gradient(to top, #0e0e0e 0%, rgba(14, 14, 14, 0.6) 22%, rgba(14, 14, 14, 0) 55%);
+}
+.cx-hero--mosaic .cx-hero__grid { position: relative; z-index: 1; }
+.cx-hero--mosaic .cx-hero__title { color: #fff; }
+.cx-hero--mosaic .cx-hero__lead { color: rgba(255, 255, 255, 0.74); }
+.cx-hero--mosaic .eyebrow { color: var(--gold); }
+.cx-hero--mosaic .cx-stats { border-top-color: rgba(255, 255, 255, 0.16); }
+.cx-hero--mosaic .cx-stat { border-left-color: rgba(255, 255, 255, 0.16); }
+.cx-hero--mosaic .cx-stat__num { color: #fff; }
+.cx-hero--mosaic .cx-stat__label { color: rgba(255, 255, 255, 0.66); }
+@media (max-width: 1000px) {
+  .cx-hero--mosaic .chs-mosaic { left: 0; -webkit-mask-image: none; mask-image: none; }
+  .cx-hero--mosaic .chs-overlay {
+    background: linear-gradient(to top, #0e0e0e 0%, rgba(14, 14, 14, 0.9) 45%, rgba(14, 14, 14, 0.45) 100%);
+  }
+}
+@media (max-width: 760px) {
+  .cx-hero--mosaic { min-height: 0; padding: 120px 0 48px; }
+}
+.cx-hero--mosaic .chs-overlay {
+  background:
+    linear-gradient(to right, #0e0e0e 0%, rgba(14, 14, 14, 0.88) 34%, rgba(14, 14, 14, 0.25) 70%, rgba(14, 14, 14, 0.1) 100%),
+    linear-gradient(to top, #0e0e0e 0%, rgba(14, 14, 14, 0.82) 24%, rgba(14, 14, 14, 0) 58%);
+}
+@media (max-width: 1000px) {
+  .cx-hero--mosaic .chs-overlay { background: linear-gradient(to top, #0e0e0e 0%, rgba(14, 14, 14, 0.9) 45%, rgba(14, 14, 14, 0.45) 100%); }
+}
