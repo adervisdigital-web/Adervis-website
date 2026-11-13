@@ -27,7 +27,7 @@
   <meta name="twitter:description" content="Adervis CRM: сделки, сметы, расчёт коммерческих предложений и календарь команды в одном окне.">
   <meta name="twitter:image" content="https://adervis.ru/assets/og/og-pro.jpg">
   <link rel="preload" href="/fonts/unbounded-700-cyrillic.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="/fonts/unbounded-700-latin.woff2" as="font" type="font/woff2" crossorigin><link rel="stylesheet" href="../css/style.min.css?v=f54a0148">
-  <link rel="stylesheet" href="../css/pro.min.css?v=24dbb5f8">
+  <link rel="stylesheet" href="../css/pro.min.css?v=8e428a19">
   <script type="application/ld+json">
   {
   "@context": "https://schema.org",
@@ -330,23 +330,18 @@
       </div>
       <div class="container crm-hero__grid">
         <div class="crm-hero__text">
-          <span class="badge-crm">Продукт ADERVIS</span>
-          <h1>Adervis CRM — продакшн <span class="text-gradient-crm">под контролем</span>, в одном окне</h1>
+          <div class="crm-brand" aria-hidden="true"><span class="crm-brand__mark"><img src="../assets/brand/crm-mark.svg" alt="" width="28" height="28"></span><span class="crm-brand__name">ADERVIS <b>CRM</b></span></div>
+          <h1>Adervis CRM: продакшн <span class="text-gradient-crm">под контролем</span>, в одном окне</h1>
           <p>Сделки, сметы, расчёт коммерческих предложений и календарь команды. Без таблиц, скриншотов в чатах и забытых дедлайнов. Мы выстроили эту систему для своих проектов, а теперь открываем её другим студиям и фрилансерам.</p>
           <div class="hero-buttons">
-            <a href="https://crm.adervis.ru" class="btn crm" target="_blank" rel="noopener">Открыть Adervis CRM</a>
-            <a href="/crm/smeta/" class="btn">Посчитать смету бесплатно</a>
-            <a href="#contacts" class="btn">Задать вопрос о платформе</a>
+            <a href="https://crm.adervis.ru" class="btn crm" target="_blank" rel="noopener">Попробовать 7 дней бесплатно<span class="sr-only"> (откроется в новой вкладке)</span></a>
+            <a href="/crm/smeta/" class="btn">Посчитать смету</a>
           </div>
-          <div class="hero-kpi-line">
-            <strong>200+</strong> позиций в каталоге смет
-            <span class="hero-kpi-sep">·</span>
-            <strong>4</strong> модуля в одном окне
-            <span class="hero-kpi-sep">·</span>
-            без таблиц и скриншотов в чатах
-            <span class="hero-kpi-sep">·</span>
-            сами используем каждый день
-          </div>
+          <ul class="crm-facts">
+            <li><b>200+</b> позиций в каталоге смет</li>
+            <li>карта не нужна</li>
+            <li>от <b>290 ₽</b> в месяц</li>
+          </ul>
         </div>
         <div class="crm-hero__visual">
           <div class="crm-devices">
@@ -366,20 +361,6 @@
                    alt="Adervis CRM на телефоне: сводка по выручке, прибыли и дедлайнам"
                    width="560" height="932" class="crm-devices__img" decoding="async">
               <span class="crm-devices__shine crm-devices__shine--phone" aria-hidden="true"></span>
-            </div>
-            <div class="crm-detail-card crm-detail-card--payment" aria-hidden="true">
-              <span class="crm-detail-card__icon">✓</span>
-              <div class="crm-detail-card__text">
-                <strong>Оплата получена</strong>
-                <span>+150 000 ₽</span>
-              </div>
-            </div>
-            <div class="crm-detail-card crm-detail-card--growth" aria-hidden="true">
-              <span class="crm-detail-card__icon crm-detail-card__icon--up">↑</span>
-              <div class="crm-detail-card__text">
-                <strong>Выручка за месяц</strong>
-                <span>+18% к прошлому</span>
-              </div>
             </div>
           </div>
         </div>
@@ -460,78 +441,54 @@
         <div class="section-head reveal">
           <span class="eyebrow">Реальный интерфейс</span>
           <h2>Так это выглядит внутри</h2>
-          <p>Интерфейс, в котором мы сами каждый день ведём свои проекты</p>
+          <p>Экраны сняты в самой программе на демо-сделке</p>
         </div>
         <div class="pro-shots">
 
           <div class="pro-shot reveal">
             <div class="pro-shot__media">
-              <picture><source srcset="../assets/cases/pro/menu.webp" type="image/webp"><img src="../assets/cases/pro/menu.jpg" alt="Adervis CRM, быстрое меню: проекты, сделки, сметы, финансы, задачи, календарь" loading="lazy" width="900" height="820"></picture>
-            </div>
-            <div class="pro-shot__text">
-              <span class="pro-shot__eyebrow">Всё в одном месте</span>
-              <h3>Один экран вместо десятка вкладок</h3>
-              <p>Проекты, сделки, сметы, финансы, календарь, задачи, клиенты, договоры, база знаний: быстрый доступ к любому разделу в один клик, без блуждания по меню.</p>
-            </div>
-          </div>
-
-          <div class="pro-shot reveal">
-            <div class="pro-shot__media">
-              <picture><source srcset="../assets/cases/pro/deal.webp" type="image/webp"><img src="../assets/cases/pro/deal.jpg" alt="Adervis CRM — карточка сделки с дедлайном проекта и статусом воронки" loading="lazy" width="900" height="820"></picture>
+              <picture><source srcset="../assets/cases/pro/shot-funnel-720.webp 720w, ../assets/cases/pro/shot-funnel.webp 1440w" sizes="(max-width: 860px) 92vw, 680px" type="image/webp"><img src="../assets/cases/pro/shot-funnel.jpg" alt="Воронка сделок: демо-сделка в колонке «КП отправлено»" loading="lazy" decoding="async" width="1440" height="650"></picture>
             </div>
             <div class="pro-shot__text">
               <span class="pro-shot__eyebrow">Сделки</span>
-              <h3>У каждого проекта история и дедлайн на виду</h3>
-              <p>Статус воронки, ответственный менеджер и срок до дедлайна всегда перед глазами. Ничего не приходится держать в голове или искать в переписке.</p>
+              <h3>Воронка от заявки до оплаты</h3>
+              <p>Каждая сделка стоит на своём этапе: лид, бриф, КП, согласование, договор. На карточке видны сумма, дедлайн и приоритет.</p>
             </div>
           </div>
 
           <div class="pro-shot reveal">
             <div class="pro-shot__media">
-              <picture><source srcset="../assets/cases/pro/catalog.webp" type="image/webp"><img src="../assets/cases/pro/catalog.jpg" alt="Adervis CRM — позиция каталога услуг с ценой, добавление в смету" loading="lazy" width="900" height="820"></picture>
+              <picture><source srcset="../assets/cases/pro/shot-catalog-720.webp 720w, ../assets/cases/pro/shot-catalog.webp 1440w" sizes="(max-width: 860px) 92vw, 680px" type="image/webp"><img src="../assets/cases/pro/shot-catalog.jpg" alt="Каталог услуг: карточки с ценами и кнопкой «Добавить», справа итог сметы 153 500 ₽" loading="lazy" decoding="async" width="1440" height="900"></picture>
             </div>
             <div class="pro-shot__text">
-              <span class="pro-shot__eyebrow">Сметы</span>
-              <h3>Каталог услуг: смета собирается в пару кликов</h3>
-              <p>Готовые позиции с ценами и описанием: выбрали, добавили в смету, итог посчитался сам. Не нужно каждый раз пересчитывать вручную в Excel.</p>
+              <span class="pro-shot__eyebrow">Каталог</span>
+              <h3>200+ позиций с вашими ценами</h3>
+              <p>Подготовка, команда, съёмка, оборудование, постпродакшн, дизайн. Цены правите один раз, дальше позиция добавляется в смету одной кнопкой.</p>
             </div>
           </div>
 
           <div class="pro-shot reveal">
             <div class="pro-shot__media">
-              <picture><source srcset="../assets/cases/pro/finance.webp" type="image/webp"><img src="../assets/cases/pro/finance.jpg" alt="Adervis CRM: добавление поступления по проекту с суммой, статьёй и способом оплаты" loading="lazy" width="900" height="820"></picture>
+              <picture><source srcset="../assets/cases/pro/shot-estimate-720.webp 720w, ../assets/cases/pro/shot-estimate.webp 1440w" sizes="(max-width: 860px) 92vw, 680px" type="image/webp"><img src="../assets/cases/pro/shot-estimate.jpg" alt="Смета демо-проекта: итог для клиента 153 500 ₽, аванс 76 800 ₽, кнопка «Сформировать КП»" loading="lazy" decoding="async" width="1440" height="900"></picture>
+            </div>
+            <div class="pro-shot__text">
+              <span class="pro-shot__eyebrow">Сметы и КП</span>
+              <h3>Смета считает итог, аванс и прибыль</h3>
+              <p>Справа всегда виден итог для клиента, аванс и плановая прибыль. Из готовой сметы одной кнопкой выходит КП по ссылке.</p>
+            </div>
+          </div>
+
+          <div class="pro-shot reveal">
+            <div class="pro-shot__media">
+              <picture><source srcset="../assets/cases/pro/shot-finance-720.webp 720w, ../assets/cases/pro/shot-finance.webp 1440w" sizes="(max-width: 860px) 92vw, 680px" type="image/webp"><img src="../assets/cases/pro/shot-finance.jpg" alt="Финансы проекта: бюджет 153 500 ₽, оплачено 76 750 ₽, долг 76 750 ₽, поступление аванса" loading="lazy" decoding="async" width="1440" height="725"></picture>
             </div>
             <div class="pro-shot__text">
               <span class="pro-shot__eyebrow">Финансы</span>
-              <h3>Поступления и расходы сразу по проекту</h3>
-              <p>Привязываете платёж к конкретной сделке, и P&amp;L по проекту и по агентству в целом считается сам, без сводных таблиц, которые вечно «немного не сходятся».</p>
+              <h3>Деньги по каждому проекту</h3>
+              <p>Бюджет, оплачено, долг, расходы и прибыль на одном экране. Поступление привязывается к сделке, и итог пересчитывается сам.</p>
             </div>
           </div>
 
-        </div>
-      </div>
-    </section>
-
-    <!-- Цифры -->
-    <section class="section">
-      <div class="container">
-        <div class="stats-grid">
-          <div class="stat-card reveal">
-            <div class="stat-number">с 2018</div>
-            <div class="stat-label">снимаем сами: систему писали под свою работу, а не на продажу</div>
-          </div>
-          <div class="stat-card reveal">
-            <div class="stat-number">6</div>
-            <div class="stat-label">модулей: сделки, сметы, финансы, задачи, календарь, клиентский портал</div>
-          </div>
-          <div class="stat-card reveal">
-            <div class="stat-number">1</div>
-            <div class="stat-label">приложение заменяет десятки таблиц и чатов</div>
-          </div>
-          <div class="stat-card reveal">
-            <div class="stat-number">100%</div>
-            <div class="stat-label">заточено под реальные задачи продакшена</div>
-          </div>
         </div>
       </div>
     </section>
@@ -608,30 +565,6 @@
           </article>
         </div>
         <p class="pricing-note reveal">Приведите знакомую студию или фрилансера: когда они оплатят любой тариф, вам начислится <strong>+30 дней</strong> подписки бесплатно.</p>
-      </div>
-    </section>
-
-    <!-- Кому подходит -->
-    <section class="section">
-      <div class="container">
-        <div class="section-head reveal">
-          <h2>Для тех, кто ведёт проекты</h2>
-          <p>Adervis CRM появилась из реальной задачи нашей студии, поэтому в ней нет «фичей ради фичей», только то, что действительно экономит часы каждую неделю</p>
-        </div>
-        <div class="steps-grid">
-          <div class="step-card reveal">
-            <h3>Продакшн-студиям</h3>
-            <p>Когда в работе одновременно десятки проектов и нужно видеть статус каждого, без созвонов «напомни, на чём мы остановились».</p>
-          </div>
-          <div class="step-card reveal">
-            <h3>Фрилансерам и небольшим командам</h3>
-            <p>Когда один человек закрывает роли менеджера, бухгалтера и исполнителя и не должен тратить на администрирование больше времени, чем на саму работу.</p>
-          </div>
-          <div class="step-card reveal">
-            <h3>Агентствам полного цикла</h3>
-            <p>Когда несколько направлений и подрядчиков нужно свести в одну систему отчётности и показать клиенту понятную картину по проекту.</p>
-          </div>
-        </div>
       </div>
     </section>
 
@@ -715,7 +648,7 @@
         <h2>Готовы навести порядок в проектах?</h2>
         <p>Откройте Adervis CRM и попробуйте на своих сделках, а если нужна помощь с переходом или настройкой, просто напишите нам.</p>
         <div class="hero-buttons">
-          <a href="https://crm.adervis.ru" class="btn crm" target="_blank" rel="noopener">Открыть Adervis CRM</a>
+          <a href="https://crm.adervis.ru" class="btn crm" target="_blank" rel="noopener">Открыть Adervis CRM<span class="sr-only"> (откроется в новой вкладке)</span></a>
           <a href="mailto:adervis.digital@gmail.com" class="btn">adervis.digital@gmail.com</a>
         </div>
         <div class="vp-trust-line">

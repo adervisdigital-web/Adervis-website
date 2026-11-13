@@ -363,3 +363,201 @@
   .stock-banner__icon { width: 44px; height: 44px; }
   .stock-banner__cta { grid-column: 1 / -1; justify-content: center; }
 }
+
+/* === ПЛАТФОРМА: ДВЕ КАРТОЧКИ СЕРВИСОВ (2026-11) === */
+/* Вариант А: CRM и Stock — два равных блока, каждый в стиле своего сервиса.
+   Карточки всегда тёмные (это фирменные поверхности сервисов), поэтому цвета
+   текста заданы явно, а не через переменные темы: в светлой теме сайта
+   переменные дали бы тёмный текст на тёмном фоне. */
+.pf-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--sp-6);
+  align-items: stretch;
+}
+
+.pf-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 36px;
+  border-radius: 28px;
+  overflow: hidden;
+  color: #fff;
+  isolation: isolate;
+}
+
+/* CRM: спокойный сине-фиолетовый из самой программы (--primary #5b4ee8) */
+.pf-card--crm {
+  background:
+    radial-gradient(120% 90% at 100% 100%, rgba(140, 128, 255, 0.55) 0%, rgba(91, 78, 232, 0) 60%),
+    linear-gradient(155deg, #1d1650 0%, #2f2590 52%, #4b3fd6 100%);
+  border: 1px solid rgba(160, 150, 255, 0.35);
+}
+
+/* Stock: тёмная подложка и золото, как на stock.adervis.ru */
+.pf-card--stock {
+  background:
+    radial-gradient(90% 70% at 100% 0%, rgba(246, 189, 58, 0.14) 0%, rgba(246, 189, 58, 0) 62%),
+    #161616;
+  border: 1px solid rgba(246, 189, 58, 0.30);
+}
+
+.pf-brand { display: flex; align-items: center; gap: 12px; min-height: 44px; }
+
+.pf-crm-mark {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: #5b4ee8;
+  box-shadow: 0 6px 18px rgba(10, 6, 40, 0.45);
+}
+.pf-crm-mark img { width: 28px; height: 28px; display: block; }
+
+.pf-crm-name {
+  font-family: var(--font-display);
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: #fff;
+}
+.pf-crm-name b { font-weight: 500; color: rgba(255, 255, 255, 0.72); }
+
+.pf-stock-logo { height: 42px; width: auto; display: block; }
+
+.pf-title {
+  margin: 6px 0 0;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(1.375rem, 1.2vw + 1rem, 1.875rem);
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  color: #fff;
+  text-wrap: balance;
+}
+
+.pf-desc {
+  margin: 0;
+  max-width: 46ch;
+  font-size: 16px;
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.80);
+}
+
+.pf-facts {
+  list-style: none;
+  margin: 2px 0 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.pf-facts li {
+  padding: 7px 12px;
+  border-radius: 999px;
+  font-size: 13px;
+  line-height: 1.3;
+  color: rgba(255, 255, 255, 0.86);
+  background: rgba(255, 255, 255, 0.09);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+}
+.pf-facts b { font-weight: 700; color: #fff; }
+.pf-card--stock .pf-facts li { background: rgba(246, 189, 58, 0.08); border-color: rgba(246, 189, 58, 0.22); }
+
+.pf-visual {
+  flex: 1 1 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 230px;
+  margin: 6px 0;
+}
+.pf-card--crm .crm-devices { max-width: 460px; }
+/* На фирменном фоне CRM свечение под техникой делаем светлее и холоднее */
+.pf-card--crm .crm-devices__glow {
+  background: radial-gradient(circle, rgba(170, 160, 255, 0.34) 0%, rgba(170, 160, 255, 0.12) 40%, rgba(170, 160, 255, 0) 68%);
+}
+
+.pf-stock-demo { flex-direction: column; gap: 10px; align-items: stretch; justify-content: center; }
+.pf-stock-step {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+  border-radius: 14px;
+  background: #1f1f1f;
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  min-width: 0;
+}
+.pf-stock-step--file { border-color: rgba(246, 189, 58, 0.45); background: rgba(246, 189, 58, 0.07); }
+.pf-stock-step__n {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 8px;
+  font-family: var(--font-display);
+  font-size: 12px;
+  font-weight: 700;
+  color: #161616;
+  background: #f6bd3a;
+}
+.pf-stock-url, .pf-stock-file {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.62);
+}
+.pf-stock-url i { font-style: normal; font-weight: 600; color: #fff; }
+.pf-stock-file { display: flex; align-items: center; gap: 8px; font-weight: 600; color: #ffd673; }
+.pf-stock-file svg { flex: none; }
+.pf-stock-arrow {
+  align-self: center;
+  width: 10px;
+  height: 10px;
+  border-right: 2px solid #f6bd3a;
+  border-bottom: 2px solid #f6bd3a;
+  transform: rotate(45deg);
+  margin: -2px 0 4px;
+}
+
+.pf-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: auto; }
+.pf-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 12px 22px;
+  border-radius: 14px;
+  font-size: 15px;
+  font-weight: 600;
+  text-decoration: none;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+.pf-btn:hover { background: rgba(255, 255, 255, 0.16); border-color: rgba(255, 255, 255, 0.75); transform: translateY(-1px); }
+.pf-btn:focus-visible { outline: 3px solid #fff; outline-offset: 3px; }
+.pf-btn--solid { color: #1d1650; background: #fff; border-color: #fff; }
+.pf-btn--solid:hover { background: #ecebff; border-color: #ecebff; }
+.pf-btn--gold { color: #161616; background: #f6bd3a; border-color: #f6bd3a; }
+.pf-btn--gold:hover { background: #ffd673; border-color: #ffd673; }
+.pf-card--stock .pf-btn:focus-visible { outline-color: #f6bd3a; }
+
+@media (max-width: 900px) {
+  .pf-grid { grid-template-columns: 1fr; }
+  .pf-card { padding: 24px; border-radius: 22px; }
+  .pf-visual { min-height: 0; }
+  .pf-card--crm .crm-devices { max-width: 360px; }
+  .pf-actions .pf-btn { flex: 1 1 100%; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .pf-btn:hover { transform: none; }
+}
