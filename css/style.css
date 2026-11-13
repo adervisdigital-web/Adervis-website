@@ -11583,3 +11583,15 @@ html:has(.cx-filterbar) { scroll-padding-top: 160px; }             /* фокус
 @media (max-width: 1000px) {
   .cx-hero--mosaic .chs-overlay { background: linear-gradient(to top, #0e0e0e 0%, rgba(14, 14, 14, 0.9) 45%, rgba(14, 14, 14, 0.45) 100%); }
 }
+
+/* Ширина контента (13.11): на ноутбуке 1440–1536px контент шёл почти во всю
+   ширину. Владелец хочет, как при уменьшенном масштабе браузера: колонка
+   по центру с полями по бокам. Одна переменная для контейнера, шапки и подвала. */
+:root { --page-max: 1200px; }
+.container,
+.svc-compare-divider { width: min(var(--page-max), calc(100% - 48px)); }
+.site-header__bar,
+.footer-lesse__top { max-width: var(--page-max); }
+.footer-lesse__top { padding-left: 0; padding-right: 0; width: min(var(--page-max), calc(100% - 48px)); }
+/* Под колонку 1200px заголовок /cases/ чуть меньше: две-три строки, а не четыре */
+.cx-hero__title { font-size: clamp(2.5rem, 4.4vw, 4.25rem); }
