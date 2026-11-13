@@ -647,7 +647,7 @@ function initMotionToggle(headerRoot) {
 
 // Голосовое приветствие студии: кнопка ▶ в шапке. Играет только по нажатию,
 // повторное нажатие — пауза. Субтитры под кнопкой меняются по ходу речи
-// (тайминги — по паузам в файле assets/audio/about-adervis.mp3).
+// (тайминги — по паузам в файле assets/audio/about-adervis-v2.mp3).
 function initVoiceHello(headerRoot) {
   const btn = headerRoot.querySelector("#voiceToggle");
   const audio = headerRoot.querySelector("#voiceAudio");
@@ -655,8 +655,8 @@ function initVoiceHello(headerRoot) {
   if (!btn || !audio || !cap) return;
   const CUES = [
     [0, "Привет! Это ADERVIS, продакшн-студия из Перми."],
-    [3.45, "Снимаем видео, делаем дизайн, фото и контент на нейросетях, всё в одной команде."],
-    [9.7, "Расскажите о задаче, ответим за два часа."],
+    [3.65, "Снимаем видео, делаем дизайн, фото и контент на нейросетях, всё в одной команде."],
+    [10.3, "Напишите нам, обсудим задачу и предложим формат."],
   ];
   const FULL = CUES.map(c => c[1]).join(" ");
   const wrap = btn.closest(".voice-hello");
@@ -669,7 +669,7 @@ function initVoiceHello(headerRoot) {
     let text = CUES[0][1];
     CUES.forEach(([at, line]) => { if (t >= at) text = line; });
     if (cap.textContent !== text) cap.textContent = text;
-    const d = audio.duration || 13;
+    const d = audio.duration || 14;
     btn.style.setProperty("--p", String(Math.min(1, t / d)));
   };
   // Пузырь не исчезает сам (WCAG 1.2.1: текст читается в своём темпе) —
