@@ -127,19 +127,19 @@
             "@type": "Review",
             "author": { "@type": "Person", "name": "Виктор Пермяков" },
             "reviewRating": { "@type": "Rating", "ratingValue": "5" },
-            "reviewBody": "Очень давно сотрудничаем и дружим с ребятами. Способны решить задачу любой сложности — и быстрый техничный монтаж, и комплексный проект со съёмкой в течение года."
+            "reviewBody": "Очень давно сотрудничаем и дружим с ребятами. Способны решить задачу любой сложности: и быстрый техничный монтаж, и комплексный проект со съёмкой в течение года."
           },
           {
             "@type": "Review",
             "author": { "@type": "Person", "name": "Алина Лесникова" },
             "reviewRating": { "@type": "Rating", "ratingValue": "5" },
-            "reviewBody": "Видеоролик получился офигенный, спасибо что адекватно принимали критику и правки. Наш ролик прошёл в финал конкурса — а это наша совместная победа!"
+            "reviewBody": "Видеоролик получился офигенный, спасибо что адекватно принимали критику и правки. Наш ролик прошёл в финал конкурса, а это наша совместная победа!"
           },
           {
             "@type": "Review",
             "author": { "@type": "Person", "name": "Андрей Шуклин" },
             "reviewRating": { "@type": "Rating", "ratingValue": "5" },
-            "reviewBody": "Работают оперативно, подсказывают, придумывают — отличная команда."
+            "reviewBody": "Работают оперативно, подсказывают, придумывают: отличная команда."
           },
           {
             "@type": "Review",
@@ -151,7 +151,7 @@
             "@type": "Review",
             "author": { "@type": "Organization", "name": "Абс Авто" },
             "reviewRating": { "@type": "Rating", "ratingValue": "5" },
-            "reviewBody": "Очень классные и отзывчивые ребята. Сделали оперативно и качественно. Ролик для ТВ — подогнали по всем техническим требованиям. Рекомендуем."
+            "reviewBody": "Очень классные и отзывчивые ребята. Сделали оперативно и качественно. Ролик для ТВ подогнали по всем техническим требованиям. Рекомендуем."
           },
           {
             "@type": "Review",
@@ -170,7 +170,7 @@
     ]
   }
   </script>
-  <!-- Three.js importmap — self-hosted (js/vendor/three), больше не с CDN jsdelivr -->
+  <!-- Three.js importmap · self-hosted (js/vendor/three), больше не с CDN jsdelivr -->
   <script type="importmap">
   {
     "imports": {
@@ -204,7 +204,7 @@
 
     <!-- Лого -->
     <a href="/" class="brand site-header__logo">
-      <img src="/logo.svg" id="siteLogo" data-dark="/logo.svg" data-light="/logoB.svg" alt="ADERVIS — Продакшн-студия" width="140" height="34">
+      <img src="/logo.svg" id="siteLogo" data-dark="/logo.svg" data-light="/logoB.svg" alt="ADERVIS, продакшн-студия" width="140" height="34">
     </a>
 
     <!-- Навигация -->
@@ -213,7 +213,7 @@
 
       <a href="/" class="pill-nav__link">Главная</a>
 
-      <!-- УСЛУГИ — клик ведёт на раздел #services, выпадашка показывает направления -->
+      <!-- УСЛУГИ · клик ведёт на раздел #services, выпадашка показывает направления -->
       <div class="pill-nav__dropdown" id="dropServices">
         <a href="/#services" class="pill-nav__link pill-nav__link--drop" aria-haspopup="true" aria-expanded="false" aria-controls="megaServices">
           Услуги
@@ -261,7 +261,7 @@
 
       <a href="/cases/" class="pill-nav__link">Кейсы</a>
       <a href="/careers/" class="pill-nav__link">Вакансии</a>
-      <!-- Adervis Platform — видна только в мобильном меню, на десктопе скрыта -->
+      <!-- Adervis Platform · видна только в мобильном меню, на десктопе скрыта -->
       <a href="/#platform" class="pill-nav__link pill-nav__link--platform-mobile">Adervis Platform</a>
 
     </nav>
@@ -291,8 +291,8 @@
         <span>Написать</span>
       </a>
 
-      <!-- ADERVIS PLATFORM — кнопка с дропдауном продуктов: CRM и Stock.
-           Stock живёт на своём поддомене и открывается в новой вкладке — так же,
+      <!-- ADERVIS PLATFORM · кнопка с дропдауном продуктов: CRM и Stock.
+           Stock живёт на своём поддомене и открывается в новой вкладке · так же,
            как «Открыть платформу» у CRM в секции #platform на главной. -->
       <div class="pill-nav__dropdown" id="dropPlatform">
         <button type="button" class="site-header__platform pill-nav__link--drop"
@@ -341,16 +341,16 @@
     var tube = document.getElementById('tubeIndicator');
     if (!nav || !tube) return;
 
-    // Цель индикатора — всегда пункт ВЕРХНЕГО уровня. markActiveNavLink() в
+    // Цель индикатора · всегда пункт ВЕРХНЕГО уровня. markActiveNavLink() в
     // app.js помечает .nav-active и пункты внутри мега-меню (это нужно, чтобы
     // подсветить текущее направление в выпадашке). Раньше индикатор хватал
-    // первый попавшийся .nav-active — на /video/, /design/, /photo/, /ai/ им
+    // первый попавшийся .nav-active · на /video/, /design/, /photo/, /ai/ им
     // оказывался пункт выпадашки, и капсула растягивалась на его ширину
     // (302px вместо 98), перекрывая половину меню.
     function activeTopLink () {
       var direct = nav.querySelector('.pill-nav__link.nav-active:not(.pill-nav__link--drop)');
       if (direct) return direct;
-      // Активно направление внутри «Услуг» — подсвечиваем сам пункт «Услуги».
+      // Активно направление внутри «Услуг» · подсвечиваем сам пункт «Услуги».
       var inDrop = nav.querySelector('.pill-nav__dropdown .nav-active');
       if (inDrop) {
         var drop = inDrop.closest('.pill-nav__dropdown');
@@ -402,13 +402,13 @@
     }
 
     // Шрифт Unbounded догружается уже после DOMContentLoaded и делает пункты
-    // шире — без пересчёта индикатор остаётся на координатах запасного шрифта
+    // шире · без пересчёта индикатор остаётся на координатах запасного шрифта
     // (промах ~30px), пока пользователь не наведёт мышь.
     if (document.fonts && document.fonts.ready) {
       document.fonts.ready.then(resync);
     }
 
-    // Resize меняет раскладку шапки — без этого индикатор уезжает.
+    // Resize меняет раскладку шапки · без этого индикатор уезжает.
     var t;
     window.addEventListener('resize', function () {
       clearTimeout(t);
@@ -428,7 +428,7 @@
   <main id="main-content">
 
     <!-- ════════════════════════════════
-         HERO — 3D logo + Aurora + content
+         HERO · 3D logo + Aurora + content
          ════════════════════════════════ -->
     <section class="hero-section" id="hero">
 
@@ -442,7 +442,7 @@
       <!-- Diagonal tech lines grid -->
       <div class="hero-tech-lines" aria-hidden="true"></div>
 
-      <!-- Three.js 3D logo canvas (alpha: true — aurora прозрачна сквозь него) -->
+      <!-- Three.js 3D logo canvas (alpha: true · aurora прозрачна сквозь него) -->
       <canvas id="heroCanvas" class="hero-canvas" aria-hidden="true"></canvas>
 
       <!-- Content -->
@@ -450,7 +450,7 @@
         <div class="hero-content">
           <span class="eyebrow">Продакшн-студия · Пермь</span>
           <h1>Визуал для бизнеса<br><span class="text-gradient">под ключ.</span></h1>
-          <p>Видеопродакшн, разработка фирменного стиля, фотосъёмка и ИИ-контент. Один договор на весь визуал — продакшн-студия в Перми, работаем по всей России.</p>
+          <p>Видеопродакшн, разработка фирменного стиля, фотосъёмка и ИИ-контент. Один договор на весь визуал. Продакшн-студия в Перми, работаем по всей России.</p>
           <!-- Выбор направления v4 -->
           <div class="hero-quiz" id="heroQuiz">
 
@@ -509,10 +509,10 @@
             <span>работаем <strong>по всей России</strong></span>
           </div>
         </div>
-        <!-- KPI block removed — 3D icon now occupies right half via hero3d.js position.x offset -->
+        <!-- KPI block removed · 3D icon now occupies right half via hero3d.js position.x offset -->
       </div>
 
-      <!-- Scroll indicator — только стрелка, без текста -->
+      <!-- Scroll indicator · только стрелка, без текста -->
       <div class="hero-scroll-hint" aria-hidden="true">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
       </div>
@@ -520,7 +520,7 @@
     </section>
 
     <!-- ════════════════════════════════
-         MARQUEE — бегущая строка направлений
+         MARQUEE · бегущая строка направлений
          ════════════════════════════════ -->
     <div class="dir-marquee" aria-hidden="true">
       <div class="dir-marquee-track">
@@ -542,7 +542,7 @@
     </div>
 
     <!-- ════════════════════════════════
-         CONCEPT — что такое ADERVIS
+         CONCEPT · что такое ADERVIS
          ════════════════════════════════ -->
     <section class="section lh-concept" id="about">
       <div class="container lh-concept__grid">
@@ -553,7 +553,7 @@
             для видео, дизайна,<br>
             фото и ИИ-контента.
           </h2>
-          <p>Нанять оператора, дизайнера и фотографа отдельно — значит получить три разных стиля. Мы делаем всё сами, в едином стиле и по одному договору.</p>
+          <p>Если нанимать оператора, дизайнера и фотографа отдельно, получатся три разных стиля. Мы делаем всё сами, в едином стиле и по одному договору.</p>
         </div>
 
         <div class="lh-concept__visual reveal">
@@ -659,13 +659,13 @@
         <div class="section-head reveal">
           <span class="eyebrow">Узнаёте себя?</span>
           <h2>Мы для тех, кто устал от полумер</h2>
-          <p>Каждая из этих ситуаций — реальный разговор с клиентом перед первым проектом</p>
+          <p>Каждая из этих ситуаций взята из реального разговора с клиентом перед первым проектом</p>
         </div>
         <div class="pain-list">
           <div class="pain-item reveal">
             <span class="pain-num" aria-hidden="true">01</span>
             <div class="pain-body">
-              <p class="pain-headline">«Пять подрядчиков — и всё выглядит по-разному»</p>
+              <p class="pain-headline">«Пять подрядчиков, и всё выглядит по-разному»</p>
               <p class="pain-desc">Один брифинг. Одно КП. Видео, дизайн, фото и соцсети выдержаны в едином стиле, потому что делаем всё мы.</p>
             </div>
           </div>
@@ -673,21 +673,21 @@
             <span class="pain-num" aria-hidden="true">02</span>
             <div class="pain-body">
               <p class="pain-headline">«Сделали красиво, но не работает»</p>
-              <p class="pain-desc">Думаем про цель, не только про картинку. Каждый проект начинается с вопроса «зачем», а не «как будет выглядеть».</p>
+              <p class="pain-desc">Думаем про цель, не только про картинку. Каждый проект начинается с вопроса «зачем».</p>
             </div>
           </div>
           <div class="pain-item reveal">
             <span class="pain-num" aria-hidden="true">03</span>
             <div class="pain-body">
-              <p class="pain-headline">«Попросили ролик — получили три месяца переписки»</p>
-              <p class="pain-desc">Сроки в договоре. Дедлайн — дата сдачи, а не «почти готово». Если задерживаемся, предупреждаем сами.</p>
+              <p class="pain-headline">«Попросили ролик, получили три месяца переписки»</p>
+              <p class="pain-desc">Сроки в договоре. Дедлайн означает дату сдачи, а не «почти готово». Если задерживаемся, предупреждаем сами.</p>
             </div>
           </div>
           <div class="pain-item reveal">
             <span class="pain-num" aria-hidden="true">04</span>
             <div class="pain-body">
-              <p class="pain-headline">«Нейросети везде — но непонятно как использовать»</p>
-              <p class="pain-desc">ИИ-контент с арт-дирекшеном: не хаотичная генерация, а инструмент с заданным стилем и конкретной задачей.</p>
+              <p class="pain-headline">«Нейросети везде, но непонятно как использовать»</p>
+              <p class="pain-desc">ИИ-контент с арт-дирекшеном: у генерации есть заданный стиль и конкретная задача.</p>
             </div>
           </div>
         </div>
@@ -860,7 +860,7 @@
     <div class="section-divider" aria-hidden="true"></div>
 
     <!-- ════════════════════════════════
-         КВИЗ — КП за 24 часа
+         КВИЗ · КП за 24 часа
          ════════════════════════════════ -->
     <section class="section" id="quiz">
       <div class="container">
@@ -968,7 +968,7 @@
     <div class="section-divider" aria-hidden="true"></div>
 
     <!-- ════════════════════════════════
-         ОТЗЫВЫ — видео + текст (один блок)
+         ОТЗЫВЫ · видео + текст (один блок)
          ════════════════════════════════ -->
     <section class="section">
       <div class="container">
@@ -1039,7 +1039,7 @@
               </div>
 
               <div class="review-card">
-                <p class="review-text">Очень давно сотрудничаем и дружим с ребятами. Способны решить задачу любой сложности — и быстрый техничный монтаж, и комплексный проект со съёмкой в течение года.</p>
+                <p class="review-text">Очень давно сотрудничаем и дружим с ребятами. Способны решить задачу любой сложности: и быстрый техничный монтаж, и комплексный проект со съёмкой в течение года.</p>
                 <div class="review-author">
                   <a href="https://vk.com/permclimber" class="review-avatar-link" target="_blank" rel="noopener noreferrer" aria-label="ВКонтакте: Виктор Пермяков">
                     <picture><source srcset="assets/testimonials/permyakov.webp" type="image/webp"><img loading="lazy" src="assets/testimonials/permyakov.jpg" alt="Виктор Пермяков" width="156" height="156" class="review-avatar" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"></picture>
@@ -1053,7 +1053,7 @@
               </div>
 
               <div class="review-card">
-                <p class="review-text">Ребята, очень благодарна вам за слаженную работу! Безумно комфортно и креативно — это супер важная часть! Видеоролик получился офигенный, спасибо что адекватно принимали критику и правки. Очень рада, что интуитивно среди трёх компаний выбрала именно вас! И кстати, наш ролик прошёл в финал конкурса — а это уже наша совместная победа!</p>
+                <p class="review-text">Ребята, очень благодарна вам за слаженную работу! Безумно комфортно и креативно, это супер важная часть! Видеоролик получился офигенный, спасибо что адекватно принимали критику и правки. Очень рада, что интуитивно среди трёх компаний выбрала именно вас! И кстати, наш ролик прошёл в финал конкурса, а это уже наша совместная победа!</p>
                 <div class="review-author">
                   <a href="https://vk.com/dr_lesnikova" class="review-avatar-link" target="_blank" rel="noopener noreferrer" aria-label="ВКонтакте: Алина Лесникова">
                     <picture><source srcset="assets/testimonials/lesnikova.webp" type="image/webp"><img loading="lazy" src="assets/testimonials/lesnikova.jpg" alt="Алина Лесникова" width="156" height="156" class="review-avatar" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"></picture>
@@ -1067,7 +1067,7 @@
               </div>
 
               <div class="review-card">
-                <p class="review-text">Работают оперативно, подсказывают, придумывают — отличная команда. Процветания и больше работы по данному направлению, удачи ребята — поработаем ещё.</p>
+                <p class="review-text">Работают оперативно, подсказывают, придумывают: отличная команда. Процветания и больше работы по данному направлению, удачи ребята, поработаем ещё.</p>
                 <div class="review-author">
                   <a href="https://vk.com/andreuka1" class="review-avatar-link" target="_blank" rel="noopener noreferrer" aria-label="ВКонтакте: Андрей Шуклин">
                     <picture><source srcset="assets/testimonials/shuklin.webp" type="image/webp"><img loading="lazy" src="assets/testimonials/shuklin.jpg" alt="Андрей Шуклин" width="156" height="156" class="review-avatar" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"></picture>
@@ -1081,7 +1081,7 @@
               </div>
 
               <div class="review-card">
-                <p class="review-text">Парни отсняли и обработали мне 2 клипа. Процесс съёмки был очень комфортен — провели время так, будто знаем друг друга много лет, помогали по максимуму раскрыться. Итогом работы я более чем доволен! Рекомендую!</p>
+                <p class="review-text">Парни отсняли и обработали мне 2 клипа. Процесс съёмки был очень комфортен: провели время так, будто знаем друг друга много лет, помогали по максимуму раскрыться. Итогом работы я более чем доволен! Рекомендую!</p>
                 <div class="review-author">
                   <a href="https://vk.com/rodin_official" class="review-avatar-link" target="_blank" rel="noopener noreferrer" aria-label="ВКонтакте: Дмитрий Родин">
                     <picture><source srcset="assets/testimonials/rodin.webp" type="image/webp"><img loading="lazy" src="assets/testimonials/rodin.jpg" alt="Дмитрий Родин" width="156" height="156" class="review-avatar" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"></picture>
@@ -1095,7 +1095,7 @@
               </div>
 
               <div class="review-card">
-                <p class="review-text">Вы очень классные и отзывчивые ребята. Сделали всё очень оперативно и качественно. Ролик делали для ТВ — подогнали по всем техническим требованиям. Спасибо огромное! Рекомендуем.</p>
+                <p class="review-text">Вы очень классные и отзывчивые ребята. Сделали всё очень оперативно и качественно. Ролик делали для ТВ, подогнали по всем техническим требованиям. Спасибо огромное! Рекомендуем.</p>
                 <div class="review-author">
                   <a href="https://vk.com/abs_auto" class="review-avatar-link" target="_blank" rel="noopener noreferrer" aria-label="ВКонтакте: Абс Авто">
                     <picture><source srcset="assets/testimonials/abs-avto.webp" type="image/webp"><img loading="lazy" src="assets/testimonials/abs-avto.jpg" alt="Абс Авто" width="156" height="156" class="review-avatar" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"></picture>
@@ -1109,7 +1109,7 @@
               </div>
 
               <div class="review-card">
-                <p class="review-text">Мы впервые заказали ролик и нам очень повезло с первого раза встретить таких профессионалов! Очень хороший результат и по видео, и по фото. Оперативно, пунктуально и очень внимательно отнеслись к работе. Ребята помогли с композицией, с аксессуарами — результат просто прекрасен!</p>
+                <p class="review-text">Мы впервые заказали ролик и нам очень повезло с первого раза встретить таких профессионалов! Очень хороший результат и по видео, и по фото. Оперативно, пунктуально и очень внимательно отнеслись к работе. Ребята помогли с композицией, с аксессуарами, результат просто прекрасен!</p>
                 <div class="review-author">
                   <a href="https://vk.com/ignatovaanna" class="review-avatar-link" target="_blank" rel="noopener noreferrer" aria-label="ВКонтакте: Анна Игнатова">
                     <picture><source srcset="assets/testimonials/ignatova.webp" type="image/webp"><img loading="lazy" src="assets/testimonials/ignatova.jpg" alt="Анна Игнатова" width="156" height="156" class="review-avatar" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"></picture>
@@ -1156,13 +1156,13 @@
     <div class="section-divider" aria-hidden="true"></div>
 
     <!-- ════════════════════════════════
-         КАК МЫ РАБОТАЕМ — ПРОЦЕСС
+         КАК МЫ РАБОТАЕМ · ПРОЦЕСС
          ════════════════════════════════ -->
     <section class="section">
       <div class="container">
         <div class="section-head reveal">
           <h2>Четыре шага от заявки до готового файла</h2>
-          <p>Без лишних итераций и «финал_v8». Работаем прозрачно: вы видите что происходит на каждом этапе</p>
+          <p>Без лишних итераций и «финал_v8». Вы видите, что происходит на каждом этапе</p>
         </div>
         <div class="process-grid">
           <div class="process-card reveal">
@@ -1219,7 +1219,7 @@
     <div class="section-divider" aria-hidden="true"></div>
 
     <!-- ════════════════════════════════
-         ADERVIS PLATFORM — тизер
+         ADERVIS PLATFORM · тизер
          ════════════════════════════════ -->
     <section class="section" id="platform">
       <div class="container">
@@ -1280,7 +1280,7 @@
         </div>
 
         <!-- Второй продукт платформы: Adervis Stock.
-             Намеренно тише баннера CRM — Stock это инструмент, а не витрина:
+             Намеренно тише баннера CRM · Stock это инструмент, а не витрина:
              тёмная подложка, золотая линия вместо заливки, без обещаний
              «бесплатно» и «без подписки» (клиент платит за тариф). -->
         <a class="stock-banner reveal" href="https://stock.adervis.ru/" target="_blank" rel="noopener">
@@ -1290,7 +1290,7 @@
           <span class="stock-banner__body">
             <span class="stock-banner__eyebrow">ADERVIS Platform</span>
             <span class="stock-banner__title">Adervis Stock — файлы с Envato Elements по ссылке</span>
-            <span class="stock-banner__desc">Вставляете ссылку на материал — получаете оригинальный файл. Шаблоны, футажи, музыка и графика для проектов: оплачиваете тариф и скачиваете, сколько нужно по сроку.</span>
+            <span class="stock-banner__desc">Вставляете ссылку на материал и получаете оригинальный файл. Шаблоны, футажи, музыка и графика для проектов: оплачиваете тариф и скачиваете, сколько нужно по сроку.</span>
           </span>
           <span class="stock-banner__cta">
             Открыть Stock
@@ -1304,7 +1304,7 @@
     <div class="section-divider" aria-hidden="true"></div>
 
     <!-- ════════════════════════════════
-         ЛИД-МАГНИТ — чек-лист за контакт
+         ЛИД-МАГНИТ · чек-лист за контакт
          ════════════════════════════════ -->
     <section class="section">
       <div class="container">
@@ -1618,13 +1618,13 @@
 
 <div class="cookie-banner" id="cookieBanner" role="region" aria-label="Уведомление об использовании cookie" hidden>
   <p class="cookie-banner__text">
-    Сайт использует файлы cookie и сервис веб-аналитики «Яндекс.Метрика». Они помогают понимать, как посетители пользуются сайтом и какая реклама приводит заявки. Продолжая пользоваться сайтом, вы соглашаетесь с этим. Подробности — в <a href="/docs/#docs-privacy">Политике конфиденциальности</a>.
+    Сайт использует файлы cookie и сервис веб-аналитики «Яндекс.Метрика». Они помогают понимать, как посетители пользуются сайтом и какая реклама приводит заявки. Продолжая пользоваться сайтом, вы соглашаетесь с этим. Подробности в <a href="/docs/#docs-privacy">Политике конфиденциальности</a>.
   </p>
   <button type="button" class="cookie-banner__accept" id="cookieBannerAccept">Принимаю</button>
 </div>
 <!-- END:footer-placeholder --></div>
 
-  <script src="js/app.min.js?v=b7c9c14b"></script>
+  <script src="js/app.min.js?v=57be7eab"></script>
   <script>
     if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       var s = document.createElement('script');
@@ -1660,7 +1660,7 @@
     </div>
   </div>
 
-  <!-- ════ МОДАЛЬНОЕ ОКНО — Быстрая заявка ════ -->
+  <!-- ════ МОДАЛЬНОЕ ОКНО · Быстрая заявка ════ -->
   <div class="modal-overlay" id="requestModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" hidden>
     <div class="modal-box">
       <button class="modal-close" id="modalClose" aria-label="Закрыть окно">

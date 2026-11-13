@@ -5,7 +5,7 @@
   <script>if("scrollRestoration"in history)history.scrollRestoration="manual";!function(){var t=localStorage.getItem("adervis-theme");if(t)document.documentElement.setAttribute("data-theme",t);else if(window.matchMedia("(prefers-color-scheme:light)").matches)document.documentElement.setAttribute("data-theme","light")}()</script>
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>MOBILOV — фирменный стиль сервисного центра | Кейс ADERVIS</title>
-  <meta name="description" content="Кейс ADERVIS: фирменный стиль для MOBILOV — сервисного центра Apple и Samsung в Сочи. Нейминг, логотип, интерьер, вывеска, реклама, сайт, франшиза.">
+  <meta name="description" content="Кейс ADERVIS: фирменный стиль для MOBILOV, сервисного центра Apple и Samsung в Сочи. Нейминг, логотип, интерьер, вывеска, реклама, сайт, франшиза.">
   <!-- Шрифты self-hosted: @font-face в css/style.css, woff2 в /fonts -->
   <link rel="icon" type="image/svg+xml" href="../../icon.svg">
   <link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32x32.png">
@@ -119,7 +119,7 @@
       padding: 4px 10px;
     }
 
-    /* Stacked images — Behance-style */
+    /* Stacked images · Behance-style */
     .bh-images {
       display: flex;
       flex-direction: column;
@@ -139,7 +139,7 @@
     }
     .bh-img-item img:hover { opacity: 0.92; }
 
-    /* Constrained width option — use container for breathing room */
+    /* Constrained width option · use container for breathing room */
     .bh-images .container {
       display: flex;
       flex-direction: column;
@@ -232,7 +232,7 @@
 
     <!-- Лого -->
     <a href="/" class="brand site-header__logo">
-      <img src="/logo.svg" id="siteLogo" data-dark="/logo.svg" data-light="/logoB.svg" alt="ADERVIS — Продакшн-студия" width="140" height="34">
+      <img src="/logo.svg" id="siteLogo" data-dark="/logo.svg" data-light="/logoB.svg" alt="ADERVIS, продакшн-студия" width="140" height="34">
     </a>
 
     <!-- Навигация -->
@@ -241,7 +241,7 @@
 
       <a href="/" class="pill-nav__link">Главная</a>
 
-      <!-- УСЛУГИ — клик ведёт на раздел #services, выпадашка показывает направления -->
+      <!-- УСЛУГИ · клик ведёт на раздел #services, выпадашка показывает направления -->
       <div class="pill-nav__dropdown" id="dropServices">
         <a href="/#services" class="pill-nav__link pill-nav__link--drop" aria-haspopup="true" aria-expanded="false" aria-controls="megaServices">
           Услуги
@@ -289,7 +289,7 @@
 
       <a href="/cases/" class="pill-nav__link">Кейсы</a>
       <a href="/careers/" class="pill-nav__link">Вакансии</a>
-      <!-- Adervis Platform — видна только в мобильном меню, на десктопе скрыта -->
+      <!-- Adervis Platform · видна только в мобильном меню, на десктопе скрыта -->
       <a href="/#platform" class="pill-nav__link pill-nav__link--platform-mobile">Adervis Platform</a>
 
     </nav>
@@ -319,8 +319,8 @@
         <span>Написать</span>
       </a>
 
-      <!-- ADERVIS PLATFORM — кнопка с дропдауном продуктов: CRM и Stock.
-           Stock живёт на своём поддомене и открывается в новой вкладке — так же,
+      <!-- ADERVIS PLATFORM · кнопка с дропдауном продуктов: CRM и Stock.
+           Stock живёт на своём поддомене и открывается в новой вкладке · так же,
            как «Открыть платформу» у CRM в секции #platform на главной. -->
       <div class="pill-nav__dropdown" id="dropPlatform">
         <button type="button" class="site-header__platform pill-nav__link--drop"
@@ -369,16 +369,16 @@
     var tube = document.getElementById('tubeIndicator');
     if (!nav || !tube) return;
 
-    // Цель индикатора — всегда пункт ВЕРХНЕГО уровня. markActiveNavLink() в
+    // Цель индикатора · всегда пункт ВЕРХНЕГО уровня. markActiveNavLink() в
     // app.js помечает .nav-active и пункты внутри мега-меню (это нужно, чтобы
     // подсветить текущее направление в выпадашке). Раньше индикатор хватал
-    // первый попавшийся .nav-active — на /video/, /design/, /photo/, /ai/ им
+    // первый попавшийся .nav-active · на /video/, /design/, /photo/, /ai/ им
     // оказывался пункт выпадашки, и капсула растягивалась на его ширину
     // (302px вместо 98), перекрывая половину меню.
     function activeTopLink () {
       var direct = nav.querySelector('.pill-nav__link.nav-active:not(.pill-nav__link--drop)');
       if (direct) return direct;
-      // Активно направление внутри «Услуг» — подсвечиваем сам пункт «Услуги».
+      // Активно направление внутри «Услуг» · подсвечиваем сам пункт «Услуги».
       var inDrop = nav.querySelector('.pill-nav__dropdown .nav-active');
       if (inDrop) {
         var drop = inDrop.closest('.pill-nav__dropdown');
@@ -430,13 +430,13 @@
     }
 
     // Шрифт Unbounded догружается уже после DOMContentLoaded и делает пункты
-    // шире — без пересчёта индикатор остаётся на координатах запасного шрифта
+    // шире · без пересчёта индикатор остаётся на координатах запасного шрифта
     // (промах ~30px), пока пользователь не наведёт мышь.
     if (document.fonts && document.fonts.ready) {
       document.fonts.ready.then(resync);
     }
 
-    // Resize меняет раскладку шапки — без этого индикатор уезжает.
+    // Resize меняет раскладку шапки · без этого индикатор уезжает.
     var t;
     window.addEventListener('resize', function () {
       clearTimeout(t);
@@ -461,7 +461,7 @@
         <a href="../../cases/" class="bh-back">← Все кейсы</a>
         <p class="bh-eyebrow">Дизайн · Фирменный стиль · 2019</p>
         <h1 class="bh-title">MOBILOV | Фирменный стиль сервисного центра</h1>
-        <p class="bh-desc">Центр техобслуживания Apple и Samsung в Сочи, работающий 24/7 с выездным ремонтом — нужны были нейминг, логотип и стиль, узнаваемый от вывески до Instagram</p>
+        <p class="bh-desc">Центр техобслуживания Apple и Samsung в Сочи, работающий 24/7 с выездным ремонтом. Нужны были нейминг, логотип и стиль, узнаваемый от вывески до Instagram</p>
         <div class="bh-meta">
           <div class="bh-meta-item">
             <span class="bh-meta-label">Студия</span>
@@ -502,7 +502,7 @@
           </div>
           <div class="case-content-block">
             <h2 style="color:#fff">Что сделали</h2>
-            <p style="color:rgba(255,255,255,0.5)">Придумали название MOBILOV — сочетание «mobile» и «love», сохранив и латинскую, и русскоязычную форму («МОБИЛОВ»). Разработали логотип-знак (телефон + сердце + рука), палитру red/dark grey/grey, интерьер шоурума, вывеску до/после, рекламные баннеры, шаблоны для Instagram, сайт и материалы для запуска франшизы.</p>
+            <p style="color:rgba(255,255,255,0.5)">Придумали название MOBILOV: сочетание «mobile» и «love», сохранив и латинскую, и русскоязычную форму («МОБИЛОВ»). Разработали логотип-знак (телефон + сердце + рука), палитру red/dark grey/grey, интерьер шоурума, вывеску до/после, рекламные баннеры, шаблоны для Instagram, сайт и материалы для запуска франшизы.</p>
           </div>
         </div>
       </div>
@@ -512,13 +512,13 @@
     <div class="bh-images">
       <div class="container">
         <div class="bh-img-item">
-          <picture><source srcset="../mobilov/1mobilov.webp" type="image/webp"><img src="../mobilov/1mobilov.jpg" alt="MOBILOV — обложка проекта: неоновая вывеска логотипа" loading="lazy" width="808" height="632"></picture>
+          <picture><source srcset="../mobilov/1mobilov.webp" type="image/webp"><img src="../mobilov/1mobilov.jpg" alt="MOBILOV, обложка проекта: неоновая вывеска логотипа" loading="lazy" width="808" height="632"></picture>
         </div>
         <div class="bh-img-item">
           <picture><source srcset="../mobilov/2mobilov-640.webp 640w, ../mobilov/2mobilov-1280.webp 1280w, ../mobilov/2mobilov.webp 1920w" sizes="(max-width: 760px) 88vw, 1392px" type="image/webp"><img src="../mobilov/2mobilov.jpg" alt="MOBILOV — нейминг, палитра и конструкция логотипа" loading="lazy" width="1920" height="3634"></picture>
         </div>
         <div class="bh-img-item">
-          <picture><source srcset="../mobilov/3mobilov-640.webp 640w, ../mobilov/3mobilov-1280.webp 1280w, ../mobilov/3mobilov.webp 1920w" sizes="(max-width: 760px) 88vw, 1392px" type="image/webp"><img src="../mobilov/3mobilov.jpg" alt="MOBILOV — интерьер, вывеска, реклама, печатная продукция, Instagram, сайт" loading="lazy" width="1920" height="9148"></picture>
+          <picture><source srcset="../mobilov/3mobilov-640.webp 640w, ../mobilov/3mobilov-1280.webp 1280w, ../mobilov/3mobilov.webp 1920w" sizes="(max-width: 760px) 88vw, 1392px" type="image/webp"><img src="../mobilov/3mobilov.jpg" alt="MOBILOV: интерьер, вывеска, реклама, печатная продукция, Instagram, сайт" loading="lazy" width="1920" height="9148"></picture>
         </div>
         <div class="bh-img-item">
           <picture><source srcset="../mobilov/4mobilov-640.webp 640w, ../mobilov/4mobilov-1280.webp 1280w, ../mobilov/4mobilov.webp 1920w" sizes="(max-width: 760px) 88vw, 1392px" type="image/webp"><img src="../mobilov/4mobilov.jpg" alt="MOBILOV — материалы для запуска франшизы и карта локации" loading="lazy" width="1920" height="2241"></picture>
@@ -751,12 +751,12 @@
 
 <div class="cookie-banner" id="cookieBanner" role="region" aria-label="Уведомление об использовании cookie" hidden>
   <p class="cookie-banner__text">
-    Сайт использует файлы cookie и сервис веб-аналитики «Яндекс.Метрика». Они помогают понимать, как посетители пользуются сайтом и какая реклама приводит заявки. Продолжая пользоваться сайтом, вы соглашаетесь с этим. Подробности — в <a href="/docs/#docs-privacy">Политике конфиденциальности</a>.
+    Сайт использует файлы cookie и сервис веб-аналитики «Яндекс.Метрика». Они помогают понимать, как посетители пользуются сайтом и какая реклама приводит заявки. Продолжая пользоваться сайтом, вы соглашаетесь с этим. Подробности в <a href="/docs/#docs-privacy">Политике конфиденциальности</a>.
   </p>
   <button type="button" class="cookie-banner__accept" id="cookieBannerAccept">Принимаю</button>
 </div>
 <!-- END:footer-placeholder --></div>
 
-  <script src="../../js/app.min.js?v=b7c9c14b"></script>
+  <script src="../../js/app.min.js?v=57be7eab"></script>
 </body>
 </html>

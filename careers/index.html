@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <script>if("scrollRestoration"in history)history.scrollRestoration="manual";!function(){var t=localStorage.getItem("adervis-theme");if(t)document.documentElement.setAttribute("data-theme",t);else if(window.matchMedia("(prefers-color-scheme:light)").matches)document.documentElement.setAttribute("data-theme","light")}()</script>
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>ADERVIS — Карьера: вакансии в продакшн-команде</title>
+  <title>Карьера в ADERVIS: вакансии в продакшн-команде</title>
   <meta name="description" content="Карьера в ADERVIS: ищем сценаристов, операторов, дизайнеров, фотографов и ИИ-специалистов в продакшн-команду. Реальные проекты с первого дня, гибкий формат работы.">
   <!-- Шрифты self-hosted: @font-face в css/style.css, woff2 в /fonts -->
   <link rel="icon" type="image/svg+xml" href="../icon.svg">
@@ -19,11 +19,11 @@
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="ADERVIS">
   <meta property="og:url" content="https://adervis.ru/careers/">
-  <meta property="og:title" content="ADERVIS — Карьера: вакансии в продакшн-команде">
+  <meta property="og:title" content="Карьера в ADERVIS: вакансии в продакшн-команде">
   <meta property="og:description" content="Карьера в ADERVIS: ищем сценаристов, операторов, дизайнеров, фотографов и ИИ-специалистов. Реальные проекты с первого дня, гибкий формат работы.">
   <meta property="og:image" content="https://adervis.ru/assets/og/og-careers.jpg">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="ADERVIS — Карьера: вакансии в продакшн-команде">
+  <meta name="twitter:title" content="Карьера в ADERVIS: вакансии в продакшн-команде">
   <meta name="twitter:description" content="Карьера в ADERVIS: ищем сценаристов, операторов, дизайнеров, фотографов и ИИ-специалистов.">
   <meta name="twitter:image" content="https://adervis.ru/assets/og/og-careers.jpg">
   <link rel="preload" href="/fonts/unbounded-700-cyrillic.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="/fonts/unbounded-700-latin.woff2" as="font" type="font/woff2" crossorigin><link rel="stylesheet" href="../css/style.min.css?v=f54a0148">
@@ -63,7 +63,7 @@
 
     <!-- Лого -->
     <a href="/" class="brand site-header__logo">
-      <img src="/logo.svg" id="siteLogo" data-dark="/logo.svg" data-light="/logoB.svg" alt="ADERVIS — Продакшн-студия" width="140" height="34">
+      <img src="/logo.svg" id="siteLogo" data-dark="/logo.svg" data-light="/logoB.svg" alt="ADERVIS, продакшн-студия" width="140" height="34">
     </a>
 
     <!-- Навигация -->
@@ -72,7 +72,7 @@
 
       <a href="/" class="pill-nav__link">Главная</a>
 
-      <!-- УСЛУГИ — клик ведёт на раздел #services, выпадашка показывает направления -->
+      <!-- УСЛУГИ · клик ведёт на раздел #services, выпадашка показывает направления -->
       <div class="pill-nav__dropdown" id="dropServices">
         <a href="/#services" class="pill-nav__link pill-nav__link--drop" aria-haspopup="true" aria-expanded="false" aria-controls="megaServices">
           Услуги
@@ -120,7 +120,7 @@
 
       <a href="/cases/" class="pill-nav__link">Кейсы</a>
       <a href="/careers/" class="pill-nav__link">Вакансии</a>
-      <!-- Adervis Platform — видна только в мобильном меню, на десктопе скрыта -->
+      <!-- Adervis Platform · видна только в мобильном меню, на десктопе скрыта -->
       <a href="/#platform" class="pill-nav__link pill-nav__link--platform-mobile">Adervis Platform</a>
 
     </nav>
@@ -150,8 +150,8 @@
         <span>Написать</span>
       </a>
 
-      <!-- ADERVIS PLATFORM — кнопка с дропдауном продуктов: CRM и Stock.
-           Stock живёт на своём поддомене и открывается в новой вкладке — так же,
+      <!-- ADERVIS PLATFORM · кнопка с дропдауном продуктов: CRM и Stock.
+           Stock живёт на своём поддомене и открывается в новой вкладке · так же,
            как «Открыть платформу» у CRM в секции #platform на главной. -->
       <div class="pill-nav__dropdown" id="dropPlatform">
         <button type="button" class="site-header__platform pill-nav__link--drop"
@@ -200,16 +200,16 @@
     var tube = document.getElementById('tubeIndicator');
     if (!nav || !tube) return;
 
-    // Цель индикатора — всегда пункт ВЕРХНЕГО уровня. markActiveNavLink() в
+    // Цель индикатора · всегда пункт ВЕРХНЕГО уровня. markActiveNavLink() в
     // app.js помечает .nav-active и пункты внутри мега-меню (это нужно, чтобы
     // подсветить текущее направление в выпадашке). Раньше индикатор хватал
-    // первый попавшийся .nav-active — на /video/, /design/, /photo/, /ai/ им
+    // первый попавшийся .nav-active · на /video/, /design/, /photo/, /ai/ им
     // оказывался пункт выпадашки, и капсула растягивалась на его ширину
     // (302px вместо 98), перекрывая половину меню.
     function activeTopLink () {
       var direct = nav.querySelector('.pill-nav__link.nav-active:not(.pill-nav__link--drop)');
       if (direct) return direct;
-      // Активно направление внутри «Услуг» — подсвечиваем сам пункт «Услуги».
+      // Активно направление внутри «Услуг» · подсвечиваем сам пункт «Услуги».
       var inDrop = nav.querySelector('.pill-nav__dropdown .nav-active');
       if (inDrop) {
         var drop = inDrop.closest('.pill-nav__dropdown');
@@ -261,13 +261,13 @@
     }
 
     // Шрифт Unbounded догружается уже после DOMContentLoaded и делает пункты
-    // шире — без пересчёта индикатор остаётся на координатах запасного шрифта
+    // шире · без пересчёта индикатор остаётся на координатах запасного шрифта
     // (промах ~30px), пока пользователь не наведёт мышь.
     if (document.fonts && document.fonts.ready) {
       document.fonts.ready.then(resync);
     }
 
-    // Resize меняет раскладку шапки — без этого индикатор уезжает.
+    // Resize меняет раскладку шапки · без этого индикатор уезжает.
     var t;
     window.addEventListener('resize', function () {
       clearTimeout(t);
@@ -294,8 +294,8 @@
       </div>
       <div class="container">
         <span class="eyebrow">Карьера в ADERVIS</span>
-        <h1>Команда, которая делает — а не только обсуждает</h1>
-        <p>Ищем людей, которым тесно в одной роли: сценаристов, операторов, дизайнеров, фотографов и ИИ-специалистов — тех, кто хочет расти на реальных проектах, а не в учебных кейсах.</p>
+        <h1>Команда, которая делает, а не только обсуждает</h1>
+        <p>Ищем людей, которым тесно в одной роли: сценаристов, операторов, дизайнеров, фотографов и ИИ-специалистов. Расти будете на реальных проектах.</p>
         <div class="hero-buttons">
           <a href="#roles" class="btn primary">Открытые направления</a>
           <a href="#contacts" class="btn">Откликнуться</a>
@@ -316,8 +316,8 @@
     <section class="section">
       <div class="container">
         <div class="section-head reveal">
-          <h2>Здесь не «набивают руку» — здесь делают</h2>
-          <p>Мы небольшая команда полного цикла, поэтому каждый специалист видит результат своей работы — от брифа до сданного проекта</p>
+          <h2>Здесь работают на настоящих проектах</h2>
+          <p>Мы небольшая команда полного цикла, поэтому каждый специалист видит результат своей работы: от брифа до сданного проекта</p>
         </div>
         <div class="services-grid">
           <div class="service-card reveal">
@@ -327,7 +327,7 @@
               </svg>
             </span>
             <h3>Реальные проекты с первого дня</h3>
-            <p>Никаких «тестовых полигонов» — вы сразу включаетесь в работу над проектами для настоящих клиентов.</p>
+            <p>Вы сразу включаетесь в работу над проектами для настоящих клиентов.</p>
           </div>
           <div class="service-card reveal">
             <span class="service-icon">
@@ -338,7 +338,7 @@
               </svg>
             </span>
             <h3>Плоская структура</h3>
-            <p>Решения принимаются быстро и без лишних согласований — хорошую идею можно показать клиенту уже на этой неделе.</p>
+            <p>Решения принимаются быстро и без лишних согласований: хорошую идею можно показать клиенту уже на этой неделе.</p>
           </div>
           <div class="service-card reveal">
             <span class="service-icon">
@@ -348,7 +348,7 @@
               </svg>
             </span>
             <h3>Рост вместе с задачами</h3>
-            <p>Каждый новый проект — новый вызов: ниша, формат или инструмент. Мы учимся быстрее, потому что учимся на практике.</p>
+            <p>В каждом новом проекте есть что-то новое: ниша, формат или инструмент. Учимся на практике, поэтому быстро.</p>
           </div>
           <div class="service-card reveal">
             <span class="service-icon">
@@ -358,7 +358,7 @@
               </svg>
             </span>
             <h3>Гибкий формат работы</h3>
-            <p>Удалённо, гибридно или в команде на площадке — обсуждаем формат, который подходит именно вам и задаче.</p>
+            <p>Удалённо, гибридно или в команде на площадке: обсуждаем формат, который подходит именно вам и задаче.</p>
           </div>
         </div>
       </div>
@@ -369,11 +369,11 @@
       <div class="container">
         <div class="section-head reveal">
           <h2>Кого мы ищем в команду</h2>
-          <p>Список не закрытый: если вы делаете что-то на стыке этих направлений или умеете то, чего здесь нет, — пишите всё равно</p>
+          <p>Список не закрытый: если вы делаете что-то на стыке этих направлений или умеете то, чего здесь нет, пишите всё равно</p>
         </div>
         <div class="career-status-banner reveal">
           <span class="career-status-dot"></span>
-          <p><strong>Активного набора сейчас нет.</strong> Но мы ведём список — если ваши навыки совпадут с задачами студии, выйдем первыми. Отправьте резюме и портфолио на <a href="mailto:adervis.digital@gmail.com">adervis.digital@gmail.com</a>.</p>
+          <p><strong>Активного набора сейчас нет.</strong> Но мы ведём список: если ваши навыки совпадут с задачами студии, выйдем первыми. Отправьте резюме и портфолио на <a href="mailto:adervis.digital@gmail.com">adervis.digital@gmail.com</a>.</p>
         </div>
         <div class="cases-grid">
           <div class="case-group reveal">
@@ -404,24 +404,24 @@
     <section class="section">
       <div class="container">
         <div class="section-head reveal">
-          <h2>Три шага — без лишней бюрократии</h2>
+          <h2>Три шага без лишней бюрократии</h2>
           <p>Не просим заполнять анкеты на десять страниц. Нам важно увидеть, как вы думаете и что умеете делать руками.</p>
         </div>
         <div class="steps-grid">
           <div class="step-card reveal">
             <span class="step-number">1</span>
             <h3>Напишите нам</h3>
-            <p>Расскажите о себе и приложите портфолио или примеры работ — даже если это учебные или личные проекты.</p>
+            <p>Расскажите о себе и приложите портфолио или примеры работ, даже если это учебные или личные проекты.</p>
           </div>
           <div class="step-card reveal">
             <span class="step-number">2</span>
             <h3>Тестовое задание</h3>
-            <p>Небольшая практическая задача по вашему направлению — оцениваем подход и логику, а не идеальный результат с первого раза.</p>
+            <p>Небольшая практическая задача по вашему направлению: оцениваем подход и логику, а не идеальный результат с первого раза.</p>
           </div>
           <div class="step-card reveal">
             <span class="step-number">3</span>
             <h3>Знакомство и решение</h3>
-            <p>Короткий созвон с командой — и решение в течение недели, без долгого ожидания в подвешенном состоянии.</p>
+            <p>Короткий созвон с командой и решение в течение недели, без долгого ожидания.</p>
           </div>
         </div>
       </div>
@@ -431,7 +431,7 @@
     <section class="section contact-section reveal" id="contacts">
       <div class="container">
         <h2>Не нашли подходящую роль?</h2>
-        <p>Напишите в любом случае — расскажите, что умеете и что хотели бы делать. Если совпадём по задачам, предложим формат сотрудничества.</p>
+        <p>Напишите в любом случае: расскажите, что умеете и что хотели бы делать. Если совпадём по задачам, предложим формат сотрудничества.</p>
         <div class="hero-buttons">
           <a href="tel:+79223018880" class="btn primary">+7 (922) 301-88-80</a>
           <a href="mailto:adervis.digital@gmail.com" class="btn">adervis.digital@gmail.com</a>
@@ -439,7 +439,7 @@
         <div class="vp-trust-line">
           отвечаем в течение недели
           <span>·</span>
-          тестовое — только по вашей специальности
+          тестовое только по вашей специальности
           <span>·</span>
           честная обратная связь
           <span>·</span>
@@ -652,12 +652,12 @@
 
 <div class="cookie-banner" id="cookieBanner" role="region" aria-label="Уведомление об использовании cookie" hidden>
   <p class="cookie-banner__text">
-    Сайт использует файлы cookie и сервис веб-аналитики «Яндекс.Метрика». Они помогают понимать, как посетители пользуются сайтом и какая реклама приводит заявки. Продолжая пользоваться сайтом, вы соглашаетесь с этим. Подробности — в <a href="/docs/#docs-privacy">Политике конфиденциальности</a>.
+    Сайт использует файлы cookie и сервис веб-аналитики «Яндекс.Метрика». Они помогают понимать, как посетители пользуются сайтом и какая реклама приводит заявки. Продолжая пользоваться сайтом, вы соглашаетесь с этим. Подробности в <a href="/docs/#docs-privacy">Политике конфиденциальности</a>.
   </p>
   <button type="button" class="cookie-banner__accept" id="cookieBannerAccept">Принимаю</button>
 </div>
 <!-- END:footer-placeholder --></div>
 
-  <script src="../js/app.min.js?v=b7c9c14b"></script>
+  <script src="../js/app.min.js?v=57be7eab"></script>
 </body>
 </html>

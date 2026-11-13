@@ -5,7 +5,7 @@
   <script>if("scrollRestoration"in history)history.scrollRestoration="manual";!function(){var t=localStorage.getItem("adervis-theme");if(t)document.documentElement.setAttribute("data-theme",t);else if(window.matchMedia("(prefers-color-scheme:light)").matches)document.documentElement.setAttribute("data-theme","light")}()</script>
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>АРАТТА — фирменный стиль | Кейс ADERVIS</title>
-  <meta name="description" content="Кейс ADERVIS: премиальный фирменный стиль для АРАТТА — производителя архитектурного декора. Логотип, шрифты, деловая документация в тёмно-синей с медным акцентом палитре.">
+  <meta name="description" content="Кейс ADERVIS: премиальный фирменный стиль для АРАТТА, производителя архитектурного декора. Логотип, шрифты, деловая документация в тёмно-синей с медным акцентом палитре.">
   <!-- Шрифты self-hosted: @font-face в css/style.css, woff2 в /fonts -->
   <link rel="icon" type="image/svg+xml" href="../../icon.svg">
   <link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32x32.png">
@@ -119,7 +119,7 @@
       padding: 4px 10px;
     }
 
-    /* Stacked images — Behance-style */
+    /* Stacked images · Behance-style */
     .bh-images {
       display: flex;
       flex-direction: column;
@@ -139,7 +139,7 @@
     }
     .bh-img-item img:hover { opacity: 0.92; }
 
-    /* Constrained width option — use container for breathing room */
+    /* Constrained width option · use container for breathing room */
     .bh-images .container {
       display: flex;
       flex-direction: column;
@@ -232,7 +232,7 @@
 
     <!-- Лого -->
     <a href="/" class="brand site-header__logo">
-      <img src="/logo.svg" id="siteLogo" data-dark="/logo.svg" data-light="/logoB.svg" alt="ADERVIS — Продакшн-студия" width="140" height="34">
+      <img src="/logo.svg" id="siteLogo" data-dark="/logo.svg" data-light="/logoB.svg" alt="ADERVIS, продакшн-студия" width="140" height="34">
     </a>
 
     <!-- Навигация -->
@@ -241,7 +241,7 @@
 
       <a href="/" class="pill-nav__link">Главная</a>
 
-      <!-- УСЛУГИ — клик ведёт на раздел #services, выпадашка показывает направления -->
+      <!-- УСЛУГИ · клик ведёт на раздел #services, выпадашка показывает направления -->
       <div class="pill-nav__dropdown" id="dropServices">
         <a href="/#services" class="pill-nav__link pill-nav__link--drop" aria-haspopup="true" aria-expanded="false" aria-controls="megaServices">
           Услуги
@@ -289,7 +289,7 @@
 
       <a href="/cases/" class="pill-nav__link">Кейсы</a>
       <a href="/careers/" class="pill-nav__link">Вакансии</a>
-      <!-- Adervis Platform — видна только в мобильном меню, на десктопе скрыта -->
+      <!-- Adervis Platform · видна только в мобильном меню, на десктопе скрыта -->
       <a href="/#platform" class="pill-nav__link pill-nav__link--platform-mobile">Adervis Platform</a>
 
     </nav>
@@ -319,8 +319,8 @@
         <span>Написать</span>
       </a>
 
-      <!-- ADERVIS PLATFORM — кнопка с дропдауном продуктов: CRM и Stock.
-           Stock живёт на своём поддомене и открывается в новой вкладке — так же,
+      <!-- ADERVIS PLATFORM · кнопка с дропдауном продуктов: CRM и Stock.
+           Stock живёт на своём поддомене и открывается в новой вкладке · так же,
            как «Открыть платформу» у CRM в секции #platform на главной. -->
       <div class="pill-nav__dropdown" id="dropPlatform">
         <button type="button" class="site-header__platform pill-nav__link--drop"
@@ -369,16 +369,16 @@
     var tube = document.getElementById('tubeIndicator');
     if (!nav || !tube) return;
 
-    // Цель индикатора — всегда пункт ВЕРХНЕГО уровня. markActiveNavLink() в
+    // Цель индикатора · всегда пункт ВЕРХНЕГО уровня. markActiveNavLink() в
     // app.js помечает .nav-active и пункты внутри мега-меню (это нужно, чтобы
     // подсветить текущее направление в выпадашке). Раньше индикатор хватал
-    // первый попавшийся .nav-active — на /video/, /design/, /photo/, /ai/ им
+    // первый попавшийся .nav-active · на /video/, /design/, /photo/, /ai/ им
     // оказывался пункт выпадашки, и капсула растягивалась на его ширину
     // (302px вместо 98), перекрывая половину меню.
     function activeTopLink () {
       var direct = nav.querySelector('.pill-nav__link.nav-active:not(.pill-nav__link--drop)');
       if (direct) return direct;
-      // Активно направление внутри «Услуг» — подсвечиваем сам пункт «Услуги».
+      // Активно направление внутри «Услуг» · подсвечиваем сам пункт «Услуги».
       var inDrop = nav.querySelector('.pill-nav__dropdown .nav-active');
       if (inDrop) {
         var drop = inDrop.closest('.pill-nav__dropdown');
@@ -430,13 +430,13 @@
     }
 
     // Шрифт Unbounded догружается уже после DOMContentLoaded и делает пункты
-    // шире — без пересчёта индикатор остаётся на координатах запасного шрифта
+    // шире · без пересчёта индикатор остаётся на координатах запасного шрифта
     // (промах ~30px), пока пользователь не наведёт мышь.
     if (document.fonts && document.fonts.ready) {
       document.fonts.ready.then(resync);
     }
 
-    // Resize меняет раскладку шапки — без этого индикатор уезжает.
+    // Resize меняет раскладку шапки · без этого индикатор уезжает.
     var t;
     window.addEventListener('resize', function () {
       clearTimeout(t);
@@ -461,7 +461,7 @@
         <a href="../../cases/" class="bh-back">← Все кейсы</a>
         <p class="bh-eyebrow">Дизайн · Фирменный стиль · 2020</p>
         <h1 class="bh-title">АРАТТА | Фирменный стиль</h1>
-        <p class="bh-desc">Производитель архитектурного декора и лепнины — от проектирования до монтажа. Нужен был премиальный стиль, который сразу считывается как «дорого и по делу»</p>
+        <p class="bh-desc">Производитель архитектурного декора и лепнины: от проектирования до монтажа. Нужен был премиальный стиль, который сразу считывается как «дорого и по делу»</p>
         <div class="bh-meta">
           <div class="bh-meta-item">
             <span class="bh-meta-label">Студия</span>
@@ -498,11 +498,11 @@
         <div class="case-content-grid reveal">
           <div class="case-content-block">
             <h2 style="color:#fff">Задача</h2>
-            <p style="color:rgba(255,255,255,0.5)">АРАТТА производит и продаёт лепной декор для интерьера и фасада, оказывая полный цикл услуг — от проектирования до монтажа. Задача была отразить в стиле премиальность материала (гипс, стекловолоконный бетон) и точность работы, а не «ширпотребный» декор.</p>
+            <p style="color:rgba(255,255,255,0.5)">АРАТТА производит и продаёт лепной декор для интерьера и фасада, оказывая полный цикл услуг: от проектирования до монтажа. Задача была отразить в стиле премиальность материала (гипс, стекловолоконный бетон) и точность работы, а не «ширпотребный» декор.</p>
           </div>
           <div class="case-content-block">
             <h2 style="color:#fff">Что сделали</h2>
-            <p style="color:rgba(255,255,255,0.5)">Собрали мудборд на архитектурном свете и фактуре гипса, разработали знак из пересекающихся треугольников (отсылка к колонне и лепному орнаменту), подобрали пару шрифтов Didona + Montserrat и тёмно-синюю палитру с медным акцентом. Довели стиль до деловой документации — визитки, бланк, папка, конверт.</p>
+            <p style="color:rgba(255,255,255,0.5)">Собрали мудборд на архитектурном свете и фактуре гипса, разработали знак из пересекающихся треугольников (отсылка к колонне и лепному орнаменту), подобрали пару шрифтов Didona + Montserrat и тёмно-синюю палитру с медным акцентом. Довели стиль до деловой документации: визитки, бланк, папка, конверт.</p>
           </div>
         </div>
       </div>
@@ -512,7 +512,7 @@
     <div class="bh-images">
       <div class="container">
         <div class="bh-img-item">
-          <picture><source srcset="../aratta/1aratta.webp" type="image/webp"><img src="../aratta/1aratta.jpg" alt="АРАТТА — обложка проекта: мокап на ноутбуке, визитки и брендированные материалы" loading="lazy" width="808" height="632"></picture>
+          <picture><source srcset="../aratta/1aratta.webp" type="image/webp"><img src="../aratta/1aratta.jpg" alt="АРАТТА, обложка проекта: мокап на ноутбуке, визитки и брендированные материалы" loading="lazy" width="808" height="632"></picture>
         </div>
         <div class="bh-img-item">
           <picture><source srcset="../aratta/2aratta-640.webp 640w, ../aratta/2aratta-1280.webp 1280w, ../aratta/2aratta.webp 1920w" sizes="(max-width: 760px) 88vw, 1392px" type="image/webp"><img src="../aratta/2aratta.jpg" alt="АРАТТА — титульный экран и задача проекта" loading="lazy" width="1920" height="1759"></picture>
@@ -754,12 +754,12 @@
 
 <div class="cookie-banner" id="cookieBanner" role="region" aria-label="Уведомление об использовании cookie" hidden>
   <p class="cookie-banner__text">
-    Сайт использует файлы cookie и сервис веб-аналитики «Яндекс.Метрика». Они помогают понимать, как посетители пользуются сайтом и какая реклама приводит заявки. Продолжая пользоваться сайтом, вы соглашаетесь с этим. Подробности — в <a href="/docs/#docs-privacy">Политике конфиденциальности</a>.
+    Сайт использует файлы cookie и сервис веб-аналитики «Яндекс.Метрика». Они помогают понимать, как посетители пользуются сайтом и какая реклама приводит заявки. Продолжая пользоваться сайтом, вы соглашаетесь с этим. Подробности в <a href="/docs/#docs-privacy">Политике конфиденциальности</a>.
   </p>
   <button type="button" class="cookie-banner__accept" id="cookieBannerAccept">Принимаю</button>
 </div>
 <!-- END:footer-placeholder --></div>
 
-  <script src="../../js/app.min.js?v=b7c9c14b"></script>
+  <script src="../../js/app.min.js?v=57be7eab"></script>
 </body>
 </html>

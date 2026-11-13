@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <script>if("scrollRestoration"in history)history.scrollRestoration="manual";!function(){var t=localStorage.getItem("adervis-theme");if(t)document.documentElement.setAttribute("data-theme",t);else if(window.matchMedia("(prefers-color-scheme:light)").matches)document.documentElement.setAttribute("data-theme","light")}()</script>
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Brait — техника в деле: три локации за один день | Кейс ADERVIS</title>
+  <title>Brait, техника в деле: три локации за один день | Кейс ADERVIS</title>
   <meta name="description" content="Кейс ADERVIS: выездная съёмка садовой и силовой техники Brait. Три локации за один съёмочный день, 103 постановочных кадра, 35 из них доработаны нейросетями.">
   <!-- Шрифты self-hosted: @font-face в css/style.css, woff2 в /fonts -->
   <link rel="icon" type="image/svg+xml" href="../../icon.svg">
@@ -19,11 +19,11 @@
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="ADERVIS">
   <meta property="og:url" content="https://adervis.ru/cases/brait/">
-  <meta property="og:title" content="Brait — техника в деле: три локации за один день | Кейс ADERVIS">
+  <meta property="og:title" content="Brait, техника в деле: три локации за один день | Кейс ADERVIS">
   <meta property="og:description" content="Выездная съёмка садовой и силовой техники Brait: три локации, один съёмочный день, команда из двух человек. 103 постановочных кадра, 35 доработаны нейросетями.">
   <meta property="og:image" content="https://adervis.ru/assets/cases/brait/01.jpg">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Brait — техника в деле: три локации за один день | Кейс ADERVIS">
+  <meta name="twitter:title" content="Brait, техника в деле: три локации за один день | Кейс ADERVIS">
   <meta name="twitter:description" content="Выездная съёмка садовой и силовой техники Brait: три локации за один день, 103 постановочных кадра, 35 доработаны нейросетями.">
   <meta name="twitter:image" content="https://adervis.ru/assets/cases/brait/01.jpg">
   <link rel="preload" href="/fonts/unbounded-700-cyrillic.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="/fonts/unbounded-700-latin.woff2" as="font" type="font/woff2" crossorigin><link rel="stylesheet" href="../../css/style.min.css?v=f54a0148">
@@ -79,7 +79,7 @@
 
     <!-- Лого -->
     <a href="/" class="brand site-header__logo">
-      <img src="/logo.svg" id="siteLogo" data-dark="/logo.svg" data-light="/logoB.svg" alt="ADERVIS — Продакшн-студия" width="140" height="34">
+      <img src="/logo.svg" id="siteLogo" data-dark="/logo.svg" data-light="/logoB.svg" alt="ADERVIS, продакшн-студия" width="140" height="34">
     </a>
 
     <!-- Навигация -->
@@ -88,7 +88,7 @@
 
       <a href="/" class="pill-nav__link">Главная</a>
 
-      <!-- УСЛУГИ — клик ведёт на раздел #services, выпадашка показывает направления -->
+      <!-- УСЛУГИ · клик ведёт на раздел #services, выпадашка показывает направления -->
       <div class="pill-nav__dropdown" id="dropServices">
         <a href="/#services" class="pill-nav__link pill-nav__link--drop" aria-haspopup="true" aria-expanded="false" aria-controls="megaServices">
           Услуги
@@ -136,7 +136,7 @@
 
       <a href="/cases/" class="pill-nav__link">Кейсы</a>
       <a href="/careers/" class="pill-nav__link">Вакансии</a>
-      <!-- Adervis Platform — видна только в мобильном меню, на десктопе скрыта -->
+      <!-- Adervis Platform · видна только в мобильном меню, на десктопе скрыта -->
       <a href="/#platform" class="pill-nav__link pill-nav__link--platform-mobile">Adervis Platform</a>
 
     </nav>
@@ -166,8 +166,8 @@
         <span>Написать</span>
       </a>
 
-      <!-- ADERVIS PLATFORM — кнопка с дропдауном продуктов: CRM и Stock.
-           Stock живёт на своём поддомене и открывается в новой вкладке — так же,
+      <!-- ADERVIS PLATFORM · кнопка с дропдауном продуктов: CRM и Stock.
+           Stock живёт на своём поддомене и открывается в новой вкладке · так же,
            как «Открыть платформу» у CRM в секции #platform на главной. -->
       <div class="pill-nav__dropdown" id="dropPlatform">
         <button type="button" class="site-header__platform pill-nav__link--drop"
@@ -216,16 +216,16 @@
     var tube = document.getElementById('tubeIndicator');
     if (!nav || !tube) return;
 
-    // Цель индикатора — всегда пункт ВЕРХНЕГО уровня. markActiveNavLink() в
+    // Цель индикатора · всегда пункт ВЕРХНЕГО уровня. markActiveNavLink() в
     // app.js помечает .nav-active и пункты внутри мега-меню (это нужно, чтобы
     // подсветить текущее направление в выпадашке). Раньше индикатор хватал
-    // первый попавшийся .nav-active — на /video/, /design/, /photo/, /ai/ им
+    // первый попавшийся .nav-active · на /video/, /design/, /photo/, /ai/ им
     // оказывался пункт выпадашки, и капсула растягивалась на его ширину
     // (302px вместо 98), перекрывая половину меню.
     function activeTopLink () {
       var direct = nav.querySelector('.pill-nav__link.nav-active:not(.pill-nav__link--drop)');
       if (direct) return direct;
-      // Активно направление внутри «Услуг» — подсвечиваем сам пункт «Услуги».
+      // Активно направление внутри «Услуг» · подсвечиваем сам пункт «Услуги».
       var inDrop = nav.querySelector('.pill-nav__dropdown .nav-active');
       if (inDrop) {
         var drop = inDrop.closest('.pill-nav__dropdown');
@@ -277,13 +277,13 @@
     }
 
     // Шрифт Unbounded догружается уже после DOMContentLoaded и делает пункты
-    // шире — без пересчёта индикатор остаётся на координатах запасного шрифта
+    // шире · без пересчёта индикатор остаётся на координатах запасного шрифта
     // (промах ~30px), пока пользователь не наведёт мышь.
     if (document.fonts && document.fonts.ready) {
       document.fonts.ready.then(resync);
     }
 
-    // Resize меняет раскладку шапки — без этого индикатор уезжает.
+    // Resize меняет раскладку шапки · без этого индикатор уезжает.
     var t;
     window.addEventListener('resize', function () {
       clearTimeout(t);
@@ -370,16 +370,16 @@
     <section class="section">
       <div class="container">
         <div class="section-head reveal" style="margin-bottom:var(--sp-8)">
-          <h2>До и после — исходный кадр и ИИ-обработка</h2>
-          <p>Перетащите разделитель, чтобы увидеть, что дала нейросетевая доработка на 35 кадрах серии. Стрелками ниже — ещё шесть пар</p>
+          <h2>До и после: исходный кадр и ИИ-обработка</h2>
+          <p>Перетащите разделитель, чтобы увидеть, что дала нейросетевая доработка на 35 кадрах серии. Ниже ещё шесть пар, листайте стрелками</p>
         </div>
         <div class="ba-wrap reveal">
           <div class="case-slider js-slider" data-slider-nav="thumbs">
             <div class="case-slider__track">
           <div class="ba-compare" data-thumb="briat-thumb.webp">
-            <picture><source srcset="briat-post-640.webp 640w, briat-post-1280.webp 1280w, briat-post.webp 1920w" sizes="(max-width: 760px) 88vw, 1191px" type="image/webp"><img width="1920" height="1080" class="ba-after" src="briat-post.jpg" alt="После — кадр с нейросетевой доработкой"></picture>
+            <picture><source srcset="briat-post-640.webp 640w, briat-post-1280.webp 1280w, briat-post.webp 1920w" sizes="(max-width: 760px) 88vw, 1191px" type="image/webp"><img width="1920" height="1080" class="ba-after" src="briat-post.jpg" alt="После: кадр с нейросетевой доработкой"></picture>
             <div class="ba-before">
-              <picture><source srcset="briat-do-640.webp 640w, briat-do-1280.webp 1280w, briat-do.webp 1920w" sizes="(max-width: 760px) 88vw, 1191px" type="image/webp"><img src="briat-do.jpg" alt="До — исходный кадр со съёмки" width="1920" height="1080"></picture>
+              <picture><source srcset="briat-do-640.webp 640w, briat-do-1280.webp 1280w, briat-do.webp 1920w" sizes="(max-width: 760px) 88vw, 1191px" type="image/webp"><img src="briat-do.jpg" alt="До: исходный кадр со съёмки" width="1920" height="1080"></picture>
             </div>
             <div class="ba-divider">
               <div class="ba-divider__line"></div>
@@ -394,14 +394,14 @@
           </div>
 
         <!-- ════════════════════════════════════════════════════════════════════
-             ЕЩЁ ШЕСТЬ ПАР «ДО / ПОСЛЕ» — продолжение того же трека
+             ЕЩЁ ШЕСТЬ ПАР «ДО / ПОСЛЕ» · продолжение того же трека
 
              Кадры: ba-02…ba-07, у каждой пары «-do» (исходник со съёмки) и
-             «-post» (после ИИ-доработки), .jpg + .webp, все 1920×1080 — пара
+             «-post» (после ИИ-доработки), .jpg + .webp, все 1920×1080 · пара
              показывается во всю ширину контейнера.
 
              Оригиналы (7800×4400, 231 МБ) лежат в _source/brait/photo/do-posle/
-             под именами 1.jpg / 1-1.jpg … 6.jpg / 6-1.jpg — в git они не идут.
+             под именами 1.jpg / 1-1.jpg … 6.jpg / 6-1.jpg · в git они не идут.
              Пережать заново:
                sharp(исходник).resize(1920, 1080, { fit: 'cover', position: 'centre' })
 
@@ -416,11 +416,11 @@
              ВАЖНО: обе картинки в паре должны быть одного размера и одного
              кадра, иначе при перетаскивании разделителя картинка «поедет».
              Поэтому пара режется одним и тем же cover из исходников, которые
-             и сами совпадают по размеру — проверено по всем шести.
+             и сами совпадают по размеру · проверено по всем шести.
              ════════════════════════════════════════════════════════════════════ -->
           <div class="ba-compare" data-thumb="ba-02-thumb.webp">
-            <picture><source srcset="ba-02-post-640.webp 640w, ba-02-post-1280.webp 1280w, ba-02-post.webp 1920w" sizes="(max-width: 760px) 88vw, 1191px" type="image/webp"><img width="1920" height="1080" class="ba-after" src="ba-02-post.jpg" alt="После — тот же кадр с ИИ-доработкой: выброшенная шнеком земля и пробуренная лунка" loading="lazy"></picture>
-            <div class="ba-before"><picture><source srcset="ba-02-do-640.webp 640w, ba-02-do-1280.webp 1280w, ba-02-do.webp 1920w" sizes="(max-width: 760px) 88vw, 1191px" type="image/webp"><img src="ba-02-do.jpg" alt="До — бензобур со шнеком на газоне, исходный кадр со съёмки" width="1920" height="1080" loading="lazy"></picture></div>
+            <picture><source srcset="ba-02-post-640.webp 640w, ba-02-post-1280.webp 1280w, ba-02-post.webp 1920w" sizes="(max-width: 760px) 88vw, 1191px" type="image/webp"><img width="1920" height="1080" class="ba-after" src="ba-02-post.jpg" alt="После, тот же кадр с ИИ-доработкой: выброшенная шнеком земля и пробуренная лунка" loading="lazy"></picture>
+            <div class="ba-before"><picture><source srcset="ba-02-do-640.webp 640w, ba-02-do-1280.webp 1280w, ba-02-do.webp 1920w" sizes="(max-width: 760px) 88vw, 1191px" type="image/webp"><img src="ba-02-do.jpg" alt="До: бензобур со шнеком на газоне, исходный кадр со съёмки" width="1920" height="1080" loading="lazy"></picture></div>
             <div class="ba-divider">
               <div class="ba-divider__line"></div>
               <button class="ba-divider__btn" aria-label="Перетащите для сравнения"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M6 10H14M6 10L3 7M6 10L3 13M14 10L17 7M14 10L17 13"/></svg></button>
@@ -429,8 +429,8 @@
             <span class="ba-label ba-label--after">После</span>
           </div>
           <div class="ba-compare" data-thumb="ba-03-thumb.webp">
-            <picture><source srcset="ba-03-post-640.webp 640w, ba-03-post-1280.webp 1280w, ba-03-post.webp 1920w" sizes="(max-width: 760px) 88vw, 1191px" type="image/webp"><img width="1920" height="1080" class="ba-after" src="ba-03-post.jpg" alt="После — та же линейка на затемнённом фоне с дымкой" loading="lazy"></picture>
-            <div class="ba-before"><picture><source srcset="ba-03-do-640.webp 640w, ba-03-do-1280.webp 1280w, ba-03-do.webp 1920w" sizes="(max-width: 760px) 88vw, 1191px" type="image/webp"><img src="ba-03-do.jpg" alt="До — линейка аккумуляторного инструмента Brait на бетонной площадке" width="1920" height="1080" loading="lazy"></picture></div>
+            <picture><source srcset="ba-03-post-640.webp 640w, ba-03-post-1280.webp 1280w, ba-03-post.webp 1920w" sizes="(max-width: 760px) 88vw, 1191px" type="image/webp"><img width="1920" height="1080" class="ba-after" src="ba-03-post.jpg" alt="После: та же линейка на затемнённом фоне с дымкой" loading="lazy"></picture>
+            <div class="ba-before"><picture><source srcset="ba-03-do-640.webp 640w, ba-03-do-1280.webp 1280w, ba-03-do.webp 1920w" sizes="(max-width: 760px) 88vw, 1191px" type="image/webp"><img src="ba-03-do.jpg" alt="До: линейка аккумуляторного инструмента Brait на бетонной площадке" width="1920" height="1080" loading="lazy"></picture></div>
             <div class="ba-divider">
               <div class="ba-divider__line"></div>
               <button class="ba-divider__btn" aria-label="Перетащите для сравнения"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M6 10H14M6 10L3 7M6 10L3 13M14 10L17 7M14 10L17 13"/></svg></button>
@@ -439,8 +439,8 @@
             <span class="ba-label ba-label--after">После</span>
           </div>
           <div class="ba-compare" data-thumb="ba-04-thumb.webp">
-            <picture><source srcset="ba-04-post-640.webp 640w, ba-04-post-1280.webp 1280w, ba-04-post.webp 1920w" sizes="(max-width: 760px) 88vw, 1191px" type="image/webp"><img width="1920" height="1080" class="ba-after" src="ba-04-post.jpg" alt="После — тот же кадр: подстриженный в полосу газон и коттедж на фоне" loading="lazy"></picture>
-            <div class="ba-before"><picture><source srcset="ba-04-do-640.webp 640w, ba-04-do-1280.webp 1280w, ba-04-do.webp 1920w" sizes="(max-width: 760px) 88vw, 1191px" type="image/webp"><img src="ba-04-do.jpg" alt="До — газонокосилка Brait на участке, исходный кадр со съёмки" width="1920" height="1080" loading="lazy"></picture></div>
+            <picture><source srcset="ba-04-post-640.webp 640w, ba-04-post-1280.webp 1280w, ba-04-post.webp 1920w" sizes="(max-width: 760px) 88vw, 1191px" type="image/webp"><img width="1920" height="1080" class="ba-after" src="ba-04-post.jpg" alt="После, тот же кадр: подстриженный в полосу газон и коттедж на фоне" loading="lazy"></picture>
+            <div class="ba-before"><picture><source srcset="ba-04-do-640.webp 640w, ba-04-do-1280.webp 1280w, ba-04-do.webp 1920w" sizes="(max-width: 760px) 88vw, 1191px" type="image/webp"><img src="ba-04-do.jpg" alt="До: газонокосилка Brait на участке, исходный кадр со съёмки" width="1920" height="1080" loading="lazy"></picture></div>
             <div class="ba-divider">
               <div class="ba-divider__line"></div>
               <button class="ba-divider__btn" aria-label="Перетащите для сравнения"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M6 10H14M6 10L3 7M6 10L3 13M14 10L17 7M14 10L17 13"/></svg></button>
@@ -449,8 +449,8 @@
             <span class="ba-label ba-label--after">После</span>
           </div>
           <div class="ba-compare" data-thumb="ba-05-thumb.webp">
-            <picture><source srcset="ba-05-post-640.webp 640w, ba-05-post-1280.webp 1280w, ba-05-post.webp 1920w" sizes="(max-width: 760px) 88vw, 1191px" type="image/webp"><img width="1920" height="1080" class="ba-after" src="ba-05-post.jpg" alt="После — тот же кадр перенесён в цех: бетонная пыль и разбитое основание" loading="lazy"></picture>
-            <div class="ba-before"><picture><source srcset="ba-05-do-640.webp 640w, ba-05-do-1280.webp 1280w, ba-05-do.webp 1920w" sizes="(max-width: 760px) 88vw, 1191px" type="image/webp"><img src="ba-05-do.jpg" alt="До — отбойный молоток Brait в работе, съёмка на улице" width="1920" height="1080" loading="lazy"></picture></div>
+            <picture><source srcset="ba-05-post-640.webp 640w, ba-05-post-1280.webp 1280w, ba-05-post.webp 1920w" sizes="(max-width: 760px) 88vw, 1191px" type="image/webp"><img width="1920" height="1080" class="ba-after" src="ba-05-post.jpg" alt="После, тот же кадр перенесён в цех: бетонная пыль и разбитое основание" loading="lazy"></picture>
+            <div class="ba-before"><picture><source srcset="ba-05-do-640.webp 640w, ba-05-do-1280.webp 1280w, ba-05-do.webp 1920w" sizes="(max-width: 760px) 88vw, 1191px" type="image/webp"><img src="ba-05-do.jpg" alt="До: отбойный молоток Brait в работе, съёмка на улице" width="1920" height="1080" loading="lazy"></picture></div>
             <div class="ba-divider">
               <div class="ba-divider__line"></div>
               <button class="ba-divider__btn" aria-label="Перетащите для сравнения"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M6 10H14M6 10L3 7M6 10L3 13M14 10L17 7M14 10L17 13"/></svg></button>
@@ -459,8 +459,8 @@
             <span class="ba-label ba-label--after">После</span>
           </div>
           <div class="ba-compare" data-thumb="ba-06-thumb.webp">
-            <picture><source srcset="ba-06-post-640.webp 640w, ba-06-post-1280.webp 1280w, ba-06-post.webp 1920w" sizes="(max-width: 760px) 88vw, 1191px" type="image/webp"><img width="1920" height="1080" class="ba-after" src="ba-06-post.jpg" alt="После — тот же кадр: пыль из-под бура и интерьер стройки" loading="lazy"></picture>
-            <div class="ba-before"><picture><source srcset="ba-06-do-640.webp 640w, ba-06-do-1280.webp 1280w, ba-06-do.webp 1920w" sizes="(max-width: 760px) 88vw, 1191px" type="image/webp"><img src="ba-06-do.jpg" alt="До — перфоратор Brait по кирпичной стене, исходный кадр со съёмки" width="1920" height="1080" loading="lazy"></picture></div>
+            <picture><source srcset="ba-06-post-640.webp 640w, ba-06-post-1280.webp 1280w, ba-06-post.webp 1920w" sizes="(max-width: 760px) 88vw, 1191px" type="image/webp"><img width="1920" height="1080" class="ba-after" src="ba-06-post.jpg" alt="После, тот же кадр: пыль из-под бура и интерьер стройки" loading="lazy"></picture>
+            <div class="ba-before"><picture><source srcset="ba-06-do-640.webp 640w, ba-06-do-1280.webp 1280w, ba-06-do.webp 1920w" sizes="(max-width: 760px) 88vw, 1191px" type="image/webp"><img src="ba-06-do.jpg" alt="До: перфоратор Brait по кирпичной стене, исходный кадр со съёмки" width="1920" height="1080" loading="lazy"></picture></div>
             <div class="ba-divider">
               <div class="ba-divider__line"></div>
               <button class="ba-divider__btn" aria-label="Перетащите для сравнения"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M6 10H14M6 10L3 7M6 10L3 13M14 10L17 7M14 10L17 13"/></svg></button>
@@ -469,8 +469,8 @@
             <span class="ba-label ba-label--after">После</span>
           </div>
           <div class="ba-compare" data-thumb="ba-07-thumb.webp">
-            <picture><source srcset="ba-07-post-640.webp 640w, ba-07-post-1280.webp 1280w, ba-07-post.webp 1920w" sizes="(max-width: 760px) 88vw, 1191px" type="image/webp"><img width="1920" height="1080" class="ba-after" src="ba-07-post.jpg" alt="После — тот же кадр вечером: тёплый свет в окнах и гирлянда" loading="lazy"></picture>
-            <div class="ba-before"><picture><source srcset="ba-07-do-640.webp 640w, ba-07-do-1280.webp 1280w, ba-07-do.webp 1920w" sizes="(max-width: 760px) 88vw, 1191px" type="image/webp"><img src="ba-07-do.jpg" alt="До — бензиновый генератор Brait у дома при дневном свете" width="1920" height="1080" loading="lazy"></picture></div>
+            <picture><source srcset="ba-07-post-640.webp 640w, ba-07-post-1280.webp 1280w, ba-07-post.webp 1920w" sizes="(max-width: 760px) 88vw, 1191px" type="image/webp"><img width="1920" height="1080" class="ba-after" src="ba-07-post.jpg" alt="После, тот же кадр вечером: тёплый свет в окнах и гирлянда" loading="lazy"></picture>
+            <div class="ba-before"><picture><source srcset="ba-07-do-640.webp 640w, ba-07-do-1280.webp 1280w, ba-07-do.webp 1920w" sizes="(max-width: 760px) 88vw, 1191px" type="image/webp"><img src="ba-07-do.jpg" alt="До: бензиновый генератор Brait у дома при дневном свете" width="1920" height="1080" loading="lazy"></picture></div>
             <div class="ba-divider">
               <div class="ba-divider__line"></div>
               <button class="ba-divider__btn" aria-label="Перетащите для сравнения"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M6 10H14M6 10L3 7M6 10L3 13M14 10L17 7M14 10L17 13"/></svg></button>
@@ -504,7 +504,7 @@
             <picture><source srcset="../../assets/cases/brait/02-640.webp 640w, ../../assets/cases/brait/02-1280.webp 1280w, ../../assets/cases/brait/02.webp 2560w" sizes="(max-width: 760px) 43vw, 456px" type="image/webp"><img src="../../assets/cases/brait/02.jpg" alt="Brait — садовая техника на первой локации" loading="lazy" width="2560" height="1440"></picture>
           </div>
           <div class="case-gallery__item">
-            <picture><source srcset="../../assets/cases/brait/03-640.webp 640w, ../../assets/cases/brait/03-1280.webp 1280w, ../../assets/cases/brait/03.webp 2560w" sizes="(max-width: 760px) 43vw, 456px" type="image/webp"><img src="../../assets/cases/brait/03.jpg" alt="Brait — крупный план: детали и текстуры техники" loading="lazy" width="2560" height="1440"></picture>
+            <picture><source srcset="../../assets/cases/brait/03-640.webp 640w, ../../assets/cases/brait/03-1280.webp 1280w, ../../assets/cases/brait/03.webp 2560w" sizes="(max-width: 760px) 43vw, 456px" type="image/webp"><img src="../../assets/cases/brait/03.jpg" alt="Brait, крупный план: детали и текстуры техники" loading="lazy" width="2560" height="1440"></picture>
           </div>
           <div class="case-gallery__item">
             <picture><source srcset="../../assets/cases/brait/04-640.webp 640w, ../../assets/cases/brait/04-1280.webp 1280w, ../../assets/cases/brait/04.webp 2560w" sizes="(max-width: 760px) 43vw, 456px" type="image/webp"><img src="../../assets/cases/brait/04.jpg" alt="Brait — силовая техника на второй локации" loading="lazy" width="2560" height="1502"></picture>
@@ -774,19 +774,19 @@
 
 <div class="cookie-banner" id="cookieBanner" role="region" aria-label="Уведомление об использовании cookie" hidden>
   <p class="cookie-banner__text">
-    Сайт использует файлы cookie и сервис веб-аналитики «Яндекс.Метрика». Они помогают понимать, как посетители пользуются сайтом и какая реклама приводит заявки. Продолжая пользоваться сайтом, вы соглашаетесь с этим. Подробности — в <a href="/docs/#docs-privacy">Политике конфиденциальности</a>.
+    Сайт использует файлы cookie и сервис веб-аналитики «Яндекс.Метрика». Они помогают понимать, как посетители пользуются сайтом и какая реклама приводит заявки. Продолжая пользоваться сайтом, вы соглашаетесь с этим. Подробности в <a href="/docs/#docs-privacy">Политике конфиденциальности</a>.
   </p>
   <button type="button" class="cookie-banner__accept" id="cookieBannerAccept">Принимаю</button>
 </div>
 <!-- END:footer-placeholder --></div>
 
-  <script src="../../js/app.min.js?v=b7c9c14b"></script>
+  <script src="../../js/app.min.js?v=57be7eab"></script>
   <script src="../../js/gallery.min.js?v=78504c5f"></script>
   <script>
   /* Слайдер «до/после».
      Раньше был завязан на id (baCompare/baBefore/baDivider) и работал строго
      в одном экземпляре. Теперь инициализируется по классу для каждого блока
-     .ba-compare — чтобы добавить пару кадров, достаточно скопировать разметку,
+     .ba-compare · чтобы добавить пару кадров, достаточно скопировать разметку,
      дописывать сюда ничего не нужно. Состояние (позиция, флаг перетаскивания)
      живёт внутри своего замыкания на каждый слайдер, поэтому соседние блоки
      не тянут друг друга. */
@@ -802,14 +802,14 @@
 
       var active = false;
       /* Пары лежат в листалке и грузятся лениво. Картинка догружается уже
-         после того, как до слайда долистали и разделитель подвинули, — и
+         после того, как до слайда долистали и разделитель подвинули, · и
          обработчик load возвращал его в центр, стирая жест. Один флаг: как
          только пользователь тронул разделитель, автоцентровка выключается. */
       var touched = false;
 
       /* Картинка «до» лежит внутри обрезаемой по ширине обёртки. Без явного
          размера в пикселях она сжималась бы вместе с обёрткой и кадр не
-         совпадал бы с картинкой «после» — сравнивать было бы нечего. */
+         совпадал бы с картинкой «после» · сравнивать было бы нечего. */
       function syncSize() {
         beforeImg.style.width  = compare.offsetWidth + 'px';
         beforeImg.style.height = compare.offsetHeight + 'px';
@@ -831,7 +831,7 @@
 
       window.addEventListener('load', center);
       window.addEventListener('resize', syncSize);
-      /* Картинки часто догружаются позже 'load' обёртки — без этого первый
+      /* Картинки часто догружаются позже 'load' обёртки · без этого первый
          кадр стоял бы с нулевой высотой до первого resize. */
       if (beforeImg.complete) center(); else beforeImg.addEventListener('load', center);
 

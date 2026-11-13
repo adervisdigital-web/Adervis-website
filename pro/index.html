@@ -5,7 +5,7 @@
   <script>if("scrollRestoration"in history)history.scrollRestoration="manual";!function(){var t=localStorage.getItem("adervis-theme");if(t)document.documentElement.setAttribute("data-theme",t);else if(window.matchMedia("(prefers-color-scheme:light)").matches)document.documentElement.setAttribute("data-theme","light")}()</script>
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Adervis CRM — система управления продакшеном | ADERVIS</title>
-  <meta name="description" content="Adervis CRM: сделки, сметы, расчёт коммерческих предложений и календарь команды в одном окне. Инструмент для продакшн-студий и фрилансеров — crm.adervis.ru.">
+  <meta name="description" content="Adervis CRM: сделки, сметы, расчёт коммерческих предложений и календарь команды в одном окне. Инструмент для продакшн-студий и фрилансеров: crm.adervis.ru.">
   <!-- Шрифты self-hosted: @font-face в css/style.css, woff2 в /fonts -->
   <link rel="icon" type="image/svg+xml" href="../icon.svg">
   <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
@@ -99,7 +99,7 @@
 
     <!-- Лого -->
     <a href="/" class="brand site-header__logo">
-      <img src="/logo.svg" id="siteLogo" data-dark="/logo.svg" data-light="/logoB.svg" alt="ADERVIS — Продакшн-студия" width="140" height="34">
+      <img src="/logo.svg" id="siteLogo" data-dark="/logo.svg" data-light="/logoB.svg" alt="ADERVIS, продакшн-студия" width="140" height="34">
     </a>
 
     <!-- Навигация -->
@@ -108,7 +108,7 @@
 
       <a href="/" class="pill-nav__link">Главная</a>
 
-      <!-- УСЛУГИ — клик ведёт на раздел #services, выпадашка показывает направления -->
+      <!-- УСЛУГИ · клик ведёт на раздел #services, выпадашка показывает направления -->
       <div class="pill-nav__dropdown" id="dropServices">
         <a href="/#services" class="pill-nav__link pill-nav__link--drop" aria-haspopup="true" aria-expanded="false" aria-controls="megaServices">
           Услуги
@@ -156,7 +156,7 @@
 
       <a href="/cases/" class="pill-nav__link">Кейсы</a>
       <a href="/careers/" class="pill-nav__link">Вакансии</a>
-      <!-- Adervis Platform — видна только в мобильном меню, на десктопе скрыта -->
+      <!-- Adervis Platform · видна только в мобильном меню, на десктопе скрыта -->
       <a href="/#platform" class="pill-nav__link pill-nav__link--platform-mobile">Adervis Platform</a>
 
     </nav>
@@ -186,8 +186,8 @@
         <span>Написать</span>
       </a>
 
-      <!-- ADERVIS PLATFORM — кнопка с дропдауном продуктов: CRM и Stock.
-           Stock живёт на своём поддомене и открывается в новой вкладке — так же,
+      <!-- ADERVIS PLATFORM · кнопка с дропдауном продуктов: CRM и Stock.
+           Stock живёт на своём поддомене и открывается в новой вкладке · так же,
            как «Открыть платформу» у CRM в секции #platform на главной. -->
       <div class="pill-nav__dropdown" id="dropPlatform">
         <button type="button" class="site-header__platform pill-nav__link--drop"
@@ -236,16 +236,16 @@
     var tube = document.getElementById('tubeIndicator');
     if (!nav || !tube) return;
 
-    // Цель индикатора — всегда пункт ВЕРХНЕГО уровня. markActiveNavLink() в
+    // Цель индикатора · всегда пункт ВЕРХНЕГО уровня. markActiveNavLink() в
     // app.js помечает .nav-active и пункты внутри мега-меню (это нужно, чтобы
     // подсветить текущее направление в выпадашке). Раньше индикатор хватал
-    // первый попавшийся .nav-active — на /video/, /design/, /photo/, /ai/ им
+    // первый попавшийся .nav-active · на /video/, /design/, /photo/, /ai/ им
     // оказывался пункт выпадашки, и капсула растягивалась на его ширину
     // (302px вместо 98), перекрывая половину меню.
     function activeTopLink () {
       var direct = nav.querySelector('.pill-nav__link.nav-active:not(.pill-nav__link--drop)');
       if (direct) return direct;
-      // Активно направление внутри «Услуг» — подсвечиваем сам пункт «Услуги».
+      // Активно направление внутри «Услуг» · подсвечиваем сам пункт «Услуги».
       var inDrop = nav.querySelector('.pill-nav__dropdown .nav-active');
       if (inDrop) {
         var drop = inDrop.closest('.pill-nav__dropdown');
@@ -297,13 +297,13 @@
     }
 
     // Шрифт Unbounded догружается уже после DOMContentLoaded и делает пункты
-    // шире — без пересчёта индикатор остаётся на координатах запасного шрифта
+    // шире · без пересчёта индикатор остаётся на координатах запасного шрифта
     // (промах ~30px), пока пользователь не наведёт мышь.
     if (document.fonts && document.fonts.ready) {
       document.fonts.ready.then(resync);
     }
 
-    // Resize меняет раскладку шапки — без этого индикатор уезжает.
+    // Resize меняет раскладку шапки · без этого индикатор уезжает.
     var t;
     window.addEventListener('resize', function () {
       clearTimeout(t);
@@ -391,7 +391,7 @@
       <div class="container">
         <div class="section-head reveal">
           <h2>Всё, что нужно продакшену, кроме лишних вкладок</h2>
-          <p>Не очередной таск-трекер «для всех», а инструмент, заточенный под то, как на самом деле устроена работа студии: от первой заявки до закрытых цифр по проекту</p>
+          <p>Инструмент под то, как устроена работа студии: от первой заявки до закрытых цифр по проекту</p>
         </div>
         <div class="crm-feature-grid">
           <div class="crm-feature-card reveal">
@@ -454,19 +454,19 @@
       </div>
     </section>
 
-    <!-- Реальный интерфейс — не мокапы, а живые скриншоты продукта -->
+    <!-- Реальный интерфейс · не мокапы, а живые скриншоты продукта -->
     <section class="section">
       <div class="container">
         <div class="section-head reveal">
           <span class="eyebrow">Реальный интерфейс</span>
           <h2>Так это выглядит внутри</h2>
-          <p>Не рендеры для сайта, а интерфейс, в котором мы сами каждый день ведём свои проекты</p>
+          <p>Интерфейс, в котором мы сами каждый день ведём свои проекты</p>
         </div>
         <div class="pro-shots">
 
           <div class="pro-shot reveal">
             <div class="pro-shot__media">
-              <picture><source srcset="../assets/cases/pro/menu.webp" type="image/webp"><img src="../assets/cases/pro/menu.jpg" alt="Adervis CRM — быстрое меню: проекты, сделки, сметы, финансы, задачи, календарь" loading="lazy" width="900" height="820"></picture>
+              <picture><source srcset="../assets/cases/pro/menu.webp" type="image/webp"><img src="../assets/cases/pro/menu.jpg" alt="Adervis CRM, быстрое меню: проекты, сделки, сметы, финансы, задачи, календарь" loading="lazy" width="900" height="820"></picture>
             </div>
             <div class="pro-shot__text">
               <span class="pro-shot__eyebrow">Всё в одном месте</span>
@@ -499,7 +499,7 @@
 
           <div class="pro-shot reveal">
             <div class="pro-shot__media">
-              <picture><source srcset="../assets/cases/pro/finance.webp" type="image/webp"><img src="../assets/cases/pro/finance.jpg" alt="Adervis CRM — добавление поступления по проекту с суммой, статьёй и способом оплаты" loading="lazy" width="900" height="820"></picture>
+              <picture><source srcset="../assets/cases/pro/finance.webp" type="image/webp"><img src="../assets/cases/pro/finance.jpg" alt="Adervis CRM: добавление поступления по проекту с суммой, статьёй и способом оплаты" loading="lazy" width="900" height="820"></picture>
             </div>
             <div class="pro-shot__text">
               <span class="pro-shot__eyebrow">Финансы</span>
@@ -615,7 +615,7 @@
     <section class="section">
       <div class="container">
         <div class="section-head reveal">
-          <h2>Сделано для тех, кто ведёт проекты, а не отчёты о них</h2>
+          <h2>Для тех, кто ведёт проекты</h2>
           <p>Adervis CRM появилась из реальной задачи нашей студии, поэтому в ней нет «фичей ради фичей», только то, что действительно экономит часы каждую неделю</p>
         </div>
         <div class="steps-grid">
@@ -629,7 +629,7 @@
           </div>
           <div class="step-card reveal">
             <h3>Агентствам полного цикла</h3>
-            <p>Когда несколько направлений и подрядчиков нужно свести в одну систему отчётности и показать клиенту прозрачную картину по проекту.</p>
+            <p>Когда несколько направлений и подрядчиков нужно свести в одну систему отчётности и показать клиенту понятную картину по проекту.</p>
           </div>
         </div>
       </div>
@@ -934,12 +934,12 @@
 
 <div class="cookie-banner" id="cookieBanner" role="region" aria-label="Уведомление об использовании cookie" hidden>
   <p class="cookie-banner__text">
-    Сайт использует файлы cookie и сервис веб-аналитики «Яндекс.Метрика». Они помогают понимать, как посетители пользуются сайтом и какая реклама приводит заявки. Продолжая пользоваться сайтом, вы соглашаетесь с этим. Подробности — в <a href="/docs/#docs-privacy">Политике конфиденциальности</a>.
+    Сайт использует файлы cookie и сервис веб-аналитики «Яндекс.Метрика». Они помогают понимать, как посетители пользуются сайтом и какая реклама приводит заявки. Продолжая пользоваться сайтом, вы соглашаетесь с этим. Подробности в <a href="/docs/#docs-privacy">Политике конфиденциальности</a>.
   </p>
   <button type="button" class="cookie-banner__accept" id="cookieBannerAccept">Принимаю</button>
 </div>
 <!-- END:footer-placeholder --></div>
 
-  <script src="../js/app.min.js?v=b7c9c14b"></script>
+  <script src="../js/app.min.js?v=57be7eab"></script>
 </body>
 </html>

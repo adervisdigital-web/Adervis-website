@@ -20,7 +20,7 @@
   <meta property="og:site_name" content="ADERVIS">
   <meta property="og:url" content="https://adervis.ru/cases/battle-of-robots/">
   <meta property="og:title" content="Битва роботов — Игры будущего Казань 2024 | Кейс ADERVIS">
-  <meta property="og:description" content="Видеосъёмка и графика суперфинала «Битвы роботов» на Играх будущего в Казани — 16 команд из 11 стран, мировой масштаб.">
+  <meta property="og:description" content="Видеосъёмка и графика суперфинала «Битвы роботов» на Играх будущего в Казани: 16 команд из 11 стран, мировой масштаб.">
   <meta property="og:image" content="https://adervis.ru/cases/battle-of-robots.jpg">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Битва роботов — Игры будущего Казань 2024 | Кейс ADERVIS">
@@ -79,7 +79,7 @@
 
     <!-- Лого -->
     <a href="/" class="brand site-header__logo">
-      <img src="/logo.svg" id="siteLogo" data-dark="/logo.svg" data-light="/logoB.svg" alt="ADERVIS — Продакшн-студия" width="140" height="34">
+      <img src="/logo.svg" id="siteLogo" data-dark="/logo.svg" data-light="/logoB.svg" alt="ADERVIS, продакшн-студия" width="140" height="34">
     </a>
 
     <!-- Навигация -->
@@ -88,7 +88,7 @@
 
       <a href="/" class="pill-nav__link">Главная</a>
 
-      <!-- УСЛУГИ — клик ведёт на раздел #services, выпадашка показывает направления -->
+      <!-- УСЛУГИ · клик ведёт на раздел #services, выпадашка показывает направления -->
       <div class="pill-nav__dropdown" id="dropServices">
         <a href="/#services" class="pill-nav__link pill-nav__link--drop" aria-haspopup="true" aria-expanded="false" aria-controls="megaServices">
           Услуги
@@ -136,7 +136,7 @@
 
       <a href="/cases/" class="pill-nav__link">Кейсы</a>
       <a href="/careers/" class="pill-nav__link">Вакансии</a>
-      <!-- Adervis Platform — видна только в мобильном меню, на десктопе скрыта -->
+      <!-- Adervis Platform · видна только в мобильном меню, на десктопе скрыта -->
       <a href="/#platform" class="pill-nav__link pill-nav__link--platform-mobile">Adervis Platform</a>
 
     </nav>
@@ -166,8 +166,8 @@
         <span>Написать</span>
       </a>
 
-      <!-- ADERVIS PLATFORM — кнопка с дропдауном продуктов: CRM и Stock.
-           Stock живёт на своём поддомене и открывается в новой вкладке — так же,
+      <!-- ADERVIS PLATFORM · кнопка с дропдауном продуктов: CRM и Stock.
+           Stock живёт на своём поддомене и открывается в новой вкладке · так же,
            как «Открыть платформу» у CRM в секции #platform на главной. -->
       <div class="pill-nav__dropdown" id="dropPlatform">
         <button type="button" class="site-header__platform pill-nav__link--drop"
@@ -216,16 +216,16 @@
     var tube = document.getElementById('tubeIndicator');
     if (!nav || !tube) return;
 
-    // Цель индикатора — всегда пункт ВЕРХНЕГО уровня. markActiveNavLink() в
+    // Цель индикатора · всегда пункт ВЕРХНЕГО уровня. markActiveNavLink() в
     // app.js помечает .nav-active и пункты внутри мега-меню (это нужно, чтобы
     // подсветить текущее направление в выпадашке). Раньше индикатор хватал
-    // первый попавшийся .nav-active — на /video/, /design/, /photo/, /ai/ им
+    // первый попавшийся .nav-active · на /video/, /design/, /photo/, /ai/ им
     // оказывался пункт выпадашки, и капсула растягивалась на его ширину
     // (302px вместо 98), перекрывая половину меню.
     function activeTopLink () {
       var direct = nav.querySelector('.pill-nav__link.nav-active:not(.pill-nav__link--drop)');
       if (direct) return direct;
-      // Активно направление внутри «Услуг» — подсвечиваем сам пункт «Услуги».
+      // Активно направление внутри «Услуг» · подсвечиваем сам пункт «Услуги».
       var inDrop = nav.querySelector('.pill-nav__dropdown .nav-active');
       if (inDrop) {
         var drop = inDrop.closest('.pill-nav__dropdown');
@@ -277,13 +277,13 @@
     }
 
     // Шрифт Unbounded догружается уже после DOMContentLoaded и делает пункты
-    // шире — без пересчёта индикатор остаётся на координатах запасного шрифта
+    // шире · без пересчёта индикатор остаётся на координатах запасного шрифта
     // (промах ~30px), пока пользователь не наведёт мышь.
     if (document.fonts && document.fonts.ready) {
       document.fonts.ready.then(resync);
     }
 
-    // Resize меняет раскладку шапки — без этого индикатор уезжает.
+    // Resize меняет раскладку шапки · без этого индикатор уезжает.
     var t;
     window.addEventListener('resize', function () {
       clearTimeout(t);
@@ -314,7 +314,7 @@
       <div class="container">
         <span class="eyebrow">Видео · Графика · Февраль 2024</span>
         <h1>Битва роботов — суперфинал на Играх будущего</h1>
-        <p>Снимали и делали графику для суперфинала мирового чемпионата в Казани. 16 инженерных команд из 11 стран, арена Казанского цирка, призовой фонд $500 000 — мощное завершение первого сезона Чемпионата.</p>
+        <p>Снимали и делали графику для суперфинала мирового чемпионата в Казани. 16 инженерных команд из 11 стран, арена Казанского цирка, призовой фонд $500 000. Мощное завершение первого сезона Чемпионата.</p>
         <div class="hero-buttons">
           <a href="/cases/" class="btn">← Все кейсы</a>
           <a href="/video/" class="btn primary">Видеопродакшн</a>
@@ -352,11 +352,11 @@
         <div class="case-content-grid reveal">
           <div class="case-content-block">
             <h2>Задача</h2>
-            <p>Суперфинал «Битвы роботов» стал кульминацией первого сезона Чемпионата и частью программы международного турнира «Игры будущего» в Казани. На арене Казанского цирка сошлись 16 инженерных команд из 11 стран — России, Индии, Китая, Ирана, Бразилии, ОАЭ и других. Нужна была профессиональная видеосъёмка события и графическое сопровождение для трансляций и финального контента.</p>
+            <p>Суперфинал «Битвы роботов» стал кульминацией первого сезона Чемпионата и частью программы международного турнира «Игры будущего» в Казани. На арене Казанского цирка сошлись 16 инженерных команд из 11 стран: России, Индии, Китая, Ирана, Бразилии, ОАЭ и других. Нужна была профессиональная видеосъёмка события и графическое сопровождение для трансляций и финального контента.</p>
           </div>
           <div class="case-content-block">
             <h2>Что сделали</h2>
-            <p>Отработали всё мероприятие с камерами — поединки роботов, эмоции команд, атмосферу арены. Сделали графику: анимационные элементы для трансляций и послесезонного контента. Суперфинал завершился победой индийской команды DS Robotics, чей робот Godspeed со спиннером на 8000 об/мин одолел китайскую команду ROC.</p>
+            <p>Отработали всё мероприятие с камерами: поединки роботов, эмоции команд, атмосферу арены. Сделали графику: анимационные элементы для трансляций и послесезонного контента. Суперфинал завершился победой индийской команды DS Robotics, чей робот Godspeed со спиннером на 8000 об/мин одолел китайскую команду ROC.</p>
           </div>
         </div>
       </div>
@@ -368,7 +368,7 @@
     <section class="section">
       <div class="container">
         <div class="section-head reveal" style="margin-bottom:var(--sp-8)">
-          <h2>Смотрите — что получилось</h2>
+          <h2>Смотрите, что получилось</h2>
         </div>
         <div class="reveal" style="border-radius:14px;overflow:hidden;aspect-ratio:16/9;background:var(--bg2)">
           <iframe
@@ -419,7 +419,7 @@
     <section class="section contact-section reveal" id="contacts">
       <div class="container">
         <h2>Снимаем мероприятия любого масштаба</h2>
-        <p>От корпоративных событий до международных турниров — организуем съёмку и сделаем графику, которая передаёт масштаб и энергию происходящего.</p>
+        <p>От корпоративных событий до международных турниров: организуем съёмку и сделаем графику, которая передаёт масштаб и энергию происходящего.</p>
         <div class="hero-buttons">
           <a href="/video/" class="btn primary">Услуга: Видеопродакшн</a>
           <a href="mailto:adervis.digital@gmail.com" class="btn">adervis.digital@gmail.com</a>
@@ -630,12 +630,12 @@
 
 <div class="cookie-banner" id="cookieBanner" role="region" aria-label="Уведомление об использовании cookie" hidden>
   <p class="cookie-banner__text">
-    Сайт использует файлы cookie и сервис веб-аналитики «Яндекс.Метрика». Они помогают понимать, как посетители пользуются сайтом и какая реклама приводит заявки. Продолжая пользоваться сайтом, вы соглашаетесь с этим. Подробности — в <a href="/docs/#docs-privacy">Политике конфиденциальности</a>.
+    Сайт использует файлы cookie и сервис веб-аналитики «Яндекс.Метрика». Они помогают понимать, как посетители пользуются сайтом и какая реклама приводит заявки. Продолжая пользоваться сайтом, вы соглашаетесь с этим. Подробности в <a href="/docs/#docs-privacy">Политике конфиденциальности</a>.
   </p>
   <button type="button" class="cookie-banner__accept" id="cookieBannerAccept">Принимаю</button>
 </div>
 <!-- END:footer-placeholder --></div>
 
-  <script src="../../js/app.min.js?v=b7c9c14b"></script>
+  <script src="../../js/app.min.js?v=57be7eab"></script>
 </body>
 </html>

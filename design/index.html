@@ -32,7 +32,7 @@
     "@type": "Service",
     "@id": "https://adervis.ru/design/#service",
     "name": "Дизайн и брендинг",
-    "description": "Логотипы, фирменный стиль, брендбуки, полиграфия и упаковка — визуальная система бренда под ключ.",
+    "description": "Логотипы, фирменный стиль, брендбуки, полиграфия и упаковка: визуальная система бренда под ключ.",
     "provider": { "@type": "Organization", "@id": "https://adervis.ru/#organization" },
     "serviceType": "Дизайн и брендинг",
     "areaServed": { "@type": "Country", "name": "Россия" },
@@ -52,7 +52,7 @@
       "name": "Сколько стоит разработка логотипа и фирменного стиля?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Зависит от объёма: один знак или полная система с брендбуком — разный масштаб работы. Напишите задачу — пришлём смету и примеры похожих проектов."
+        "text": "Зависит от объёма: один знак или полная система с брендбуком требуют разного объёма работы. Напишите задачу: пришлём смету и примеры похожих проектов."
       }
     },
     {
@@ -60,7 +60,7 @@
       "name": "Сколько вариантов логотипа вы показываете?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Обычно 2–3 направления на первом этапе. Это не «чем больше, тем лучше» — каждый вариант обоснован и сделан под задачу, а не для количества."
+        "text": "Обычно 2–3 направления на первом этапе. Каждый вариант обоснован и сделан под задачу."
       }
     },
     {
@@ -76,12 +76,12 @@
       "name": "Можете ли вы переработать существующий логотип, не создавая с нуля?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Да — делаем редизайн с сохранением узнаваемости или полный рестайлинг, если бренд хочет новое лицо. Обсуждаем на брифе."
+        "text": "Да, делаем редизайн с сохранением узнаваемости или полный рестайлинг, если бренд хочет новое лицо. Обсуждаем на брифе."
       }
     },
     {
       "@type": "Question",
-      "name": "Делаете ли вы дизайн для печати — листовки, баннеры, упаковку?",
+      "name": "Делаете ли вы дизайн для печати: листовки, баннеры, упаковку?",
       "acceptedAnswer": {
         "@type": "Answer",
         "text": "Да, это часть дизайн-направления. Готовим макеты под офсетную и цифровую печать с учётом требований типографий."
@@ -137,7 +137,7 @@
 
     <!-- Лого -->
     <a href="/" class="brand site-header__logo">
-      <img src="/logo.svg" id="siteLogo" data-dark="/logo.svg" data-light="/logoB.svg" alt="ADERVIS — Продакшн-студия" width="140" height="34">
+      <img src="/logo.svg" id="siteLogo" data-dark="/logo.svg" data-light="/logoB.svg" alt="ADERVIS, продакшн-студия" width="140" height="34">
     </a>
 
     <!-- Навигация -->
@@ -146,7 +146,7 @@
 
       <a href="/" class="pill-nav__link">Главная</a>
 
-      <!-- УСЛУГИ — клик ведёт на раздел #services, выпадашка показывает направления -->
+      <!-- УСЛУГИ · клик ведёт на раздел #services, выпадашка показывает направления -->
       <div class="pill-nav__dropdown" id="dropServices">
         <a href="/#services" class="pill-nav__link pill-nav__link--drop" aria-haspopup="true" aria-expanded="false" aria-controls="megaServices">
           Услуги
@@ -194,7 +194,7 @@
 
       <a href="/cases/" class="pill-nav__link">Кейсы</a>
       <a href="/careers/" class="pill-nav__link">Вакансии</a>
-      <!-- Adervis Platform — видна только в мобильном меню, на десктопе скрыта -->
+      <!-- Adervis Platform · видна только в мобильном меню, на десктопе скрыта -->
       <a href="/#platform" class="pill-nav__link pill-nav__link--platform-mobile">Adervis Platform</a>
 
     </nav>
@@ -224,8 +224,8 @@
         <span>Написать</span>
       </a>
 
-      <!-- ADERVIS PLATFORM — кнопка с дропдауном продуктов: CRM и Stock.
-           Stock живёт на своём поддомене и открывается в новой вкладке — так же,
+      <!-- ADERVIS PLATFORM · кнопка с дропдауном продуктов: CRM и Stock.
+           Stock живёт на своём поддомене и открывается в новой вкладке · так же,
            как «Открыть платформу» у CRM в секции #platform на главной. -->
       <div class="pill-nav__dropdown" id="dropPlatform">
         <button type="button" class="site-header__platform pill-nav__link--drop"
@@ -274,16 +274,16 @@
     var tube = document.getElementById('tubeIndicator');
     if (!nav || !tube) return;
 
-    // Цель индикатора — всегда пункт ВЕРХНЕГО уровня. markActiveNavLink() в
+    // Цель индикатора · всегда пункт ВЕРХНЕГО уровня. markActiveNavLink() в
     // app.js помечает .nav-active и пункты внутри мега-меню (это нужно, чтобы
     // подсветить текущее направление в выпадашке). Раньше индикатор хватал
-    // первый попавшийся .nav-active — на /video/, /design/, /photo/, /ai/ им
+    // первый попавшийся .nav-active · на /video/, /design/, /photo/, /ai/ им
     // оказывался пункт выпадашки, и капсула растягивалась на его ширину
     // (302px вместо 98), перекрывая половину меню.
     function activeTopLink () {
       var direct = nav.querySelector('.pill-nav__link.nav-active:not(.pill-nav__link--drop)');
       if (direct) return direct;
-      // Активно направление внутри «Услуг» — подсвечиваем сам пункт «Услуги».
+      // Активно направление внутри «Услуг» · подсвечиваем сам пункт «Услуги».
       var inDrop = nav.querySelector('.pill-nav__dropdown .nav-active');
       if (inDrop) {
         var drop = inDrop.closest('.pill-nav__dropdown');
@@ -335,13 +335,13 @@
     }
 
     // Шрифт Unbounded догружается уже после DOMContentLoaded и делает пункты
-    // шире — без пересчёта индикатор остаётся на координатах запасного шрифта
+    // шире · без пересчёта индикатор остаётся на координатах запасного шрифта
     // (промах ~30px), пока пользователь не наведёт мышь.
     if (document.fonts && document.fonts.ready) {
       document.fonts.ready.then(resync);
     }
 
-    // Resize меняет раскладку шапки — без этого индикатор уезжает.
+    // Resize меняет раскладку шапки · без этого индикатор уезжает.
     var t;
     window.addEventListener('resize', function () {
       clearTimeout(t);
@@ -369,7 +369,7 @@
           <filter id="design-liquid" x="-25%" y="-25%" width="150%" height="150%" color-interpolation-filters="sRGB">
             <feTurbulence id="dsgTurb" type="fractalNoise"
               baseFrequency="0.003 0.005" numOctaves="2" seed="5" result="noise">
-              <!-- Паттерн плавно эволюционирует сам по себе — GPU SMIL, без JS -->
+              <!-- Паттерн плавно эволюционирует сам по себе · GPU SMIL, без JS -->
               <animate attributeName="baseFrequency"
                 values="0.003 0.004;0.004 0.006;0.003 0.005;0.002 0.004;0.003 0.004"
                 dur="26s" repeatCount="indefinite" calcMode="spline"
@@ -418,8 +418,8 @@
     <section class="section">
       <div class="container">
         <div class="section-head reveal">
-          <h2>Дизайн как система, а не разовая картинка</h2>
-          <p>Не рисуем логотип ради логотипа, а выстраиваем визуальный язык, который потом одинаково хорошо работает на сайте, в рекламе и на упаковке</p>
+          <h2>Дизайн как система</h2>
+          <p>Выстраиваем визуальный язык, который одинаково хорошо работает на сайте, в рекламе и на упаковке</p>
         </div>
         <div class="services-grid">
           <div class="service-card reveal" data-dir="design">
@@ -501,7 +501,7 @@
       <div class="container">
         <div class="section-head reveal">
           <h2>Как мы разрабатываем фирменный стиль: четыре шага от брифа</h2>
-          <p>Не рисуем «по наитию»: на каждом этапе фиксируем решения, чтобы результат можно было обосновать, а не просто понадеяться, что понравится</p>
+          <p>На каждом этапе фиксируем решения, чтобы результат можно было обосновать</p>
         </div>
         <div class="steps-grid">
           <div class="step-card reveal">
@@ -512,7 +512,7 @@
           <div class="step-card reveal">
             <span class="step-number">2</span>
             <h3>Концепция</h3>
-            <p>Предлагаем 2–3 разных направления с обоснованием и выбираем то, которое выдержит проверку временем, а не только одним просмотром.</p>
+            <p>Предлагаем 2–3 разных направления с обоснованием и выбираем то, которое выдержит проверку временем.</p>
           </div>
           <div class="step-card reveal">
             <span class="step-number">3</span>
@@ -528,7 +528,7 @@
       </div>
     </section>
 
-    <!-- Витрина кейса — Express Import (видео) -->
+    <!-- Витрина кейса · Express Import (видео) -->
     <section class="section">
       <div class="container">
         <div class="spotlight reveal">
@@ -711,7 +711,7 @@
               </div>
 
               <div class="review-card reveal">
-                <p class="review-text">Мы впервые заказали ролик и нам очень повезло с первого раза встретить таких профессионалов! Очень хороший результат и по видео, и по фото. Оперативно, пунктуально и очень внимательно отнеслись к работе. Ребята помогли с композицией, с аксессуарами — результат просто прекрасен!</p>
+                <p class="review-text">Мы впервые заказали ролик и нам очень повезло с первого раза встретить таких профессионалов! Очень хороший результат и по видео, и по фото. Оперативно, пунктуально и очень внимательно отнеслись к работе. Ребята помогли с композицией, с аксессуарами, результат просто прекрасен!</p>
                 <div class="review-author">
                   <a href="https://vk.com/ignatovaanna" class="review-avatar-link" target="_blank" rel="noopener noreferrer" aria-label="ВКонтакте: Анна Игнатова">
                     <picture><source srcset="../assets/testimonials/ignatova.webp" type="image/webp"><img src="../assets/testimonials/ignatova.jpg" alt="Анна Игнатова" width="156" height="156" class="review-avatar" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"></picture>
@@ -725,7 +725,7 @@
               </div>
 
               <div class="review-card reveal">
-                <p class="review-text">Работают оперативно, подсказывают, придумывают — отличная команда. Процветания и больше работы по данному направлению, удачи ребята — поработаем ещё.</p>
+                <p class="review-text">Работают оперативно, подсказывают, придумывают: отличная команда. Процветания и больше работы по данному направлению, удачи ребята, поработаем ещё.</p>
                 <div class="review-author">
                   <a href="https://vk.com/andreuka1" class="review-avatar-link" target="_blank" rel="noopener noreferrer" aria-label="ВКонтакте: Андрей Шуклин">
                     <picture><source srcset="../assets/testimonials/shuklin.webp" type="image/webp"><img src="../assets/testimonials/shuklin.jpg" alt="Андрей Шуклин" width="156" height="156" class="review-avatar" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"></picture>
@@ -753,7 +753,7 @@
               </div>
 
               <div class="review-card reveal">
-                <p class="review-text">Очень давно сотрудничаем и дружим с ребятами. Способны решить задачу любой сложности — и быстрый техничный монтаж, и комплексный проект со съёмкой в течение года.</p>
+                <p class="review-text">Очень давно сотрудничаем и дружим с ребятами. Способны решить задачу любой сложности: и быстрый техничный монтаж, и комплексный проект со съёмкой в течение года.</p>
                 <div class="review-author">
                   <a href="https://vk.com/permclimber" class="review-avatar-link" target="_blank" rel="noopener noreferrer" aria-label="ВКонтакте: Виктор Пермяков">
                     <picture><source srcset="../assets/testimonials/permyakov.webp" type="image/webp"><img src="../assets/testimonials/permyakov.jpg" alt="Виктор Пермяков" width="156" height="156" class="review-avatar" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"></picture>
@@ -819,7 +819,7 @@
                 </div>
                 <div class="fvs-body">
                   <div class="fvs-body-inner">
-                    <p class="fvs-a">Логотип занимает обычно 2–3 недели вместе с правками. Полный фирменный стиль с брендбуком идёт 4–6 недель: больше носителей, решений и точек, которые мы сверяем с вами на каждом этапе, а не сдаём «сюрпризом» в конце.</p>
+                    <p class="fvs-a">Логотип занимает обычно 2–3 недели вместе с правками. Полный фирменный стиль с брендбуком идёт 4–6 недель: больше носителей, решений и точек, которые мы сверяем с вами на каждом этапе.</p>
                   </div>
                 </div>
               </button>
@@ -864,7 +864,7 @@
                 </div>
                 <div class="fvs-body">
                   <div class="fvs-body-inner">
-                    <p class="fvs-a">Да, всегда: векторные файлы знака, шрифты (там, где это предусмотрено лицензией) и брендбук в удобных форматах для работы и печати. Это ваш актив, который остаётся с вами, а не наш внутренний рабочий файл.</p>
+                    <p class="fvs-a">Да, всегда: векторные файлы знака, шрифты (там, где это предусмотрено лицензией) и брендбук в удобных форматах для работы и печати. Это ваш актив, он остаётся у вас.</p>
                   </div>
                 </div>
               </button>
@@ -931,7 +931,7 @@
                 </div>
               </div>
 
-              <!-- Подпись и прогресс — внутри canvas, не торчат за границы -->
+              <!-- Подпись и прогресс · внутри canvas, не торчат за границы -->
               <div class="fvs-caption">
                 <div class="fvs-progress">
                   <div class="fvs-progress-bar" id="fvsBar"></div>
@@ -1395,13 +1395,13 @@
 
 <div class="cookie-banner" id="cookieBanner" role="region" aria-label="Уведомление об использовании cookie" hidden>
   <p class="cookie-banner__text">
-    Сайт использует файлы cookie и сервис веб-аналитики «Яндекс.Метрика». Они помогают понимать, как посетители пользуются сайтом и какая реклама приводит заявки. Продолжая пользоваться сайтом, вы соглашаетесь с этим. Подробности — в <a href="/docs/#docs-privacy">Политике конфиденциальности</a>.
+    Сайт использует файлы cookie и сервис веб-аналитики «Яндекс.Метрика». Они помогают понимать, как посетители пользуются сайтом и какая реклама приводит заявки. Продолжая пользоваться сайтом, вы соглашаетесь с этим. Подробности в <a href="/docs/#docs-privacy">Политике конфиденциальности</a>.
   </p>
   <button type="button" class="cookie-banner__accept" id="cookieBannerAccept">Принимаю</button>
 </div>
 <!-- END:footer-placeholder --></div>
 
-  <script src="../js/app.min.js?v=b7c9c14b"></script>
+  <script src="../js/app.min.js?v=57be7eab"></script>
   <script>
   /* Hero BG-F.png: деформация ТОЛЬКО под курсором */
   (function () {
@@ -1411,7 +1411,7 @@
     var fluid = document.querySelector('.design-bg-fluid');
     if (!hero || !dp || !fluid) return;
     var mx = 0.5, my = 0.5, lx = 0.5, ly = 0.5;
-    var curScale = 18, tgtScale = 18;   /* базово 18 — волна всегда видна */
+    var curScale = 18, tgtScale = 18;   /* базово 18 · волна всегда видна */
     function lerp(a, b, k) { return a + (b - a) * k; }
     hero.addEventListener('mousemove', function (e) {
       var r = hero.getBoundingClientRect();
@@ -1421,7 +1421,7 @@
     });
     hero.addEventListener('mouseleave', function () { tgtScale = 18; });
 
-    /* Параллакс при скролле — BG_design.jpg движется медленнее страницы */
+    /* Параллакс при скролле · BG_design.jpg движется медленнее страницы */
     var baseEl = document.querySelector('.design-bg-base');
     window.addEventListener('scroll', function () {
       var sy = window.scrollY;

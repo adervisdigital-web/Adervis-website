@@ -67,7 +67,7 @@ function initCaseTracking() {
 // Показывает ошибку отправки с рабочими кнопками (Telegram / звонок), а не только текстом
 function leadErrorToast() {
   trackGoal('lead_error');
-  showToast('Не удалось отправить заявку. Напишите нам напрямую — ответим быстро:', 9000, [
+  showToast('Не удалось отправить заявку. Напишите нам напрямую, ответим быстро:', 9000, [
     { label: 'Telegram', href: 'https://t.me/adervis_manager' },
     { label: 'Позвонить', href: 'tel:+79223018880' }
   ]);
@@ -514,7 +514,7 @@ function initModal() {
 
       const dirLabels = { video: 'Видео', design: 'Дизайн', photo: 'Фото', ai: 'ИИ-контент' };
       const dirName   = dirLabels[direction] || '';
-      const subjectDir = dirName ? ` — ${dirName}` : '';
+      const subjectDir = dirName ? ` · ${dirName}` : '';
       const lines = [
         `🔔 <b>Заявка с сайта ADERVIS${subjectDir}</b>`,
         '',
@@ -531,7 +531,7 @@ function initModal() {
         function() {
           if (submitBtn) { submitBtn.innerHTML = origHTML; submitBtn.disabled = false; }
           closeModal();
-          showToast('✓ Заявка принята — ответим за 2 часа в рабочее время');
+          showToast('✓ Заявка принята, ответим за 2 часа в рабочее время');
         },
         function() {
           if (submitBtn) { submitBtn.innerHTML = origHTML; submitBtn.disabled = false; }
@@ -544,9 +544,9 @@ function initModal() {
 }
 
 const DIR_HINTS = {
-  video:  'Например: рекламный ролик 30 сек для производственной компании, бюджет около 150 000 ₽, срок — сентябрь',
+  video:  'Например: рекламный ролик 30 сек для производственной компании, бюджет около 150 000 ₽, срок: сентябрь',
   design: 'Например: логотип и брендбук для IT-компании, нужна айдентика с нуля, примерный бюджет 80 000 ₽',
-  photo:  'Например: предметная съёмка 20 позиций для каталога, продукт — косметика, нужна белая студия',
+  photo:  'Например: предметная съёмка 20 позиций для каталога, продукт: косметика, нужна белая студия',
   ai:     'Например: серия из 10 AI-визуалов для рекламной кампании в заданном стиле бренда',
 };
 
@@ -932,7 +932,7 @@ function initVideoCalculator() {
       .map(box => box.parentElement.querySelector("span").textContent.trim());
 
     const lines = [
-      `🎬 <b>Заявка на видео — ADERVIS</b>`,
+      `🎬 <b>Заявка на видео · ADERVIS</b>`,
       ``,
       `Имя: ${name}`,
       `Контакт: ${contact}`,
@@ -950,7 +950,7 @@ function initVideoCalculator() {
       sb.innerHTML = 'Отправляем...';
       sendTelegramMessage(lines,
         () => {
-          sb.innerHTML = '✓ Заявка принята — пришлём КП';
+          sb.innerHTML = '✓ Заявка принята, пришлём КП';
           setTimeout(() => { sb.innerHTML = origHTML; sb.disabled = false; form.reset(); showStep(1); }, 6000);
         },
         () => { sb.innerHTML = origHTML; sb.disabled = false; leadErrorToast(); },
@@ -1064,7 +1064,7 @@ function initSimpleCalculator(formId, tgPrefix) {
       sb.innerHTML = 'Отправляем...';
       sendTelegramMessage(lines,
         () => {
-          sb.innerHTML = '✓ Заявка принята — пришлём КП';
+          sb.innerHTML = '✓ Заявка принята, пришлём КП';
           setTimeout(() => { sb.innerHTML = orig; sb.disabled = false; form.reset(); showStep(1); }, 6000);
         },
         () => { sb.innerHTML = orig; sb.disabled = false; leadErrorToast(); },
@@ -1574,7 +1574,7 @@ function initLeadForm() {
 
     const dirLabels = { video: 'Видео', design: 'Дизайн', photo: 'Фото', ai: 'ИИ-контент' };
     const dirName   = dirLabels[direction] || '';
-    const subjectDir = dirName ? ` — ${dirName}` : '';
+    const subjectDir = dirName ? ` · ${dirName}` : '';
 
     const lines = [
       `🔔 <b>Заявка с сайта ADERVIS${subjectDir}</b>`,
@@ -1592,8 +1592,8 @@ function initLeadForm() {
       submitBtn.innerHTML = 'Отправляем...';
       sendTelegramMessage(lines,
         function() {
-          submitBtn.innerHTML = '✓ Заявка принята — ответим за 2 часа';
-          showToast('✓ Заявка принята — ответим за 2 часа в рабочее время');
+          submitBtn.innerHTML = '✓ Заявка принята, ответим за 2 часа';
+          showToast('✓ Заявка принята, ответим за 2 часа в рабочее время');
           setTimeout(function() { submitBtn.innerHTML = origHTML; submitBtn.disabled = false; form.reset(); }, 6000);
         },
         function() {
@@ -2016,7 +2016,7 @@ function initVideoGallery() {
     card.setAttribute("tabindex", "0");
     const title = card.querySelector(".vg-info h3");
     if (title && !card.hasAttribute("aria-label")) {
-      card.setAttribute("aria-label", title.textContent.trim() + " — смотреть видео");
+      card.setAttribute("aria-label", title.textContent.trim() + ": смотреть видео");
     }
     const activate = (e) => {
       const src = card.dataset.src;

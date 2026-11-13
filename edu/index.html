@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <script>if("scrollRestoration"in history)history.scrollRestoration="manual";!function(){var t=localStorage.getItem("adervis-theme");if(t)document.documentElement.setAttribute("data-theme",t);else if(window.matchMedia("(prefers-color-scheme:light)").matches)document.documentElement.setAttribute("data-theme","light")}()</script>
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>ADERVIS Обучение — скоро</title>
+  <title>ADERVIS Обучение: скоро</title>
   <meta name="description" content="Обучение от ADERVIS: PDF-гайды, мини-уроки и курсы по видеопроизводству, дизайну, фотосъёмке и ИИ-контенту. Скоро.">
   <!-- Шрифты self-hosted: @font-face в css/style.css, woff2 в /fonts -->
   <link rel="icon" type="image/svg+xml" href="../icon.svg">
@@ -19,11 +19,11 @@
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="ADERVIS">
   <meta property="og:url" content="https://adervis.ru/edu/">
-  <meta property="og:title" content="ADERVIS Обучение — курсы по видео, дизайну, фото и ИИ">
+  <meta property="og:title" content="ADERVIS Обучение: курсы по видео, дизайну, фото и ИИ">
   <meta property="og:description" content="Обучение от ADERVIS: PDF-гайды, мини-уроки и курсы по видеопроизводству, дизайну, фотосъёмке и ИИ-контенту от команды с опытом с 2018 года.">
   <meta property="og:image" content="https://adervis.ru/assets/og/og-edu.jpg">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="ADERVIS Обучение — курсы по видео, дизайну, фото и ИИ">
+  <meta name="twitter:title" content="ADERVIS Обучение: курсы по видео, дизайну, фото и ИИ">
   <meta name="twitter:description" content="Обучение от ADERVIS: PDF-гайды, мини-уроки и курсы по видеопроизводству, дизайну, фотосъёмке и ИИ-контенту.">
   <meta name="twitter:image" content="https://adervis.ru/assets/og/og-edu.jpg">
   <link rel="preload" href="/fonts/unbounded-700-cyrillic.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="/fonts/unbounded-700-latin.woff2" as="font" type="font/woff2" crossorigin><link rel="stylesheet" href="../css/style.min.css?v=f54a0148">
@@ -52,7 +52,7 @@
 
     <!-- Лого -->
     <a href="/" class="brand site-header__logo">
-      <img src="/logo.svg" id="siteLogo" data-dark="/logo.svg" data-light="/logoB.svg" alt="ADERVIS — Продакшн-студия" width="140" height="34">
+      <img src="/logo.svg" id="siteLogo" data-dark="/logo.svg" data-light="/logoB.svg" alt="ADERVIS, продакшн-студия" width="140" height="34">
     </a>
 
     <!-- Навигация -->
@@ -61,7 +61,7 @@
 
       <a href="/" class="pill-nav__link">Главная</a>
 
-      <!-- УСЛУГИ — клик ведёт на раздел #services, выпадашка показывает направления -->
+      <!-- УСЛУГИ · клик ведёт на раздел #services, выпадашка показывает направления -->
       <div class="pill-nav__dropdown" id="dropServices">
         <a href="/#services" class="pill-nav__link pill-nav__link--drop" aria-haspopup="true" aria-expanded="false" aria-controls="megaServices">
           Услуги
@@ -109,7 +109,7 @@
 
       <a href="/cases/" class="pill-nav__link">Кейсы</a>
       <a href="/careers/" class="pill-nav__link">Вакансии</a>
-      <!-- Adervis Platform — видна только в мобильном меню, на десктопе скрыта -->
+      <!-- Adervis Platform · видна только в мобильном меню, на десктопе скрыта -->
       <a href="/#platform" class="pill-nav__link pill-nav__link--platform-mobile">Adervis Platform</a>
 
     </nav>
@@ -139,8 +139,8 @@
         <span>Написать</span>
       </a>
 
-      <!-- ADERVIS PLATFORM — кнопка с дропдауном продуктов: CRM и Stock.
-           Stock живёт на своём поддомене и открывается в новой вкладке — так же,
+      <!-- ADERVIS PLATFORM · кнопка с дропдауном продуктов: CRM и Stock.
+           Stock живёт на своём поддомене и открывается в новой вкладке · так же,
            как «Открыть платформу» у CRM в секции #platform на главной. -->
       <div class="pill-nav__dropdown" id="dropPlatform">
         <button type="button" class="site-header__platform pill-nav__link--drop"
@@ -189,16 +189,16 @@
     var tube = document.getElementById('tubeIndicator');
     if (!nav || !tube) return;
 
-    // Цель индикатора — всегда пункт ВЕРХНЕГО уровня. markActiveNavLink() в
+    // Цель индикатора · всегда пункт ВЕРХНЕГО уровня. markActiveNavLink() в
     // app.js помечает .nav-active и пункты внутри мега-меню (это нужно, чтобы
     // подсветить текущее направление в выпадашке). Раньше индикатор хватал
-    // первый попавшийся .nav-active — на /video/, /design/, /photo/, /ai/ им
+    // первый попавшийся .nav-active · на /video/, /design/, /photo/, /ai/ им
     // оказывался пункт выпадашки, и капсула растягивалась на его ширину
     // (302px вместо 98), перекрывая половину меню.
     function activeTopLink () {
       var direct = nav.querySelector('.pill-nav__link.nav-active:not(.pill-nav__link--drop)');
       if (direct) return direct;
-      // Активно направление внутри «Услуг» — подсвечиваем сам пункт «Услуги».
+      // Активно направление внутри «Услуг» · подсвечиваем сам пункт «Услуги».
       var inDrop = nav.querySelector('.pill-nav__dropdown .nav-active');
       if (inDrop) {
         var drop = inDrop.closest('.pill-nav__dropdown');
@@ -250,13 +250,13 @@
     }
 
     // Шрифт Unbounded догружается уже после DOMContentLoaded и делает пункты
-    // шире — без пересчёта индикатор остаётся на координатах запасного шрифта
+    // шире · без пересчёта индикатор остаётся на координатах запасного шрифта
     // (промах ~30px), пока пользователь не наведёт мышь.
     if (document.fonts && document.fonts.ready) {
       document.fonts.ready.then(resync);
     }
 
-    // Resize меняет раскладку шапки — без этого индикатор уезжает.
+    // Resize меняет раскладку шапки · без этого индикатор уезжает.
     var t;
     window.addEventListener('resize', function () {
       clearTimeout(t);
@@ -283,7 +283,7 @@
       <div class="container">
         <span class="eyebrow">Обучение · в разработке</span>
         <h1>Учим тому, чем занимаемся <span class="text-gradient">каждый день</span></h1>
-        <p>Делаем видео, дизайн, фото и ИИ-контент с 2018 года. Скоро начнём упаковывать этот опыт в форматы, с которыми удобно учиться — PDF-гайды, короткие уроки и полноценные курсы.</p>
+        <p>Делаем видео, дизайн, фото и ИИ-контент с 2018 года. Скоро начнём упаковывать этот опыт в форматы, с которыми удобно учиться: PDF-гайды, короткие уроки и полноценные курсы.</p>
         <div class="hero-buttons">
           <a href="#notify" class="btn primary">Сообщить мне</a>
           <a href="/" class="btn">На главную</a>
@@ -295,8 +295,8 @@
     <section class="section">
       <div class="container">
         <div class="section-head reveal">
-          <h2>Три формата — для разных задач</h2>
-          <p>Каждый формат будет самостоятельным продуктом — берёте то, что нужно сейчас</p>
+          <h2>Три формата для разных задач</h2>
+          <p>Каждый формат будет самостоятельным продуктом: берёте то, что нужно сейчас</p>
         </div>
         <div class="services-grid">
           <div class="service-card reveal">
@@ -320,7 +320,7 @@
               </svg>
             </span>
             <h3>Мини-уроки</h3>
-            <p>Видеоформат до 20 минут: одна тема — один навык. Смотрите когда удобно, применяйте сразу в работе.</p>
+            <p>Видеоформат до 20 минут: одна тема, один навык. Смотрите когда удобно, применяйте сразу в работе.</p>
             <span class="badge" style="margin-top: var(--sp-2)">В планах</span>
           </div>
           <div class="service-card reveal">
@@ -330,7 +330,7 @@
               </svg>
             </span>
             <h3>Курс</h3>
-            <p>Один большой курс по продакшну — от базы до коммерческих проектов. Пока в разработке, но будет.</p>
+            <p>Один большой курс по продакшну: от базы до коммерческих проектов. Пока в разработке, но будет.</p>
             <span class="badge" style="margin-top: var(--sp-2)">Позже</span>
           </div>
         </div>
@@ -341,9 +341,9 @@
     <section class="section contact-section reveal" id="notify">
       <div class="container">
         <h2>Узнайте первым</h2>
-        <p>Оставьте e-mail или Telegram — напишем когда выйдет первый материал. Без спама, только по делу.</p>
+        <p>Оставьте e-mail или Telegram, напишем когда выйдет первый материал. Без спама, только по делу.</p>
         <form class="lead-form reveal" id="leadForm" novalidate>
-          <input type="hidden" name="message" value="Подписка на Adervis EDU — уведомить при запуске">
+          <input type="hidden" name="message" value="Подписка на Adervis EDU · уведомить при запуске">
           <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;height:0;width:0;overflow:hidden;opacity:0;pointer-events:none;">
           <div class="lead-form-grid">
             <label class="calc-field">
@@ -569,12 +569,12 @@
 
 <div class="cookie-banner" id="cookieBanner" role="region" aria-label="Уведомление об использовании cookie" hidden>
   <p class="cookie-banner__text">
-    Сайт использует файлы cookie и сервис веб-аналитики «Яндекс.Метрика». Они помогают понимать, как посетители пользуются сайтом и какая реклама приводит заявки. Продолжая пользоваться сайтом, вы соглашаетесь с этим. Подробности — в <a href="/docs/#docs-privacy">Политике конфиденциальности</a>.
+    Сайт использует файлы cookie и сервис веб-аналитики «Яндекс.Метрика». Они помогают понимать, как посетители пользуются сайтом и какая реклама приводит заявки. Продолжая пользоваться сайтом, вы соглашаетесь с этим. Подробности в <a href="/docs/#docs-privacy">Политике конфиденциальности</a>.
   </p>
   <button type="button" class="cookie-banner__accept" id="cookieBannerAccept">Принимаю</button>
 </div>
 <!-- END:footer-placeholder --></div>
 
-  <script src="../js/app.min.js?v=b7c9c14b"></script>
+  <script src="../js/app.min.js?v=57be7eab"></script>
 </body>
 </html>

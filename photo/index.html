@@ -32,7 +32,7 @@
     "@type": "Service",
     "@id": "https://adervis.ru/photo/#service",
     "name": "Фотопродакшн",
-    "description": "Предметная и репортажная съёмка, имиджевые портреты и контент для соцсетей — с цветокоррекцией и ретушью.",
+    "description": "Предметная и репортажная съёмка, имиджевые портреты и контент для соцсетей, с цветокоррекцией и ретушью.",
     "provider": { "@type": "Organization", "@id": "https://adervis.ru/#organization" },
     "serviceType": "Фотосъёмка",
     "areaServed": { "@type": "Country", "name": "Россия" },
@@ -52,15 +52,15 @@
       "name": "Сколько стоит предметная или репортажная съёмка?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Зависит от объёма, локации и количества съёмочных дней. Напишите задачу — пришлём смету за 1–2 рабочих дня."
+        "text": "Зависит от объёма, локации и количества съёмочных дней. Напишите задачу: пришлём смету за 1–2 рабочих дня."
       }
     },
     {
       "@type": "Question",
-      "name": "Где проходит съёмка — в вашей студии или на выезде?",
+      "name": "Где проходит съёмка: в вашей студии или на выезде?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Оба варианта. Есть студийная съёмка на нейтральном или тематическом фоне, и выездная — в офисе, на производстве, на мероприятии."
+        "text": "Оба варианта. Есть студийная съёмка на нейтральном или тематическом фоне, и выездная: в офисе, на производстве, на мероприятии."
       }
     },
     {
@@ -68,7 +68,7 @@
       "name": "Сколько фотографий я получу?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Зависит от формата съёмки. Для предметной — от 5 до 30 единиц на артикул, для репортажной — от 50 до 200+ кадров после отбора и обработки."
+        "text": "Зависит от формата съёмки. Для предметной от 5 до 30 единиц на артикул, для репортажной от 50 до 200+ кадров после отбора и обработки."
       }
     },
     {
@@ -76,7 +76,7 @@
       "name": "В каком формате сдаёте фотографии?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "JPG в высоком разрешении для печати и веба. По запросу — RAW-файлы или PNG с прозрачностью для предметки."
+        "text": "JPG в высоком разрешении для печати и веба. По запросу: RAW-файлы или PNG с прозрачностью для предметки."
       }
     },
     {
@@ -137,7 +137,7 @@
 
     <!-- Лого -->
     <a href="/" class="brand site-header__logo">
-      <img src="/logo.svg" id="siteLogo" data-dark="/logo.svg" data-light="/logoB.svg" alt="ADERVIS — Продакшн-студия" width="140" height="34">
+      <img src="/logo.svg" id="siteLogo" data-dark="/logo.svg" data-light="/logoB.svg" alt="ADERVIS, продакшн-студия" width="140" height="34">
     </a>
 
     <!-- Навигация -->
@@ -146,7 +146,7 @@
 
       <a href="/" class="pill-nav__link">Главная</a>
 
-      <!-- УСЛУГИ — клик ведёт на раздел #services, выпадашка показывает направления -->
+      <!-- УСЛУГИ · клик ведёт на раздел #services, выпадашка показывает направления -->
       <div class="pill-nav__dropdown" id="dropServices">
         <a href="/#services" class="pill-nav__link pill-nav__link--drop" aria-haspopup="true" aria-expanded="false" aria-controls="megaServices">
           Услуги
@@ -194,7 +194,7 @@
 
       <a href="/cases/" class="pill-nav__link">Кейсы</a>
       <a href="/careers/" class="pill-nav__link">Вакансии</a>
-      <!-- Adervis Platform — видна только в мобильном меню, на десктопе скрыта -->
+      <!-- Adervis Platform · видна только в мобильном меню, на десктопе скрыта -->
       <a href="/#platform" class="pill-nav__link pill-nav__link--platform-mobile">Adervis Platform</a>
 
     </nav>
@@ -224,8 +224,8 @@
         <span>Написать</span>
       </a>
 
-      <!-- ADERVIS PLATFORM — кнопка с дропдауном продуктов: CRM и Stock.
-           Stock живёт на своём поддомене и открывается в новой вкладке — так же,
+      <!-- ADERVIS PLATFORM · кнопка с дропдауном продуктов: CRM и Stock.
+           Stock живёт на своём поддомене и открывается в новой вкладке · так же,
            как «Открыть платформу» у CRM в секции #platform на главной. -->
       <div class="pill-nav__dropdown" id="dropPlatform">
         <button type="button" class="site-header__platform pill-nav__link--drop"
@@ -274,16 +274,16 @@
     var tube = document.getElementById('tubeIndicator');
     if (!nav || !tube) return;
 
-    // Цель индикатора — всегда пункт ВЕРХНЕГО уровня. markActiveNavLink() в
+    // Цель индикатора · всегда пункт ВЕРХНЕГО уровня. markActiveNavLink() в
     // app.js помечает .nav-active и пункты внутри мега-меню (это нужно, чтобы
     // подсветить текущее направление в выпадашке). Раньше индикатор хватал
-    // первый попавшийся .nav-active — на /video/, /design/, /photo/, /ai/ им
+    // первый попавшийся .nav-active · на /video/, /design/, /photo/, /ai/ им
     // оказывался пункт выпадашки, и капсула растягивалась на его ширину
     // (302px вместо 98), перекрывая половину меню.
     function activeTopLink () {
       var direct = nav.querySelector('.pill-nav__link.nav-active:not(.pill-nav__link--drop)');
       if (direct) return direct;
-      // Активно направление внутри «Услуг» — подсвечиваем сам пункт «Услуги».
+      // Активно направление внутри «Услуг» · подсвечиваем сам пункт «Услуги».
       var inDrop = nav.querySelector('.pill-nav__dropdown .nav-active');
       if (inDrop) {
         var drop = inDrop.closest('.pill-nav__dropdown');
@@ -335,13 +335,13 @@
     }
 
     // Шрифт Unbounded догружается уже после DOMContentLoaded и делает пункты
-    // шире — без пересчёта индикатор остаётся на координатах запасного шрифта
+    // шире · без пересчёта индикатор остаётся на координатах запасного шрифта
     // (промах ~30px), пока пользователь не наведёт мышь.
     if (document.fonts && document.fonts.ready) {
       document.fonts.ready.then(resync);
     }
 
-    // Resize меняет раскладку шапки — без этого индикатор уезжает.
+    // Resize меняет раскладку шапки · без этого индикатор уезжает.
     var t;
     window.addEventListener('resize', function () {
       clearTimeout(t);
@@ -369,7 +369,7 @@
       <div class="container">
         <span class="eyebrow">Фотопродакшн</span>
         <h1>Кадр, который останавливает скролл</h1>
-        <p>Фотосъёмка для бизнеса: предметная, репортажная и постановочная — для рекламы, каталогов, сайтов и соцсетей. Выстраиваем свет, сценарий и обработку так, чтобы кадр продавал без подписи. <a href="/photo/perm/">Фотостудия в Перми</a>, выезд по городу и краю.</p>
+        <p>Фотосъёмка для бизнеса: предметная, репортажная и постановочная. Для рекламы, каталогов, сайтов и соцсетей. Выстраиваем свет, сценарий и обработку так, чтобы кадр продавал без подписи. <a href="/photo/perm/">Фотостудия в Перми</a>, выезд по городу и краю.</p>
         <div class="hero-buttons">
           <a href="#formats" class="btn primary">Смотреть форматы</a>
           <a href="#contacts" class="btn">Обсудить съёмку</a>
@@ -523,7 +523,7 @@
           <div class="spotlight-text">
             <span class="badge">Сценарий для вашей задачи</span>
             <h3>Например: каталожная серия для интернет-магазина</h3>
-            <p>Десятки товарных позиций, единый свет, ракурс и цветокоррекция, чтобы карточки выглядели как одна продуманная система, а не набор случайных снимков с разных сессий. Снимаем сериями: чтобы хватило не на один сезон публикаций, а отбор и обработку берём на себя.</p>
+            <p>Десятки товарных позиций, единый свет, ракурс и цветокоррекция, чтобы карточки выглядели как одна система. Снимаем сериями, чтобы хватило на несколько сезонов публикаций. Отбор и обработку берём на себя.</p>
             <ul class="spotlight-meta">
               <li>Предметная съёмка</li>
               <li>Цветокоррекция и ретушь</li>
@@ -616,7 +616,7 @@
           <div class="step-card reveal">
             <span class="step-number">3</span>
             <h3>Съёмка</h3>
-            <p>Снимаем сериями и с разных точек, чтобы при отборе было из чего выбирать, а не «единственный вариант».</p>
+            <p>Снимаем сериями и с разных точек, чтобы при отборе было из чего выбирать.</p>
           </div>
           <div class="step-card reveal">
             <span class="step-number">4</span>
@@ -633,7 +633,7 @@
         <div class="section-head reveal">
           <span class="eyebrow">На выходе</span>
           <h2>Что вы получаете</h2>
-          <p>Не просто файлы на диске, а готовый к публикации набор под конкретную площадку и формат</p>
+          <p>Готовый к публикации набор под конкретную площадку и формат</p>
         </div>
         <div class="photo-deliverables">
           <div class="photo-deliv-card reveal">
@@ -712,7 +712,7 @@
             <div class="reviews-track">
 
               <div class="review-card reveal">
-                <p class="review-text">Мы впервые заказали ролик и нам очень повезло с первого раза встретить таких профессионалов! Очень хороший результат и по видео, и по фото. Оперативно, пунктуально и очень внимательно отнеслись к работе. Ребята помогли с композицией, с аксессуарами — результат просто прекрасен!</p>
+                <p class="review-text">Мы впервые заказали ролик и нам очень повезло с первого раза встретить таких профессионалов! Очень хороший результат и по видео, и по фото. Оперативно, пунктуально и очень внимательно отнеслись к работе. Ребята помогли с композицией, с аксессуарами, результат просто прекрасен!</p>
                 <div class="review-author">
                   <a href="https://vk.com/ignatovaanna" class="review-avatar-link" target="_blank" rel="noopener noreferrer" aria-label="ВКонтакте: Анна Игнатова">
                     <picture><source srcset="../assets/testimonials/ignatova.webp" type="image/webp"><img src="../assets/testimonials/ignatova.jpg" alt="Анна Игнатова" width="156" height="156" class="review-avatar" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"></picture>
@@ -726,7 +726,7 @@
               </div>
 
               <div class="review-card reveal">
-                <p class="review-text">Ребята, очень благодарна вам за слаженную работу! Безумно комфортно и креативно — это супер важная часть! Видеоролик получился офигенный, спасибо что адекватно принимали критику и правки. Очень рада, что интуитивно среди трёх компаний выбрала именно вас!</p>
+                <p class="review-text">Ребята, очень благодарна вам за слаженную работу! Безумно комфортно и креативно, это супер важная часть! Видеоролик получился офигенный, спасибо что адекватно принимали критику и правки. Очень рада, что интуитивно среди трёх компаний выбрала именно вас!</p>
                 <div class="review-author">
                   <a href="https://vk.com/dr_lesnikova" class="review-avatar-link" target="_blank" rel="noopener noreferrer" aria-label="ВКонтакте: Алина Лесникова">
                     <picture><source srcset="../assets/testimonials/lesnikova.webp" type="image/webp"><img src="../assets/testimonials/lesnikova.jpg" alt="Алина Лесникова" width="156" height="156" class="review-avatar" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"></picture>
@@ -740,7 +740,7 @@
               </div>
 
               <div class="review-card reveal">
-                <p class="review-text">Вы очень классные и отзывчивые ребята. Сделали всё очень оперативно и качественно. Ролик делали для ТВ — подогнали по всем техническим требованиям. Спасибо огромное! Рекомендуем.</p>
+                <p class="review-text">Вы очень классные и отзывчивые ребята. Сделали всё очень оперативно и качественно. Ролик делали для ТВ, подогнали по всем техническим требованиям. Спасибо огромное! Рекомендуем.</p>
                 <div class="review-author">
                   <a href="https://vk.com/abs_auto" class="review-avatar-link" target="_blank" rel="noopener noreferrer" aria-label="ВКонтакте: Абс Авто">
                     <picture><source srcset="../assets/testimonials/abs-avto.webp" type="image/webp"><img src="../assets/testimonials/abs-avto.jpg" alt="Абс Авто" width="156" height="156" class="review-avatar" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"></picture>
@@ -754,7 +754,7 @@
               </div>
 
               <div class="review-card reveal">
-                <p class="review-text">Очень давно сотрудничаем и дружим с ребятами. Способны решить задачу любой сложности — и быстрый техничный монтаж, и комплексный проект со съёмкой в течение года.</p>
+                <p class="review-text">Очень давно сотрудничаем и дружим с ребятами. Способны решить задачу любой сложности: и быстрый техничный монтаж, и комплексный проект со съёмкой в течение года.</p>
                 <div class="review-author">
                   <a href="https://vk.com/permclimber" class="review-avatar-link" target="_blank" rel="noopener noreferrer" aria-label="ВКонтакте: Виктор Пермяков">
                     <picture><source srcset="../assets/testimonials/permyakov.webp" type="image/webp"><img src="../assets/testimonials/permyakov.jpg" alt="Виктор Пермяков" width="156" height="156" class="review-avatar" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"></picture>
@@ -834,7 +834,7 @@
                 </div>
                 <div class="fvs-body">
                   <div class="fvs-body-inner">
-                    <p class="fvs-a">Договариваемся заранее и фиксируем в смете: отбираем и обрабатываем сильнейшие кадры из серии, а не отдаём всё подряд «как снято». Это и быстрее для вас, и честнее по качеству каждого кадра.</p>
+                    <p class="fvs-a">Договариваемся заранее и фиксируем в смете: отбираем и обрабатываем сильнейшие кадры из серии. Это и быстрее для вас, и честнее по качеству каждого кадра.</p>
                   </div>
                 </div>
               </button>
@@ -1410,12 +1410,12 @@
 
 <div class="cookie-banner" id="cookieBanner" role="region" aria-label="Уведомление об использовании cookie" hidden>
   <p class="cookie-banner__text">
-    Сайт использует файлы cookie и сервис веб-аналитики «Яндекс.Метрика». Они помогают понимать, как посетители пользуются сайтом и какая реклама приводит заявки. Продолжая пользоваться сайтом, вы соглашаетесь с этим. Подробности — в <a href="/docs/#docs-privacy">Политике конфиденциальности</a>.
+    Сайт использует файлы cookie и сервис веб-аналитики «Яндекс.Метрика». Они помогают понимать, как посетители пользуются сайтом и какая реклама приводит заявки. Продолжая пользоваться сайтом, вы соглашаетесь с этим. Подробности в <a href="/docs/#docs-privacy">Политике конфиденциальности</a>.
   </p>
   <button type="button" class="cookie-banner__accept" id="cookieBannerAccept">Принимаю</button>
 </div>
 <!-- END:footer-placeholder --></div>
 
-  <script src="../js/app.min.js?v=b7c9c14b"></script>
+  <script src="../js/app.min.js?v=57be7eab"></script>
 </body>
 </html>

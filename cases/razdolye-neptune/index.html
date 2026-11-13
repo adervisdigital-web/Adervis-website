@@ -5,7 +5,7 @@
   <script>if("scrollRestoration"in history)history.scrollRestoration="manual";!function(){var t=localStorage.getItem("adervis-theme");if(t)document.documentElement.setAttribute("data-theme",t);else if(window.matchMedia("(prefers-color-scheme:light)").matches)document.documentElement.setAttribute("data-theme","light")}()</script>
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>«Раздолье» — фото и видео базы отдыха | Кейс ADERVIS</title>
-  <meta name="description" content="Кейс ADERVIS: база отдыха «Раздолье» второй год подряд заказывает съёмку сезона — открытие сезона и «День Нептуна» в фото и видео, 2024 и 2025. В 2026 году сняли для базы рекламный ролик.">
+  <meta name="description" content="Кейс ADERVIS: база отдыха «Раздолье» второй год подряд заказывает съёмку сезона: открытие сезона и «День Нептуна» в фото и видео, 2024 и 2025. В 2026 году сняли для базы рекламный ролик.">
   <link rel="icon" type="image/svg+xml" href="../../icon.svg">
   <link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="../../favicon-16x16.png">
@@ -19,11 +19,11 @@
   <meta property="og:site_name" content="ADERVIS">
   <meta property="og:url" content="https://adervis.ru/cases/razdolye-neptune/">
   <meta property="og:title" content="«Раздолье» — фото и видео базы отдыха | Кейс ADERVIS">
-  <meta property="og:description" content="База отдыха «Раздолье» второй год подряд снимает с нами сезон: открытие сезона и «День Нептуна» — фото и видео. В 2026 году сняли для базы рекламный ролик.">
+  <meta property="og:description" content="База отдыха «Раздолье» второй год подряд снимает с нами сезон: открытие сезона и «День Нептуна», фото и видео. В 2026 году сняли для базы рекламный ролик.">
   <meta property="og:image" content="https://adervis.ru/assets/cases/razdolye-neptune/01.jpg">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="«Раздолье» — фото и видео базы отдыха, второй сезон подряд">
-  <meta name="twitter:description" content="База отдыха «Раздолье» второй год подряд снимает с нами сезон: открытие сезона и «День Нептуна» — фото и видео. В 2026 году сняли для базы рекламный ролик.">
+  <meta name="twitter:description" content="База отдыха «Раздолье» второй год подряд снимает с нами сезон: открытие сезона и «День Нептуна», фото и видео. В 2026 году сняли для базы рекламный ролик.">
   <meta name="twitter:image" content="https://adervis.ru/assets/cases/razdolye-neptune/01.jpg">
   <link rel="preload" href="/fonts/unbounded-700-cyrillic.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="/fonts/unbounded-700-latin.woff2" as="font" type="font/woff2" crossorigin><link rel="stylesheet" href="../../css/style.min.css?v=f54a0148">
 
@@ -116,7 +116,7 @@
 
     <!-- Лого -->
     <a href="/" class="brand site-header__logo">
-      <img src="/logo.svg" id="siteLogo" data-dark="/logo.svg" data-light="/logoB.svg" alt="ADERVIS — Продакшн-студия" width="140" height="34">
+      <img src="/logo.svg" id="siteLogo" data-dark="/logo.svg" data-light="/logoB.svg" alt="ADERVIS, продакшн-студия" width="140" height="34">
     </a>
 
     <!-- Навигация -->
@@ -125,7 +125,7 @@
 
       <a href="/" class="pill-nav__link">Главная</a>
 
-      <!-- УСЛУГИ — клик ведёт на раздел #services, выпадашка показывает направления -->
+      <!-- УСЛУГИ · клик ведёт на раздел #services, выпадашка показывает направления -->
       <div class="pill-nav__dropdown" id="dropServices">
         <a href="/#services" class="pill-nav__link pill-nav__link--drop" aria-haspopup="true" aria-expanded="false" aria-controls="megaServices">
           Услуги
@@ -173,7 +173,7 @@
 
       <a href="/cases/" class="pill-nav__link">Кейсы</a>
       <a href="/careers/" class="pill-nav__link">Вакансии</a>
-      <!-- Adervis Platform — видна только в мобильном меню, на десктопе скрыта -->
+      <!-- Adervis Platform · видна только в мобильном меню, на десктопе скрыта -->
       <a href="/#platform" class="pill-nav__link pill-nav__link--platform-mobile">Adervis Platform</a>
 
     </nav>
@@ -203,8 +203,8 @@
         <span>Написать</span>
       </a>
 
-      <!-- ADERVIS PLATFORM — кнопка с дропдауном продуктов: CRM и Stock.
-           Stock живёт на своём поддомене и открывается в новой вкладке — так же,
+      <!-- ADERVIS PLATFORM · кнопка с дропдауном продуктов: CRM и Stock.
+           Stock живёт на своём поддомене и открывается в новой вкладке · так же,
            как «Открыть платформу» у CRM в секции #platform на главной. -->
       <div class="pill-nav__dropdown" id="dropPlatform">
         <button type="button" class="site-header__platform pill-nav__link--drop"
@@ -253,16 +253,16 @@
     var tube = document.getElementById('tubeIndicator');
     if (!nav || !tube) return;
 
-    // Цель индикатора — всегда пункт ВЕРХНЕГО уровня. markActiveNavLink() в
+    // Цель индикатора · всегда пункт ВЕРХНЕГО уровня. markActiveNavLink() в
     // app.js помечает .nav-active и пункты внутри мега-меню (это нужно, чтобы
     // подсветить текущее направление в выпадашке). Раньше индикатор хватал
-    // первый попавшийся .nav-active — на /video/, /design/, /photo/, /ai/ им
+    // первый попавшийся .nav-active · на /video/, /design/, /photo/, /ai/ им
     // оказывался пункт выпадашки, и капсула растягивалась на его ширину
     // (302px вместо 98), перекрывая половину меню.
     function activeTopLink () {
       var direct = nav.querySelector('.pill-nav__link.nav-active:not(.pill-nav__link--drop)');
       if (direct) return direct;
-      // Активно направление внутри «Услуг» — подсвечиваем сам пункт «Услуги».
+      // Активно направление внутри «Услуг» · подсвечиваем сам пункт «Услуги».
       var inDrop = nav.querySelector('.pill-nav__dropdown .nav-active');
       if (inDrop) {
         var drop = inDrop.closest('.pill-nav__dropdown');
@@ -314,13 +314,13 @@
     }
 
     // Шрифт Unbounded догружается уже после DOMContentLoaded и делает пункты
-    // шире — без пересчёта индикатор остаётся на координатах запасного шрифта
+    // шире · без пересчёта индикатор остаётся на координатах запасного шрифта
     // (промах ~30px), пока пользователь не наведёт мышь.
     if (document.fonts && document.fonts.ready) {
       document.fonts.ready.then(resync);
     }
 
-    // Resize меняет раскладку шапки — без этого индикатор уезжает.
+    // Resize меняет раскладку шапки · без этого индикатор уезжает.
     var t;
     window.addEventListener('resize', function () {
       clearTimeout(t);
@@ -353,7 +353,7 @@
       <div class="container">
         <span class="eyebrow">Фото и видео · Сопровождение сезона · Реклама · 2024–2026</span>
         <h1>«Раздолье» — второй сезон подряд снимаем базу отдыха</h1>
-        <p>База отдыха под Пермью зовёт нас на свои события второй год: открытие сезона и «День Нептуна» — каждое лето, в фото и в видео. Это не разовая съёмка, а работа, которую заказывают снова. В 2026 году сняли для базы рекламный ролик.</p>
+        <p>База отдыха под Пермью зовёт нас на свои события второй год: открытие сезона и «День Нептуна» каждое лето, в фото и в видео. Эту работу у нас заказывают снова. В 2026 году сняли для базы рекламный ролик.</p>
         <div class="hero-buttons">
           <a href="/cases/" class="btn">← Все кейсы</a>
           <a href="/photo/" class="btn primary">Фотосъёмка</a>
@@ -391,11 +391,11 @@
         <div class="case-content-grid reveal">
           <div class="case-content-block">
             <h2>Задача</h2>
-            <p>У базы отдыха два опорных события за лето: открытие сезона в июне и «День Нептуна» в июле. Оба нужно снимать так, чтобы контент работал весь год — держал соцсети живыми между сезонами и продавал следующее лето. Разово это не решается: подрядчика, который каждый раз заново въезжает в площадку, программу и людей, приходится вести за руку. Поэтому вопрос стоял не «снять праздник», а «закрыть сезон целиком».</p>
+            <p>У базы отдыха два опорных события за лето: открытие сезона в июне и «День Нептуна» в июле. Оба нужно снимать так, чтобы контент работал весь год: держал соцсети живыми между сезонами и продавал следующее лето. Разово это не решается: подрядчика, который каждый раз заново въезжает в площадку, программу и людей, приходится вести за руку. Поэтому задача была шире одного праздника: закрыть сезон целиком.</p>
           </div>
           <div class="case-content-block">
             <h2>Что сделали</h2>
-            <p>Снимаем оба события второй год подряд — и в фото, и в видео. Работаем репортажно, не вмешиваясь в программу: ловим эмоции в моменте — смех, брызги, танцы, реакции детей. Территорию, точки съёмки и ход праздника уже знаем, поэтому второй сезон снимался без разведки. Отобранную серию отдаём в едином цвете и в первые сутки после события, пока о нём ещё говорят, а ролик — следом.</p>
+            <p>Снимаем оба события второй год подряд, и в фото, и в видео. Работаем репортажно, не вмешиваясь в программу: ловим эмоции в моменте (смех, брызги, танцы, реакции детей). Территорию, точки съёмки и ход праздника уже знаем, поэтому второй сезон снимался без разведки. Отобранную серию отдаём в едином цвете и в первые сутки после события, пока о нём ещё говорят, а ролик следом.</p>
           </div>
         </div>
       </div>
@@ -404,7 +404,7 @@
     <div class="section-divider" aria-hidden="true"></div>
 
     <!-- ════════════════════════════════════════════════════════════════════
-         РЕКЛАМНЫЙ РОЛИК 2026 — один плеер на всю ширину контейнера.
+         РЕКЛАМНЫЙ РОЛИК 2026 · один плеер на всю ширину контейнера.
          Тот же ролик стоит первым в витрине /video/ (категория «Реклама»).
          ════════════════════════════════════════════════════════════════════ -->
     <section class="section">
@@ -432,13 +432,13 @@
     <div class="section-divider" aria-hidden="true"></div>
 
     <!-- ════════════════════════════════════════════════════════════════════
-         ВИДЕО — оба ролика сезона 2025
+         ВИДЕО · оба ролика сезона 2025
 
          Плееры VK, разметка та же, что на кейсе SHABANI: обёртка с
-         aspect-ratio 16/9, iframe на 100%. Сетка .case-videos — две колонки,
+         aspect-ratio 16/9, iframe на 100%. Сетка .case-videos · две колонки,
          на ≤760px одна. Ролики те же, что в общей витрине /video/ (там они
-         играют через js_api, здесь параметр не нужен — плеером не управляем).
-         Появится ролик следующего сезона — копируйте .case-video целиком.
+         играют через js_api, здесь параметр не нужен · плеером не управляем).
+         Появится ролик следующего сезона · копируйте .case-video целиком.
          ════════════════════════════════════════════════════════════════════ -->
     <section class="section">
       <div class="container">
@@ -456,7 +456,7 @@
                 style="display:block;width:100%;height:100%;border:none"
                 allow="autoplay; encrypted-media; fullscreen; picture-in-picture"
                 loading="lazy"
-                title="Открытие летнего сезона 2025 — база отдыха «Раздолье», ролик ADERVIS"
+                title="Открытие летнего сезона 2025, база отдыха «Раздолье», ролик ADERVIS"
               ></iframe>
             </div>
             <h3>Открытие летнего сезона 2025</h3>
@@ -485,8 +485,8 @@
     <section class="section">
       <div class="container">
         <div class="section-head reveal" style="margin-bottom:var(--sp-8)">
-          <h2>Событие первое — открытие сезона</h2>
-          <p>Июнь, Троица: база просыпается после зимы, приезжают первые гости. Снимаем это каждый сезон — ниже кадры 2025 года</p>
+          <h2>Событие первое: открытие сезона</h2>
+          <p>Июнь, Троица: база просыпается после зимы, приезжают первые гости. Снимаем это каждый сезон: ниже кадры 2025 года</p>
         </div>
         <div class="case-gallery reveal">
           <div class="case-gallery__item"><picture><source srcset="../../assets/cases/razdolye-neptune/s01-640.webp 640w, ../../assets/cases/razdolye-neptune/s01-1280.webp 1280w, ../../assets/cases/razdolye-neptune/s01.webp 1600w" sizes="(max-width: 760px) 43vw, 456px" type="image/webp"><img src="../../assets/cases/razdolye-neptune/s01.jpg" alt="Раздолье — открытие летнего сезона, база отдыха" loading="lazy" width="1600" height="900"></picture></div>
@@ -509,8 +509,8 @@
     <section class="section">
       <div class="container">
         <div class="section-head reveal" style="margin-bottom:var(--sp-8)">
-          <h2>Событие второе — «День Нептуна»</h2>
-          <p>Июль, главный праздник лета: вода, конкурсы, пена и вечерняя сцена. Тоже каждый сезон — ниже кадры 2025 года</p>
+          <h2>Событие второе · «День Нептуна»</h2>
+          <p>Июль, главный праздник лета: вода, конкурсы, пена и вечерняя сцена. Тоже каждый сезон: ниже кадры 2025 года</p>
         </div>
         <div class="case-gallery reveal">
           <div class="case-gallery__item"><picture><source srcset="../../assets/cases/razdolye-neptune/01-640.webp 640w, ../../assets/cases/razdolye-neptune/01-1280.webp 1280w, ../../assets/cases/razdolye-neptune/01.webp 1600w" sizes="(max-width: 760px) 43vw, 456px" type="image/webp"><img src="../../assets/cases/razdolye-neptune/01.jpg" alt="День Нептуна в «Раздолье» — активности на воде" loading="lazy" width="1600" height="1067"></picture></div>
@@ -531,7 +531,7 @@
     <!-- Результаты.
          Цифры считаются по факту и проверяются глазами по этой же странице:
          2 сезона (2024 и 2025), 2 события в каждом, отсюда 4 съёмки, 2 ролика
-         в блоке выше. Ничего оценочного — заказчик просил только проверяемое. -->
+         в блоке выше. Ничего оценочного · заказчик просил только проверяемое. -->
     <section class="section">
       <div class="container">
         <div class="section-head reveal" style="margin-bottom:var(--sp-8)">
@@ -539,9 +539,9 @@
         </div>
         <div class="case-stats reveal">
           <div><div class="case-stat__num">2</div><div class="case-stat__label">сезона подряд:<br>2024 и 2025</div></div>
-          <div><div class="case-stat__num">4</div><div class="case-stat__label">съёмки —<br>два события каждый год</div></div>
+          <div><div class="case-stat__num">4</div><div class="case-stat__label">съёмки:<br>два события каждый год</div></div>
           <div><div class="case-stat__num">2</div><div class="case-stat__label">ролика<br>с событий сезона</div></div>
-          <div><div class="case-stat__num">0</div><div class="case-stat__label">постановки —<br>только живые моменты</div></div>
+          <div><div class="case-stat__num">0</div><div class="case-stat__label">постановки:<br>только живые моменты</div></div>
         </div>
       </div>
     </section>
@@ -552,7 +552,7 @@
     <section class="section contact-section reveal" id="contacts">
       <div class="container">
         <h2>Снимаем ваш сезон целиком?</h2>
-        <p>Расскажите, какие события у вас за год — соберём под них съёмку так, чтобы контента хватало между ними, а не только в день праздника. Разовый репортаж тоже снимем: отдадим отобранную серию, готовую к публикации.</p>
+        <p>Расскажите, какие события у вас за год: соберём под них съёмку так, чтобы контента хватало между ними, а не только в день праздника. Разовый репортаж тоже снимем: отдадим отобранную серию, готовую к публикации.</p>
         <div class="hero-buttons">
           <a href="/photo/" class="btn primary">Услуга: Фотосъёмка</a>
           <a href="/video/" class="btn">Услуга: Видео</a>
@@ -764,13 +764,13 @@
 
 <div class="cookie-banner" id="cookieBanner" role="region" aria-label="Уведомление об использовании cookie" hidden>
   <p class="cookie-banner__text">
-    Сайт использует файлы cookie и сервис веб-аналитики «Яндекс.Метрика». Они помогают понимать, как посетители пользуются сайтом и какая реклама приводит заявки. Продолжая пользоваться сайтом, вы соглашаетесь с этим. Подробности — в <a href="/docs/#docs-privacy">Политике конфиденциальности</a>.
+    Сайт использует файлы cookie и сервис веб-аналитики «Яндекс.Метрика». Они помогают понимать, как посетители пользуются сайтом и какая реклама приводит заявки. Продолжая пользоваться сайтом, вы соглашаетесь с этим. Подробности в <a href="/docs/#docs-privacy">Политике конфиденциальности</a>.
   </p>
   <button type="button" class="cookie-banner__accept" id="cookieBannerAccept">Принимаю</button>
 </div>
 <!-- END:footer-placeholder --></div>
 
-  <script src="../../js/app.min.js?v=b7c9c14b"></script>
+  <script src="../../js/app.min.js?v=57be7eab"></script>
   <script src="../../js/gallery.min.js?v=78504c5f"></script>
 </body>
 </html>
