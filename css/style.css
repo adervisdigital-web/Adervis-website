@@ -11390,3 +11390,146 @@ html[data-motion="off"] .pill-nav__motion-on { display: inline; }
   .site-header__bar { gap: 12px; }
   .site-header__end { gap: 8px; }
 }
+
+/* === /cases/ v2 (2026-11) === */
+/* Первый экран: крупный заголовок слева, цифры колонками справа (CA Film Creatives) */
+.cx-hero { position: relative; padding: 140px 0 0; overflow: hidden; }
+.cx-hero::before {
+  content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none;
+  background: radial-gradient(60% 70% at 85% 0%, rgba(246, 189, 58, 0.10) 0%, rgba(246, 189, 58, 0) 70%);
+}
+.cx-hero__grid { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: 48px; align-items: end; }
+.cx-hero__title {
+  margin: 14px 0 20px;
+  font-family: var(--font-display); font-weight: 700;
+  font-size: clamp(2.5rem, 5.2vw, 5rem); line-height: 1.02; letter-spacing: -0.035em;
+  color: var(--text); text-wrap: balance;
+}
+.cx-hero__lead { margin: 0; max-width: 46ch; font-size: 17px; line-height: 1.6; color: var(--muted); }
+.cx-stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); margin: 0; border-top: 1px solid var(--line); }
+.cx-stat { display: flex; flex-direction: column-reverse; justify-content: flex-end; gap: 8px; padding: 20px 16px 4px; border-left: 1px solid var(--line); }
+.cx-stat:first-child { border-left: 0; padding-left: 0; }
+.cx-stat__num { margin: 0; font-family: var(--font-display); font-weight: 700; font-size: clamp(2rem, 3vw, 2.75rem); line-height: 1; letter-spacing: -0.03em; color: var(--text); }
+.cx-stat__num span { color: var(--gold); }
+.cx-stat__label { font-size: 13px; line-height: 1.35; color: var(--muted); }
+
+/* Лента свежих работ (HOODYAKOV PRODUCTION, «Latest work») */
+.cx-latest { margin-top: 72px; padding-bottom: 72px; }
+.cx-latest__head { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; margin-bottom: 20px; }
+.cx-label { margin: 0; font-family: var(--font-display); font-size: 14px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text); }
+.cx-latest__all { font-size: 14px; color: var(--muted); text-decoration: none; padding: 10px 0; }
+.cx-latest__all:hover { color: var(--gold); }
+.cx-strip-wrap { overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: thin; padding-bottom: 8px; }
+.cx-strip {
+  list-style: none; margin: 0; padding: 0 max(24px, calc((100% - 1400px) / 2));
+  display: grid; grid-auto-flow: column; grid-auto-columns: minmax(280px, 340px); gap: 20px;
+}
+.cx-tile { scroll-snap-align: start; }
+.cx-tile__link { display: flex; flex-direction: column; gap: 6px; text-decoration: none; color: inherit; }
+.cx-tile__media { display: block; aspect-ratio: 4 / 3; overflow: hidden; border-radius: 16px; background: var(--bg3); }
+.cx-tile__img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1); }
+.cx-tile__link:hover .cx-tile__img { transform: scale(1.04); }
+.cx-tile__meta { margin-top: 8px; font-size: 13px; color: var(--muted); }
+.cx-tile__year { color: var(--gold); font-weight: 600; margin-right: 4px; }
+.cx-tile__name { font-family: var(--font-display); font-size: 17px; font-weight: 700; color: var(--text); }
+.cx-tile__link:focus-visible { outline: 3px solid var(--gold); outline-offset: 4px; border-radius: 16px; }
+[data-theme="light"] .cx-tile__year { color: #8a5a00; }
+
+/* Одна строка фильтров, прилипает под шапкой */
+.cx-filterbar {
+  position: sticky; top: 72px; z-index: 30;
+  display: flex; align-items: center; flex-wrap: wrap; gap: 12px 20px;
+  padding: 14px 0; margin-bottom: 32px;
+  background: color-mix(in srgb, var(--bg) 92%, transparent);
+  -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--line);
+}
+.cx-filterbar .cases-filters { margin: 0; }
+.cx-niche { display: flex; align-items: center; gap: 10px; margin-left: auto; }
+.cx-niche__label { font-size: 13px; color: var(--muted); }
+.cx-niche__select {
+  min-height: 40px; padding: 8px 36px 8px 14px; border-radius: 100px;
+  font: inherit; font-size: 14px; color: var(--text);
+  background: var(--bg3) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath d='M2.5 4.5 6 8l3.5-3.5' fill='none' stroke='%23999' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") no-repeat right 14px center;
+  border: 1px solid var(--line); appearance: none; cursor: pointer;
+}
+.cx-count { margin: 0; font-size: 13px; color: var(--muted); white-space: nowrap; }
+
+/* Сетка с ритмом «3 — 2 крупные — 3» (классы ставит скрипт на странице) */
+.gallery-grid.cx-grid { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 44px 24px; }
+.cx-grid > .cx-n { grid-column: span 2; }
+.cx-grid > .cx-w { grid-column: span 3; }
+.cx-grid > .cx-f { grid-column: 1 / -1; }
+.cx-grid > .cx-w .gallery-card__title, .cx-grid > .cx-f .gallery-card__title { font-size: clamp(1.125rem, 1.4vw, 1.375rem); }
+
+/* Направления строками (HOODYAKOV: «Commercials / Music videos / VFX») */
+.cx-more { margin: 96px 0 16px; font-size: 14px; color: var(--muted); }
+.cx-dirs { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
+.cx-dir { border-bottom: 1px solid var(--line); }
+.cx-dir__link {
+  display: grid; grid-template-columns: 56px minmax(0, 1.1fr) minmax(0, 1.4fr) auto 32px; align-items: center; gap: 24px;
+  padding: 26px 0; text-decoration: none; color: inherit;
+}
+.cx-dir__num { font-family: var(--font-display); font-size: 13px; color: var(--muted); }
+.cx-dir__name { font-family: var(--font-display); font-weight: 700; font-size: clamp(1.5rem, 2.6vw, 2.5rem); letter-spacing: -0.02em; color: var(--text); transition: color 0.2s; }
+.cx-dir__desc { font-size: 15px; line-height: 1.5; color: var(--muted); }
+.cx-dir__thumbs { display: flex; }
+.cx-dir__thumbs picture { display: block; width: 88px; height: 64px; margin-left: -18px; border-radius: 10px; overflow: hidden; border: 2px solid var(--bg); transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1); }
+.cx-dir__thumbs picture:first-child { margin-left: 0; }
+.cx-dir__img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.cx-dir__arrow { font-size: 22px; color: var(--muted); transition: transform 0.25s, color 0.2s; }
+.cx-dir__link:hover .cx-dir__name, .cx-dir__link:hover .cx-dir__arrow { color: var(--gold); }
+.cx-dir__link:hover .cx-dir__arrow { transform: translateX(6px); }
+.cx-dir__link:hover .cx-dir__thumbs picture:nth-child(1) { transform: translate(-8px, -4px) rotate(-4deg); }
+.cx-dir__link:hover .cx-dir__thumbs picture:nth-child(3) { transform: translate(8px, -4px) rotate(4deg); }
+.cx-dir__link:focus-visible { outline: 3px solid var(--gold); outline-offset: 4px; border-radius: 8px; }
+[data-theme="light"] .cx-dir__link:hover .cx-dir__name, [data-theme="light"] .cx-dir__link:hover .cx-dir__arrow { color: #8a5a00; }
+.cx-cta { margin-top: 48px; text-align: center; }
+
+@media (max-width: 1000px) {
+  .cx-hero__grid { grid-template-columns: 1fr; gap: 32px; }
+  .gallery-grid.cx-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .cx-grid > .cx-n, .cx-grid > .cx-w { grid-column: span 1; }
+  .cx-dir__link { grid-template-columns: 40px minmax(0, 1fr) auto; }
+  .cx-dir__desc { grid-column: 2 / -1; grid-row: 2; }
+  .cx-dir__thumbs { grid-row: 1; grid-column: 3; }
+  .cx-dir__arrow { display: none; }
+}
+@media (max-width: 760px) {
+  .cx-hero { padding-top: 104px; }
+  .cx-latest { margin-top: 48px; padding-bottom: 48px; }
+  .cx-strip { padding: 0 24px; grid-auto-columns: 78%; gap: 14px; }
+  .cx-filterbar { top: 61px; gap: 10px; }
+  .cx-niche { margin-left: 0; }
+  .cx-count { width: 100%; }
+  .gallery-grid.cx-grid { grid-template-columns: 1fr; gap: 32px; }
+  .cx-grid > .cx-n, .cx-grid > .cx-w, .cx-grid > .cx-f { grid-column: auto; }
+  .cx-stat { padding: 16px 10px 4px; }
+  .cx-dir__thumbs picture { width: 64px; height: 48px; margin-left: -14px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .cx-tile__link:hover .cx-tile__img, .cx-dir__link:hover .cx-dir__thumbs picture, .cx-dir__link:hover .cx-dir__arrow { transform: none; }
+}
+/* Прилипание прокрутки ставило первую карточку к самому краю, съедая отступ ленты */
+.cx-strip-wrap { scroll-padding-inline: max(24px, calc((100% - 1400px) / 2)); }
+@media (max-width: 760px) { .cx-strip-wrap { scroll-padding-inline: 24px; } }
+/* Телефон: три ряда фильтров закрывали карточки — не прилипают;
+   строки направлений: миниатюры под описанием, а не поверх названия */
+@media (max-width: 760px) {
+  .cx-filterbar { position: static; background: none; -webkit-backdrop-filter: none; backdrop-filter: none; }
+  .cx-dir__link { grid-template-columns: 32px minmax(0, 1fr); gap: 10px 14px; padding: 22px 0; }
+  .cx-dir__name { font-size: 1.5rem; }
+  .cx-dir__desc { grid-column: 2; grid-row: 2; }
+  .cx-dir__thumbs { grid-column: 2; grid-row: 3; margin-top: 4px; }
+}
+/* Ревью доступности /cases/ v2 */
+.cx-strip-wrap { padding-top: 8px; margin-top: -8px; }            /* обводка фокуса плиток не обрезается */
+h2.cx-more { font-family: inherit; font-weight: 400; letter-spacing: 0; text-transform: none; line-height: 1.5; }
+html:has(.cx-filterbar) { scroll-padding-top: 160px; }             /* фокус не прячется под прилипшими фильтрами */
+@media (max-width: 1000px) {
+  .cx-filterbar { position: static; background: none; -webkit-backdrop-filter: none; backdrop-filter: none; }
+  html:has(.cx-filterbar) { scroll-padding-top: 84px; }
+}
+[data-theme="light"] .cx-niche__select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath d='M2.5 4.5 6 8l3.5-3.5' fill='none' stroke='%23666' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+}
