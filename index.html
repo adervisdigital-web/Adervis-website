@@ -2,7 +2,7 @@
 <html lang="ru" data-theme="dark">
 <head>
   <meta charset="utf-8">
-  <script>if("scrollRestoration"in history)history.scrollRestoration="manual";!function(){var t=localStorage.getItem("adervis-theme");if(t)document.documentElement.setAttribute("data-theme",t);else if(window.matchMedia("(prefers-color-scheme:light)").matches)document.documentElement.setAttribute("data-theme","light")}()</script>
+  <script>if("scrollRestoration"in history)history.scrollRestoration="manual";!function(){var t=localStorage.getItem("adervis-theme");if(t)document.documentElement.setAttribute("data-theme",t);else if(window.matchMedia("(prefers-color-scheme:light)").matches)document.documentElement.setAttribute("data-theme","light");try{if(localStorage.getItem("adervis-motion")==="off")document.documentElement.setAttribute("data-motion","off")}catch(e){}}()</script>
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Продакшн-студия в Перми — видео, дизайн, фото, ИИ | ADERVIS</title>
   <meta name="description" content="Продакшн-студия ADERVIS: рекламные ролики, фирменный стиль, предметная съёмка и ИИ-контент. С 2018 года работаем с компаниями, которым важно, как выглядит их бренд.">
@@ -27,7 +27,7 @@
   <meta name="twitter:description" content="Продакшн-студия ADERVIS: рекламные ролики, фирменный стиль, предметная съёмка и ИИ-контент. С 2018 года работаем с компаниями, которым важно, как выглядит их бренд.">
   <meta name="twitter:image" content="https://adervis.ru/assets/og/og-home.jpg">
   <link rel="preload" as="image" href="assets/cases/concept-team-1120.jpg" imagesrcset="assets/cases/concept-team-560.jpg 560w, assets/cases/concept-team-1120.jpg 1120w, assets/cases/concept-team-1680.jpg 1680w" imagesizes="(min-width: 901px) 560px, 100vw" media="(min-width: 901px)" fetchpriority="high">
-  <link rel="preload" href="/fonts/unbounded-700-cyrillic.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="/fonts/unbounded-700-latin.woff2" as="font" type="font/woff2" crossorigin><link rel="stylesheet" href="css/style.min.css?v=cd2fd47c">
+  <link rel="preload" href="/fonts/unbounded-700-cyrillic.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="/fonts/unbounded-700-latin.woff2" as="font" type="font/woff2" crossorigin><link rel="stylesheet" href="css/style.min.css?v=68d0534f">
   <link rel="stylesheet" href="css/home.min.css?v=d5414f56">
   <script type="application/ld+json">
   {
@@ -215,12 +215,12 @@
 
       <!-- УСЛУГИ · клик ведёт на раздел #services, выпадашка показывает направления -->
       <div class="pill-nav__dropdown" id="dropServices">
-        <a href="/#services" class="pill-nav__link pill-nav__link--drop" aria-haspopup="true" aria-expanded="false" aria-controls="megaServices">
+        <a href="/#services" class="pill-nav__link pill-nav__link--drop" aria-expanded="false" aria-controls="megaServices">
           Услуги
           <svg class="pill-nav__arrow" width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 3.5l3 3 3-3"/></svg>
         </a>
-        <div class="nav-mega" id="megaServices" role="menu">
-          <a href="/video/" class="nav-mega__item" role="menuitem" style="--acc:var(--c-video)">
+        <div class="nav-mega" id="megaServices">
+          <a href="/video/" class="nav-mega__item" style="--acc:var(--c-video)">
             <span class="nav-mega__icon" style="color:var(--acc)">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M10 8.5l6 3.5-6 3.5z" fill="currentColor" stroke="none"/></svg>
             </span>
@@ -229,7 +229,7 @@
               <span class="nav-mega__sub">Ролики · Event · Reels · Корп. фильмы</span>
             </span>
           </a>
-          <a href="/design/" class="nav-mega__item" role="menuitem" style="--acc:var(--c-design)">
+          <a href="/design/" class="nav-mega__item" style="--acc:var(--c-design)">
             <span class="nav-mega__icon" style="color:var(--acc)">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20l3.3-1 9.7-9.7a2.1 2.1 0 0 0-3-3L4.3 16l-1 3.7.7.3z"/><path d="M13 6.3l3.7 3.7"/></svg>
             </span>
@@ -238,7 +238,7 @@
               <span class="nav-mega__sub">Брендинг · Фирстиль · Полиграфия · Моушн</span>
             </span>
           </a>
-          <a href="/photo/" class="nav-mega__item" role="menuitem" style="--acc:var(--c-photo)">
+          <a href="/photo/" class="nav-mega__item" style="--acc:var(--c-photo)">
             <span class="nav-mega__icon" style="color:var(--acc)">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h3l1.6-2h6.8L17 8h3a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z"/><circle cx="12" cy="13.2" r="3.4"/></svg>
             </span>
@@ -247,7 +247,7 @@
               <span class="nav-mega__sub">Каталог · Предметная · Event · Портреты</span>
             </span>
           </a>
-          <a href="/ai/" class="nav-mega__item" role="menuitem" style="--acc:var(--c-ai)">
+          <a href="/ai/" class="nav-mega__item" style="--acc:var(--c-ai)">
             <span class="nav-mega__icon" style="color:var(--acc)">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8L12 3z"/></svg>
             </span>
@@ -263,11 +263,23 @@
       <a href="/careers/" class="pill-nav__link">Вакансии</a>
       <!-- Adervis Platform · видна только в мобильном меню, на десктопе скрыта -->
       <a href="/#platform" class="pill-nav__link pill-nav__link--platform-mobile">Adervis Platform</a>
+      <!-- Тот же выключатель анимации в мобильном меню: в шапке телефона нет места -->
+      <button type="button" class="pill-nav__motion" data-motion-toggle>
+        <span class="pill-nav__motion-off">Остановить анимацию</span>
+        <span class="pill-nav__motion-on">Включить анимацию</span>
+      </button>
 
     </nav>
 
     <!-- Правый блок: переключатель темы + ADERVIS PLATFORM + бургер -->
     <div class="site-header__end">
+      <!-- Пауза анимации на всём сайте (WCAG 2.2.2): бегущие строки, фоны, 3D.
+           Выбор хранится в localStorage «adervis-motion», ставится до отрисовки
+           скриптом в <head>. aria-pressed=true — анимация остановлена. -->
+      <button type="button" class="motion-toggle" id="motionToggle" data-motion-toggle aria-pressed="false" aria-label="Остановить анимацию" title="Остановить анимацию">
+        <svg class="motion-toggle__icon motion-toggle__pause" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M9 5v14M15 5v14"/></svg>
+        <svg class="motion-toggle__icon motion-toggle__play" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13a1 1 0 0 0 1.5.86l10.4-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5z"/></svg>
+      </button>
       <button type="button" class="theme-toggle" id="themeToggle" aria-label="Светлая тема">
         <svg class="theme-toggle__icon theme-toggle__sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <circle cx="12" cy="12" r="4.5"/>
@@ -296,12 +308,12 @@
            как «Открыть платформу» у CRM в секции #platform на главной. -->
       <div class="pill-nav__dropdown" id="dropPlatform">
         <button type="button" class="site-header__platform pill-nav__link--drop"
-                aria-haspopup="true" aria-expanded="false" aria-controls="megaPlatform">
+                aria-expanded="false" aria-controls="megaPlatform">
           ADERVIS PLATFORM
           <svg class="pill-nav__arrow" width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 3.5l3 3 3-3"/></svg>
         </button>
-        <div class="nav-mega nav-mega--right" id="megaPlatform" role="menu">
-          <a href="/crm/" class="nav-mega__item" role="menuitem" style="--acc:var(--gold)">
+        <div class="nav-mega nav-mega--right" id="megaPlatform">
+          <a href="/crm/" class="nav-mega__item" style="--acc:var(--gold)">
             <span class="nav-mega__icon" style="color:var(--acc)">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
             </span>
@@ -310,7 +322,7 @@
               <span class="nav-mega__sub">Проекты · Сметы · КП · Команда</span>
             </span>
           </a>
-          <a href="https://stock.adervis.ru/" class="nav-mega__item" role="menuitem" target="_blank" rel="noopener" style="--acc:var(--gold)">
+          <a href="https://stock.adervis.ru/" class="nav-mega__item" target="_blank" rel="noopener" style="--acc:var(--gold)">
             <span class="nav-mega__icon" style="color:var(--acc)">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="M7 10l5 5 5-5"/><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg>
             </span>
@@ -1639,11 +1651,11 @@
 </div>
 <!-- END:footer-placeholder --></div>
 
-  <script src="js/app.min.js?v=57be7eab"></script>
+  <script src="js/app.min.js?v=acb2252e"></script>
   <script>
     if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       var s = document.createElement('script');
-      s.type = 'module'; s.src = 'js/hero3d.min.js?v=f3afa217';
+      s.type = 'module'; s.src = 'js/hero3d.min.js?v=a8edadcf';
       document.head.appendChild(s);
     }
   </script>

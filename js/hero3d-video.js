@@ -169,7 +169,7 @@
 
     const sc = ICON_SCALE * MOB_SCALE;
 
-    if (prefersReducedMotion) {
+    if (prefersReducedMotion || (window.adervisMotionOff && window.adervisMotionOff())) {
       entryProgress = 1;
       group.scale.setScalar(sc);
       group.rotation.set(0, 0, 0);

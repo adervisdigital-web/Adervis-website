@@ -220,15 +220,19 @@ function animate() {
     group.rotation.x   = currentY;
   } else {
     group.scale.set(s * MOB_SCALE, -s * MOB_SCALE, s * MOB_SCALE);
+    // Кнопка «Остановить анимацию» в шапке (html[data-motion=off]): без
+    // самопроизвольного вращения и покачивания; параллакс за курсором остаётся —
+    // это движение запускает сам человек
+    const still = window.adervisMotionOff && window.adervisMotionOff();
     if (IS_MOBILE) {
       // На мобильной нет курсора для параллакса — иконка вращается сама по кругу
-      group.rotation.y = frame * 0.0065;
+      group.rotation.y = still ? 0 : frame * 0.0065;
       group.rotation.x = currentY;
     } else {
       group.rotation.y = currentX;
       group.rotation.x = currentY;
     }
-    group.position.y   = TARGET_Y + Math.sin(frame * 0.007) * 0.09;
+    group.position.y   = TARGET_Y + (still ? 0 : Math.sin(frame * 0.007) * 0.09);
     group.position.x   = TARGET_X;
   }
 

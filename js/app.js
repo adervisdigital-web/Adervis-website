@@ -178,6 +178,8 @@ document.addEventListener("DOMContentLoaded", () => {
     initMobileNav(headerRoot);
     markActiveNavLink(headerRoot);
     initThemeToggle(headerRoot);
+    initMotionToggle(headerRoot);
+    initDesktopDropdowns(headerRoot);
 
     // «Главная» на главной странице → прокрутка в начало без перезагрузки
     headerRoot.querySelectorAll(".pill-nav__link").forEach(link => {
@@ -578,6 +580,98 @@ function initCtaDirChips() {
       const dirField = document.getElementById('lh-direction');
       if (dirField) dirField.value = newVal || '';
       setTextareaHint(textarea, newVal);
+    });
+  });
+}
+
+// Пауза анимации на всём сайте (WCAG 2.2.2 «Пауза, остановка, скрытие»).
+// Ставит на паузу все БЕСКОНЕЧНЫЕ CSS-анимации (бегущие строки, фоны, пульсы),
+// одноразовые появления не трогает. 3D-сцены читают html[data-motion] сами
+// (window.adervisMotionOff в hero3d*.js). Анимации, которые CSS уже держит на
+// паузе (оживают по наведению), не трогаем: их запускает сам человек.
+window.adervisMotionOff = () =>
+  document.documentElement.getAttribute("data-motion") === "off" ||
+  window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+function initMotionToggle(headerRoot) {
+  const html = document.documentElement;
+  const buttons = document.querySelectorAll("[data-motion-toggle]");
+  const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const pausedByUs = new Set();
+  const isInfinite = (a) => {
+    const t = a.effect && a.effect.getTiming && a.effect.getTiming();
+    return t && t.iterations === Infinity;
+  };
+  const pauseAll = () => {
+    document.getAnimations().forEach(a => {
+      if (isInfinite(a) && a.playState === "running") { a.pause(); pausedByUs.add(a); }
+    });
+  };
+  const resumeAll = () => {
+    pausedByUs.forEach(a => { try { a.play(); } catch (e) { /* элемент удалён */ } });
+    pausedByUs.clear();
+  };
+  // Десктоп: имя постоянное («Остановить анимацию»), состояние — aria-pressed.
+  // Мобильная кнопка — текстовая, без aria-pressed: её текст меняет CSS по html[data-motion].
+  const sync = (off) => {
+    buttons.forEach(b => { if (b.hasAttribute("aria-pressed")) b.setAttribute("aria-pressed", String(off)); });
+  };
+  // Движение, которое не видно через getAnimations(): SVG-анимации (SMIL),
+  // фоновое видео в iframe, автопрокрутка отзывов. Его страницы слушают это событие.
+  const extras = (off) => {
+    document.querySelectorAll("svg").forEach(svg => {
+      if (svg.querySelector("animate, animateTransform, animateMotion") && svg.pauseAnimations) {
+        if (off) svg.pauseAnimations(); else svg.unpauseAnimations();
+      }
+    });
+    document.dispatchEvent(new CustomEvent("adervis:motion", { detail: { off } }));
+  };
+  const apply = (off, save) => {
+    if (off) html.setAttribute("data-motion", "off"); else html.removeAttribute("data-motion");
+    if (save) { try { localStorage.setItem("adervis-motion", off ? "off" : "on"); } catch (e) { /* приватный режим */ } }
+    sync(off);
+    if (off) pauseAll(); else resumeAll();
+    extras(off);
+  };
+  // При системном «уменьшить движение» CSS-анимации и так выключены — кнопка не нужна,
+  // но SMIL, фоновое видео и автопрокрутку глушим и в этом случае
+  if (reduced) { buttons.forEach(b => { b.hidden = true; }); extras(true); return; }
+  // Новые анимации (бегущая строка после перетаскивания, появление блоков с пульсом)
+  document.addEventListener("animationstart", () => { if (html.getAttribute("data-motion") === "off") pauseAll(); }, true);
+  buttons.forEach(b => b.addEventListener("click", () => apply(html.getAttribute("data-motion") !== "off", true)));
+  apply(html.getAttribute("data-motion") === "off", false);
+  // Анимации, стартовавшие до этого скрипта
+  window.addEventListener("load", () => { if (html.getAttribute("data-motion") === "off") pauseAll(); });
+}
+
+// Выпадающие меню шапки на десктопе: открываются по наведению и фокусу (CSS).
+// Здесь — состояние для экранного диктора (aria-expanded) и закрытие по Escape
+// (WCAG 1.4.13): класс is-dismissed прячет меню, пока курсор/фокус не уйдут.
+function initDesktopDropdowns(headerRoot) {
+  const isMobile = () => window.innerWidth <= 860;
+  headerRoot.querySelectorAll(".pill-nav__dropdown").forEach(dropdown => {
+    const trigger = dropdown.querySelector("[aria-expanded]");
+    if (!trigger) return;
+    const setExpanded = (v) => { if (!isMobile()) trigger.setAttribute("aria-expanded", String(v)); };
+    dropdown.addEventListener("mouseenter", () => { if (!dropdown.classList.contains("is-dismissed")) setExpanded(true); });
+    dropdown.addEventListener("mouseleave", () => {
+      dropdown.classList.remove("is-dismissed");
+      if (!dropdown.contains(document.activeElement)) setExpanded(false);
+    });
+    dropdown.addEventListener("focusin", () => { if (!dropdown.classList.contains("is-dismissed")) setExpanded(true); });
+    dropdown.addEventListener("focusout", (e) => {
+      if (!dropdown.contains(e.relatedTarget)) { dropdown.classList.remove("is-dismissed"); setExpanded(false); }
+    });
+    dropdown.addEventListener("keydown", (e) => {
+      if (e.key !== "Escape" || isMobile()) return;
+      dropdown.classList.add("is-dismissed");
+      setExpanded(false);
+      trigger.focus();
+    });
+    // Кнопка (ADERVIS PLATFORM) после Escape снова открывает меню по Enter/клику
+    trigger.addEventListener("click", () => {
+      if (isMobile()) return;
+      if (dropdown.classList.contains("is-dismissed")) { dropdown.classList.remove("is-dismissed"); setExpanded(true); }
     });
   });
 }
@@ -1698,7 +1792,12 @@ function initReviewsSlider() {
 
   // Автопрокрутка останавливается навсегда после касания (на телефоне нет hover,
   // иначе карточку уносит из-под пальца), на время фокуса клавиатуры и при reduced motion
-  let autoOff = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let autoOff = (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) ||
+    document.documentElement.getAttribute('data-motion') === 'off';
+  // Кнопка «Остановить анимацию» в шапке
+  document.addEventListener('adervis:motion', (e) => {
+    if (e.detail.off) { autoOff = true; stopAuto(); } else { autoOff = false; startAuto(); }
+  });
   const startAuto = () => {
     stopAuto();
     if (autoOff) return;

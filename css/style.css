@@ -11258,3 +11258,59 @@ html:has(#cookieBanner:not([hidden])) { scroll-padding-bottom: 180px; }
 @media (max-width: 380px) {
   .reviews-dots { display: none; }
 }
+
+/* === ВЫКЛЮЧАТЕЛЬ АНИМАЦИИ И МЕНЮ ШАПКИ (2026-11) === */
+.motion-toggle {
+  position: relative;
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 36px; height: 36px; padding: 0; flex-shrink: 0;
+  border-radius: 100px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  color: rgba(255, 255, 255, 0.65);
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s, color 0.2s;
+}
+.motion-toggle:hover { background: rgba(255, 255, 255, 0.11); border-color: rgba(255, 255, 255, 0.16); color: #fff; }
+.motion-toggle[aria-pressed="true"] { color: var(--gold); border-color: rgba(246, 189, 58, 0.45); }
+[data-theme="light"] .motion-toggle { background: rgba(0, 0, 0, 0.05); border-color: rgba(0, 0, 0, 0.10); color: rgba(26, 24, 19, 0.60); }
+[data-theme="light"] .motion-toggle:hover { background: rgba(0, 0, 0, 0.09); color: var(--text); }
+[data-theme="light"] .motion-toggle[aria-pressed="true"] { color: #8a5a00; border-color: rgba(138, 90, 0, 0.45); }
+.motion-toggle__icon { position: absolute; }
+.motion-toggle__play { display: none; }
+.motion-toggle[aria-pressed="true"] .motion-toggle__pause { display: none; }
+.motion-toggle[aria-pressed="true"] .motion-toggle__play { display: block; }
+.motion-toggle[hidden], .pill-nav__motion[hidden] { display: none !important; }
+
+/* Пункт в мобильном меню; на десктопе скрыт */
+.pill-nav__motion { display: none; }
+.pill-nav__motion-on { display: none; }
+html[data-motion="off"] .pill-nav__motion-off { display: none; }
+html[data-motion="off"] .pill-nav__motion-on { display: inline; }
+.motion-toggle:focus-visible { border-radius: 100px; }
+@media (max-width: 860px) {
+  .motion-toggle { display: none; }
+  .pill-nav__motion {
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    width: 100%; max-width: 320px; min-height: 48px; margin-top: 8px;
+    padding: 12px 20px; border-radius: 100px;
+    font-family: var(--font-display); font-size: 14px; font-weight: 500; line-height: 1.2;
+    color: rgba(255, 255, 255, 0.78);
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    cursor: pointer;
+  }
+  .pill-nav__motion:hover { color: #fff; border-color: rgba(255, 255, 255, 0.32); }
+  [data-theme="light"] .pill-nav__motion { color: rgba(17, 17, 17, 0.78); border-color: rgba(0, 0, 0, 0.18); }
+}
+
+/* Escape закрыл меню: держим его скрытым, пока курсор и фокус не уйдут */
+.pill-nav__dropdown.is-dismissed .nav-mega {
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+
+/* /cases/: кнопка «Смотреть работы» растягивалась на всю колонку — .chs-content
+   flex-колонка со stretch по умолчанию. Кнопка по размеру текста. */
+.chs-content > .btn { align-self: flex-start; }
