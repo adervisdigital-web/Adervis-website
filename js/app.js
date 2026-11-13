@@ -179,6 +179,7 @@ document.addEventListener("DOMContentLoaded", () => {
     markActiveNavLink(headerRoot);
     initThemeToggle(headerRoot);
     initMotionToggle(headerRoot);
+    initVoiceHello(headerRoot);
     initDesktopDropdowns(headerRoot);
 
     // «Главная» на главной странице → прокрутка в начало без перезагрузки
@@ -642,6 +643,59 @@ function initMotionToggle(headerRoot) {
   apply(html.getAttribute("data-motion") === "off", false);
   // Анимации, стартовавшие до этого скрипта
   window.addEventListener("load", () => { if (html.getAttribute("data-motion") === "off") pauseAll(); });
+}
+
+// Голосовое приветствие студии: кнопка ▶ в шапке. Играет только по нажатию,
+// повторное нажатие — пауза. Субтитры под кнопкой меняются по ходу речи
+// (тайминги — по паузам в файле assets/audio/about-adervis.mp3).
+function initVoiceHello(headerRoot) {
+  const btn = headerRoot.querySelector("#voiceToggle");
+  const audio = headerRoot.querySelector("#voiceAudio");
+  const cap = headerRoot.querySelector("#voiceCaption");
+  if (!btn || !audio || !cap) return;
+  const CUES = [
+    [0, "Привет! Это ADERVIS, продакшн-студия из Перми."],
+    [3.45, "Снимаем видео, делаем дизайн, фото и контент на нейросетях, всё в одной команде."],
+    [9.7, "Расскажите о задаче, ответим за два часа."],
+  ];
+  const FULL = CUES.map(c => c[1]).join(" ");
+  const wrap = btn.closest(".voice-hello");
+  const setState = (playing) => {
+    btn.setAttribute("aria-pressed", String(playing));
+    btn.classList.toggle("is-playing", playing);
+  };
+  const showCue = () => {
+    const t = audio.currentTime;
+    let text = CUES[0][1];
+    CUES.forEach(([at, line]) => { if (t >= at) text = line; });
+    if (cap.textContent !== text) cap.textContent = text;
+    const d = audio.duration || 13;
+    btn.style.setProperty("--p", String(Math.min(1, t / d)));
+  };
+  // Пузырь не исчезает сам (WCAG 1.2.1: текст читается в своём темпе) —
+  // закрывается по Escape, клику мимо или когда фокус уходит с кнопки
+  const close = () => { if (!audio.paused) audio.pause(); cap.hidden = true; };
+  btn.addEventListener("click", () => {
+    if (audio.paused) {
+      if (audio.ended || audio.currentTime >= (audio.duration || 99) - 0.05) audio.currentTime = 0;
+      cap.hidden = false;
+      const p = audio.play();
+      if (p && p.catch) p.catch(() => { setState(false); cap.hidden = true; });
+      setState(true);
+      showCue();
+    } else {
+      audio.pause();
+    }
+  });
+  audio.addEventListener("timeupdate", () => { if (!audio.paused) showCue(); });
+  audio.addEventListener("pause", () => setState(false));
+  audio.addEventListener("ended", () => {
+    setState(false); btn.style.setProperty("--p", "0");
+    cap.textContent = FULL;            // после окончания — весь текст
+  });
+  document.addEventListener("keydown", (e) => { if (e.key === "Escape" && !cap.hidden) close(); });
+  document.addEventListener("click", (e) => { if (!cap.hidden && wrap && !wrap.contains(e.target)) close(); });
+  if (wrap) wrap.addEventListener("focusout", (e) => { if (!wrap.contains(e.relatedTarget)) close(); });
 }
 
 // Выпадающие меню шапки на десктопе: открываются по наведению и фокусу (CSS).

@@ -11314,3 +11314,79 @@ html[data-motion="off"] .pill-nav__motion-on { display: inline; }
 /* /cases/: кнопка «Смотреть работы» растягивалась на всю колонку — .chs-content
    flex-колонка со stretch по умолчанию. Кнопка по размеру текста. */
 .chs-content > .btn { align-self: flex-start; }
+
+/* === ГОЛОСОВОЕ ПРИВЕТСТВИЕ В ШАПКЕ (2026-11) === */
+.voice-hello { position: relative; display: inline-flex; flex-shrink: 0; }
+.voice-toggle {
+  --p: 0;
+  position: relative;
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 36px; height: 36px; padding: 0;
+  border-radius: 100px;
+  color: var(--gold);
+  background: rgba(246, 189, 58, 0.10);
+  border: 1px solid rgba(246, 189, 58, 0.45);
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+}
+.voice-toggle:hover { background: rgba(246, 189, 58, 0.18); transform: scale(1.07); }
+.voice-toggle:focus-visible { border-radius: 100px; }
+/* Кольцо прогресса поверх рамки, пока играет */
+.voice-toggle::before {
+  content: "";
+  position: absolute; inset: -3px;
+  border-radius: 50%;
+  background: conic-gradient(var(--gold) calc(var(--p) * 360deg), transparent 0);
+  -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 2px), #000 calc(100% - 2px));
+          mask: radial-gradient(farthest-side, transparent calc(100% - 2px), #000 calc(100% - 2px));
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+.voice-toggle.is-playing::before { opacity: 1; }
+.voice-toggle__icon { position: absolute; }
+.voice-toggle__play { margin-left: 2px; }
+.voice-toggle__pause { display: none; }
+.voice-toggle.is-playing .voice-toggle__play { display: none; }
+.voice-toggle.is-playing .voice-toggle__pause { display: block; }
+[data-theme="light"] .voice-toggle { color: #8a5a00; background: rgba(246, 189, 58, 0.16); border-color: rgba(138, 90, 0, 0.45); }
+
+/* Субтитры под кнопкой */
+.voice-caption {
+  position: absolute;
+  top: calc(100% + 12px);
+  right: -60px;
+  width: 280px;
+  margin: 0;
+  padding: 12px 14px;
+  border-radius: 14px;
+  font-size: 14px;
+  line-height: 1.45;
+  color: #fff;
+  background: rgba(14, 14, 14, 0.96);
+  border: 1px solid rgba(246, 189, 58, 0.35);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45);
+  z-index: 20;
+}
+.voice-caption[hidden] { display: none; }
+
+@media (max-width: 860px) {
+  .voice-caption { position: fixed; top: 70px; right: 16px; left: 16px; width: auto; }
+  /* На тёмной мобильной шапке — светлый вариант кнопки и в светлой теме */
+  [data-theme="light"] .voice-toggle { color: var(--gold); background: rgba(246, 189, 58, 0.10); border-color: rgba(246, 189, 58, 0.45); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .voice-toggle:hover { transform: none; }
+}
+
+/* Выключатель анимации в подвале — как ссылки юр. строки */
+.footer-motion {
+  background: none; border: 0; padding: 0; cursor: pointer;
+  font: inherit; color: inherit; text-decoration: underline; text-underline-offset: 3px;
+}
+/* Узкие телефоны: в шапке логотип + три круглые кнопки (голос, тема, меню) —
+   при полях 32px на 320 бургер упирался в край экрана */
+@media (max-width: 400px) {
+  .site-header { padding-left: 20px; padding-right: 20px; }
+  .site-header__bar { gap: 12px; }
+  .site-header__end { gap: 8px; }
+}
