@@ -595,3 +595,10 @@
 @media (hover: hover) and (prefers-reduced-motion: no-preference) {
   .crm-hero .crm-devices:hover .crm-detail-card__icon::after { animation-play-state: running; opacity: 1; }
 }
+
+/* Скриншоты CRM контрастируют со страницей: на тёмном сайте — светлая тема CRM,
+   на светлом — тёмная. Скрытая картинка (display:none + loading=lazy) не грузится. */
+.pro-shot__pic { display: block; }
+.pro-shot__pic--dark { display: none; }
+[data-theme="light"] .pro-shot__pic--light { display: none; }
+[data-theme="light"] .pro-shot__pic--dark { display: block; }
