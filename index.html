@@ -27,8 +27,8 @@
   <meta name="twitter:description" content="Продакшн-студия ADERVIS: рекламные ролики, фирменный стиль, предметная съёмка и ИИ-контент. С 2018 года работаем с компаниями, которым важно, как выглядит их бренд.">
   <meta name="twitter:image" content="https://adervis.ru/assets/og/og-home.jpg">
   <link rel="preload" as="image" href="assets/cases/concept-team-1120.jpg" imagesrcset="assets/cases/concept-team-560.jpg 560w, assets/cases/concept-team-1120.jpg 1120w, assets/cases/concept-team-1680.jpg 1680w" imagesizes="(min-width: 901px) 560px, 100vw" media="(min-width: 901px)" fetchpriority="high">
-  <link rel="preload" href="/fonts/unbounded-700-cyrillic.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="/fonts/unbounded-700-latin.woff2" as="font" type="font/woff2" crossorigin><link rel="stylesheet" href="css/style.min.css?v=f54a0148">
-  <link rel="stylesheet" href="css/home.min.css?v=781e4e17">
+  <link rel="preload" href="/fonts/unbounded-700-cyrillic.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="/fonts/unbounded-700-latin.woff2" as="font" type="font/woff2" crossorigin><link rel="stylesheet" href="css/style.min.css?v=cd2fd47c">
+  <link rel="stylesheet" href="css/home.min.css?v=d5414f56">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -1230,18 +1230,24 @@
         </div>
         <div class="pf-grid">
           <article class="pf-card pf-card--crm reveal" aria-labelledby="pf-crm-brand pf-crm-title">
-            <div class="pf-brand">
-              <span class="pf-crm-mark"><img src="assets/brand/crm-mark.svg" alt="" width="28" height="28"></span>
-              <span class="pf-crm-name" id="pf-crm-brand">ADERVIS <b>CRM</b></span>
+            <div class="pf-body">
+              <div class="pf-brand">
+                <span class="pf-crm-mark"><img src="assets/brand/crm-mark.svg" alt="" width="28" height="28"></span>
+                <span class="pf-crm-name" id="pf-crm-brand">ADERVIS <b>CRM</b></span>
+              </div>
+              <h3 class="pf-title" id="pf-crm-title">Смета и КП за 15 минут</h3>
+              <p class="pf-desc">Сделки, сметы, КП и календарь команды в одном окне. Построили для себя, открыли другим студиям.</p>
+              <ul class="pf-facts">
+                <li><b>200+</b> позиций в каталоге смет</li>
+                <li><b>7 дней</b> бесплатно, карта не нужна</li>
+                <li>от <b>290 ₽</b> в месяц</li>
+              </ul>
+              <div class="pf-actions">
+                <a href="crm/" class="pf-btn pf-btn--solid">Подробнее о CRM</a>
+                <a href="https://crm.adervis.ru" target="_blank" rel="noopener" class="pf-btn">Открыть CRM<span class="sr-only"> (откроется в новой вкладке)</span></a>
+              </div>
             </div>
-            <h3 class="pf-title" id="pf-crm-title">Смета и КП за 15 минут</h3>
-            <p class="pf-desc">Сделки, сметы, КП и календарь команды в одном окне. Построили для себя, открыли другим студиям.</p>
-            <ul class="pf-facts">
-              <li><b>200+</b> позиций в каталоге смет</li>
-              <li><b>7 дней</b> бесплатно, карта не нужна</li>
-              <li>от <b>290 ₽</b> в месяц</li>
-            </ul>
-            <div class="pf-visual">
+            <div class="pf-visual pf-crm-scene">
               <div class="crm-devices">
                 <div class="crm-devices__glow" aria-hidden="true"></div>
                 <div class="crm-devices__laptop">
@@ -1261,41 +1267,49 @@
                   <span class="crm-devices__shine crm-devices__shine--phone" aria-hidden="true"></span>
                 </div>
               </div>
-            </div>
-            <div class="pf-actions">
-              <a href="crm/" class="pf-btn pf-btn--solid">Подробнее о CRM</a>
-              <a href="https://crm.adervis.ru" target="_blank" rel="noopener" class="pf-btn">Открыть CRM<span class="sr-only"> (откроется в новой вкладке)</span></a>
+              <!-- Плашки: демо-сделка CRM (та же, что на скриншотах /crm/). Декоративные. -->
+              <div class="pf-chips" aria-hidden="true">
+                <div class="pf-chip pf-chip--est"><span class="pf-chip__ic"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h4"/></svg></span><span class="pf-chip__tx"><b>Смета собрана</b><span>21 позиция · 153 500 ₽</span></span></div>
+                <div class="pf-chip pf-chip--kp"><span class="pf-chip__ic"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2 11 13"/><path d="M22 2 15 22l-4-9-9-4z"/></svg></span><span class="pf-chip__tx"><b>КП отправлено</b><span>Бренд «Вкус»</span></span></div>
+                <div class="pf-chip pf-chip--pay"><span class="pf-chip__ic"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5 10 17l9-10"/></svg></span><span class="pf-chip__tx"><b>Аванс получен</b><span>+76 750 ₽</span></span></div>
+              </div>
             </div>
           </article>
 
           <article class="pf-card pf-card--stock reveal" aria-labelledby="pf-stock-brand pf-stock-title">
-            <div class="pf-brand">
-              <img class="pf-stock-logo" id="pf-stock-brand" src="assets/brand/stock-logo-on-dark.svg" alt="ADERVIS Stock" width="149" height="42">
-            </div>
-            <h3 class="pf-title" id="pf-stock-title">Файлы с Envato Elements по ссылке</h3>
-            <p class="pf-desc">Вставляете ссылку на материал и получаете оригинальный файл. Шаблоны, футажи, музыка и графика для проектов.</p>
-            <ul class="pf-facts">
-              <li>Оплачиваете тариф на срок</li>
-              <li>Скачиваете, сколько нужно</li>
-            </ul>
-            <!-- Мини-сцена «ссылка → файл» повторяет первый экран stock.adervis.ru.
-                 Декоративная: то же самое сказано текстом выше. -->
-            <div class="pf-visual pf-stock-demo" aria-hidden="true">
-              <div class="pf-stock-step">
-                <span class="pf-stock-step__n">1</span>
-                <span class="pf-stock-url"><i>elements.envato.com/</i>cinematic-titles-pack</span>
+            <div class="pf-body">
+              <div class="pf-brand">
+                <img class="pf-stock-logo" id="pf-stock-brand" src="assets/brand/stock-logo-on-dark.svg" alt="ADERVIS Stock" width="149" height="42">
               </div>
-              <span class="pf-stock-arrow"></span>
-              <div class="pf-stock-step pf-stock-step--file">
-                <span class="pf-stock-step__n">2</span>
-                <span class="pf-stock-file">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="M7 10l5 5 5-5"/><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg>
-                  cinematic-titles-pack.zip
-                </span>
+              <h3 class="pf-title" id="pf-stock-title">Файлы с Envato Elements по ссылке</h3>
+              <p class="pf-desc">Вставляете ссылку на материал и получаете оригинальный файл. Шаблоны, футажи, музыка и графика для проектов.</p>
+              <ul class="pf-facts">
+                <li>Оплачиваете тариф на срок</li>
+                <li>Скачиваете, сколько нужно</li>
+              </ul>
+              <div class="pf-actions">
+                <a href="https://stock.adervis.ru/" target="_blank" rel="noopener" class="pf-btn pf-btn--gold">Открыть Stock<span class="sr-only"> (откроется в новой вкладке)</span></a>
               </div>
             </div>
-            <div class="pf-actions">
-              <a href="https://stock.adervis.ru/" target="_blank" rel="noopener" class="pf-btn pf-btn--gold">Открыть Stock<span class="sr-only"> (откроется в новой вкладке)</span></a>
+            <!-- Сцена «ссылка → файл» повторяет первый экран stock.adervis.ru.
+                 Анимация играет один раз при появлении блока (до 4 с). Декоративная. -->
+            <div class="pf-visual pf-stock-scene" aria-hidden="true">
+              <div class="pfs-window">
+                <div class="pfs-bar"><i></i><i></i><i></i><span>stock.adervis.ru</span></div>
+                <div class="pfs-input">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg>
+                  <span class="pfs-url"><b>elements.envato.com/</b>cinematic-titles-pack</span><span class="pfs-caret"></span>
+                </div>
+                <div class="pfs-go">Получить файл</div>
+                <div class="pfs-file">
+                  <span class="pfs-file__ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="M7 10l5 5 5-5"/><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg></span>
+                  <span class="pfs-file__body"><b>cinematic-titles-pack.zip</b><span class="pfs-bar-p"><i></i></span></span>
+                  <span class="pfs-done"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5 10 17l9-10"/></svg></span>
+                </div>
+              </div>
+              <ul class="pfs-cats">
+                <li>Шаблоны</li><li>Футажи</li><li>Музыка</li><li>Графика</li>
+              </ul>
             </div>
           </article>
         </div>

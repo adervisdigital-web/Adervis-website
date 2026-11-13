@@ -578,3 +578,20 @@
 .crm-howto { display: flex; flex-direction: column; }
 .crm-howto .crm-howto__player { order: -2; }
 .crm-howto .crm-howto__meta { order: -1; }
+
+/* Первый экран /crm/: левитация техники, свечение и блик бесконечные (WCAG 2.2.2) —
+   стоят на паузе и идут, только пока курсор над техникой */
+.crm-hero .crm-devices__laptop, .crm-hero .crm-devices__phone,
+.crm-hero .crm-devices__glow, .crm-hero .crm-devices__shine { animation-play-state: paused; }
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .crm-hero .crm-devices:hover .crm-devices__laptop, .crm-hero .crm-devices:hover .crm-devices__phone,
+  .crm-hero .crm-devices:hover .crm-devices__glow, .crm-hero .crm-devices:hover .crm-devices__shine { animation-play-state: running; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .crm-hero .crm-detail-card { animation: none !important; }
+}
+/* Пульсирующее кольцо у значков плашек — тоже бесконечное: только при наведении */
+.crm-hero .crm-detail-card__icon::after { animation-play-state: paused; opacity: 0; }
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .crm-hero .crm-devices:hover .crm-detail-card__icon::after { animation-play-state: running; opacity: 1; }
+}

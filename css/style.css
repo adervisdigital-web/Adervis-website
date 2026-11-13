@@ -904,8 +904,11 @@ button.site-header__platform {
   right: 0;
   transform: translateY(-8px);
 }
+/* :focus-within тоже здесь: после клика по кнопке фокус остаётся внутри, и общее
+   правило для фокуса сдвигало правое меню на translateX(-50%), влево под «Написать» */
 .pill-nav__dropdown:hover .nav-mega--right,
-.pill-nav__dropdown.is-open .nav-mega--right {
+.pill-nav__dropdown.is-open .nav-mega--right,
+.pill-nav__dropdown:focus-within .nav-mega--right {
   transform: translateY(0);
   opacity: 1;
   pointer-events: all;

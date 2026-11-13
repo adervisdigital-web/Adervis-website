@@ -365,180 +365,93 @@
 }
 
 /* === ПЛАТФОРМА: ДВЕ КАРТОЧКИ СЕРВИСОВ (2026-11) === */
-/* Вариант А: CRM и Stock — два равных блока, каждый в стиле своего сервиса.
-   Карточки всегда тёмные (это фирменные поверхности сервисов), поэтому цвета
-   текста заданы явно, а не через переменные темы: в светлой теме сайта
-   переменные дали бы тёмный текст на тёмном фоне. */
-.pf-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: var(--sp-6);
-  align-items: stretch;
-}
+/* v2 (13.11): карточки — широкие полосы зигзагом. Каждая ~440px высотой и
+   целиком помещается в экран ноутбука (в v1 стопка «текст над картинкой»
+   выходила за 800px). Карточки всегда тёмные: цвета заданы явно, а не через
+   переменные темы, иначе в светлой теме текст стал бы тёмным на тёмном.
+   Анимации сцен запускает .is-visible (initScrollReveal в app.js), играют
+   один раз и укладываются в 4 с (WCAG 2.2.2). */
+.pf-grid { display: grid; gap: var(--sp-6); }
 
 .pf-card {
   position: relative;
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-  padding: 36px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.08fr);
+  grid-template-areas: "body visual";
+  align-items: center;
+  gap: 40px;
+  padding: 44px 52px;
+  min-height: 420px;
   border-radius: 28px;
   overflow: hidden;
   color: #fff;
   isolation: isolate;
 }
+.pf-card--stock { grid-template-columns: minmax(0, 1.08fr) minmax(0, 1fr); grid-template-areas: "visual body"; }
+.pf-body { grid-area: body; display: flex; flex-direction: column; gap: 14px; min-width: 0; }
+.pf-visual { grid-area: visual; position: relative; min-width: 0; }
 
-/* CRM: спокойный сине-фиолетовый из самой программы (--primary #5b4ee8) */
+/* Фон: фирменный цвет + тонкая сетка, гаснущая к краям */
+.pf-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+  background-size: 32px 32px;
+  -webkit-mask-image: radial-gradient(70% 90% at 75% 50%, #000 0%, transparent 75%);
+          mask-image: radial-gradient(70% 90% at 75% 50%, #000 0%, transparent 75%);
+}
+.pf-card--stock::before {
+  background-image:
+    linear-gradient(rgba(246, 189, 58, 0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(246, 189, 58, 0.07) 1px, transparent 1px);
+  -webkit-mask-image: radial-gradient(70% 90% at 25% 50%, #000 0%, transparent 75%);
+          mask-image: radial-gradient(70% 90% at 25% 50%, #000 0%, transparent 75%);
+}
 .pf-card--crm {
   background:
-    radial-gradient(120% 90% at 100% 100%, rgba(140, 128, 255, 0.55) 0%, rgba(91, 78, 232, 0) 60%),
-    linear-gradient(155deg, #1d1650 0%, #2f2590 52%, #4b3fd6 100%);
+    radial-gradient(60% 80% at 78% 55%, rgba(140, 128, 255, 0.45) 0%, rgba(91, 78, 232, 0) 70%),
+    linear-gradient(135deg, #17123f 0%, #241c72 45%, #3a30b8 100%);
   border: 1px solid rgba(160, 150, 255, 0.35);
 }
-
-/* Stock: тёмная подложка и золото, как на stock.adervis.ru */
 .pf-card--stock {
   background:
-    radial-gradient(90% 70% at 100% 0%, rgba(246, 189, 58, 0.14) 0%, rgba(246, 189, 58, 0) 62%),
-    #161616;
+    radial-gradient(55% 75% at 25% 50%, rgba(246, 189, 58, 0.16) 0%, rgba(246, 189, 58, 0) 70%),
+    #141414;
   border: 1px solid rgba(246, 189, 58, 0.30);
 }
 
+/* Бренд, заголовок, текст */
 .pf-brand { display: flex; align-items: center; gap: 12px; min-height: 44px; }
-
-.pf-crm-mark {
-  display: grid;
-  place-items: center;
-  width: 44px;
-  height: 44px;
-  border-radius: 12px;
-  background: #5b4ee8;
-  box-shadow: 0 6px 18px rgba(10, 6, 40, 0.45);
-}
+.pf-crm-mark { display: grid; place-items: center; width: 44px; height: 44px; border-radius: 12px; background: #5b4ee8; box-shadow: 0 6px 18px rgba(10, 6, 40, 0.45); }
 .pf-crm-mark img { width: 28px; height: 28px; display: block; }
-
-.pf-crm-name {
-  font-family: var(--font-display);
-  font-size: 17px;
-  font-weight: 700;
-  letter-spacing: 0.02em;
-  color: #fff;
-}
+.pf-crm-name { font-family: var(--font-display); font-size: 17px; font-weight: 700; letter-spacing: 0.02em; color: #fff; }
 .pf-crm-name b { font-weight: 500; color: rgba(255, 255, 255, 0.72); }
-
 .pf-stock-logo { height: 42px; width: auto; display: block; }
-
 .pf-title {
-  margin: 6px 0 0;
+  margin: 4px 0 0;
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: clamp(1.375rem, 1.2vw + 1rem, 1.875rem);
-  line-height: 1.15;
+  font-size: clamp(1.5rem, 1.4vw + 1rem, 2.25rem);
+  line-height: 1.12;
   letter-spacing: -0.01em;
   color: #fff;
   text-wrap: balance;
 }
-
-.pf-desc {
-  margin: 0;
-  max-width: 46ch;
-  font-size: 16px;
-  line-height: 1.55;
-  color: rgba(255, 255, 255, 0.80);
-}
-
-.pf-facts {
-  list-style: none;
-  margin: 2px 0 0;
-  padding: 0;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-}
-.pf-facts li {
-  padding: 7px 12px;
-  border-radius: 999px;
-  font-size: 13px;
-  line-height: 1.3;
-  color: rgba(255, 255, 255, 0.86);
-  background: rgba(255, 255, 255, 0.09);
-  border: 1px solid rgba(255, 255, 255, 0.14);
-}
+.pf-desc { margin: 0; max-width: 44ch; font-size: 16px; line-height: 1.55; color: rgba(255, 255, 255, 0.80); }
+.pf-facts { list-style: none; margin: 2px 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+.pf-facts li { padding: 7px 12px; border-radius: 999px; font-size: 13px; line-height: 1.3; color: rgba(255, 255, 255, 0.86); background: rgba(255, 255, 255, 0.09); border: 1px solid rgba(255, 255, 255, 0.14); }
 .pf-facts b { font-weight: 700; color: #fff; }
 .pf-card--stock .pf-facts li { background: rgba(246, 189, 58, 0.08); border-color: rgba(246, 189, 58, 0.22); }
 
-.pf-visual {
-  flex: 1 1 auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 230px;
-  margin: 6px 0;
-}
-.pf-card--crm .crm-devices { max-width: 460px; }
-/* На фирменном фоне CRM свечение под техникой делаем светлее и холоднее */
-.pf-card--crm .crm-devices__glow {
-  background: radial-gradient(circle, rgba(170, 160, 255, 0.34) 0%, rgba(170, 160, 255, 0.12) 40%, rgba(170, 160, 255, 0) 68%);
-}
-
-.pf-stock-demo { flex-direction: column; gap: 10px; align-items: stretch; justify-content: center; }
-.pf-stock-step {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 14px 16px;
-  border-radius: 14px;
-  background: #1f1f1f;
-  border: 1px solid rgba(255, 255, 255, 0.10);
-  min-width: 0;
-}
-.pf-stock-step--file { border-color: rgba(246, 189, 58, 0.45); background: rgba(246, 189, 58, 0.07); }
-.pf-stock-step__n {
-  flex: none;
-  display: grid;
-  place-items: center;
-  width: 26px;
-  height: 26px;
-  border-radius: 8px;
-  font-family: var(--font-display);
-  font-size: 12px;
-  font-weight: 700;
-  color: #161616;
-  background: #f6bd3a;
-}
-.pf-stock-url, .pf-stock-file {
-  min-width: 0;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  font-size: 14px;
-  color: rgba(255, 255, 255, 0.62);
-}
-.pf-stock-url i { font-style: normal; font-weight: 600; color: #fff; }
-.pf-stock-file { display: flex; align-items: center; gap: 8px; font-weight: 600; color: #ffd673; }
-.pf-stock-file svg { flex: none; }
-.pf-stock-arrow {
-  align-self: center;
-  width: 10px;
-  height: 10px;
-  border-right: 2px solid #f6bd3a;
-  border-bottom: 2px solid #f6bd3a;
-  transform: rotate(45deg);
-  margin: -2px 0 4px;
-}
-
-.pf-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: auto; }
+.pf-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 10px; }
 .pf-btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 48px;
-  padding: 12px 22px;
-  border-radius: 14px;
-  font-size: 15px;
-  font-weight: 600;
-  text-decoration: none;
-  color: #fff;
+  display: inline-flex; align-items: center; justify-content: center;
+  min-height: 48px; padding: 12px 22px; border-radius: 14px;
+  font-size: 15px; font-weight: 600; text-decoration: none; color: #fff;
   background: rgba(255, 255, 255, 0.08);
   border: 1px solid rgba(255, 255, 255, 0.55);
   transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
@@ -551,13 +464,149 @@
 .pf-btn--gold:hover { background: #ffd673; border-color: #ffd673; }
 .pf-card--stock .pf-btn:focus-visible { outline-color: #f6bd3a; }
 
-@media (max-width: 900px) {
-  .pf-grid { grid-template-columns: 1fr; }
-  .pf-card { padding: 24px; border-radius: 22px; }
-  .pf-visual { min-height: 0; }
-  .pf-card--crm .crm-devices { max-width: 360px; }
+/* ---- Сцена CRM: техника + плашки ---- */
+.pf-crm-scene { display: flex; align-items: center; justify-content: center; min-height: 330px; }
+.pf-crm-scene .crm-devices { max-width: 560px; }
+.pf-crm-scene .crm-devices__glow {
+  background: radial-gradient(circle, rgba(170, 160, 255, 0.36) 0%, rgba(170, 160, 255, 0.12) 40%, rgba(170, 160, 255, 0) 68%);
+  animation: none;
+}
+/* Бесконечная левитация техники здесь выключена (2.2.2); оживает при наведении */
+.pf-crm-scene .crm-devices__laptop, .pf-crm-scene .crm-devices__phone { animation: crm-float 6s ease-in-out infinite paused; }
+.pf-crm-scene .crm-devices__shine { animation-play-state: paused; }
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .pf-crm-scene:hover .crm-devices__laptop, .pf-crm-scene:hover .crm-devices__phone,
+  .pf-crm-scene:hover .crm-devices__shine { animation-play-state: running; }
+}
+
+.pf-chips { position: absolute; inset: 0; pointer-events: none; }
+.pf-chip {
+  position: absolute;
+  display: flex; align-items: center; gap: 10px;
+  padding: 9px 14px 9px 10px;
+  border-radius: 14px;
+  background: rgba(16, 13, 40, 0.84);
+  -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow: 0 16px 40px rgba(5, 3, 25, 0.45);
+  opacity: 0;
+}
+.pf-chip__ic { display: grid; place-items: center; width: 26px; height: 26px; border-radius: 50%; flex: none; }
+.pf-chip__ic svg { display: block; }
+.pf-chip__tx { display: flex; flex-direction: column; line-height: 1.25; }
+.pf-chip__tx b { font-size: 12px; font-weight: 700; color: #fff; }
+.pf-chip__tx span { font-size: 13px; font-weight: 700; }
+.pf-chip--est { left: 0;  top: 8%; }
+.pf-chip--est .pf-chip__ic { background: rgba(246, 189, 58, 0.18); color: #f6bd3a; }
+.pf-chip--est .pf-chip__tx span { color: #ffd673; }
+.pf-chip--kp  { right: 0; top: 34%; }
+.pf-chip--kp .pf-chip__ic { background: rgba(140, 128, 255, 0.22); color: #c4beff; }
+.pf-chip--kp .pf-chip__tx span { color: #c4beff; }
+.pf-chip--pay { left: 6%; bottom: 6%; }
+.pf-chip--pay .pf-chip__ic { background: rgba(34, 197, 94, 0.18); color: #4ade80; }
+.pf-chip--pay .pf-chip__tx span { color: #4ade80; }
+.pf-card--crm.is-visible .pf-chip { animation: pf-pop 0.6s cubic-bezier(0.22, 1, 0.36, 1) both; }
+.pf-card--crm.is-visible .pf-chip--est { animation-delay: 0.55s; }
+.pf-card--crm.is-visible .pf-chip--kp  { animation-delay: 1.05s; }
+.pf-card--crm.is-visible .pf-chip--pay { animation-delay: 1.55s; }
+@keyframes pf-pop {
+  from { opacity: 0; transform: translateY(12px) scale(0.9); }
+  to   { opacity: 1; transform: none; }
+}
+
+/* ---- Сцена Stock: окно сервиса, ссылка → файл ---- */
+.pf-stock-scene { display: flex; flex-direction: column; gap: 14px; }
+.pfs-window {
+  border-radius: 18px;
+  background: #1c1c1c;
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  box-shadow: 0 30px 70px -20px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(246, 189, 58, 0.06);
+  padding: 0 18px 18px;
+  display: flex; flex-direction: column; gap: 12px;
+}
+.pfs-bar { display: flex; align-items: center; gap: 6px; height: 40px; margin: 0 -18px; padding: 0 16px; border-bottom: 1px solid rgba(255, 255, 255, 0.07); }
+.pfs-bar i { width: 9px; height: 9px; border-radius: 50%; background: rgba(255, 255, 255, 0.18); }
+.pfs-bar span { margin-left: 10px; font-size: 12px; color: rgba(255, 255, 255, 0.62); }
+.pfs-input {
+  display: flex; align-items: center; gap: 10px;
+  padding: 14px 16px; border-radius: 12px;
+  background: #121212; border: 1px solid rgba(255, 255, 255, 0.12);
+  color: rgba(255, 255, 255, 0.55); min-width: 0;
+}
+.pfs-input svg { flex: none; color: #f6bd3a; }
+.pfs-url { min-width: 0; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; font-size: 14px; color: rgba(255, 255, 255, 0.66); }
+.pfs-url b { font-weight: 600; color: #fff; }
+.pfs-caret { flex: none; width: 2px; height: 18px; background: #f6bd3a; margin-left: -6px; opacity: 0; }
+.pfs-go {
+  align-self: flex-start;
+  padding: 10px 18px; border-radius: 10px;
+  font-size: 14px; font-weight: 700; color: #161616; background: #f6bd3a;
+}
+.pfs-file {
+  display: flex; align-items: center; gap: 12px;
+  padding: 12px 14px; border-radius: 12px;
+  background: rgba(246, 189, 58, 0.07); border: 1px solid rgba(246, 189, 58, 0.40);
+}
+.pfs-file__ic { display: grid; place-items: center; width: 36px; height: 36px; border-radius: 10px; background: rgba(246, 189, 58, 0.16); color: #f6bd3a; flex: none; }
+.pfs-file__body { display: flex; flex-direction: column; gap: 7px; min-width: 0; flex: 1; }
+.pfs-file__body b { font-size: 14px; font-weight: 600; color: #ffd673; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+.pfs-bar-p { height: 4px; border-radius: 4px; background: rgba(255, 255, 255, 0.10); overflow: hidden; }
+.pfs-bar-p i { display: block; height: 100%; width: 100%; border-radius: 4px; background: linear-gradient(90deg, #f6bd3a, #ffd673); transform-origin: left; }
+.pfs-done { display: grid; place-items: center; width: 28px; height: 28px; border-radius: 50%; background: #f6bd3a; color: #161616; flex: none; }
+.pfs-cats { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; }
+.pfs-cats li {
+  text-align: center; padding: 10px 6px; border-radius: 12px;
+  font-size: 13px; font-weight: 600; color: rgba(255, 255, 255, 0.84);
+  background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.10);
+}
+
+/* Сценарий Stock (один проход, ~3.8 с): ссылка печатается → кнопка нажимается →
+   файл появляется → полоска заполняется → галочка. Исходное (до .is-visible)
+   и конечное состояния статичны; при reduce глобальное правило в style.css
+   сжимает длительности, и сразу виден итог. */
+.pf-card--stock.is-visible .pfs-url { animation: pfs-type 1.3s steps(34, end) 0.4s both; }
+.pf-card--stock.is-visible .pfs-caret { animation: pfs-blink 0.45s step-end 0.4s 4 both; }
+.pf-card--stock.is-visible .pfs-go { animation: pfs-press 0.35s ease 1.9s both; }
+.pf-card--stock.is-visible .pfs-file { animation: pf-pop 0.5s cubic-bezier(0.22, 1, 0.36, 1) 2.2s both; }
+.pf-card--stock.is-visible .pfs-bar-p i { animation: pfs-fill 1.1s cubic-bezier(0.4, 0, 0.2, 1) 2.45s both; }
+.pf-card--stock.is-visible .pfs-done { animation: pf-pop 0.45s cubic-bezier(0.34, 1.56, 0.64, 1) 3.5s both; }
+.pf-card--stock.is-visible .pfs-cats li { animation: pf-pop 0.5s cubic-bezier(0.22, 1, 0.36, 1) both; }
+.pf-card--stock.is-visible .pfs-cats li:nth-child(1) { animation-delay: 0.6s; }
+.pf-card--stock.is-visible .pfs-cats li:nth-child(2) { animation-delay: 0.75s; }
+.pf-card--stock.is-visible .pfs-cats li:nth-child(3) { animation-delay: 0.9s; }
+.pf-card--stock.is-visible .pfs-cats li:nth-child(4) { animation-delay: 1.05s; }
+@keyframes pfs-type { from { clip-path: inset(0 100% 0 0); } to { clip-path: inset(0 0 0 0); } }
+@keyframes pfs-blink { 0% { opacity: 1; } 50% { opacity: 0; } 100% { opacity: 0; } }
+@keyframes pfs-press { 0%, 100% { transform: none; } 45% { transform: scale(0.94); filter: brightness(1.1); } }
+@keyframes pfs-fill { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+
+/* Планшет и телефон: одна колонка, сцена под текстом */
+@media (max-width: 1000px) {
+  .pf-card, .pf-card--stock {
+    grid-template-columns: 1fr;
+    grid-template-areas: "body" "visual";
+    gap: 28px; padding: 28px 24px; min-height: 0; border-radius: 22px;
+  }
+  .pf-crm-scene { min-height: 0; }
+  .pf-crm-scene .crm-devices { max-width: 400px; }
+  .pf-chip--est { left: -2%; top: 0; }
+  .pf-chip--kp { display: none; }
+  .pf-chip--pay { left: auto; right: -2%; bottom: 2%; }
+}
+@media (max-width: 560px) {
   .pf-actions .pf-btn { flex: 1 1 100%; }
+  .pfs-cats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .pf-chip { padding: 6px 10px 6px 8px; gap: 8px; }
+  .pf-chip__ic { width: 22px; height: 22px; }
+  .pf-chip__tx b { font-size: 12px; }
+  .pf-chip__tx span { font-size: 12px; }
+  .pfs-window { padding: 0 12px 12px; }
+  .pfs-bar { margin: 0 -12px; }
 }
 @media (prefers-reduced-motion: reduce) {
   .pf-btn:hover { transform: none; }
+  /* Глобальное правило сжимает длительность, но не задержку: без этого плашки
+     и галочка появлялись бы через 1.5–3.5 с. Сразу показываем итог. */
+  .pf-chip, .pfs-url, .pfs-caret, .pfs-go, .pfs-file, .pfs-bar-p i, .pfs-done, .pfs-cats li { animation: none !important; }
+  .pf-chip { opacity: 1; }
 }
