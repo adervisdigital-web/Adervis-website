@@ -38,9 +38,9 @@ function weightFor(urlPath) {
   if (urlPath === "/") return { priority: "1.0", changefreq: "weekly" };
   if (/^\/(video|design|photo|ai)\/$/.test(urlPath)) return { priority: "0.9", changefreq: "monthly" };
   if (urlPath === "/cases/") return { priority: "0.85", changefreq: "weekly" };
-  if (urlPath === "/pro/") return { priority: "0.8", changefreq: "monthly" };
+  if (urlPath === "/crm/") return { priority: "0.8", changefreq: "monthly" };
   if (urlPath.startsWith("/cases/")) return { priority: "0.7", changefreq: "monthly" };
-  if (urlPath.startsWith("/pro/")) return { priority: "0.7", changefreq: "monthly" };
+  if (urlPath.startsWith("/crm/")) return { priority: "0.7", changefreq: "monthly" };
   if (urlPath.startsWith("/guides/")) return { priority: "0.6", changefreq: "monthly" };
   return { priority: "0.6", changefreq: "monthly" };
 }
@@ -89,6 +89,12 @@ for (const file of walk(ROOT)) {
   const robots = html.match(/<meta\s+name=["']robots["']\s+content=["']([^"']*)["']/i);
   if (robots && /noindex/i.test(robots[1])) {
     skipped.push(`${rel} (noindex)`);
+    continue;
+  }
+
+  // Заглушки-переадресации со старых адресов (например /pro/ → /crm/) в карту не идут
+  if (/<meta\s+http-equiv=["']refresh["']/i.test(html)) {
+    skipped.push(`${rel} (redirect)`);
     continue;
   }
 

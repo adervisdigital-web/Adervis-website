@@ -618,7 +618,7 @@ function initThemeToggle(headerRoot) {
     btn.setAttribute("aria-label", theme === "dark" ? "Светлая тема" : "Тёмная тема");
     updateLogos(theme);
     // Аддитивный хук: страницы с embedded-контентом на другом origin (сейчас —
-    // /pro/smeta/ со встроенным калькулятором Adervis CRM) не могут читать
+    // /crm/smeta/ со встроенным калькулятором Adervis CRM) не могут читать
     // localStorage хоста изнутри iframe и узнают смену темы только так —
     // слушают этот event и пересылают тему через postMessage. На страницах без
     // такого встроенного контента событие просто некому слушать, издержек нет.

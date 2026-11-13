@@ -1,0 +1,817 @@
+<!doctype html>
+<html lang="ru" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <script>if("scrollRestoration"in history)history.scrollRestoration="manual";!function(){var t=localStorage.getItem("adervis-theme");if(t)document.documentElement.setAttribute("data-theme",t);else if(window.matchMedia("(prefers-color-scheme:light)").matches)document.documentElement.setAttribute("data-theme","light")}()</script>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Сколько стоит видеосъёмка — калькулятор стоимости видео | ADERVIS</title>
+  <meta name="description" content="Посчитайте, сколько будет стоить ваш ролик: видео о компании, реклама, съёмка мероприятия, фото. Три вопроса, и виден порядок цены, состав работ и сроки.">
+  <!-- Шрифты self-hosted: @font-face в css/style.css, woff2 в /fonts -->
+  <link rel="icon" type="image/svg+xml" href="../../icon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../../favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../../apple-touch-icon.png">
+  <link rel="shortcut icon" href="../../favicon.ico">
+  <meta name="robots" content="index,follow">
+  <meta http-equiv="content-language" content="ru">
+  <link rel="canonical" href="https://adervis.ru/crm/smeta/">
+  <meta name="theme-color" content="#141414">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="ADERVIS">
+  <meta property="og:url" content="https://adervis.ru/crm/smeta/">
+  <meta property="og:title" content="Сколько стоит видеосъёмка — калькулятор стоимости видео | ADERVIS">
+  <meta property="og:description" content="Три вопроса, и вы видите порядок цены на свой ролик, состав работ и сроки. Бесплатно, без регистрации.">
+  <meta property="og:image" content="https://adervis.ru/assets/og/og-pro.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Сколько стоит видеосъёмка — калькулятор стоимости видео | ADERVIS">
+  <meta name="twitter:description" content="Три вопроса, и вы видите порядок цены на свой ролик, состав работ и сроки. Бесплатно, без регистрации.">
+  <meta name="twitter:image" content="https://adervis.ru/assets/og/og-pro.jpg">
+  <link rel="preload" href="/fonts/unbounded-700-cyrillic.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="/fonts/unbounded-700-latin.woff2" as="font" type="font/woff2" crossorigin><link rel="stylesheet" href="../../css/style.min.css?v=f54a0148">
+  <link rel="stylesheet" href="../../css/pro.min.css?v=24dbb5f8">
+  <!-- Заранее договариваемся с браузером о соединении с калькулятором (crm.adervis.ru) —
+       он встраивается ниже в iframe, и без preconnect первый рендер iframe ждёт
+       полный DNS+TLS handshake после того, как браузер вообще узнает о домене. -->
+  <link rel="preconnect" href="https://crm.adervis.ru">
+  <script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Главная", "item": "https://adervis.ru/" },
+    { "@type": "ListItem", "position": 2, "name": "Видео", "item": "https://adervis.ru/video/" },
+    { "@type": "ListItem", "position": 3, "name": "Калькулятор стоимости видео", "item": "https://adervis.ru/crm/smeta/" }
+  ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Почему цена «от», а не точная?",
+      "acceptedAnswer": { "@type": "Answer", "text": "У видео нет цены с полки. Она зависит от сценария, количества локаций и съёмочных смен, состава группы и сроков: два ролика одинаковой длительности могут отличаться по бюджету втрое. Калькулятор показывает порядок цены по нашим базовым ставкам, а точную смету мы присылаем после короткого разговора о задаче." }
+    },
+    {
+      "@type": "Question",
+      "name": "Что входит в стоимость съёмки?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Три этапа: подготовка (идея, сценарий, план съёмки), съёмка (группа, камера, свет, звук, локация) и постпродакшн (монтаж, цветокоррекция, звук, графика, титры). После выбора уровня калькулятор показывает конкретный состав работ по каждому этапу." }
+    },
+    {
+      "@type": "Question",
+      "name": "Сколько стоит минута видео?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Видео не считают за минуту: 30 секунд рекламы с постановкой и 3 минуты интервью на одну камеру стоят по-разному. Ориентиры по нашим базовым ставкам: рекламный ролик на 30–90 секунд от 44 000 ₽, видео о компании от 52 000 ₽, съёмка мероприятия от 35 000 ₽, анимация и моушн от 74 000 ₽. Вилку под ваш хронометраж и число съёмочных смен покажет калькулятор." }
+    },
+    {
+      "@type": "Question",
+      "name": "Сколько времени занимает производство ролика?",
+      "acceptedAnswer": { "@type": "Answer", "text": "От одной недели для короткого ролика в соцсети до 4–6 недель для имиджевого фильма или рекламы. Калькулятор показывает ориентир по срокам вместе с ценой. Срочный запуск возможен, он считается отдельной надбавкой." }
+    },
+    {
+      "@type": "Question",
+      "name": "Как происходит оплата?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Обычно 50% предоплаты до старта работ и 50% после сдачи материала. Работаем с юрлицами и ИП по договору и счёту, с физлицами по договору-оферте." }
+    },
+    {
+      "@type": "Question",
+      "name": "Вы снимаете только в Перми?",
+      "acceptedAnswer": { "@type": "Answer", "text": "База студии в Перми, снимаем по всей России, выезд считается отдельно (транспорт и проживание группы). Часть работ (монтаж, моушн-графика, AI-видео) делаем удалённо для любого города." }
+    }
+  ]
+  }
+  </script>
+</head>
+<body class="no-clients">
+
+  <!-- Сюда подгрузится шапка -->
+  <div id="header-placeholder"><!-- BEGIN:header-placeholder -->
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript">
+    (function(m,e,t,r,i,k,a){
+        m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+        m[i].l=1*new Date();
+        for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+    })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=110226682', 'ym');
+
+    ym(110226682, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/110226682" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
+
+<a href="#main-content" class="skip-link">Перейти к содержимому</a>
+
+<header class="site-header" id="siteHeader">
+  <div class="site-header__bar">
+
+    <!-- Лого -->
+    <a href="/" class="brand site-header__logo">
+      <img src="/logo.svg" id="siteLogo" data-dark="/logo.svg" data-light="/logoB.svg" alt="ADERVIS, продакшн-студия" width="140" height="34">
+    </a>
+
+    <!-- Навигация -->
+    <nav class="pill-nav" id="siteNav" aria-label="Основная навигация">
+      <div class="pill-nav__tubelight" id="tubeIndicator" aria-hidden="true"></div>
+
+      <a href="/" class="pill-nav__link">Главная</a>
+
+      <!-- УСЛУГИ · клик ведёт на раздел #services, выпадашка показывает направления -->
+      <div class="pill-nav__dropdown" id="dropServices">
+        <a href="/#services" class="pill-nav__link pill-nav__link--drop" aria-haspopup="true" aria-expanded="false" aria-controls="megaServices">
+          Услуги
+          <svg class="pill-nav__arrow" width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 3.5l3 3 3-3"/></svg>
+        </a>
+        <div class="nav-mega" id="megaServices" role="menu">
+          <a href="/video/" class="nav-mega__item" role="menuitem" style="--acc:var(--c-video)">
+            <span class="nav-mega__icon" style="color:var(--acc)">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M10 8.5l6 3.5-6 3.5z" fill="currentColor" stroke="none"/></svg>
+            </span>
+            <span class="nav-mega__body">
+              <span class="nav-mega__name">Видео</span>
+              <span class="nav-mega__sub">Ролики · Event · Reels · Корп. фильмы</span>
+            </span>
+          </a>
+          <a href="/design/" class="nav-mega__item" role="menuitem" style="--acc:var(--c-design)">
+            <span class="nav-mega__icon" style="color:var(--acc)">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20l3.3-1 9.7-9.7a2.1 2.1 0 0 0-3-3L4.3 16l-1 3.7.7.3z"/><path d="M13 6.3l3.7 3.7"/></svg>
+            </span>
+            <span class="nav-mega__body">
+              <span class="nav-mega__name">Дизайн</span>
+              <span class="nav-mega__sub">Брендинг · Фирстиль · Полиграфия · Моушн</span>
+            </span>
+          </a>
+          <a href="/photo/" class="nav-mega__item" role="menuitem" style="--acc:var(--c-photo)">
+            <span class="nav-mega__icon" style="color:var(--acc)">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h3l1.6-2h6.8L17 8h3a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z"/><circle cx="12" cy="13.2" r="3.4"/></svg>
+            </span>
+            <span class="nav-mega__body">
+              <span class="nav-mega__name">Фото</span>
+              <span class="nav-mega__sub">Каталог · Предметная · Event · Портреты</span>
+            </span>
+          </a>
+          <a href="/ai/" class="nav-mega__item" role="menuitem" style="--acc:var(--c-ai)">
+            <span class="nav-mega__icon" style="color:var(--acc)">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8L12 3z"/></svg>
+            </span>
+            <span class="nav-mega__body">
+              <span class="nav-mega__name">ИИ-контент</span>
+              <span class="nav-mega__sub">AI-генерация · AI-видео · AI-брендинг</span>
+            </span>
+          </a>
+        </div>
+      </div>
+
+      <a href="/cases/" class="pill-nav__link">Кейсы</a>
+      <a href="/careers/" class="pill-nav__link">Вакансии</a>
+      <!-- Adervis Platform · видна только в мобильном меню, на десктопе скрыта -->
+      <a href="/#platform" class="pill-nav__link pill-nav__link--platform-mobile">Adervis Platform</a>
+
+    </nav>
+
+    <!-- Правый блок: переключатель темы + ADERVIS PLATFORM + бургер -->
+    <div class="site-header__end">
+      <button type="button" class="theme-toggle" id="themeToggle" aria-label="Светлая тема">
+        <svg class="theme-toggle__icon theme-toggle__sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="4.5"/>
+          <line x1="12" y1="2"   x2="12" y2="5"/>
+          <line x1="12" y1="19"  x2="12" y2="22"/>
+          <line x1="4.22" y1="4.22"   x2="6.34" y2="6.34"/>
+          <line x1="17.66" y1="17.66" x2="19.78" y2="19.78"/>
+          <line x1="2"   y1="12"  x2="5"   y2="12"/>
+          <line x1="19"  y1="12"  x2="22"  y2="12"/>
+          <line x1="4.22"  y1="19.78" x2="6.34"  y2="17.66"/>
+          <line x1="17.66" y1="6.34"  x2="19.78" y2="4.22"/>
+        </svg>
+        <svg class="theme-toggle__icon theme-toggle__moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+        </svg>
+      </button>
+
+      <!-- Быстрый контакт через Telegram -->
+      <a href="https://t.me/adervis_manager" class="site-header__tg" target="_blank" rel="noopener noreferrer" aria-label="Написать в Telegram (откроется в новой вкладке)">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L7.58 13.28l-2.96-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.568.279z"/></svg>
+        <span>Написать</span>
+      </a>
+
+      <!-- ADERVIS PLATFORM · кнопка с дропдауном продуктов: CRM и Stock.
+           Stock живёт на своём поддомене и открывается в новой вкладке · так же,
+           как «Открыть платформу» у CRM в секции #platform на главной. -->
+      <div class="pill-nav__dropdown" id="dropPlatform">
+        <button type="button" class="site-header__platform pill-nav__link--drop"
+                aria-haspopup="true" aria-expanded="false" aria-controls="megaPlatform">
+          ADERVIS PLATFORM
+          <svg class="pill-nav__arrow" width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 3.5l3 3 3-3"/></svg>
+        </button>
+        <div class="nav-mega nav-mega--right" id="megaPlatform" role="menu">
+          <a href="/crm/" class="nav-mega__item" role="menuitem" style="--acc:var(--gold)">
+            <span class="nav-mega__icon" style="color:var(--acc)">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+            </span>
+            <span class="nav-mega__body">
+              <span class="nav-mega__name">Adervis CRM</span>
+              <span class="nav-mega__sub">Проекты · Сметы · КП · Команда</span>
+            </span>
+          </a>
+          <a href="https://stock.adervis.ru/" class="nav-mega__item" role="menuitem" target="_blank" rel="noopener" style="--acc:var(--gold)">
+            <span class="nav-mega__icon" style="color:var(--acc)">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="M7 10l5 5 5-5"/><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg>
+            </span>
+            <span class="nav-mega__body">
+              <span class="nav-mega__name">Adervis Stock</span>
+              <span class="nav-mega__sub">Envato Elements · Файлы по ссылке</span>
+            </span>
+            <span class="sr-only">(откроется в новой вкладке)</span>
+          </a>
+        </div>
+      </div>
+
+      <button type="button" class="nav-toggle" id="navToggle" aria-label="Открыть меню" aria-expanded="false" aria-controls="siteNav">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </button>
+    </div>
+
+  </div>
+</header>
+<div class="nav-backdrop" id="navBackdrop" aria-hidden="true"></div>
+
+<script>
+(function () {
+  function initTubelight () {
+    var nav  = document.getElementById('siteNav');
+    var tube = document.getElementById('tubeIndicator');
+    if (!nav || !tube) return;
+
+    // Цель индикатора · всегда пункт ВЕРХНЕГО уровня. markActiveNavLink() в
+    // app.js помечает .nav-active и пункты внутри мега-меню (это нужно, чтобы
+    // подсветить текущее направление в выпадашке). Раньше индикатор хватал
+    // первый попавшийся .nav-active · на /video/, /design/, /photo/, /ai/ им
+    // оказывался пункт выпадашки, и капсула растягивалась на его ширину
+    // (302px вместо 98), перекрывая половину меню.
+    function activeTopLink () {
+      var direct = nav.querySelector('.pill-nav__link.nav-active:not(.pill-nav__link--drop)');
+      if (direct) return direct;
+      // Активно направление внутри «Услуг» · подсвечиваем сам пункт «Услуги».
+      var inDrop = nav.querySelector('.pill-nav__dropdown .nav-active');
+      if (inDrop) {
+        var drop = inDrop.closest('.pill-nav__dropdown');
+        if (drop) {
+          var trigger = drop.querySelector('.pill-nav__link--drop');
+          if (trigger) return trigger;
+        }
+      }
+      return null;
+    }
+
+    var active = activeTopLink();
+    if (!active) active = nav.querySelector('.pill-nav__link:not(.pill-nav__link--drop)');
+
+    function moveTo (el) {
+      if (!el) return;
+      var navR = nav.getBoundingClientRect();
+      var elR  = el.getBoundingClientRect();
+      tube.style.transform = 'translateX(' + (elR.left - navR.left) + 'px)';
+      tube.style.width     = elR.width + 'px';
+    }
+
+    if (active) {
+      tube.style.transition = 'none';
+      moveTo(active);
+      requestAnimationFrame(function () {
+        tube.style.opacity = '1';
+        tube.style.transition = '';
+      });
+    } else {
+      tube.style.opacity = '1';
+    }
+
+    nav.querySelectorAll('.pill-nav__link, .pill-nav__dropdown').forEach(function (item) {
+      item.addEventListener('mouseenter', function () {
+        var link = item.classList.contains('pill-nav__link') ? item
+                  : item.querySelector('.pill-nav__link--drop');
+        if (link) moveTo(link);
+      });
+    });
+
+    nav.addEventListener('mouseleave', function () {
+      moveTo(activeTopLink() || active);
+    });
+
+    // Пересчёт по текущему активному пункту.
+    function resync () {
+      moveTo(activeTopLink() || active);
+    }
+
+    // Шрифт Unbounded догружается уже после DOMContentLoaded и делает пункты
+    // шире · без пересчёта индикатор остаётся на координатах запасного шрифта
+    // (промах ~30px), пока пользователь не наведёт мышь.
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(resync);
+    }
+
+    // Resize меняет раскладку шапки · без этого индикатор уезжает.
+    var t;
+    window.addEventListener('resize', function () {
+      clearTimeout(t);
+      t = setTimeout(resync, 100);
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initTubelight);
+  } else {
+    initTubelight();
+  }
+}());
+</script>
+<!-- END:header-placeholder --></div>
+
+  <main id="main-content">
+    <!-- Hero -->
+    <section class="hero-section crm-hero" data-dir="crm">
+      <div class="page-aurora" aria-hidden="true">
+        <div class="page-aurora__blob page-aurora__blob--1"></div>
+        <div class="page-aurora__blob page-aurora__blob--2"></div>
+      </div>
+      <div class="container">
+        <span class="badge-crm">ADERVIS · видеопродакшн с 2018 года</span>
+        <h1>Сколько стоит ваше видео: <span class="text-gradient-crm">посчитайте за минуту</span></h1>
+        <p>Три вопроса, и вы увидите порядок цены, что входит в работу и сколько это займёт времени. Без регистрации, без обязательств и без «оставьте номер, и мы вам скажем».</p>
+        <div class="hero-buttons">
+          <a href="#calculator" class="btn crm">Посчитать стоимость</a>
+          <a href="/cases/" class="btn">Посмотреть работы</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Калькулятор · сразу, без лонгрида: человек пришёл считать, а не читать -->
+    <section class="section" id="calculator">
+      <div class="container">
+        <div class="smeta-frame-wrap reveal">
+          <!-- Без loading="lazy": это главный элемент конверсии страницы, а не
+               декоративная картинка ниже сгиба. Ленивая загрузка означала бы, что
+               переход по CTA «Посчитать стоимость» (#calculator) может застать iframe
+               ещё не начавшим грузиться · секунды задержки ровно в момент, когда
+               посетитель ждёт мгновенного результата. preconnect в <head> уже
+               прогревает соединение заранее.
+               src нет в разметке намеренно · его ставит скрипт ниже, ДО первого
+               запроса, с уже разрешённой темой (?theme=). localStorage хоста
+               (adervis-theme) недоступен изнутри iframe · калькулятор живёт на
+               другом origin · иначе тёмная карточка оказывалась бы посреди
+               светлой страницы сайта до первого клика пользователя внутри неё. -->
+          <iframe
+            id="smetaCalc"
+            title="Калькулятор стоимости видео — ADERVIS"
+            referrerpolicy="strict-origin-when-cross-origin"
+          ></iframe>
+        </div>
+      </div>
+    </section>
+
+    <!-- Из чего складывается цена -->
+    <section class="section">
+      <div class="container">
+        <div class="section-head reveal">
+          <h2>Из чего складывается цена</h2>
+          <p>Цена видео складывается из трёх этапов работы, и на каждом можно как сэкономить, так и переплатить</p>
+        </div>
+        <div class="crm-feature-grid">
+          <div class="crm-feature-card reveal">
+            <span class="feature-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8L12 3z"/></svg>
+            </span>
+            <h3>Подготовка</h3>
+            <p>Идея, сценарий, раскадровка, план съёмочного дня, подбор локаций и людей в кадре. Самый недооценённый этап: именно здесь решается, будет ролик работать или просто «красиво снят».</p>
+          </div>
+          <div class="crm-feature-card reveal">
+            <span class="feature-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M10 8.5l6 3.5-6 3.5z" fill="currentColor" stroke="none"/></svg>
+            </span>
+            <h3>Съёмка</h3>
+            <p>Группа (оператор, режиссёр, звук, свет, ассистенты), камера и оптика, свет, стабилизация, дрон, локация. Считается сменами: один съёмочный день или три, разница в бюджете кратная.</p>
+          </div>
+          <div class="crm-feature-card reveal">
+            <span class="feature-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v4H4zM4 12h10M4 16h10M4 20h6"/></svg>
+            </span>
+            <h3>Постпродакшн</h3>
+            <p>Монтаж, цветокоррекция, чистка и сведение звука, музыка, титры, моушн-графика, версии под разные площадки. Здесь ролик из отснятого материала становится готовым продуктом.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Честно про «от» -->
+    <section class="section">
+      <div class="container">
+        <div class="section-head reveal">
+          <h2>Почему в калькуляторе цены «от»</h2>
+          <p>Потому что честный ответ на вопрос «сколько стоит видео» звучит как «зависит», и мы показываем, от чего именно</p>
+        </div>
+        <div class="crm-feature-grid">
+          <div class="crm-feature-card reveal">
+            <h3>Сценарий и сложность</h3>
+            <p>Интервью на одну камеру и рекламный ролик с постановочными сценами сильно различаются по трудозатратам при одинаковом хронометраже.</p>
+          </div>
+          <div class="crm-feature-card reveal">
+            <h3>Локации и логистика</h3>
+            <p>Съёмка в одном офисе или на трёх площадках в разных городах требуют разного количества смен, переездов и людей в команде.</p>
+          </div>
+          <div class="crm-feature-card reveal">
+            <h3>Сроки</h3>
+            <p>Спокойный график и «нужно к пятнице» стоят по-разному: срочный запуск означает работу параллельно и в выходные.</p>
+          </div>
+        </div>
+        <p class="reveal" style="text-align:center;margin-top:var(--sp-8);color:var(--muted);max-width:640px;margin-left:auto;margin-right:auto;line-height:1.6">
+          Поэтому калькулятор даёт ориентир по нашим базовым ставкам, а не коммерческое предложение.
+          Точную смету присылаем после короткого разговора: обычно это 15 минут, и после них цифра уже не меняется.
+        </p>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section">
+      <div class="container">
+        <div class="section-head reveal">
+          <h2>Частые вопросы</h2>
+          <p>Если не нашли ответ, напишите нам: ответим за 2 часа в рабочее время</p>
+        </div>
+        <div class="faq-list">
+          <details class="faq-item reveal">
+            <summary>Почему цена «от», а не точная?
+              <span class="faq-icon" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M8 3v10M3 8h10"/></svg></span>
+            </summary>
+            <p>У видео нет цены с полки. Она зависит от сценария, количества локаций и съёмочных смен, состава группы и сроков: два ролика одинаковой длительности могут отличаться по бюджету втрое. Калькулятор показывает порядок цены по нашим базовым ставкам, а точную смету мы присылаем после короткого разговора о задаче.</p>
+          </details>
+          <details class="faq-item reveal">
+            <summary>Что входит в стоимость съёмки?
+              <span class="faq-icon" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M8 3v10M3 8h10"/></svg></span>
+            </summary>
+            <p>Три этапа: подготовка (идея, сценарий, план съёмки), съёмка (группа, камера, свет, звук, локация) и постпродакшн (монтаж, цветокоррекция, звук, графика, титры). После выбора уровня калькулятор показывает конкретный состав работ по каждому этапу.</p>
+          </details>
+          <details class="faq-item reveal">
+            <summary>Сколько стоит минута видео?
+              <span class="faq-icon" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M8 3v10M3 8h10"/></svg></span>
+            </summary>
+            <p>Видео не считают за минуту: 30&nbsp;секунд рекламы с постановкой и 3&nbsp;минуты интервью на одну камеру стоят по-разному. Ориентиры по нашим базовым ставкам: рекламный ролик на 30–90&nbsp;секунд от&nbsp;44&nbsp;000&nbsp;₽, видео о компании от&nbsp;52&nbsp;000&nbsp;₽, съёмка мероприятия от&nbsp;35&nbsp;000&nbsp;₽, анимация и моушн от&nbsp;74&nbsp;000&nbsp;₽. Вилку под ваш хронометраж и число съёмочных смен покажет калькулятор выше, а цены для Перми собраны на странице <a href="/video/perm/">видеопродакшна в Перми</a>.</p>
+          </details>
+          <details class="faq-item reveal">
+            <summary>Сколько времени занимает производство ролика?
+              <span class="faq-icon" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M8 3v10M3 8h10"/></svg></span>
+            </summary>
+            <p>От одной недели для короткого ролика в соцсети до 4–6 недель для имиджевого фильма или рекламы. Калькулятор показывает ориентир по срокам вместе с ценой. Срочный запуск возможен, он считается отдельной надбавкой.</p>
+          </details>
+          <details class="faq-item reveal">
+            <summary>Как происходит оплата?
+              <span class="faq-icon" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M8 3v10M3 8h10"/></svg></span>
+            </summary>
+            <p>Обычно 50% предоплаты до старта работ и 50% после сдачи материала. Работаем с юрлицами и ИП по договору и счёту, с физлицами по договору-оферте.</p>
+          </details>
+          <details class="faq-item reveal">
+            <summary>Вы снимаете только в Перми?
+              <span class="faq-icon" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M8 3v10M3 8h10"/></svg></span>
+            </summary>
+            <p>База студии в Перми, снимаем по всей России, выезд считается отдельно (транспорт и проживание группы). Часть работ (монтаж, моушн-графика, AI-видео) делаем удалённо для любого города.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- Второй адресат страницы: студии, которым нужен такой же инструмент себе -->
+    <section class="section">
+      <div class="container">
+        <div class="section-head reveal">
+          <h2>Вы сами продакшн или фрилансер?</h2>
+          <p>Этот калькулятор работает как витрина каталога Adervis CRM: там та же смета настраивается под ваши ставки</p>
+        </div>
+        <div class="crm-feature-grid">
+          <div class="crm-feature-card reveal">
+            <span class="feature-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v4H4zM4 12h10M4 16h10M4 20h6"/></svg>
+            </span>
+            <h3>Своя смета за 15 минут</h3>
+            <p>90+ позиций каталога с моделями расчёта: смены, переработки, аренда по дням, монтаж по хронометражу. Свои ставки, налоговый режим и скидки.</p>
+          </div>
+          <div class="crm-feature-card reveal">
+            <span class="feature-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h12a1 1 0 011 1v8a1 1 0 01-1 1H2a1 1 0 01-1-1V4a1 1 0 011-1zm.4 1L8 8.4 13.6 4"/></svg>
+            </span>
+            <h3>КП с оплатой аванса</h3>
+            <p>Смета превращается в клиентский портал: заказчик открывает ссылку, соглашается и платит аванс онлайн, без созвонов и пересылки реквизитов.</p>
+          </div>
+          <div class="crm-feature-card reveal">
+            <span class="feature-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+            </span>
+            <h3>Сделки, финансы, задачи</h3>
+            <p>Лид → бриф → КП → согласование → работа. Поступления, расходы и дедлайны команды в одном окне вместе со сметой.</p>
+          </div>
+        </div>
+        <div class="hero-buttons" style="justify-content:center;margin-top:var(--sp-10)">
+          <a href="/crm/" class="btn crm">Подробнее про Adervis CRM</a>
+          <a href="https://crm.adervis.ru" class="btn" target="_blank" rel="noopener">Открыть CRM</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Контакты -->
+    <section class="section contact-section reveal" id="contacts">
+      <div class="container">
+        <h2>Обсудим ваш проект?</h2>
+        <p>Расскажите задачу: пришлём точную смету и покажем похожие работы. Ни к чему не обязывает.</p>
+        <div class="hero-buttons">
+          <a href="https://t.me/adervis_manager" class="btn crm" target="_blank" rel="noopener">Написать в Telegram</a>
+          <a href="tel:+79223018880" class="btn">+7 (922) 301-88-80</a>
+          <a href="mailto:adervis.digital@gmail.com" class="btn">adervis.digital@gmail.com</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Сюда подгрузится подвал -->
+  <div id="footer-placeholder"><!-- BEGIN:footer-placeholder -->
+<!-- Бегущая строка логотипов клиентов -->
+<section class="clients-ticker-section" aria-label="Наши клиенты">
+  <p class="ticker-label">Нам доверяют</p>
+  <div class="clients-ticker">
+    <div class="clients-ticker-track">
+      <!-- set 1 -->
+      <span class="clients-ticker-item"><img src="/assets/clients/sibur.webp" alt="Сибур" loading="lazy" width="360" height="360"></span>
+      <span class="clients-ticker-item"><img src="/assets/clients/himprom.webp" alt="Химпром" loading="lazy" width="360" height="360"></span>
+      <span class="clients-ticker-item"><img src="/assets/clients/promobot.webp" alt="Промобот" loading="lazy" width="360" height="360"></span>
+      <span class="clients-ticker-item"><img src="/assets/clients/ujin.webp" alt="UJIN" loading="lazy" width="360" height="360"></span>
+      <span class="clients-ticker-item"><img src="/assets/clients/anatomiya.webp" alt="Анатомия" loading="lazy" width="360" height="360"></span>
+      <span class="clients-ticker-item"><img src="/assets/clients/express-import.webp" alt="Express-Import" loading="lazy" width="360" height="222"></span>
+      <span class="clients-ticker-item"><img src="/assets/clients/top2b.webp" alt="Top2B" loading="lazy" width="360" height="360"></span>
+      <span class="clients-ticker-item"><img src="/assets/clients/stikbot.webp" alt="Stikbot" loading="lazy" width="360" height="360"></span>
+      <span class="clients-ticker-item"><img src="/assets/clients/psp.webp" alt="PSP" loading="lazy" width="360" height="360"></span>
+      <span class="clients-ticker-item"><img src="/assets/clients/atom.webp" alt="Атом" loading="lazy" width="360" height="360"></span>
+      <span class="clients-ticker-item"><img src="/assets/clients/rsbi.webp" alt="РСБИ" loading="lazy" width="360" height="360"></span>
+      <span class="clients-ticker-item"><img src="/assets/clients/appzone.webp" alt="AppZone" loading="lazy" width="360" height="248"></span>
+      <span class="clients-ticker-item"><img src="/assets/clients/moscow-calling.webp" alt="Moscow Calling" loading="lazy" width="360" height="360"></span>
+      <span class="clients-ticker-item"><img src="/assets/clients/promoil.webp" alt="Промойл" loading="lazy" width="360" height="248"></span>
+      <span class="clients-ticker-item"><img src="/assets/clients/bariton.webp" alt="Баритон" loading="lazy" width="360" height="360"></span>
+      <span class="clients-ticker-item"><img src="/assets/clients/kiokushin.webp" alt="Киокушин" loading="lazy" width="360" height="360"></span>
+      <span class="clients-ticker-item"><img src="/assets/clients/peri.webp" alt="PERI" loading="lazy" width="360" height="248"></span>
+      <span class="clients-ticker-item"><img src="/assets/clients/kadk.webp" alt="КАДК" loading="lazy" width="360" height="360"></span>
+      <span class="clients-ticker-item"><img src="/assets/clients/feliks.webp" alt="Феликс" loading="lazy" width="360" height="360"></span>
+      <span class="clients-ticker-item"><img src="/assets/clients/sosnovyi-bor.webp" alt="Сосновый Бор" loading="lazy" width="360" height="360"></span>
+      <span class="clients-ticker-item"><img src="/assets/clients/forward.webp" alt="Forward" loading="lazy" width="360" height="248"></span>
+      <span class="clients-ticker-item"><img src="/assets/clients/it.webp" alt="IT" loading="lazy" width="360" height="360"></span>
+      <span class="clients-ticker-item"><img src="/assets/clients/avrora.webp" alt="Аврора" loading="lazy" width="360" height="360"></span>
+      <span class="clients-ticker-item"><img src="/assets/clients/tomatolorika.webp" alt="Tomatolorika" loading="lazy" width="360" height="360"></span>
+      <span class="clients-ticker-item"><img src="/assets/clients/aratta.webp" alt="Аратта" width="360" height="360" class="on-dark" loading="lazy"></span>
+      <span class="clients-ticker-item"><img src="/assets/clients/mobilov.webp" alt="Mobilov" width="360" height="360" class="on-dark" loading="lazy"></span>
+      <span class="clients-ticker-item"><img src="/assets/clients/grafsil.webp" alt="Графсил" width="360" height="360" class="on-dark" loading="lazy"></span>
+      <span class="clients-ticker-item"><img src="/assets/clients/injiniring.webp" alt="Инжиниринг" width="360" height="360" class="on-dark" loading="lazy"></span>
+      <span class="clients-ticker-item"><img src="/assets/clients/sk-ferma.webp" alt="СК Ферма" width="360" height="360" class="on-dark" loading="lazy"></span>
+      <span class="clients-ticker-item"><img src="/assets/clients/rtmiss.webp" alt="РТМИСС" width="360" height="248" class="on-dark" loading="lazy"></span>
+      <span class="clients-ticker-item"><img src="/assets/clients/bitva-robotov.webp" alt="Битва роботов" width="360" height="360" class="on-dark" loading="lazy"></span>
+      <span class="clients-ticker-item"><img src="/assets/clients/rokstar.webp" alt="Рокстар" width="360" height="360" class="on-dark" loading="lazy"></span>
+      <span class="clients-ticker-item"><img src="/assets/clients/phuk.webp" alt="ПХУК" width="360" height="103" class="on-dark" loading="lazy"></span>
+      <span class="clients-ticker-item"><img src="/assets/clients/amaks.webp" alt="АМАКС" width="360" height="360" class="on-dark" loading="lazy"></span>
+      <span class="clients-ticker-item"><img src="/assets/clients/molodost.webp" alt="Молодость" width="360" height="248" class="on-dark" loading="lazy"></span>
+      <span class="clients-ticker-item"><img src="/assets/clients/lobanov.webp" alt="Lobanov Rest" width="360" height="248" class="on-dark" loading="lazy"></span>
+      <span class="clients-ticker-item"><img src="/assets/clients/wonder-bar.webp" alt="Wonder Bar" width="360" height="360" class="on-dark" loading="lazy"></span>
+      <span class="clients-ticker-item"><img src="/assets/clients/barbershop.webp" alt="Барбершоп" width="360" height="360" class="on-dark" loading="lazy"></span>
+      <span class="clients-ticker-item"><img src="/assets/clients/abs-avto.webp" alt="АБС Авто" width="360" height="248" class="on-dark" loading="lazy"></span>
+      <span class="clients-ticker-item"><img src="/assets/clients/freedom.webp" alt="Freedom" width="360" height="360" class="on-dark" loading="lazy"></span>
+      <span class="clients-ticker-item"><img src="/assets/clients/vs-music.webp" alt="VS-Music" width="360" height="360" class="on-dark" loading="lazy"></span>
+      <span class="clients-ticker-item"><img src="/assets/clients/nochnaya-liga.webp" alt="Ночная лига" loading="lazy" width="360" height="360"></span>
+      <span class="clients-ticker-item"><img src="/assets/clients/shabani.webp" alt="Shabani" loading="lazy" width="360" height="360"></span>
+      <span class="clients-ticker-item"><img src="/assets/clients/bani-onlayn.webp" alt="Бани Онлайн" loading="lazy" width="360" height="360"></span>
+      <span class="clients-ticker-item"><img src="/assets/clients/frikdens.webp" alt="Frikdens" loading="lazy" width="360" height="360"></span>
+      <span class="clients-ticker-item"><img src="/assets/clients/gnature.webp" alt="Gnature" loading="lazy" width="360" height="248"></span>
+      <!-- set 2 (точная копия для бесшовной петли) -->
+      <span class="clients-ticker-item" aria-hidden="true"><img src="/assets/clients/sibur.webp" alt="Сибур" loading="lazy" width="360" height="360"></span>
+      <span class="clients-ticker-item" aria-hidden="true"><img src="/assets/clients/himprom.webp" alt="Химпром" loading="lazy" width="360" height="360"></span>
+      <span class="clients-ticker-item" aria-hidden="true"><img src="/assets/clients/promobot.webp" alt="Промобот" loading="lazy" width="360" height="360"></span>
+      <span class="clients-ticker-item" aria-hidden="true"><img src="/assets/clients/ujin.webp" alt="UJIN" loading="lazy" width="360" height="360"></span>
+      <span class="clients-ticker-item" aria-hidden="true"><img src="/assets/clients/anatomiya.webp" alt="Анатомия" loading="lazy" width="360" height="360"></span>
+      <span class="clients-ticker-item" aria-hidden="true"><img src="/assets/clients/express-import.webp" alt="Express-Import" loading="lazy" width="360" height="222"></span>
+      <span class="clients-ticker-item" aria-hidden="true"><img src="/assets/clients/top2b.webp" alt="Top2B" loading="lazy" width="360" height="360"></span>
+      <span class="clients-ticker-item" aria-hidden="true"><img src="/assets/clients/stikbot.webp" alt="Stikbot" loading="lazy" width="360" height="360"></span>
+      <span class="clients-ticker-item" aria-hidden="true"><img src="/assets/clients/psp.webp" alt="PSP" loading="lazy" width="360" height="360"></span>
+      <span class="clients-ticker-item" aria-hidden="true"><img src="/assets/clients/atom.webp" alt="Атом" loading="lazy" width="360" height="360"></span>
+      <span class="clients-ticker-item" aria-hidden="true"><img src="/assets/clients/rsbi.webp" alt="РСБИ" loading="lazy" width="360" height="360"></span>
+      <span class="clients-ticker-item" aria-hidden="true"><img src="/assets/clients/appzone.webp" alt="AppZone" loading="lazy" width="360" height="248"></span>
+      <span class="clients-ticker-item" aria-hidden="true"><img src="/assets/clients/moscow-calling.webp" alt="Moscow Calling" loading="lazy" width="360" height="360"></span>
+      <span class="clients-ticker-item" aria-hidden="true"><img src="/assets/clients/promoil.webp" alt="Промойл" loading="lazy" width="360" height="248"></span>
+      <span class="clients-ticker-item" aria-hidden="true"><img src="/assets/clients/bariton.webp" alt="Баритон" loading="lazy" width="360" height="360"></span>
+      <span class="clients-ticker-item" aria-hidden="true"><img src="/assets/clients/kiokushin.webp" alt="Киокушин" loading="lazy" width="360" height="360"></span>
+      <span class="clients-ticker-item" aria-hidden="true"><img src="/assets/clients/peri.webp" alt="PERI" loading="lazy" width="360" height="248"></span>
+      <span class="clients-ticker-item" aria-hidden="true"><img src="/assets/clients/kadk.webp" alt="КАДК" loading="lazy" width="360" height="360"></span>
+      <span class="clients-ticker-item" aria-hidden="true"><img src="/assets/clients/feliks.webp" alt="Феликс" loading="lazy" width="360" height="360"></span>
+      <span class="clients-ticker-item" aria-hidden="true"><img src="/assets/clients/sosnovyi-bor.webp" alt="Сосновый Бор" loading="lazy" width="360" height="360"></span>
+      <span class="clients-ticker-item" aria-hidden="true"><img src="/assets/clients/forward.webp" alt="Forward" loading="lazy" width="360" height="248"></span>
+      <span class="clients-ticker-item" aria-hidden="true"><img src="/assets/clients/it.webp" alt="IT" loading="lazy" width="360" height="360"></span>
+      <span class="clients-ticker-item" aria-hidden="true"><img src="/assets/clients/avrora.webp" alt="Аврора" loading="lazy" width="360" height="360"></span>
+      <span class="clients-ticker-item" aria-hidden="true"><img src="/assets/clients/tomatolorika.webp" alt="Tomatolorika" loading="lazy" width="360" height="360"></span>
+      <span class="clients-ticker-item" aria-hidden="true"><img src="/assets/clients/aratta.webp" alt="Аратта" width="360" height="360" class="on-dark" loading="lazy"></span>
+      <span class="clients-ticker-item" aria-hidden="true"><img src="/assets/clients/mobilov.webp" alt="Mobilov" width="360" height="360" class="on-dark" loading="lazy"></span>
+      <span class="clients-ticker-item" aria-hidden="true"><img src="/assets/clients/grafsil.webp" alt="Графсил" width="360" height="360" class="on-dark" loading="lazy"></span>
+      <span class="clients-ticker-item" aria-hidden="true"><img src="/assets/clients/injiniring.webp" alt="Инжиниринг" width="360" height="360" class="on-dark" loading="lazy"></span>
+      <span class="clients-ticker-item" aria-hidden="true"><img src="/assets/clients/sk-ferma.webp" alt="СК Ферма" width="360" height="360" class="on-dark" loading="lazy"></span>
+      <span class="clients-ticker-item" aria-hidden="true"><img src="/assets/clients/rtmiss.webp" alt="РТМИСС" width="360" height="248" class="on-dark" loading="lazy"></span>
+      <span class="clients-ticker-item" aria-hidden="true"><img src="/assets/clients/bitva-robotov.webp" alt="Битва роботов" width="360" height="360" class="on-dark" loading="lazy"></span>
+      <span class="clients-ticker-item" aria-hidden="true"><img src="/assets/clients/rokstar.webp" alt="Рокстар" width="360" height="360" class="on-dark" loading="lazy"></span>
+      <span class="clients-ticker-item" aria-hidden="true"><img src="/assets/clients/phuk.webp" alt="ПХУК" width="360" height="103" class="on-dark" loading="lazy"></span>
+      <span class="clients-ticker-item" aria-hidden="true"><img src="/assets/clients/amaks.webp" alt="АМАКС" width="360" height="360" class="on-dark" loading="lazy"></span>
+      <span class="clients-ticker-item" aria-hidden="true"><img src="/assets/clients/molodost.webp" alt="Молодость" width="360" height="248" class="on-dark" loading="lazy"></span>
+      <span class="clients-ticker-item" aria-hidden="true"><img src="/assets/clients/lobanov.webp" alt="Lobanov Rest" width="360" height="248" class="on-dark" loading="lazy"></span>
+      <span class="clients-ticker-item" aria-hidden="true"><img src="/assets/clients/wonder-bar.webp" alt="Wonder Bar" width="360" height="360" class="on-dark" loading="lazy"></span>
+      <span class="clients-ticker-item" aria-hidden="true"><img src="/assets/clients/barbershop.webp" alt="Барбершоп" width="360" height="360" class="on-dark" loading="lazy"></span>
+      <span class="clients-ticker-item" aria-hidden="true"><img src="/assets/clients/abs-avto.webp" alt="АБС Авто" width="360" height="248" class="on-dark" loading="lazy"></span>
+      <span class="clients-ticker-item" aria-hidden="true"><img src="/assets/clients/freedom.webp" alt="Freedom" width="360" height="360" class="on-dark" loading="lazy"></span>
+      <span class="clients-ticker-item" aria-hidden="true"><img src="/assets/clients/vs-music.webp" alt="VS-Music" width="360" height="360" class="on-dark" loading="lazy"></span>
+      <span class="clients-ticker-item" aria-hidden="true"><img src="/assets/clients/nochnaya-liga.webp" alt="Ночная лига" loading="lazy" width="360" height="360"></span>
+      <span class="clients-ticker-item" aria-hidden="true"><img src="/assets/clients/shabani.webp" alt="Shabani" loading="lazy" width="360" height="360"></span>
+      <span class="clients-ticker-item" aria-hidden="true"><img src="/assets/clients/bani-onlayn.webp" alt="Бани Онлайн" loading="lazy" width="360" height="360"></span>
+      <span class="clients-ticker-item" aria-hidden="true"><img src="/assets/clients/frikdens.webp" alt="Frikdens" loading="lazy" width="360" height="360"></span>
+      <span class="clients-ticker-item" aria-hidden="true"><img src="/assets/clients/gnature.webp" alt="Gnature" loading="lazy" width="360" height="248"></span>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     Lesse-style footer: сервисные колонки + гигантский ADERVIS
+     ═══════════════════════════════════════════════ -->
+<footer class="footer-lesse">
+
+  <!-- Верхняя зона: контакт слева + 5 колонок услуг справа -->
+  <div class="footer-lesse__top">
+
+    <div class="footer-lesse__brand">
+      <a href="/" class="brand">
+        <img src="/logo.svg" id="footerLogo" data-dark="/logo.svg" data-light="/logoB.svg" alt="ADERVIS" width="120" height="29">
+      </a>
+      <p class="footer-lesse__tagline">Продакшн-студия с 2018 года · Пермь.<br>Видео, дизайн, фото и ИИ для брендов.</p>
+      <div class="footer-lesse__contacts">
+        <a href="tel:+79223018880">+7 (922) 301-88-80</a>
+        <a href="mailto:adervis.digital@gmail.com">adervis.digital@gmail.com</a>
+      </div>
+    </div>
+
+    <div class="footer-lesse__cols">
+
+      <nav class="footer-lesse__col" aria-labelledby="footer-col-video">
+        <span class="footer-lesse__col-title" id="footer-col-video">Видео</span>
+        <a href="/video/">Рекламные ролики</a>
+        <a href="/video/">Корпоративное видео</a>
+        <a href="/video/">Event-съёмка</a>
+        <a href="/video/">Шоурилы</a>
+        <a href="/video/">Клипы и reels</a>
+        <a href="/video/perm/">Видеопродакшн в Перми</a>
+      </nav>
+
+      <nav class="footer-lesse__col" aria-labelledby="footer-col-design">
+        <span class="footer-lesse__col-title" id="footer-col-design">Дизайн</span>
+        <a href="/design/">Брендинг</a>
+        <a href="/design/">Фирменный стиль</a>
+        <a href="/design/">Полиграфия</a>
+        <a href="/design/">Моушн-графика</a>
+        <a href="/design/perm/">Фирменный стиль в Перми</a>
+      </nav>
+
+      <nav class="footer-lesse__col" aria-labelledby="footer-col-photo">
+        <span class="footer-lesse__col-title" id="footer-col-photo">Фото</span>
+        <a href="/photo/">Каталожная съёмка</a>
+        <a href="/photo/">Предметная съёмка</a>
+        <a href="/photo/">Event-фото</a>
+        <a href="/photo/">Портреты команды</a>
+        <a href="/photo/perm/">Фотосъёмка в Перми</a>
+      </nav>
+
+      <nav class="footer-lesse__col" aria-labelledby="footer-col-ai">
+        <span class="footer-lesse__col-title" id="footer-col-ai">ИИ-контент</span>
+        <a href="/ai/">AI-генерация</a>
+        <a href="/ai/">AI-видео</a>
+        <a href="/ai/">AI-брендинг</a>
+        <a href="/ai/">AI-автоматизация</a>
+      </nav>
+
+      <nav class="footer-lesse__col" aria-labelledby="footer-col-studio">
+        <span class="footer-lesse__col-title" id="footer-col-studio">Студия</span>
+        <a href="/crm/">Adervis CRM</a>
+        <a href="/crm/smeta/">Калькулятор стоимости</a>
+        <a href="/cases/">Портфолио</a>
+        <a href="/guides/brief.html">Чек-лист брифа</a>
+        <a href="/careers/">Вакансии</a>
+        <a href="/docs/#docs-offer">Оферта</a>
+        <a href="/docs/#docs-privacy">Политика конфиденциальности</a>
+      </nav>
+
+    </div>
+  </div>
+
+  <!-- Социальные ссылки + копирайт -->
+  <div class="footer-lesse__brand-block">
+    <div class="footer-lesse__social-row">
+      <a href="https://vk.com/adervis_digital" target="_blank" rel="noopener">ВКонтакте<span class="sr-only"> (новая вкладка)</span></a>
+      <a href="https://t.me/Adervis_digital" target="_blank" rel="noopener">Telegram<span class="sr-only"> (новая вкладка)</span></a>
+      <a href="https://www.youtube.com/channel/UCwL-PkN9Jul92VJm5gFgY-Q" target="_blank" rel="noopener">YouTube<span class="sr-only"> (новая вкладка)</span></a>
+      <a href="https://www.behance.net/adervisdigital" target="_blank" rel="noopener">Behance<span class="sr-only"> (новая вкладка)</span></a>
+    </div>
+    <div class="footer-lesse__legal-row">
+      <span class="footer-lesse__copy">© 2026 Adervis Digital</span>
+      <a href="/docs/#docs-offer" class="footer-lesse__legal-link">Оферта</a>
+      <a href="/docs/#docs-privacy" class="footer-lesse__legal-link">Политика конфиденциальности</a>
+      <span class="footer-lesse__copy">Сайт использует cookie и Яндекс.Метрику для аналитики</span>
+    </div>
+  </div>
+
+</footer>
+
+<button type="button" class="to-top" id="toTop" aria-label="Наверх страницы">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <path d="M12 19V5M5 12l7-7 7 7"/>
+  </svg>
+</button>
+
+<div class="cookie-banner" id="cookieBanner" role="region" aria-label="Уведомление об использовании cookie" hidden>
+  <p class="cookie-banner__text">
+    Сайт использует файлы cookie и сервис веб-аналитики «Яндекс.Метрика». Они помогают понимать, как посетители пользуются сайтом и какая реклама приводит заявки. Продолжая пользоваться сайтом, вы соглашаетесь с этим. Подробности в <a href="/docs/#docs-privacy">Политике конфиденциальности</a>.
+  </p>
+  <button type="button" class="cookie-banner__accept" id="cookieBannerAccept">Принимаю</button>
+</div>
+<!-- END:footer-placeholder --></div>
+
+  <script src="../../js/app.min.js?v=57be7eab"></script>
+  <script>
+    // Синхронизация высоты встроенного калькулятора: crm.adervis.ru шлёт свою
+    // scrollHeight через postMessage (см. _calcPostHeight() в app.js калькулятора),
+    // чтобы внутри iframe не было второго скролла поверх скролла страницы —
+    // самое неприятное, что может быть у встроенного виджета на телефоне.
+    (function () {
+      var frame = document.getElementById('smetaCalc');
+      if (!frame) return;
+
+      // Тема хоста передаётся ?theme=…, а не читается из localStorage (недоступен
+      // кросс-origin) · см. initTheme() в app.js калькулятора. Ставим src здесь,
+      // а не в разметке, чтобы первый же запрос ушёл уже с правильной темой.
+      var hostTheme = document.documentElement.getAttribute('data-theme') === 'light' ? 'light' : 'dark';
+      // ?a=… · чей каталог считать. Без него калькулятор берёт каталог, зашитый в
+      // код приложения (BASE_ITEMS), а не реальные цены из CRM: правки прайса в
+      // CRM на эту страницу не доезжали вовсе. Тот же параметр каждая студия
+      // получает в своих настройках · так одна и та же страница считает по
+      // каталогу того, кто её встроил.
+      // Требует включённого переключателя «Публичный калькулятор» в CRM: пока он
+      // выключен, сервер каталог не отдаёт и страница честно скажет, что расчёт
+      // недоступен, · вместо того чтобы молча показать чужие цены.
+      var agencyId = '47880b74-de7b-4ef5-8fcf-5e9ae7497edc';
+      frame.src = 'https://crm.adervis.ru/?calc=1&a=' + agencyId + '&theme=' + hostTheme;
+
+      // Живое переключение темы сайта (кнопка в шапке) · пересылаем в уже
+      // загруженный iframe через свой canal, а не перезагрузкой src.
+      document.addEventListener('adervis:theme-change', function (e) {
+        var theme = e.detail && e.detail.theme;
+        if (theme !== 'light' && theme !== 'dark') return;
+        frame.contentWindow.postMessage({ type: 'adervis-set-theme', theme: theme }, 'https://crm.adervis.ru');
+      });
+
+      window.addEventListener('message', function (e) {
+        if (e.origin !== 'https://crm.adervis.ru') return;
+        var data = e.data;
+        if (!data) return;
+
+        if (data.type === 'adervis-calc-height' && data.height) {
+          frame.style.height = Math.max(560, data.height) + 'px';
+          return;
+        }
+
+        // Калькулятор сменил шаг и просит показать себя целиком: внутри iframe
+        // он собственную позицию на странице не знает и проскроллить нас не может.
+        if (data.type === 'adervis-calc-scroll') {
+          var box = frame.getBoundingClientRect();
+          if (box.top < 0 || box.top > window.innerHeight * 0.5) {
+            frame.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+          return;
+        }
+
+        // Заявка из калькулятора. Отправляет её страница, а не iframe: лид-прокси
+        // принимает POST только с adervis.ru, и ослаблять эту проверку ради
+        // встроенного виджета значило бы открыть форму всему интернету.
+        if (data.type === 'adervis-calc-lead' && typeof data.text === 'string') {
+          var reply = function (ok) {
+            frame.contentWindow.postMessage(
+              { type: 'adervis-calc-lead-result', id: data.id, ok: ok },
+              'https://crm.adervis.ru'
+            );
+          };
+          if (typeof sendTelegramMessage !== 'function') { reply(false); return; }
+          sendTelegramMessage(
+            data.text.slice(0, 3000),
+            function () { reply(true); },
+            function () { reply(false); },
+            'lead_calc'
+          );
+        }
+      });
+    })();
+  </script>
+</body>
+</html>

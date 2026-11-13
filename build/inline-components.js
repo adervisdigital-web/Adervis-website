@@ -47,8 +47,8 @@ const PAGES = [
   "cases/stickbot/index.html",
   "cases/toyota-supra-green-mamba/index.html",
   "careers/index.html",
-  "pro/index.html",
-  "pro/smeta/index.html",
+  "crm/index.html",
+  "crm/smeta/index.html",
   "edu/index.html",
   "docs/index.html",
   // Гео-страницы под локальные запросы («видеопродакшн в Перми» и т.п.)

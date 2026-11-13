@@ -10780,7 +10780,7 @@ body.no-clients .clients-ticker-section {
      .crm-devices__float — левитация всей связки
      .crm-devices__tilt  — доворот в 3D при наведении
      .crm-devices__shine — блик, обрезанный по силуэту техники через mask
-   Общий компонент: баннер главной (.crm-banner) и hero /pro/ (.crm-hero).
+   Общий компонент: баннер главной (.crm-banner) и hero /crm/ (.crm-hero).
    ═══════════════════════════════════════════════════════════════ */
 .crm-devices {
   position: relative;
