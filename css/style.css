@@ -8664,7 +8664,8 @@ body.no-clients .clients-ticker-section {
   pointer-events: none;
 }
 
-.gallery-card:hover .media-frame__hover {
+.gallery-card:hover .media-frame__hover,
+.gallery-card:focus-visible .media-frame__hover {
   opacity: 1;
   transform: translateY(0);
   pointer-events: auto;
