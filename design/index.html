@@ -40,7 +40,7 @@
     "offers": { "@type": "Offer", "priceCurrency": "RUB", "availability": "https://schema.org/InStock" }
   }
   </script>
-  <link rel="preload" href="/fonts/unbounded-700-cyrillic.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="/fonts/unbounded-700-latin.woff2" as="font" type="font/woff2" crossorigin><link rel="stylesheet" href="../css/style.min.css?v=405b01b0">
+  <link rel="preload" href="/fonts/unbounded-700-cyrillic.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="/fonts/unbounded-700-latin.woff2" as="font" type="font/woff2" crossorigin><link rel="stylesheet" href="../css/style.min.css?v=aca3ecbc">
 
   <script type="application/ld+json">
   {
@@ -410,7 +410,8 @@
         <div class="page-aurora__blob page-aurora__blob--1"></div>
         <div class="page-aurora__blob page-aurora__blob--2"></div>
       </div>
-      <div class="container">
+      <div class="container design-hero">
+        <div class="design-hero__text">
         <span class="eyebrow">Дизайн и брендинг</span>
         <h1>Стиль, который узнают раньше, чем читают название</h1>
         <p>Разработка логотипа, фирменного стиля и брендбука. Собираем визуальную систему бренда от первого скетча до готового гайдлайна, по которому будет работать любой подрядчик. <a href="/design/perm/">Дизайн-студия в Перми</a>, работаем по всей России.</p>
@@ -419,13 +420,15 @@
           <a href="#contacts" class="btn">Обсудить проект</a>
         </div>
         <div class="hero-kpi-line">
-          <strong>100+</strong> логотипов и стилей
-          <span class="hero-kpi-sep">·</span>
-          <strong>50+</strong> брендов
-          <span class="hero-kpi-sep">·</span>
-          <strong>100%</strong> под ключ
-          <span class="hero-kpi-sep">·</span>
-          от знака до брендбука
+          <span class="ai-kpi"><strong>100+</strong> логотипов и стилей</span>
+          <span class="hero-kpi-sep" aria-hidden="true">·</span>
+          <span class="ai-kpi"><strong>50+</strong> брендов</span>
+          <span class="hero-kpi-sep" aria-hidden="true">·</span>
+          <span class="ai-kpi"><strong>100%</strong> под ключ, от знака до брендбука</span>
+        </div>
+        </div>
+        <div class="design-hero__visual" aria-hidden="true">
+          <img src="hero-mockup.webp" srcset="hero-mockup-420.webp 420w, hero-mockup.webp 836w" sizes="(max-width: 900px) 80vw, 520px" width="836" height="741" alt="" decoding="async" fetchpriority="high">
         </div>
       </div>
     </section>
@@ -489,31 +492,9 @@
     </section>
 
     <!-- Цифры -->
-    <section class="section">
-      <div class="container">
-        <div class="stats-grid">
-          <div class="stat-card reveal">
-            <div class="stat-number">100+</div>
-            <div class="stat-label">логотипов и фирменных стилей в портфолио</div>
-          </div>
-          <div class="stat-card reveal">
-            <div class="stat-number">50+</div>
-            <div class="stat-label">компаний и брендов сработались с нами</div>
-          </div>
-          <div class="stat-card reveal">
-            <div class="stat-number">4</div>
-            <div class="stat-label">продукта: логотип, стиль, брендбук, полиграфия</div>
-          </div>
-          <div class="stat-card reveal">
-            <div class="stat-number">100%</div>
-            <div class="stat-label">исходников и брендбук всегда передаются клиенту</div>
-          </div>
-        </div>
-      </div>
-    </section>
 
     <!-- Как мы работаем -->
-    <section class="section">
+    <section class="section" id="dflow">
       <div class="container">
         <div class="section-head reveal">
           <h2>Как мы разрабатываем фирменный стиль: четыре шага от брифа</h2>
@@ -549,17 +530,14 @@
       <div class="container">
         <div class="spotlight reveal">
           <div class="media-frame" data-dir="design" style="--ratio: 16 / 9; padding: 0; border-style: solid;">
-            <iframe
-              src="https://www.youtube.com/embed/eN57559QUY4?rel=0&modestbranding=1"
-              title="Express Import — презентация фирменного стиля | Adervis"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              loading="lazy"
-              style="position:absolute; inset:0; width:100%; height:100%; border:0;"
-            ></iframe>
+            <a class="yt-lite" href="https://www.youtube.com/watch?v=eN57559QUY4" target="_blank" rel="noopener" data-yt="eN57559QUY4" data-title="Express Import — презентация фирменного стиля | Adervis" aria-label="Смотреть видео: Express Import, презентация фирменного стиля">
+              <img src="../cases/express-import-video-case.webp" width="1280" height="720" alt="" loading="lazy" decoding="async">
+              <span class="yt-lite__play" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13a1 1 0 0 0 1.5.86l10.4-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5z"/></svg></span>
+            </a>
           </div>
           <div class="spotlight-text">
             <span class="badge">Кейс из портфолио</span>
-            <h3>Express Import — фирменный стиль и видеопрезентация</h3>
+            <h2 class="spotlight-title">Express Import — фирменный стиль и видеопрезентация</h2>
             <p>Разработали визуальную систему бренда для международной логистической компании: логотип, фирменный стиль и брендбук, и собрали видеопрезентацию фирменного стиля, которая наглядно показывает систему в действии.</p>
             <ul class="spotlight-meta">
               <li>Логотип + фирменный стиль</li>
@@ -578,77 +556,77 @@
           <h2>Бренды, для которых мы создавали айдентику</h2>
           <p>Больше 100 логотипов и фирменных стилей: от производственных компаний до спортивных команд и заведений. Вот часть из них</p>
         </div>
-        <div class="dp-grid">
+        <div class="dp-grid dp-grid--even">
 
-          <a href="/cases/zagadkino/" class="dp-case dp-case--full reveal">
-            <picture><source srcset="../assets/cases/zagadkino/card-design-640.webp 640w, ../assets/cases/zagadkino/card-design-1280.webp 1280w, ../assets/cases/zagadkino/card-design.webp 1824w" sizes="(max-width: 760px) 88vw, 1390px" type="image/webp"><img src="../assets/cases/zagadkino/card-design.jpg" alt="«Загадкино» — фирменный стиль, упаковка и контент" width="1824" height="798" class="dp-case__img" loading="lazy"></picture>
+          <a href="/cases/zagadkino/" class="dp-case reveal">
+            <picture><source srcset="../assets/cases/zagadkino/card-design-640.webp 640w, ../assets/cases/zagadkino/card-design-1280.webp 1280w, ../assets/cases/zagadkino/card-design.webp 1824w" sizes="(max-width: 760px) 88vw, 1390px" type="image/webp"><img src="../assets/cases/zagadkino/card-design.jpg" alt="" width="1824" height="798" class="dp-case__img" loading="lazy"></picture>
             <div class="dp-case__overlay">
-              <span class="dp-case__type">Брендинг · Упаковка · Контент · 2026</span>
               <span class="dp-case__client">«Загадкино» — бренд магазина головоломок</span>
+              <span class="dp-case__type">Брендинг · Упаковка · Контент · 2026</span>
             </div>
           </a>
 
-          <a href="/cases/graphsil/" class="dp-case dp-case--full reveal">
-            <picture><source srcset="../cases/GRAPHSEAL/1GRAPHSEAL-640.webp 640w, ../cases/GRAPHSEAL/1GRAPHSEAL-1280.webp 1280w, ../cases/GRAPHSEAL/1GRAPHSEAL.webp 1920w" sizes="(max-width: 760px) 88vw, 1390px" type="image/webp"><img src="../cases/GRAPHSEAL/1GRAPHSEAL.jpg" alt="ГРАФСИЛ — брендбук и фирменный стиль" width="1920" height="1080" class="dp-case__img" loading="lazy"></picture>
+          <a href="/cases/graphsil/" class="dp-case reveal">
+            <picture><source srcset="../cases/GRAPHSEAL/1GRAPHSEAL-640.webp 640w, ../cases/GRAPHSEAL/1GRAPHSEAL-1280.webp 1280w, ../cases/GRAPHSEAL/1GRAPHSEAL.webp 1920w" sizes="(max-width: 760px) 88vw, 1390px" type="image/webp"><img src="../cases/GRAPHSEAL/1GRAPHSEAL.jpg" alt="" width="1920" height="1080" class="dp-case__img" loading="lazy"></picture>
             <div class="dp-case__overlay">
-              <span class="dp-case__type">Брендинг · Брендбук · 2024</span>
               <span class="dp-case__client">ГРАФСИЛ — фирменный стиль</span>
+              <span class="dp-case__type">Брендинг · Брендбук · 2024</span>
             </div>
           </a>
 
-          <a href="/cases/injiniring/" class="dp-case dp-case--full reveal">
-            <picture><source srcset="../cases/injiniring/1injiniring-640.webp 640w, ../cases/injiniring/1injiniring-1280.webp 1280w, ../cases/injiniring/1injiniring.webp 1920w" sizes="(max-width: 760px) 88vw, 1390px" type="image/webp"><img src="../cases/injiniring/1injiniring.jpg" alt="ИНЖИНИРИНГ+ — фирменный стиль" width="1920" height="1080" class="dp-case__img" loading="lazy"></picture>
+          <a href="/cases/injiniring/" class="dp-case reveal">
+            <picture><source srcset="../cases/injiniring/1injiniring-640.webp 640w, ../cases/injiniring/1injiniring-1280.webp 1280w, ../cases/injiniring/1injiniring.webp 1920w" sizes="(max-width: 760px) 88vw, 1390px" type="image/webp"><img src="../cases/injiniring/1injiniring.jpg" alt="" width="1920" height="1080" class="dp-case__img" loading="lazy"></picture>
             <div class="dp-case__overlay">
-              <span class="dp-case__type">Брендинг · Фирстиль · 2021</span>
               <span class="dp-case__client">ИНЖИНИРИНГ+ — фирменный стиль</span>
+              <span class="dp-case__type">Брендинг · Фирстиль · 2021</span>
             </div>
           </a>
 
           <a href="/cases/express-import/" class="dp-case reveal">
-            <picture><source srcset="../cases/express-import/1express-import.webp" type="image/webp"><img src="../cases/express-import/1express-import.jpg" alt="EXPRESS-IMPORT — фирменный стиль и сайт" width="808" height="632" class="dp-case__img" loading="lazy"></picture>
+            <picture><source srcset="../cases/express-import/1express-import.webp" type="image/webp"><img src="../cases/express-import/1express-import.jpg" alt="" width="808" height="632" class="dp-case__img" loading="lazy"></picture>
             <div class="dp-case__overlay">
-              <span class="dp-case__type">Брендинг · Сайт · 2018</span>
               <span class="dp-case__client">EXPRESS-IMPORT</span>
+              <span class="dp-case__type">Брендинг · Сайт · 2018</span>
             </div>
           </a>
 
           <a href="/cases/mobilov/" class="dp-case reveal">
-            <picture><source srcset="../cases/mobilov/1mobilov.webp" type="image/webp"><img src="../cases/mobilov/1mobilov.jpg" alt="MOBILOV — фирменный стиль сервисного центра" width="808" height="632" class="dp-case__img" loading="lazy"></picture>
+            <picture><source srcset="../cases/mobilov/1mobilov.webp" type="image/webp"><img src="../cases/mobilov/1mobilov.jpg" alt="" width="808" height="632" class="dp-case__img" loading="lazy"></picture>
             <div class="dp-case__overlay">
-              <span class="dp-case__type">Нейминг · Брендинг · 2019</span>
               <span class="dp-case__client">MOBILOV</span>
+              <span class="dp-case__type">Нейминг · Брендинг · 2019</span>
             </div>
           </a>
 
           <a href="/cases/psp-sport/" class="dp-case reveal">
-            <picture><source srcset="../cases/psp-sport/1psp-sport-640.webp 640w, ../cases/psp-sport/1psp-sport.webp 1400w" sizes="(max-width: 760px) 43vw, 339px" type="image/webp"><img src="../cases/psp-sport/1psp-sport.jpg" alt="PSP SPORT NUTRITION — дизайн упаковки" width="1400" height="788" class="dp-case__img" loading="lazy"></picture>
+            <picture><source srcset="../cases/psp-sport/1psp-sport-640.webp 640w, ../cases/psp-sport/1psp-sport.webp 1400w" sizes="(max-width: 760px) 43vw, 339px" type="image/webp"><img src="../cases/psp-sport/1psp-sport.jpg" alt="" width="1400" height="788" class="dp-case__img" loading="lazy"></picture>
             <div class="dp-case__overlay">
-              <span class="dp-case__type">Упаковка · FMCG · 2019</span>
               <span class="dp-case__client">PSP SPORT NUTRITION</span>
+              <span class="dp-case__type">Упаковка · FMCG · 2019</span>
             </div>
           </a>
 
           <a href="/cases/aratta/" class="dp-case reveal">
-            <picture><source srcset="../cases/aratta/1aratta.webp" type="image/webp"><img src="../cases/aratta/1aratta.jpg" alt="АРАТТА — фирменный стиль" width="808" height="632" class="dp-case__img" loading="lazy"></picture>
+            <picture><source srcset="../cases/aratta/1aratta.webp" type="image/webp"><img src="../cases/aratta/1aratta.jpg" alt="" width="808" height="632" class="dp-case__img" loading="lazy"></picture>
             <div class="dp-case__overlay">
-              <span class="dp-case__type">Брендинг · Премиум · 2020</span>
               <span class="dp-case__client">АРАТТА</span>
+              <span class="dp-case__type">Брендинг · Премиум · 2020</span>
             </div>
           </a>
 
           <a href="/cases/panorama/" class="dp-case reveal">
-            <picture><source srcset="../cases/panorama/1panorama.webp" type="image/webp"><img src="../cases/panorama/1panorama.jpg" alt="«ПАНОРАМА» — фирменный стиль и сайт" width="808" height="632" class="dp-case__img" loading="lazy"></picture>
+            <picture><source srcset="../cases/panorama/1panorama.webp" type="image/webp"><img src="../cases/panorama/1panorama.jpg" alt="" width="808" height="632" class="dp-case__img" loading="lazy"></picture>
             <div class="dp-case__overlay">
-              <span class="dp-case__type">Брендинг · Сайт · 2019</span>
               <span class="dp-case__client">«ПАНОРАМА»</span>
+              <span class="dp-case__type">Брендинг · Сайт · 2019</span>
             </div>
           </a>
 
           <a href="/cases/felix/" class="dp-case reveal">
-            <picture><source srcset="../cases/felix/1felix.webp" type="image/webp"><img src="../cases/felix/1felix.jpg" alt="«Феликс» — фирменный стиль бухгалтерского агентства" width="808" height="632" class="dp-case__img" loading="lazy"></picture>
+            <picture><source srcset="../cases/felix/1felix.webp" type="image/webp"><img src="../cases/felix/1felix.jpg" alt="" width="808" height="632" class="dp-case__img" loading="lazy"></picture>
             <div class="dp-case__overlay">
-              <span class="dp-case__type">Брендинг · Логотип · 2021</span>
               <span class="dp-case__client">«Феликс»</span>
+              <span class="dp-case__type">Брендинг · Логотип · 2021</span>
             </div>
           </a>
 
@@ -673,33 +651,6 @@
     </section>
 
     <!-- Промо-блок: новый уровень -->
-    <section class="design-promo-block reveal">
-      <div class="dpb-bg"></div>
-      <div class="dpb-mid"></div>
-      <div class="dpb-shade"></div>
-
-      <div class="container dpb-grid">
-        <!-- Левая колонка: текст -->
-        <div class="dpb-text">
-          <span class="eyebrow">Adervis Design</span>
-          <h2 class="dpb-title">Выведите бизнес<br>на новый <span class="dpb-accent">уровень!</span></h2>
-          <p class="dpb-desc">Создаём логотипы, фирменный стиль и брендбуки: визуальные системы, которые делают бренд узнаваемым и продают без слов.</p>
-          <div class="hero-buttons">
-            <a href="#contacts" class="btn primary">Обсудить проект</a>
-            <a href="#works" class="btn">Смотреть кейсы</a>
-          </div>
-        </div>
-
-        <!-- Правая колонка: 3D-макеты -->
-        <div class="dpb-visual" aria-hidden="true">
-          <!-- wrap: JS cursor parallax -->
-          <div class="dpb-mockup-wrap">
-            <!-- float: CSS float animation (без конфликта) -->
-            <div class="dpb-mockup-float"></div>
-          </div>
-        </div>
-      </div>
-    </section>
 
     <!-- Отзывы -->
     <section class="section">
@@ -1422,7 +1373,7 @@
 </div>
 <!-- END:footer-placeholder --></div>
 
-  <script src="../js/app.min.js?v=d9a48a94"></script>
+  <script src="../js/app.min.js?v=b5ce9209"></script>
   <script>
   /* Hero BG-F.png: деформация ТОЛЬКО под курсором */
   (function () {

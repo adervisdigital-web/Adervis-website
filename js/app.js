@@ -165,6 +165,12 @@ function showToast(msg, duration = 4000, actions = null) {
   }, duration);
 }
 
+// На странице одновременно звучит только одна дорожка (шапка, ИИ-звонок, демо озвучки)
+document.addEventListener("play", (e) => {
+  if (!(e.target instanceof HTMLMediaElement)) return;
+  document.querySelectorAll("audio, video").forEach((a) => { if (a !== e.target && !a.paused) a.pause(); });
+}, true);
+
 document.addEventListener("DOMContentLoaded", () => {
   // Открываем страницу с самого верха — кроме перехода по якорю (#contacts и т.п.)
   if (!window.location.hash) window.scrollTo(0, 0);
@@ -214,6 +220,15 @@ document.addEventListener("DOMContentLoaded", () => {
   initServicesGrid();
   initHeroQuiz();
   initQuiz();
+  initQuizPhone();
+  initAiCall();
+  initAiFormats();
+  initAiVoiceDemo();
+  initPfVideo();
+  initProShotsTabs();
+  initLeadSheet();
+  initHeroTickerPause();
+  initYtLite();
   initModal();
   initCtaDirChips();
   initVideoPoster();
@@ -229,7 +244,6 @@ document.addEventListener("DOMContentLoaded", () => {
   initScrollProgress();
   initCardSpotlight();
   initCustomCursor();
-  initMagneticButtons();
   initVkVideoApi();
   initVideoGallery();
   initReviewsSlider();
@@ -270,6 +284,7 @@ function initQuiz() {
 
     if (n === 4) renderSummary();
     if (n === 5 && bar) bar.style.width = '100%';
+    card.dispatchEvent(new CustomEvent('quiz:step', { detail: { step: n, answers: Object.assign({}, answers) } }));
   }
 
   function renderSummary() {
@@ -565,9 +580,9 @@ function initCtaDirChips() {
   chips.forEach(chip => {
     chip.addEventListener('click', () => {
       const wasActive = chip.classList.contains('is-active');
-      chips.forEach(c => c.classList.remove('is-active'));
+      chips.forEach(c => { c.classList.remove('is-active'); c.setAttribute('aria-pressed', 'false'); });
       const newVal = wasActive ? null : chip.dataset.val;
-      if (!wasActive) chip.classList.add('is-active');
+      if (!wasActive) { chip.classList.add('is-active'); chip.setAttribute('aria-pressed', 'true'); }
       // Sync hero quiz chips
       document.querySelectorAll('.hero-quiz__chip').forEach(c => {
         c.classList.toggle('is-active', c.dataset.val === newVal);
@@ -645,20 +660,559 @@ function initMotionToggle(headerRoot) {
   window.addEventListener("load", () => { if (html.getAttribute("data-motion") === "off") pauseAll(); });
 }
 
+// Квиз КП: на экране телефона — КП, которое собирается из ответов. Направление даёт
+// название и состав работ, бюджет — сумму, срок — дедлайн, имя — «Клиент», отправка — «Отправлено».
+// Наведение на плитку направления на первом шаге — предпросмотр. Экран декоративный
+// (aria-hidden): те же ответы человек видит в самом квизе.
+function initQuizPhone() {
+  const card = document.getElementById('quizCard');
+  const phone = document.getElementById('kpPhone');
+  if (!card || !phone || !phone.classList.contains('kp-live')) return;
+  const $ = (id) => document.getElementById(id);
+  const el = { pill: $('kplPill'), client: $('kplClient'), title: $('kplTitle'), budget: $('kplBudget'), list: $('kplList'), deadline: $('kplDeadline'), btn: $('kplBtn') };
+  const DIRS = {
+    'Видео':      { key: 'video',  title: 'Рекламный ролик',     items: ['Идея и сценарий', 'Съёмочный день', 'Монтаж и графика', 'Цвет и звук'] },
+    'Дизайн':     { key: 'design', title: 'Фирменный стиль',     items: ['Логотип', 'Фирменный стиль', 'Брендбук', 'Носители и полиграфия'] },
+    'Фото':       { key: 'photo',  title: 'Съёмка для каталога', items: ['Предметная съёмка', 'Свет и реквизит', 'Ретушь', 'Цветокоррекция'] },
+    'ИИ-контент': { key: 'ai',     title: 'ИИ-контент',          items: ['Генерация визуалов', 'ИИ-видео', 'Озвучка', 'Арт-дирекшн и доработка'] },
+  };
+  const SK = '<i class="kpl__sk"></i>', SKS = '<i class="kpl__sk kpl__sk--s"></i>';
+  const esc = (t) => String(t).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+  const flash = (node) => { node.classList.remove('is-new'); void node.offsetWidth; node.classList.add('is-new'); };
+  let ans = {}, preview = null, name = '';
+  const render = (changed) => {
+    const dirName = preview || ans.dir;
+    const d = DIRS[dirName];
+    phone.dataset.dir = d ? d.key : '';
+    el.title.innerHTML = d ? esc(d.title) : SK;
+    el.list.innerHTML = d ? d.items.map((x) => '<li><span class="kpl__ok">✓</span>' + esc(x) + '</li>').join('') : '<li>' + SK + '</li>'.repeat(1) + ('<li>' + SK + '</li>').repeat(3);
+    el.budget.innerHTML = ans.budget ? esc(ans.budget) : SKS;
+    el.deadline.innerHTML = ans.deadline ? esc(ans.deadline) : SKS;
+    el.client.innerHTML = 'Клиент: ' + (name ? esc(name) : SKS);
+    if (changed && el[changed]) flash(changed === 'title' ? el.list : el[changed]);
+  };
+  // ответы квиза
+  card.addEventListener('quiz:step', (e) => {
+    const prev = ans;
+    ans = e.detail.answers || {};
+    preview = null;
+    const changed = ans.dir !== prev.dir ? 'title' : ans.budget !== prev.budget ? 'budget' : ans.deadline !== prev.deadline ? 'deadline' : null;
+    if (e.detail.step >= 5) {
+      phone.dataset.state = 'sent'; el.pill.textContent = 'Отправлено'; el.btn.textContent = 'КП отправлено ✓';
+    } else {
+      phone.dataset.state = 'draft'; el.pill.textContent = 'Черновик'; el.btn.textContent = 'Согласовать КП';
+    }
+    render(changed);
+  });
+  // предпросмотр направления по наведению/фокусу на первом шаге
+  card.querySelectorAll('.quiz-dc').forEach((btn) => {
+    const v = btn.dataset.val;
+    const on = () => { if (!ans.dir || card.querySelector('.quiz-step.is-active[data-step="1"]')) { preview = v; render(); } };
+    const off = () => { if (preview) { preview = null; render(); } };
+    btn.addEventListener('mouseenter', on); btn.addEventListener('focus', on);
+    btn.addEventListener('mouseleave', off); btn.addEventListener('blur', off);
+  });
+  // имя появляется по мере ввода
+  const nameInput = document.getElementById('quizName');
+  if (nameInput) nameInput.addEventListener('input', () => { name = nameInput.value.trim().slice(0, 24); render('client'); });
+  render();
+}
+
 // Голосовое приветствие студии: кнопка ▶ в шапке. Играет только по нажатию,
 // повторное нажатие — пауза. Субтитры под кнопкой меняются по ходу речи
 // (тайминги — по паузам в файле assets/audio/about-adervis-v2.mp3).
+// ═══ /ai/: ИИ-звонок, вкладки форматов, демо озвучки ═══
+const aiStill = () => (window.adervisMotionOff ? window.adervisMotionOff() : window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+
+// Уровень громкости из <audio> для анимации (кольца, полоски). Только после жеста
+// пользователя; если Web Audio недоступен, анимация просто не двигается.
+function aiMeter(audio) {
+  let ctx = null, an = null, buf = null, failed = false;
+  // prime() вызываем прямо в обработчике нажатия: иначе iOS Safari держит
+  // контекст приостановленным, и звук через него не идёт
+  const prime = () => {
+    if (an || failed) { if (ctx && ctx.state === 'suspended') ctx.resume(); return; }
+    try {
+      const AC = window.AudioContext || window.webkitAudioContext;
+      if (!AC) { failed = true; return; }
+      ctx = new AC();
+      const src = ctx.createMediaElementSource(audio);
+      an = ctx.createAnalyser(); an.fftSize = 256; an.smoothingTimeConstant = 0.7;
+      src.connect(an); an.connect(ctx.destination);
+      buf = new Uint8Array(an.frequencyBinCount);
+      if (ctx.state === 'suspended') ctx.resume();
+    } catch (e) { failed = true; }
+  };
+  const read = () => {
+    if (!an) return null;
+    an.getByteFrequencyData(buf);
+    return buf;
+  };
+  read.prime = prime;
+  return read;
+}
+
+function initAiCall() {
+  const root = document.getElementById('aiCall');
+  if (!root) return;
+  const audio = root.querySelector('#aiCallAudio');
+  const orb = root.querySelector('#aiCallOrb');
+  const cap = root.querySelector('#aiCallCap');
+  const bars = [...root.querySelectorAll('#aiCallWave i')];
+  const qs = [...root.querySelectorAll('[data-ai-q]')];
+  const errBox = document.getElementById('aiCallErr');
+  const TRACKS = {
+    intro: { src: '/assets/audio/voice-ai.mp3', cues: VOICE_PAGES.ai.cues },
+    price: { src: '/assets/audio/ai-call-price.mp3', cues: [[0, 'Обычно это дешевле классической съёмки.'], [2.96, 'Точную цену считаем после короткого брифа: на неё влияют объём, формат и ручная доработка.'], [10.22, 'Ориентир можно получить в калькуляторе ниже на этой странице.']] },
+    time: { src: '/assets/audio/ai-call-time.mp3', cues: [[0, 'В среднем около недели от брифа до готового результата.'], [4.17, 'Генерация и отбор занимают дни, а не недели.'], [7.91, 'Если срочно, можно ускорить до двух-трёх рабочих дней.']] },
+    rights: { src: '/assets/audio/ai-call-rights.mp3', cues: [[0, 'Да, можно.'], [0.85, 'Мы работаем с инструментами, условия которых допускают коммерческое применение, и обсуждаем это на старте проекта,'], [7.74, 'чтобы вы были уверены в результате.']] },
+  };
+  let track = null, raf = 0;
+  const meter = aiMeter(audio);
+  const keyOf = () => Object.keys(TRACKS).find((k) => TRACKS[k] === track);
+  const sync = () => {
+    const on = !audio.paused;
+    root.dataset.state = on ? 'playing' : (track ? 'paused' : 'idle');
+    orb.setAttribute('aria-pressed', String(on));
+    const k = on && track ? keyOf() : null;
+    qs.forEach((q) => q.setAttribute('aria-pressed', String(q.dataset.aiQ === k)));
+  };
+  // Субтитры — в одну строку: фразы режем на куски ≤ ~36 знаков, время делим пропорционально длине
+  const HINT = cap.textContent;
+  const chunked = new Map();
+  const chunksOf = (t) => {
+    if (chunked.has(t)) return chunked.get(t);
+    const out = [];
+    t.cues.forEach(([at, line], i) => {
+      const end = i + 1 < t.cues.length ? t.cues[i + 1][0] : (audio.duration || at + line.length * 0.07);
+      const parts = []; let cur = '';
+      line.split(' ').forEach((w) => {
+        const next = cur ? cur + ' ' + w : w;
+        if (next.length > 36 && cur) { parts.push(cur); cur = w; }
+        else { cur = next; if (/[,:;]$/.test(w) && cur.length > 18) { parts.push(cur); cur = ''; } }
+      });
+      if (cur) parts.push(cur);
+      // короткий хвост («монтаж.») приклеиваем к предыдущему куску
+      if (parts.length > 1 && parts[parts.length - 1].length < 14 && (parts[parts.length - 2] + ' ' + parts[parts.length - 1]).length <= 42) {
+        parts.splice(-2, 2, parts[parts.length - 2] + ' ' + parts[parts.length - 1]);
+      }
+      const total = parts.reduce((n, x) => n + x.length, 0);
+      let t0 = at;
+      parts.forEach((x) => { out.push([t0, x]); t0 += (end - at) * x.length / total; });
+    });
+    if (audio.duration) chunked.set(t, out);
+    return out;
+  };
+  const showCue = () => {
+    if (!track) return;
+    const list = chunksOf(track);
+    let text = list[0][1];
+    list.forEach(([at, line]) => { if (audio.currentTime >= at) text = line; });
+    if (cap.textContent !== text) cap.textContent = text;
+  };
+  const resetViz = () => { orb.style.setProperty('--lvl', '0'); bars.forEach((b) => b.style.setProperty('--h', '0')); };
+  const loop = () => {
+    raf = 0;
+    if (audio.paused) { resetViz(); return; }
+    if (!aiStill()) {
+      const d = meter();
+      if (d) {
+        let sum = 0; for (let i = 2; i < 48; i++) sum += d[i];
+        orb.style.setProperty('--lvl', Math.min(1, sum / 46 / 150).toFixed(3));
+        bars.forEach((b, i) => b.style.setProperty('--h', (d[3 + i * 5] / 255).toFixed(3)));
+      }
+    } else {
+      orb.style.setProperty('--lvl', '0.25');
+    }
+    raf = requestAnimationFrame(loop);
+  };
+  const play = (key) => {
+    meter.prime();
+    if (errBox) errBox.textContent = '';
+    const t = TRACKS[key];
+    if (track !== t) { track = t; audio.src = t.src; }
+    else if (audio.ended) audio.currentTime = 0;
+    const p = audio.play();
+    if (p && p.catch) p.catch(() => {
+      sync();
+      const msg = 'Не удалось включить звук. Проверьте громкость и попробуйте ещё раз.';
+      cap.textContent = msg; if (errBox) errBox.textContent = msg;
+    });
+  };
+  // Круг: ▶ — рассказ Ады (или продолжить начатый ответ), ⏸ — пауза
+  orb.addEventListener('click', () => {
+    if (!audio.paused) { audio.pause(); return; }
+    play(!track || audio.ended ? 'intro' : keyOf());
+  });
+  qs.forEach((q) => q.addEventListener('click', () => {
+    if (track === TRACKS[q.dataset.aiQ] && !audio.paused) { audio.pause(); return; }
+    play(q.dataset.aiQ);
+  }));
+  audio.addEventListener('play', () => { sync(); showCue(); if (!raf) raf = requestAnimationFrame(loop); });
+  audio.addEventListener('pause', sync);
+  audio.addEventListener('timeupdate', showCue);
+  audio.addEventListener('ended', () => { cap.textContent = HINT; resetViz(); sync(); });
+  sync();
+}
+
+// Вкладки форматов (WAI-ARIA Tabs: стрелки, Home/End, автоматическая активация)
+function initAiFormats() {
+  const list = document.querySelector('.ai-fmt__tabs');
+  if (!list) return;
+  const tabs = [...list.querySelectorAll('[role="tab"]')];
+  const select = (tab, focus) => {
+    tabs.forEach((t) => {
+      const on = t === tab;
+      t.setAttribute('aria-selected', String(on));
+      t.tabIndex = on ? 0 : -1;
+      const panel = document.getElementById(t.getAttribute('aria-controls'));
+      if (panel) panel.hidden = !on;
+    });
+    if (focus) tab.focus();
+    if (list.scrollWidth > list.clientWidth) list.scrollTo({ left: tab.offsetLeft - 16, behavior: aiStill() ? 'auto' : 'smooth' });
+    // уходя со вкладки «Голос» — остановить демо
+    const va = document.getElementById('aiVoiceAudio');
+    if (va && tab.id !== 'fmtTab-voice' && !va.paused) va.pause();
+  };
+  tabs.forEach((t, i) => {
+    t.addEventListener('click', () => select(t));
+    t.addEventListener('keydown', (e) => {
+      let n = null;
+      if (e.key === 'ArrowRight') n = tabs[(i + 1) % tabs.length];
+      else if (e.key === 'ArrowLeft') n = tabs[(i - 1 + tabs.length) % tabs.length];
+      else if (e.key === 'Home') n = tabs[0];
+      else if (e.key === 'End') n = tabs[tabs.length - 1];
+      if (n) { e.preventDefault(); select(n, true); }
+    });
+  });
+  select(tabs.find((t) => t.getAttribute('aria-selected') === 'true') || tabs[0]);
+}
+
+// Демо озвучки RU / EN: полоски-«волна» показывают, сколько проиграно
+function initAiVoiceDemo() {
+  const root = document.getElementById('aiVoiceDemo');
+  if (!root) return;
+  const audio = root.querySelector('#aiVoiceAudio');
+  const play = root.querySelector('#aiVoicePlay');
+  const text = root.querySelector('#aiVoiceText');
+  const barsBox = root.querySelector('#aiVoiceBars');
+  const langs = [...root.querySelectorAll('[data-lang]')];
+  const L = {
+    ru: { src: '../assets/audio/ai-demo-ru.mp3', label: 'Слушать демо на русском, 12 секунд', text: text.textContent },
+    en: { src: '../assets/audio/ai-demo-en.mp3', label: 'Слушать демо на английском, 11 секунд', text: '“Mornings start with the smell of fresh roast. Zerno coffee house: an oat cappuccino and a croissant for 290 roubles. Until ten a.m. Drop by.”' },
+  };
+  const N = 48;
+  for (let i = 0; i < N; i++) {
+    const b = document.createElement('i');
+    const h = 0.25 + 0.75 * Math.abs(Math.sin(i * 1.7) * Math.cos(i * 0.45));
+    b.style.height = Math.round(10 + h * 34) + 'px';
+    barsBox.appendChild(b);
+  }
+  const bars = [...barsBox.children];
+  const paint = () => {
+    const k = audio.duration ? audio.currentTime / audio.duration : 0;
+    const on = Math.round(k * N);
+    bars.forEach((b, i) => b.classList.toggle('is-on', i < on));
+  };
+  const setLang = (code) => {
+    const c = L[code]; if (!c) return;
+    const wasPlaying = !audio.paused;
+    audio.pause(); audio.src = c.src; audio.load();
+    langs.forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.lang === code)));
+    text.textContent = c.text; text.lang = code;
+    play.setAttribute('aria-label', c.label.replace(/, \d+ секунд\S*$/, ''));
+    paint();
+    if (wasPlaying) audio.play().catch(() => {});
+  };
+  langs.forEach((b) => b.addEventListener('click', () => setLang(b.dataset.lang)));
+  play.addEventListener('click', () => {
+    if (audio.paused) { if (audio.ended) audio.currentTime = 0; audio.play().catch(() => {}); }
+    else audio.pause();
+  });
+  const st = () => { play.classList.toggle('is-playing', !audio.paused); play.setAttribute('aria-pressed', String(!audio.paused)); };
+  audio.addEventListener('play', st);
+  audio.addEventListener('pause', st);
+  audio.addEventListener('timeupdate', paint);
+  audio.addEventListener('ended', st);
+}
+
+// CRM-баннер на главной: промо-ролик. Пока блок на экране — тихий повтор (кнопка паузы рядом,
+// WCAG 2.2.2); вне экрана — пауза. «Смотреть со звуком» — с начала, с голосом, субтитрами
+// и обычными кнопками плеера. При «Остановить анимацию» сам ролик не запускается.
+function initPfVideo() {
+  const wrap = document.querySelector('.pf-vid');
+  const v = document.getElementById('pfVideo');
+  const sound = document.getElementById('pfVidSound');
+  const toggle = document.getElementById('pfVidToggle');
+  if (!wrap || !v || !sound || !toggle) return;
+  let userPaused = false, inView = false, soundMode = false;
+  const sync = () => {
+    const paused = v.paused;
+    wrap.classList.toggle('is-paused', paused);
+    toggle.setAttribute('aria-pressed', String(paused));
+  };
+  const preview = () => {
+    if (soundMode || userPaused || !inView || aiStill()) return;
+    v.muted = true;
+    const p = v.play(); if (p && p.catch) p.catch(() => {});
+  };
+  const captions = (on) => { if (v.textTracks && v.textTracks[0]) v.textTracks[0].mode = on ? 'showing' : 'hidden'; };
+  captions(false);
+  ['play', 'pause'].forEach((ev) => v.addEventListener(ev, sync));
+  toggle.addEventListener('click', () => {
+    if (v.paused) { userPaused = false; v.muted = true; v.play().catch(() => {}); }
+    else { userPaused = true; v.pause(); }
+  });
+  sound.addEventListener('click', () => {
+    soundMode = true; wrap.classList.add('is-sound');
+    v.loop = false; v.muted = false; v.controls = true; v.currentTime = 0;
+    captions(true);
+    v.play().catch(() => {});
+    v.focus();
+  });
+  v.addEventListener('ended', () => {
+    if (!soundMode) return;
+    soundMode = false; userPaused = true;
+    wrap.classList.remove('is-sound');
+    const had = document.activeElement === v || document.activeElement === document.body;
+    v.controls = false; v.muted = true; v.loop = true; captions(false);
+    sync(); if (had) sound.focus();
+  });
+  document.addEventListener('adervis:motion', () => { if (aiStill() && !soundMode) v.pause(); else preview(); });
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver((entries) => {
+      inView = entries.some((e) => e.isIntersecting);
+      if (inView) preview(); else if (!soundMode) v.pause();
+    }, { threshold: 0.4 }).observe(wrap);
+  }
+  sync();
+}
+
+// /crm/: экраны программы — вкладками (WAI-ARIA Tabs). Без JS остаётся зигзаг из четырёх блоков.
+function initProShotsTabs() {
+  const box = document.getElementById('proShots');
+  if (!box) return;
+  const shots = [...box.querySelectorAll('.pro-shot')];
+  if (shots.length < 2) return;
+  const list = document.createElement('div');
+  list.className = 'pro-tabs'; list.setAttribute('role', 'tablist'); list.setAttribute('aria-label', 'Экраны программы');
+  const tabs = shots.map((shot, i) => {
+    const label = (shot.querySelector('.pro-shot__eyebrow') || {}).textContent || ('Экран ' + (i + 1));
+    const b = document.createElement('button');
+    b.type = 'button'; b.className = 'pro-tab'; b.id = 'proTab' + i; b.textContent = label.trim();
+    b.setAttribute('role', 'tab'); b.setAttribute('aria-controls', 'proShot' + i);
+    shot.id = 'proShot' + i; shot.setAttribute('role', 'tabpanel'); shot.setAttribute('aria-labelledby', b.id); shot.tabIndex = 0;
+    shot.classList.add('is-visible');
+    list.appendChild(b);
+    return b;
+  });
+  const select = (i, focus) => {
+    tabs.forEach((t, k) => { t.setAttribute('aria-selected', String(k === i)); t.tabIndex = k === i ? 0 : -1; shots[k].hidden = k !== i; });
+    if (focus) tabs[i].focus();
+  };
+  tabs.forEach((t, i) => {
+    t.addEventListener('click', () => select(i));
+    t.addEventListener('keydown', (e) => {
+      const n = e.key === 'ArrowRight' ? (i + 1) % tabs.length : e.key === 'ArrowLeft' ? (i - 1 + tabs.length) % tabs.length : e.key === 'Home' ? 0 : e.key === 'End' ? tabs.length - 1 : -1;
+      if (n >= 0) { e.preventDefault(); select(n, true); }
+    });
+  });
+  box.parentNode.insertBefore(list, box);
+  box.classList.add('is-tabs');
+  select(0);
+}
+
+// Чек-лист на главной: пункты оглавления (на экранах шире 560px) становятся кнопками —
+// лист справа показывает настоящие пункты выбранного раздела. Без JS — обычный список.
+function initLeadSheet() {
+  const toc = document.querySelector('.lm2__toc');
+  const title = document.getElementById('lmSecTitle');
+  const list = document.getElementById('lmItems');
+  const page = document.getElementById('lmPage');
+  const sheet = document.getElementById('lmSheet');
+  if (!toc || !title || !list || !window.matchMedia('(min-width: 561px)').matches) return;
+  const SECTIONS = [
+    ['1. Что решить до обращения', ['Цель, а не формат', 'Где и как будет использоваться', 'Одно главное сообщение', 'Дедлайн с привязкой к событию', 'Кто принимает работу']],
+    ['2. Что приложить к заявке', ['2–3 референса', 'Антиреференсы', 'Бренд-материалы', 'Фактура', 'Ограничения']],
+    ['3. Как думать о бюджете', ['Назовите вилку бюджета', 'Что влияет на цену', 'Разделяйте «надо» и «хочется»', 'Один подрядчик на несколько задач']],
+    ['4. Сроки и этапы', ['Этапы прописаны в смете', 'Число кругов правок', 'Концепт до производства', 'Буфер на согласование']],
+    ['5. Как принимать работу', ['Сверка с целью и ТЗ', 'Правки одним списком', 'Выходные форматы', 'Исходники и права']],
+    ['6. Красные флаги подрядчика', ['Точная цена «за минуту» без вопросов', 'Нет сметы и договора', 'Нет этапов и лимита правок', '«Всё, сразу, дёшево и срочно»']],
+  ];
+  const items = [...toc.children];
+  let cur = 0;
+  const show = (i) => {
+    if (i === cur && title.textContent === SECTIONS[i][0]) return;
+    cur = i;
+    sheet.classList.remove('is-swap'); void sheet.offsetWidth; sheet.classList.add('is-swap');
+    title.textContent = SECTIONS[i][0];
+    list.innerHTML = SECTIONS[i][1].map((t, k) => '<li' + (k < 2 ? ' class="is-on"' : '') + '>' + t + '</li>').join('');
+    if (page) page.textContent = (i + 1) + ' / ' + SECTIONS.length;
+    btns.forEach((b, k) => b.setAttribute('aria-pressed', String(k === i)));
+  };
+  const btns = items.map((li, i) => {
+    const b = document.createElement('button');
+    b.type = 'button'; b.className = 'lm2__toc-btn'; b.textContent = li.textContent.trim();
+    b.setAttribute('aria-pressed', String(i === 0)); b.setAttribute('aria-controls', 'lmSheet');
+    li.textContent = ''; li.appendChild(b);
+    b.addEventListener('click', () => show(i));
+    if (window.matchMedia('(hover: hover)').matches) b.addEventListener('mouseenter', () => show(i));
+    return b;
+  });
+  toc.classList.add('is-interactive');
+}
+
+// Лента логотипов под первым экраном: её можно тянуть мышью и пальцем, как ленту в подвале
+// (пауза при наведении — в CSS, остановка — общим переключателем «Остановить анимацию»)
+function initHeroTickerPause() {
+  const box = document.querySelector('.hero-clients');
+  if (box) initTickerDrag(box);
+}
+
+// Видео YouTube по нажатию: до клика — обложка (блок не пустой, если YouTube недоступен,
+// и страница грузится быстрее). После клика фокус переходит на плеер.
+function initYtLite() {
+  document.querySelectorAll('.yt-lite[data-yt]').forEach((btn) => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const f = document.createElement('iframe');
+      f.src = 'https://www.youtube.com/embed/' + btn.dataset.yt + '?rel=0&modestbranding=1&autoplay=1';
+      f.title = btn.dataset.title || 'Видео';
+      f.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+      f.allowFullscreen = true;
+      f.style.cssText = 'position:absolute; inset:0; width:100%; height:100%; border:0;';
+      btn.replaceWith(f);
+      f.focus();
+    });
+  });
+}
+
+// Озвучка кнопки ▶ в шапке: текст и тайминги субтитров (секунды) по страницам
+const VOICE_PAGES = {
+ "home": {
+  "label": "Послушать о студии, 14 секунд",
+  "cues": [
+   [
+    0,
+    "Привет! Это ADERVIS, продакшн-студия из Перми."
+   ],
+   [
+    3.65,
+    "Снимаем видео, делаем дизайн, фото и контент на нейросетях, всё в одной команде."
+   ],
+   [
+    10.3,
+    "Напишите нам, обсудим задачу и предложим формат."
+   ]
+  ]
+ },
+ "ai": {
+  "label": "Послушать о направлении ИИ-контент, 20 секунд",
+  "cues": [
+   [
+    0,
+    "Привет! Это ADERVIS, направление ИИ-контента."
+   ],
+   [
+    3.81,
+    "Кстати, этот голос тоже создан нейросетью."
+   ],
+   [
+    6.22,
+    "Делаем изображения, видео, озвучку и тексты на нейросетях, а потом дорабатываем руками: цвет, композицию, монтаж."
+   ],
+   [
+    15.16,
+    "Там, где важны объём и скорость, это экономит недели."
+   ],
+   [
+    18.48,
+    "Напишите нам, обсудим задачу."
+   ]
+  ]
+ },
+ "video": {
+  "label": "Послушать о видеопродакшне, 16 секунд",
+  "cues": [
+   [
+    0,
+    "Привет! Это ADERVIS, видеопродакшн из Перми."
+   ],
+   [
+    3.78,
+    "Делаем видео под ключ: сценарий, съёмка, монтаж и анимация."
+   ],
+   [
+    8.61,
+    "Рекламные ролики, фильмы о компании и съёмка мероприятий."
+   ],
+   [
+    13.01,
+    "Напишите нам, обсудим задачу и предложим формат."
+   ]
+  ]
+ },
+ "design": {
+  "label": "Послушать о дизайне и брендинге, 16 секунд",
+  "cues": [
+   [
+    0,
+    "Привет! Это ADERVIS, дизайн и брендинг."
+   ],
+   [
+    3.43,
+    "Разрабатываем логотип, фирменный стиль и брендбук, а ещё полиграфию и упаковку."
+   ],
+   [
+    9.77,
+    "Собираем систему, по которой бренд узнают с первого взгляда."
+   ],
+   [
+    13.75,
+    "Напишите нам, обсудим задачу."
+   ]
+  ]
+ },
+ "photo": {
+  "label": "Послушать о фотопродакшне, 15 секунд",
+  "cues": [
+   [
+    0,
+    "Привет! Это ADERVIS, фотопродакшн."
+   ],
+   [
+    3.27,
+    "Снимаем товары для каталогов и маркетплейсов, мероприятия, команду и контент для соцсетей."
+   ],
+   [
+    9.83,
+    "Ретушь и цветокоррекция уже в комплекте."
+   ],
+   [
+    13.68,
+    "Напишите нам, обсудим съёмку."
+   ]
+  ]
+ }
+};
+
 function initVoiceHello(headerRoot) {
   const btn = headerRoot.querySelector("#voiceToggle");
   const audio = headerRoot.querySelector("#voiceAudio");
   const cap = headerRoot.querySelector("#voiceCaption");
   if (!btn || !audio || !cap) return;
-  const CUES = [
-    [0, "Привет! Это ADERVIS, продакшн-студия из Перми."],
-    [3.65, "Снимаем видео, делаем дизайн, фото и контент на нейросетях, всё в одной команде."],
-    [10.3, "Напишите нам, обсудим задачу и предложим формат."],
-  ];
+  // У каждой страницы услуги своя озвучка; на остальных — общий рассказ о студии
+  const page = (location.pathname.replace(/index\.html$/, "").match(/^\/(ai|video|design|photo)\/$/) || [])[1];
+  const V = (page && VOICE_PAGES[page]) || VOICE_PAGES.home;
+  const CUES = V.cues;
   const FULL = CUES.map(c => c[1]).join(" ");
+  if (page) {
+    audio.src = "/assets/audio/voice-" + page + ".mp3";
+    btn.setAttribute("aria-label", V.label);
+    btn.setAttribute("title", V.label.replace(/, \d+ секунд\S*$/, ""));
+    const tr = headerRoot.querySelector("#voiceTranscript");
+    if (tr) tr.textContent = "Текст: " + FULL;
+  }
   const wrap = btn.closest(".voice-hello");
   const setState = (playing) => {
     btn.setAttribute("aria-pressed", String(playing));
@@ -674,7 +1228,9 @@ function initVoiceHello(headerRoot) {
   };
   // Пузырь не исчезает сам (WCAG 1.2.1: текст читается в своём темпе) —
   // закрывается по Escape, клику мимо или когда фокус уходит с кнопки
-  const close = () => { if (!audio.paused) audio.pause(); cap.hidden = true; };
+  // Закрыть субтитры: касание/клик в любом месте (и по самому пузырю), Escape.
+  // Голос при этом не останавливается — пауза только кнопкой.
+  const close = () => { cap.hidden = true; };
   btn.addEventListener("click", () => {
     if (audio.paused) {
       if (audio.ended || audio.currentTime >= (audio.duration || 99) - 0.05) audio.currentTime = 0;
@@ -694,8 +1250,16 @@ function initVoiceHello(headerRoot) {
     cap.textContent = FULL;            // после окончания — весь текст
   });
   document.addEventListener("keydown", (e) => { if (e.key === "Escape" && !cap.hidden) close(); });
-  document.addEventListener("click", (e) => { if (!cap.hidden && wrap && !wrap.contains(e.target)) close(); });
-  if (wrap) wrap.addEventListener("focusout", (e) => { if (!wrap.contains(e.relatedTarget)) close(); });
+  // pointerdown, а не click: в iOS Safari click по «пустому» месту страницы не приходит
+  // Закрываем касанием/кликом, но не на старте прокрутки: сдвиг > 10px — это скролл
+  let down = null;
+  document.addEventListener("pointerdown", (e) => { down = cap.hidden ? null : { x: e.clientX, y: e.clientY, sy: scrollY }; }, true);
+  document.addEventListener("pointerup", (e) => {
+    if (!down || cap.hidden || btn.contains(e.target)) { down = null; return; }
+    const moved = Math.abs(e.clientX - down.x) + Math.abs(e.clientY - down.y) > 10 || Math.abs(scrollY - down.sy) > 4;
+    down = null;
+    if (!moved) close();
+  }, true);
 }
 
 // Выпадающие меню шапки на десктопе: открываются по наведению и фокусу (CSS).
@@ -910,9 +1474,18 @@ function initBackToTop(footerRoot) {
 
   const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
+  // На телефоне кнопка закрывала содержимое в углу экрана (стрелки слайдеров и т.п.):
+  // там показываем её только при прокрутке вверх — когда человек и ищет путь наверх
+  const narrow = window.matchMedia("(max-width: 760px)");
+  let lastY = window.scrollY;
   const onScroll = () => {
-    button.classList.toggle("is-visible", window.scrollY > 480);
+    const y = window.scrollY, dy = y - lastY;
+    if (!narrow.matches) { button.classList.toggle("is-visible", y > 480); lastY = y; return; }
+    if (Math.abs(dy) < 4) return;
+    button.classList.toggle("is-visible", y > 480 && dy < 0);
+    lastY = y;
   };
+
 
   button.addEventListener("click", () => {
     window.scrollTo({ top: 0, behavior: prefersReducedMotion ? "auto" : "smooth" });
@@ -1365,33 +1938,6 @@ function initCustomCursor() {
   });
 }
 
-// Magnetic-эффект на CTA-кнопках — кнопка плавно тянется к курсору
-function initMagneticButtons() {
-  if (window.matchMedia("(pointer: coarse)").matches) return;
-
-  document.querySelectorAll(".btn.primary, .btn.crm").forEach(btn => {
-    const STRENGTH = 0.28;
-    const RADIUS   = 68;
-
-    btn.addEventListener("mousemove", e => {
-      const r  = btn.getBoundingClientRect();
-      const dx = e.clientX - (r.left + r.width  / 2);
-      const dy = e.clientY - (r.top  + r.height / 2);
-      const dist = Math.hypot(dx, dy);
-      if (dist < RADIUS) {
-        const pull = (1 - dist / RADIUS) * STRENGTH;
-        btn.style.transform  = `translate(${dx * pull}px, ${dy * pull}px)`;
-        btn.style.transition = "transform 0.12s ease";
-      }
-    });
-
-    btn.addEventListener("mouseleave", () => {
-      btn.style.transform  = "";
-      btn.style.transition = "transform 0.45s cubic-bezier(0.2, 0, 0.2, 1)";
-    });
-  });
-}
-
 // Прогресс-бар прокрутки — тонкая золотая линия в верхней части экрана
 function initScrollProgress() {
   const bar = document.createElement("div");
@@ -1466,7 +2012,9 @@ function initTickerDrag(footerRoot) {
     const delay = -(Math.abs(p) / halfW()) * DURATION;
     track.style.transform = "";
     track.style.animation = `ticker-scroll ${DURATION}s linear ${delay}s infinite`;
-    if (isHovered) track.style.animationPlayState = "paused";
+    // «Остановить анимацию» и системное «меньше движения» действуют и после перетаскивания
+    const still = document.documentElement.getAttribute("data-motion") === "off" || window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (isHovered || still) track.style.animationPlayState = "paused";
   };
 
   const glide = () => {
@@ -1762,7 +2310,11 @@ function initVideoPoster() {
     if (!btn) return;
     btn.addEventListener("click", () => {
       const src = poster.getAttribute("data-vk");
-      poster.innerHTML = `<iframe src="${src}" allow="autoplay; encrypted-media; fullscreen; picture-in-picture; screen-wake-lock;" frameborder="0" allowfullscreen title="Видео"></iframe>`;
+      const label = (btn.getAttribute("aria-label") || "Видео").replace(/^Смотреть\s+/, "");
+      const title = label.charAt(0).toUpperCase() + label.slice(1);
+      poster.innerHTML = `<iframe src="${src}" allow="autoplay; encrypted-media; fullscreen; picture-in-picture; screen-wake-lock;" frameborder="0" allowfullscreen title="${title}"></iframe>`;
+      // кнопка исчезла вместе с обложкой — фокус переводим на плеер, а не теряем
+      const fr = poster.querySelector("iframe"); if (fr) fr.focus();
     });
     poster.addEventListener("click", (e) => {
       if (e.target === poster) btn.click();
@@ -1965,15 +2517,16 @@ function initVideoReviewsPlayer() {
   var nextBtn = document.getElementById('vrNext');
 
   VIDEOS.forEach(function (v, i) {
-    var el = document.createElement('div');
+    var el = document.createElement('button');
+    el.type = 'button';
     el.className = 'vrp__item';
     el.innerHTML =
-      '<div class="vrp__item-thumb" style="background-image:url(\'' + v.thumb + '\')"></div>' +
-      '<div class="vrp__item-info">' +
+      '<span class="vrp__item-thumb" aria-hidden="true" style="background-image:url(\'' + v.thumb + '\')"></span>' +
+      '<span class="vrp__item-info">' +
         '<span class="vrp__item-num">' + String(i + 1).padStart(2, '0') + '</span>' +
         '<span class="vrp__item-name">' + v.name + '</span>' +
         '<span class="vrp__item-company">' + v.company + '</span>' +
-      '</div>';
+      '</span>';
     el.addEventListener('click', function () { go(i); });
     listEl.appendChild(el);
   });
@@ -2001,6 +2554,7 @@ function initVideoReviewsPlayer() {
 
     listEl.querySelectorAll('.vrp__item').forEach(function (el, i) {
       el.classList.toggle('is-active', i === current);
+      if (i === current) el.setAttribute('aria-current', 'true'); else el.removeAttribute('aria-current');
     });
     // block:'nearest' скроллит ближайшего скроллящегося предка по вертикали, если
     // активный пункт вне вьюпорта — при первом вызове go(0) (ниже, при инициализации)
