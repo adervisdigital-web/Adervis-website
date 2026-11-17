@@ -12362,3 +12362,19 @@ a.yt-lite { text-decoration: none; }
 [data-theme="light"] .hero-section--dark .hero-kpi-line { color: rgba(255, 255, 255, 0.66); }
 .dp-grid--even .dp-case__overlay { background: linear-gradient(to top, rgba(0, 0, 0, 0.88) 0%, rgba(0, 0, 0, 0.55) 32%, transparent 62%); }
 .dp-grid--even .dp-case__type { color: rgba(255, 255, 255, 0.78); }
+
+/* ═══ Кнопка ▶ в шапке в цвете направления (17.11) ═══
+   /video/ красный, /design/ фиолетовый; /ai/ зелёный (выше, .page-ai), /photo/ золото по умолчанию.
+   Светлая тема на ПК: тёмные оттенки направлений, как у меток .sv3-pill (≥ 3:1 на белом).
+   Мобильная шапка всегда тёмная: там яркий цвет и в светлой теме. */
+.page-video  { --vt: #ef4444; --vt-rgb: 239, 68, 68;  --vt-l: #b11d1d; --vt-l-rgb: 177, 29, 29; }
+.page-design { --vt: #8b5cf6; --vt-rgb: 139, 92, 246; --vt-l: #5a22c8; --vt-l-rgb: 90, 34, 200; }
+.page-video .voice-toggle, .page-design .voice-toggle { color: var(--vt); background: rgba(var(--vt-rgb), 0.10); border-color: rgba(var(--vt-rgb), 0.5); }
+.page-video .voice-toggle:hover, .page-design .voice-toggle:hover { background: rgba(var(--vt-rgb), 0.18); }
+.page-video .voice-toggle::before, .page-design .voice-toggle::before { background: conic-gradient(var(--vt) calc(var(--p) * 360deg), transparent 0); }
+.page-video .voice-caption, .page-design .voice-caption { border-color: rgba(var(--vt-rgb), 0.4); }
+[data-theme="light"] .page-video .voice-toggle, [data-theme="light"] .page-design .voice-toggle { color: var(--vt-l); background: rgba(var(--vt-l-rgb), 0.08); border-color: rgba(var(--vt-l-rgb), 0.5); }
+[data-theme="light"] .page-video .voice-toggle:hover, [data-theme="light"] .page-design .voice-toggle:hover { background: rgba(var(--vt-l-rgb), 0.14); }
+@media (max-width: 860px) {
+  [data-theme="light"] .page-video .voice-toggle, [data-theme="light"] .page-design .voice-toggle { color: var(--vt); background: rgba(var(--vt-rgb), 0.10); border-color: rgba(var(--vt-rgb), 0.5); }
+}
