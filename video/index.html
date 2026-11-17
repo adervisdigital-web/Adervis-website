@@ -40,7 +40,7 @@
     "offers": { "@type": "Offer", "priceCurrency": "RUB", "availability": "https://schema.org/InStock" }
   }
   </script>
-  <link rel="preload" href="/fonts/unbounded-700-cyrillic.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="/fonts/unbounded-700-latin.woff2" as="font" type="font/woff2" crossorigin><link rel="stylesheet" href="../css/style.min.css?v=86e98054">
+  <link rel="preload" href="/fonts/unbounded-700-cyrillic.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="/fonts/unbounded-700-latin.woff2" as="font" type="font/woff2" crossorigin><link rel="stylesheet" href="../css/style.min.css?v=f308d626">
 
   <!-- Three.js importmap · self-hosted (../js/vendor/three), больше не с CDN jsdelivr -->
   <script type="importmap">
@@ -2603,7 +2603,7 @@
   }());
   </script>
 
-  <script src="../js/app.min.js?v=b5ce9209"></script>
+  <script src="../js/app.min.js?v=c867e4fc"></script>
 
   <!-- Клик/клавиатура по бэкстейдж-видео → тот же лайтбокс -->
   <script>
@@ -2681,11 +2681,22 @@
   </script>
 
   <script>
-    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      var s = document.createElement('script');
-      s.type = 'module'; s.src = '../js/hero3d-video.min.js?v=5ffdaf97';
-      document.head.appendChild(s);
-    }
+    // 3D стартует после загрузки страницы, когда браузер свободен: текст первого экрана
+    // отрисовывается сразу, а не ждёт three.js (замер 17.11: LCP 8,9 с на телефоне)
+    (function () {
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      function start() {
+        var s = document.createElement('script');
+        s.type = 'module'; s.src = '../js/hero3d-video.min.js?v=5ffdaf97';
+        document.head.appendChild(s);
+      }
+      function idle() {
+        if ('requestIdleCallback' in window) requestIdleCallback(start, { timeout: 1500 });
+        else setTimeout(start, 200);
+      }
+      if (document.readyState === 'complete') idle();
+      else window.addEventListener('load', idle, { once: true });
+    })();
   </script>
 
   <!-- Синхронизация HTML-оверлея с 3D-иконой + открытие видео -->

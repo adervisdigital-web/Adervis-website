@@ -2491,6 +2491,10 @@ function initVideoReviewThumbnails() {
 
 // Плеер видео-отзывов на главной (секция #vrPlayer) — выбор отзыва из списка,
 // кроссфейд фона, воспроизведение VK-iframe по клику на Play
+// Кадр отзыва нужного размера: в списке миниатюра 68px (берём 320 WebP), на сцене 1280 WebP.
+// Исходники 1920 JPG весили ~170 КБ, и все семь грузились сразу (замер 17.11)
+function vrpSize(src, w) { return src.replace(/\.jpg$/, '-' + w + '.webp'); }
+
 function initVideoReviewsPlayer() {
   var VIDEOS = [
     { url: 'https://vk.com/video_ext.php?oid=-121259819&id=456239134&autoplay=1', thumb: 'assets/cases/review-lesnikova.jpg', name: 'Алина Лесникова',  company: 'MOLODOST · Клиника молодости' },
@@ -2521,7 +2525,7 @@ function initVideoReviewsPlayer() {
     el.type = 'button';
     el.className = 'vrp__item';
     el.innerHTML =
-      '<span class="vrp__item-thumb" aria-hidden="true" style="background-image:url(\'' + v.thumb + '\')"></span>' +
+      '<span class="vrp__item-thumb" aria-hidden="true" style="background-image:url(\'' + vrpSize(v.thumb, 320) + '\')"></span>' +
       '<span class="vrp__item-info">' +
         '<span class="vrp__item-num">' + String(i + 1).padStart(2, '0') + '</span>' +
         '<span class="vrp__item-name">' + v.name + '</span>' +
@@ -2543,7 +2547,7 @@ function initVideoReviewsPlayer() {
 
     bg.style.opacity = '0';
     setTimeout(function () {
-      bg.style.backgroundImage = 'url(\'' + v.thumb + '\')';
+      bg.style.backgroundImage = 'url(\'' + vrpSize(v.thumb, 1280) + '\')';
       bg.style.opacity = '1';
     }, 220);
 
