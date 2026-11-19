@@ -627,10 +627,10 @@ function initMotionToggle(headerRoot) {
     pausedByUs.forEach(a => { try { a.play(); } catch (e) { /* элемент удалён */ } });
     pausedByUs.clear();
   };
-  // Десктоп: имя постоянное («Остановить анимацию»), состояние — aria-pressed.
-  // Мобильная кнопка — текстовая, без aria-pressed: её текст меняет CSS по html[data-motion].
+  // Имя кнопок меняет CSS по html[data-motion] (скрытый текст внутри), aria-pressed не используем.
+  // Иконке в подвале даём подсказку при наведении с тем же текстом.
   const sync = (off) => {
-    buttons.forEach(b => { if (b.hasAttribute("aria-pressed")) b.setAttribute("aria-pressed", String(off)); });
+    buttons.forEach(b => { if (b.classList.contains("footer-motion")) b.title = off ? "Включить анимацию" : "Остановить анимацию"; });
   };
   // Движение, которое не видно через getAnimations(): SVG-анимации (SMIL),
   // фоновое видео в iframe, автопрокрутка отзывов. Его страницы слушают это событие.

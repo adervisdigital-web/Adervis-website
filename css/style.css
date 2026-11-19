@@ -11284,7 +11284,7 @@ html:has(#cookieBanner:not([hidden])) { scroll-padding-bottom: 180px; }
 .motion-toggle__play { display: none; }
 .motion-toggle[aria-pressed="true"] .motion-toggle__pause { display: none; }
 .motion-toggle[aria-pressed="true"] .motion-toggle__play { display: block; }
-.motion-toggle[hidden], .pill-nav__motion[hidden] { display: none !important; }
+.motion-toggle[hidden], .pill-nav__motion[hidden], .footer-motion[hidden] { display: none !important; }
 
 /* Пункт в мобильном меню; на десктопе скрыт */
 .pill-nav__motion { display: none; }
@@ -11382,11 +11382,25 @@ html[data-motion="off"] .pill-nav__motion-on { display: inline; }
   .voice-toggle:hover { transform: none; }
 }
 
-/* Выключатель анимации в подвале — как ссылки юр. строки */
+/* Выключатель анимации в подвале: круглая иконка паузы/запуска в конце юр. строки.
+   Имя для скринридера в скрытом тексте, меняется по html[data-motion] (WCAG 2.2.2) */
 .footer-motion {
-  background: none; border: 0; padding: 0; cursor: pointer;
-  font: inherit; color: inherit; text-decoration: underline; text-underline-offset: 3px;
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 32px; height: 32px; padding: 0; flex: none;
+  border: 1px solid rgba(255, 255, 255, 0.22); border-radius: 50%;
+  background: none; cursor: pointer;
+  color: rgba(255, 255, 255, 0.55);
+  transition: color 0.2s, border-color 0.2s;
 }
+.footer-motion:hover { color: rgba(255, 255, 255, 0.9); border-color: rgba(255, 255, 255, 0.45); }
+.footer-motion:focus-visible { border-radius: 50%; }
+.footer-motion__icon { width: 14px; height: 14px; fill: currentColor; }
+.footer-motion__play { display: none; }
+html[data-motion="off"] .footer-motion__pause { display: none; }
+html[data-motion="off"] .footer-motion__play { display: block; }
+[data-theme="light"] .footer-motion { color: #6b6b6b; border-color: rgba(0, 0, 0, 0.22); }
+[data-theme="light"] .footer-motion:hover { color: var(--text); border-color: rgba(0, 0, 0, 0.45); }
+@media (forced-colors: active) { .footer-motion { border-color: ButtonText; } .footer-motion__icon { fill: ButtonText; } }
 /* Узкие телефоны: в шапке логотип + три круглые кнопки (голос, тема, меню) —
    при полях 32px на 320 бургер упирался в край экрана */
 @media (max-width: 400px) {
