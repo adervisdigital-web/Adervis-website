@@ -434,3 +434,20 @@
   .zg-tone .no span { background-size: 100% 3px; }
   .zg-end__uz { opacity: 1; transform: rotate(8deg) !important; }
 }
+/* === Узлик: слева знак + контур и стикер, справа текст и эмоции === */
+.zg-uz { grid-template-areas: "main info" "side info"; row-gap: 22px; }
+.zg-uz__main { grid-area: main; }
+.zg-uz__info { grid-area: info; align-self: center; }
+.zg-uz__side { grid-area: side; }
+.zg-uz__side .zg-uz__forms { margin-top: 0; }
+@media (max-width: 1100px) {
+  .zg-uz { grid-template-areas: "main" "info" "side"; }
+}
+@media (max-width: 760px) {
+  .zg-uz__forms { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 12px; }
+  .zg-uz__forms .zg-card { padding: 12px; }
+}
+@media (max-width: 400px) {
+  .zg-emos { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+}
+.zg-uz__side { margin: 0; }
